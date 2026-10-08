@@ -2,18 +2,28 @@ package club.readme.android.sync
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.util.Log
+import club.readme.android.data.DeviceMatch
 import club.readme.android.data.Wallpaper
 import club.readme.android.data.WallpaperPage
 import org.json.JSONObject
 import java.io.File
 
 /**
- * Wallpapers from the readme.club gallery, filtered to those that fit the S4 screen.
+ * Wallpapers from the readme.club gallery, filtered to those that fit this reader's screen.
  * Every page, thumbnail and full file goes through a local cache that the UI reads,
  * so pages already seen stay browsable offline.
  */
-class WallpaperSync(private val dir: File) {
+class WallpaperSync(private val dir: File, private val screenWidth: Int, private val screenHeight: Int) {
+
+    /**
+     * Registry slug of this reader (see [DeviceMatch]), or null when no entry fits: the
+     * gallery then shows every size. Resolved online once, then kept in the cache.
+     */
+    @Volatile var deviceSlug: String? = null
+        private set
+    @Volatile private var deviceResolved = false
 
     fun thumbFile(id: String) = File(dir, "thumbs/$id.jpg")
 
@@ -28,7 +38,9 @@ class WallpaperSync(private val dir: File) {
     fun page(page: Int, pageSize: Int): WallpaperPage? {
         val cached = File(dir, "pages/$pageSize-$page.json")
         try {
-            val json = String(Http.get("$SITE/api/wallpapers?fits=$FITS&hide_sensitive=1&sort=latest&page=$page&page_size=$pageSize"))
+            resolveDevice()
+            val fits = deviceSlug?.let { "fits=$it&" } ?: ""
+            val json = String(Http.get("$SITE/api/wallpapers?${fits}hide_sensitive=1&sort=latest&page=$page&page_size=$pageSize"))
             val parsed = parse(json)
             write(cached, json.toByteArray())
             for (w in parsed.items) {
@@ -68,6 +80,32 @@ class WallpaperSync(private val dir: File) {
             Log.w(TAG, "Submitter of $id unavailable", e)
             null
         }
+    }
+
+    private fun resolveDevice() {
+        if (deviceResolved) return
+        val file = File(dir, "device.txt")
+        deviceSlug = try {
+            val devices = JSONObject(String(Http.get("$SITE/api/devices"))).getJSONArray("devices")
+            val candidates = (0 until devices.length()).map { i ->
+                val d = devices.getJSONObject(i)
+                DeviceMatch.Candidate(
+                    slug = d.getString("slug"),
+                    name = d.string("name") ?: "",
+                    brand = d.string("brand") ?: "",
+                    width = d.optInt("screen_width_px").takeIf { it > 0 },
+                    height = d.optInt("screen_height_px").takeIf { it > 0 },
+                    formatCount = d.optJSONArray("native_image_formats")?.length() ?: 0,
+                )
+            }
+            DeviceMatch.pick(candidates, Build.MANUFACTURER, Build.MODEL, screenWidth, screenHeight)
+                .also { write(file, (it ?: "").toByteArray()) }
+        } catch (e: Exception) {
+            Log.w(TAG, "Device registry unavailable", e)
+            if (!file.exists()) return // retry on the next page
+            file.readText().ifEmpty { null }
+        }
+        deviceResolved = true
     }
 
     private fun parse(json: String): WallpaperPage {
@@ -123,8 +161,6 @@ class WallpaperSync(private val dir: File) {
     private companion object {
         const val TAG = "WallpaperSync"
         const val SITE = "https://www.readme.club"
-        // The site's devices registry slug: same screen ratio, formats the S4 can display.
-        const val FITS = "xteink-s4"
         const val THUMB_WIDTH = 240
     }
 }

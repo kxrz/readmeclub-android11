@@ -1,6 +1,6 @@
 # readmeclub-android11
 
-readme.club's Android app for the Xteink S4 (Android 11, 4.3" e-ink). Overview: README.md; device specifics: docs/DEVICE.md.
+readme.club's Android app for e-ink readers, built on the Xteink S4 (Android 11, 4.3" e-ink) and meant to run on any Android 11+ reader. Overview: README.md; device specifics: docs/DEVICE.md.
 
 ## Non-negotiable rules
 - minSdk 30. No dependency on Google Play Services.

@@ -2,6 +2,8 @@ package club.readme.android
 
 import android.app.Application
 import android.content.Context
+import android.hardware.display.DisplayManager
+import android.view.Display
 import android.os.Handler
 import android.os.Looper
 import club.readme.android.data.ContentStore
@@ -41,7 +43,9 @@ class App : Application() {
         news = ContentStore(File(filesDir, "news"))
         guides = ContentStore(File(filesDir, "guides"))
         prefs = Prefs(this)
-        wallpapers = WallpaperSync(File(cacheDir, "wallpapers"))
+        // Physical size of the built-in screen, in its natural orientation.
+        val mode = getSystemService(DisplayManager::class.java).getDisplay(Display.DEFAULT_DISPLAY).mode
+        wallpapers = WallpaperSync(File(cacheDir, "wallpapers"), mode.physicalWidth, mode.physicalHeight)
     }
 
     /** Checks GitHub for a newer release in the background; [done] is called on the main thread. */

@@ -23,6 +23,13 @@ What the app relies on, measured on the device.
   `eink/FullRefresh.kt`) clears ghosting reliably.
 - No animations anywhere; touch feedback is a black/white inversion.
 
+## Other readers
+
+The app targets any Android 11+ device. The wallpaper gallery picks this reader's entry in
+readme.club's device registry (`/api/devices`): by model name first, then exact screen
+resolution, then same aspect ratio (`data/DeviceMatch.kt`); with no match it shows every
+size. `KEYCODE_PAGE_DOWN` / `KEYCODE_PAGE_UP` turn pages like the volume keys.
+
 ## Wallpapers
 
 - `WallpaperManager` has no visible effect on the S4. The app saves wallpapers to

@@ -44,7 +44,10 @@ News, guides and thousands of wallpapers — right on the device, offline, in gl
 - **Never leaves the app.** E-readers rarely have a browser, so nothing ever links out.
 - **Featherweight.** About 160 KB. Pure Kotlin, native Android views, zero third-party libraries.
 
-Built and loved on the **Xteink S4** (Android 11, 4.3", 480 × 800). Device notes for the curious: [docs/DEVICE.md](docs/DEVICE.md).
+Built and loved on the **Xteink S4** (Android 11, 4.3", 480 × 800), and made to run on other
+Android 11+ e-readers too: the wallpaper gallery matches your screen through readme.club's
+device registry, and both volume and page-turn buttons turn pages. Tested so far on the S4
+only; reports from other readers are very welcome. Device notes: [docs/DEVICE.md](docs/DEVICE.md).
 
 ## Install in three steps
 

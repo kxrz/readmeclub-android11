@@ -68,7 +68,7 @@ class WallpapersTab(private val activity: Activity, container: ViewGroup) {
             pageLabel.text = ""
             return
         }
-        status.setText(R.string.wallpapers_fit)
+        status.setText(if (activity.app.wallpapers.deviceSlug != null) R.string.wallpapers_fit else R.string.wallpapers_all_sizes)
         pageCount = maxOf(1, (result.total + PAGE_SIZE - 1) / PAGE_SIZE)
         pageLabel.text = activity.getString(R.string.page_of, page, pageCount)
 
