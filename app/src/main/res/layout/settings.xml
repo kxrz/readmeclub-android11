@@ -96,6 +96,8 @@
             <TextView android:id="@+id/manifest_status" style="@style/Body" android:text="@string/loading" />
 
             <TextView android:id="@+id/update_now" style="@style/Button" android:visibility="gone" />
+
+            <TextView android:id="@+id/check_update" style="@style/Button" android:text="@string/check_update" />
         </LinearLayout>
     </FrameLayout>
 

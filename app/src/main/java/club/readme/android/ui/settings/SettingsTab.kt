@@ -19,7 +19,12 @@ import club.readme.android.update.Updater
 import java.util.Date
 
 /** Settings, on three pages (no scrolling): Reading, Sync & storage, About. */
-class SettingsTab(private val activity: Activity, container: ViewGroup, private val onSyncRequested: () -> Unit) {
+class SettingsTab(
+    private val activity: Activity,
+    container: ViewGroup,
+    private val onSyncRequested: () -> Unit,
+    private val onUpdateCheckRequested: () -> Unit,
+) {
 
     private val root: View = activity.layoutInflater.inflate(R.layout.settings, container, true)
     private val pages = listOf<View>(
@@ -136,10 +141,15 @@ class SettingsTab(private val activity: Activity, container: ViewGroup, private 
         }
 
         updateNow.setOnClickListener { update() }
+        root.findViewById<View>(R.id.check_update).setOnClickListener {
+            updateStatus.setText(R.string.checking_update)
+            updateNow.visibility = View.GONE
+            onUpdateCheckRequested()
+        }
         refreshUpdate()
     }
 
-    /** Shows the result of the launch-time update check (see MainActivity). */
+    /** Shows the result of the last update check, at launch or from "Check for updates". */
     fun refreshUpdate() {
         val release = activity.app.latestRelease
         updateStatus.text = when {

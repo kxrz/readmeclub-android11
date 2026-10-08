@@ -122,7 +122,7 @@ class MainActivity : Activity() {
             TAB_NEWS -> newsTab = NewsTab(this, content, ::sync).also { nextPage = it::nextPageWrapping }
             TAB_GUIDES -> guidesTab = GuidesTab(this, content, ::sync).also { nextPage = it::nextPageWrapping }
             TAB_WALLPAPERS -> nextPage = WallpapersTab(this, content)::nextPageWrapping
-            else -> settingsTab = SettingsTab(this, content, ::sync).also { nextPage = it::nextPageWrapping }
+            else -> settingsTab = SettingsTab(this, content, ::sync) { app.checkForUpdate(::markUpdate) }.also { nextPage = it::nextPageWrapping }
         }
     }
 

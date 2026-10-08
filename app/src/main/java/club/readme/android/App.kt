@@ -40,7 +40,7 @@ class App : Application() {
     var lastSyncFailed = false
         private set
 
-    /** Latest release seen by the last update check (null until one succeeds). */
+    /** Latest release seen by the last update check (null until one succeeds, or if the last one failed). */
     var latestRelease: Updater.Release? = null
 
     override fun onCreate() {
@@ -59,7 +59,7 @@ class App : Application() {
         io.execute {
             val release = Updater.latest()
             main.post {
-                if (release != null) latestRelease = release
+                latestRelease = release
                 done()
             }
         }

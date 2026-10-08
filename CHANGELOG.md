@@ -22,6 +22,8 @@ and refuses to release a version that has no section here.
   registry (model name, then screen resolution, then aspect ratio) and falls back to all sizes.
 - Page-turn keys (`PAGE_DOWN` / `PAGE_UP`) turn pages like the volume keys.
 - "Off" choice for forced full refreshes, for readers that manage their own refresh modes.
+- **Check for updates** in Settings → About, under the version, asks GitHub again for the
+  latest release without restarting the app.
 - Diagnostic screen shows the app version and the device matched for wallpapers.
 - GitHub "Device report" issue form and a "Tested on" table in the README.
 
