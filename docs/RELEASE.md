@@ -31,7 +31,8 @@ data) and reinstall.
 
 ## Every version
 
-1. In `app/build.gradle.kts`, bump `versionCode` (+1) and `versionName`.
+1. In `app/build.gradle.kts`, bump `versionCode` (+1) and `versionName`, and in
+   `CHANGELOG.md` replace "Unreleased" with today's date in that version's section.
 2. Commit, then tag and push:
 
    ```sh
@@ -39,7 +40,8 @@ data) and reinstall.
    ```
 
 3. CI builds the signed, minified APK and creates a GitHub Release with
-   `readmeclub.apk`, `readmeclub-1.0.0.apk` and `manifest.json`.
+   `readmeclub.apk`, `readmeclub-1.0.0.apk` and `manifest.json`, using the version's
+   `CHANGELOG.md` section as release notes. A tag without a section fails the release.
 
 Nothing else to do. At launch the app reads `releases/latest/download/manifest.json`
 (version, APK URL of that release, SHA-256). When a newer version exists, the tab reads

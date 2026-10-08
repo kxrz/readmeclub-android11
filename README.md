@@ -74,6 +74,8 @@ Got a computer handy? `adb install -r readmeclub.apk` works too.
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
+What changed in each version: [CHANGELOG.md](CHANGELOG.md).
+
 Debug builds install next to the official app as *readme.club dev*. Every push is built by
 GitHub Actions; a `v*` tag publishes a signed release ([docs/RELEASE.md](docs/RELEASE.md)).
 

@@ -52,6 +52,12 @@ jobs:
           ./gradlew testReleaseUnitTest assembleRelease
           cp app/build/outputs/apk/release/app-release.apk readmeclub.apk
           cp readmeclub.apk "readmeclub-${GITHUB_REF_NAME#v}.apk"
+          # Release notes come from CHANGELOG.md; no section for this version = no release.
+          version="${GITHUB_REF_NAME#v}"; version="${version%%-*}"
+          awk -v v="$version" 'index($0, "## [" v "]") == 1 {f=1; next} /^## \[/ {if (f) exit} f' CHANGELOG.md > release-notes.md
+          if ! grep -q '[^[:space:]]' release-notes.md; then
+            echo "::error::CHANGELOG.md has no section for $version"; exit 1
+          fi
           # Read by the app's updater: version, APK of this exact release, checksum to verify it.
           cat > manifest.json <<EOF
           {
@@ -66,6 +72,6 @@ jobs:
             readmeclub.apk
             readmeclub-*.apk
             manifest.json
-          generate_release_notes: true
+          body_path: release-notes.md
           # A tag like v1.0.0-rc1 is a test build, not a version to distribute.
           prerelease: ${{ contains(github.ref_name, '-') }}

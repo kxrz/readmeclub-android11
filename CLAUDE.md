@@ -10,6 +10,7 @@ readme.club's Android app for e-ink readers, built on the Xteink S4 (Android 11,
 - Every new dependency must be justified in the PR.
 - No link leaves the app: the S4 has no browser. Only links to readme.club articles and guides stay active, and they open in the app.
 - Everything user-facing and everything in the repo is written in English.
+- **Every change is recorded in CHANGELOG.md, in the same commit**: user-visible changes and changes to the build or release process, under the upcoming version's section (create it, dated "Unreleased", when bumping `versionName`). Set the date when the version is tagged. The release job refuses a tag without its section and uses it as the release notes.
 
 ## Commands
 - Build: ./gradlew assembleDebug
