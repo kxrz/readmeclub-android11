@@ -9,6 +9,7 @@ import club.readme.android.data.Prefs
 import club.readme.android.sync.GuideSync
 import club.readme.android.sync.NewsSync
 import club.readme.android.sync.WallpaperSync
+import club.readme.android.update.Updater
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -32,12 +33,26 @@ class App : Application() {
     var lastSyncFailed = false
         private set
 
+    /** Latest release seen by the last update check (null until one succeeds). */
+    var latestRelease: Updater.Release? = null
+
     override fun onCreate() {
         super.onCreate()
         news = ContentStore(File(filesDir, "news"))
         guides = ContentStore(File(filesDir, "guides"))
         prefs = Prefs(this)
         wallpapers = WallpaperSync(File(cacheDir, "wallpapers"))
+    }
+
+    /** Checks GitHub for a newer release in the background; [done] is called on the main thread. */
+    fun checkForUpdate(done: () -> Unit) {
+        io.execute {
+            val release = Updater.latest()
+            main.post {
+                if (release != null) latestRelease = release
+                done()
+            }
+        }
     }
 
     /** Syncs news and guides in the background; [done] is called on the main thread. */

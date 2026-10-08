@@ -56,4 +56,9 @@
     <string name="storage">Storage</string>
     <string name="clear">Clear</string>
     <string name="about_license">Free software under GPL-3.0. Based on readme.club for Android by Florent Bertiaux · github.com/kxrz/readmeclub-android11</string>
+    <string name="tab_settings_update">Settings •</string>
+    <string name="update_now">Update to %1$s</string>
+    <string name="downloading">Downloading…</string>
+    <string name="allow_installs">Allow readme.club to install apps, then tap Update again.</string>
+    <string name="update_failed">Update failed: %1$s</string>
 </resources>

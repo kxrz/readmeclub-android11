@@ -33,7 +33,11 @@ class MainActivity : Activity() {
             tabs.getChildAt(i).setOnClickListener { showTab(i) }
         }
         showTab(savedInstanceState?.getInt(KEY_TAB) ?: 0)
-        if (savedInstanceState == null) sync() // one sync per launch
+        if (savedInstanceState == null) {
+            sync() // one sync and one update check per launch
+            app.checkForUpdate(::markUpdate)
+        }
+        markUpdate()
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean = keys.handle(event) || super.dispatchKeyEvent(event)
@@ -46,6 +50,14 @@ class MainActivity : Activity() {
         }
         newsTab?.renderStatus()
         guidesTab?.renderStatus()
+    }
+
+    /** "Settings •" when an installable update is waiting there. */
+    private fun markUpdate() {
+        val settings = tabs.getChildAt(TAB_SETTINGS) as android.widget.TextView
+        val pending = app.latestRelease?.canInstall == true
+        settings.text = getString(if (pending) R.string.tab_settings_update else R.string.tab_settings)
+        settingsTab?.refreshUpdate()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -76,5 +88,6 @@ class MainActivity : Activity() {
         const val TAB_NEWS = 0
         const val TAB_GUIDES = 1
         const val TAB_WALLPAPERS = 2
+        const val TAB_SETTINGS = 3
     }
 }

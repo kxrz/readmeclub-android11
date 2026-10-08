@@ -10,13 +10,12 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import club.readme.android.AboutActivity
-import club.readme.android.AppManifest
 import club.readme.android.BuildConfig
 import club.readme.android.DiagnosticActivity
 import club.readme.android.R
-import club.readme.android.Versions
 import club.readme.android.app
 import club.readme.android.data.Prefs
+import club.readme.android.update.Updater
 import java.util.Date
 
 /** Settings, on three pages (no scrolling): Reading, Sync & storage, About. */
@@ -30,6 +29,8 @@ class SettingsTab(private val activity: Activity, container: ViewGroup, private 
     )
     private val pageLabel: TextView = root.findViewById(R.id.page_label)
     private val lastSync: TextView = root.findViewById(R.id.last_sync)
+    private val updateStatus: TextView = root.findViewById(R.id.manifest_status)
+    private val updateNow: TextView = root.findViewById(R.id.update_now)
     private var page = 0
 
     // Hidden diagnostic screen: 5 taps on the version line within 3 s.
@@ -130,17 +131,35 @@ class SettingsTab(private val activity: Activity, container: ViewGroup, private 
             }
         }
 
-        val status = root.findViewById<TextView>(R.id.manifest_status)
+        updateNow.setOnClickListener { update() }
+        refreshUpdate()
+    }
+
+    /** Shows the result of the launch-time update check (see MainActivity). */
+    fun refreshUpdate() {
+        val release = activity.app.latestRelease
+        updateStatus.text = when {
+            release == null -> activity.getString(R.string.offline)
+            release.isNewer -> activity.getString(R.string.update_available, release.version)
+            else -> activity.getString(R.string.up_to_date, release.version)
+        }
+        updateNow.visibility = if (release?.canInstall == true) View.VISIBLE else View.GONE
+        if (release != null) updateNow.text = activity.getString(R.string.update_now, release.version)
+    }
+
+    private fun update() {
+        val release = activity.app.latestRelease ?: return
+        if (!Updater.ensureInstallAllowed(activity)) {
+            updateStatus.setText(R.string.allow_installs)
+            return
+        }
+        updateNow.isEnabled = false
+        updateStatus.setText(R.string.downloading)
         activity.app.io.execute {
-            val latest = AppManifest.fetchLatestVersion(BuildConfig.VERSION_NAME)
+            val result = runCatching { Updater.install(activity, Updater.download(activity, release)) }
             activity.runOnUiThread {
-                if (!status.isAttachedToWindow) return@runOnUiThread
-                status.text = when {
-                    latest == null -> activity.getString(R.string.offline)
-                    Versions.compare(latest, BuildConfig.VERSION_NAME) > 0 ->
-                        activity.getString(R.string.update_available, latest)
-                    else -> activity.getString(R.string.up_to_date, latest)
-                }
+                updateNow.isEnabled = true
+                result.exceptionOrNull()?.let { updateStatus.text = activity.getString(R.string.update_failed, it.message) }
             }
         }
     }

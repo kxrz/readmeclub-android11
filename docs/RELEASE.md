@@ -40,8 +40,12 @@ utilisateur devra désinstaller (et perdre ses données) puis réinstaller.
 3. La CI construit l'APK signé et minifié, et crée une GitHub Release avec
    `readmeclub.apk`, `readmeclub-1.0.0.apk` et `manifest.json`.
 
-Rien d'autre à faire : l'APK est distribué par GitHub Releases, et l'écran About de
-l'app lit `releases/latest/download/manifest.json` pour signaler une mise à jour. Un tag
+Rien d'autre à faire : l'APK est distribué par GitHub Releases. Au lancement, l'app lit
+`releases/latest/download/manifest.json` (version, URL de l'APK de cette release, SHA-256) ;
+si une version plus récente existe, l'onglet devient « Settings • » et About propose
+« Update to x.y.z » : téléchargement, vérification du SHA-256, puis écran de confirmation
+d'Android. La première fois, Android demande d'autoriser readme.club à installer des applis.
+Seules les builds release se mettent à jour (même clé de signature obligatoire). Un tag
 avec suffixe (`v1.0.0-rc1`) est publié en *pre-release* : il n'est pas « latest », donc
 jamais proposé comme mise à jour.
 

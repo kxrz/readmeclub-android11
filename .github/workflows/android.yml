@@ -52,11 +52,12 @@ jobs:
           ./gradlew testReleaseUnitTest assembleRelease
           cp app/build/outputs/apk/release/app-release.apk readmeclub.apk
           cp readmeclub.apk "readmeclub-${GITHUB_REF_NAME#v}.apk"
-          # Read by the app's About screen to tell whether an update exists.
+          # Read by the app's updater: version, APK of this exact release, checksum to verify it.
           cat > manifest.json <<EOF
           {
             "latestVersion": "${GITHUB_REF_NAME#v}",
-            "apkUrl": "https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/readmeclub.apk"
+            "apkUrl": "https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/readmeclub.apk",
+            "sha256": "$(sha256sum readmeclub.apk | cut -d' ' -f1)"
           }
           EOF
       - uses: softprops/action-gh-release@v2
