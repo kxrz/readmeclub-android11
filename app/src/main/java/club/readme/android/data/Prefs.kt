@@ -6,14 +6,22 @@ class Prefs(context: Context) {
 
     private val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
-    /** Force a full e-ink refresh every N page turns. */
+    private val defaultTextSize = context.resources.configuration.smallestScreenWidthDp.let {
+        when {
+            it < 400 -> 18
+            it < 600 -> 20
+            else -> 22
+        }
+    }
+
+    /** Force a full e-ink refresh every N page turns, or never ([REFRESH_OFF]). */
     var refreshEvery: Int
         get() = prefs.getInt("refresh_every", 6)
         set(value) = prefs.edit().putInt("refresh_every", value).apply()
 
-    /** Reader text size, in sp. */
+    /** Reader text size, in sp. Defaults grow with the screen: 18 on pocket readers like the S4. */
     var textSize: Int
-        get() = prefs.getInt("text_size", 18)
+        get() = prefs.getInt("text_size", defaultTextSize)
         set(value) = prefs.edit().putInt("text_size", value).apply()
 
     /** Reader font: sans-serif (like the rest of the UI) unless serif is chosen. */
@@ -27,7 +35,8 @@ class Prefs(context: Context) {
         set(value) = prefs.edit().putBoolean("welcomed", value).apply()
 
     companion object {
-        val REFRESH_CHOICES = listOf(1, 3, 6, 10)
+        const val REFRESH_OFF = 0
+        val REFRESH_CHOICES = listOf(1, 3, 6, 10, REFRESH_OFF)
         val TEXT_SIZES = listOf(16, 18, 20, 22, 24)
     }
 }

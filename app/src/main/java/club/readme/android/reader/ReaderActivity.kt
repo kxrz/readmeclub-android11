@@ -16,6 +16,7 @@ import android.widget.Toast
 import club.readme.android.R
 import club.readme.android.app
 import club.readme.android.data.Article
+import club.readme.android.data.Prefs
 import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
 
@@ -92,6 +93,12 @@ class ReaderActivity : Activity() {
             typeface = if (app.prefs.serif) Typeface.SERIF else Typeface.DEFAULT
             textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, app.prefs.textSize.toFloat(), resources.displayMetrics)
         }
+        // On large screens, cap the line length so lines stay comfortable to read.
+        val maxLine = (MAX_LINE_DP * resources.displayMetrics.density).toInt()
+        if (pageView.contentWidth > maxLine) {
+            val side = (pageView.width - maxLine) / 2
+            pageView.setPadding(side, pageView.paddingTop, side, pageView.paddingBottom)
+        }
         val width = pageView.contentWidth
         val height = pageView.contentHeight
         val text = ArticleText.build(article, store(kind), resources, width, height)
@@ -111,7 +118,8 @@ class ReaderActivity : Activity() {
         if (menu.visibility == View.VISIBLE) return toggleMenu()
         if (!pageView.turn(delta)) return
         updatePageNumber()
-        if (++turnsSinceRefresh >= app.prefs.refreshEvery) {
+        val every = app.prefs.refreshEvery
+        if (every != Prefs.REFRESH_OFF && ++turnsSinceRefresh >= every) {
             turnsSinceRefresh = 0
             FullRefresh.flash(flash)
         }
@@ -129,6 +137,7 @@ class ReaderActivity : Activity() {
 
     companion object {
         private const val EXTRA_SLUG = "slug"
+        private const val MAX_LINE_DP = 600
         private const val EXTRA_KIND = "kind"
 
         /** Intent to read the article ([InternalLinks.NEWS]) or guide ([InternalLinks.GUIDES]) [slug]. */

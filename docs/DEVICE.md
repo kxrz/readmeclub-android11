@@ -30,6 +30,11 @@ readme.club's device registry (`/api/devices`): by model name first, then exact 
 resolution, then same aspect ratio (`data/DeviceMatch.kt`); with no match it shows every
 size. `KEYCODE_PAGE_DOWN` / `KEYCODE_PAGE_UP` turn pages like the volume keys.
 
+Layout follows the screen: the wallpaper grid and the guides shelf add columns on wider
+screens (3 × 2 and 2 columns on the S4), the default text size grows with the smallest
+screen width, and reader lines are capped at 600 dp. Forced full refreshes can be set to
+*Off* in Settings for readers that manage their own refresh modes.
+
 ## Wallpapers
 
 - `WallpaperManager` has no visible effect on the S4. The app saves wallpapers to

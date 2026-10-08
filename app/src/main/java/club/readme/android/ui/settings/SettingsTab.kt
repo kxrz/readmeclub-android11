@@ -45,7 +45,11 @@ class SettingsTab(private val activity: Activity, container: ViewGroup, private 
             listOf(activity.getString(R.string.font_sans) to false, activity.getString(R.string.font_serif) to true),
             prefs.serif,
         ) { prefs.serif = it }
-        choices(R.id.refresh_choices, Prefs.REFRESH_CHOICES.map { it.toString() to it }, prefs.refreshEvery) { prefs.refreshEvery = it }
+        choices(
+            R.id.refresh_choices,
+            Prefs.REFRESH_CHOICES.map { (if (it == Prefs.REFRESH_OFF) activity.getString(R.string.off) else it.toString()) to it },
+            prefs.refreshEvery,
+        ) { prefs.refreshEvery = it }
 
         root.findViewById<View>(R.id.sync_now).setOnClickListener { onSyncRequested(); refresh() }
         clearButton(R.id.clear_news) { activity.app.news.clear() }

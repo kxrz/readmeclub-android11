@@ -24,6 +24,7 @@
     <string name="updated_at">Updated %1$s · Refresh</string>
     <string name="reading">Reading</string>
     <string name="refresh_every">Full refresh every N pages</string>
+    <string name="off">Off</string>
     <string name="wallpapers_fit">Fits this screen · Reload</string>
     <string name="wallpapers_all_sizes">All sizes · Reload</string>
     <string name="wallpapers_empty">No wallpapers here.</string>

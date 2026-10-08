@@ -74,7 +74,11 @@ class GuidesTab(private val activity: Activity, container: ViewGroup, onSyncRequ
     private val brandGuides: List<Article> get() = guides.filter { brand!!.slug in it.brands }
 
     private val perPage: Int
-        get() = if (brand == null) COLUMNS * maxOf(1, grid.height / tileHeight) else maxOf(1, grid.height / itemHeight)
+        get() = if (brand == null) columns * maxOf(1, grid.height / tileHeight) else maxOf(1, grid.height / itemHeight)
+
+    /** Brand tiles per row: 2 on the S4, more on wider screens. */
+    private val columns: Int
+        get() = maxOf(2, (grid.width / activity.resources.displayMetrics.density / MIN_TILE_DP).toInt())
 
     private val itemCount: Int get() = if (brand == null) brands.size else brandGuides.size
 
@@ -107,7 +111,7 @@ class GuidesTab(private val activity: Activity, container: ViewGroup, onSyncRequ
         back.visibility = if (open == null) View.GONE else View.VISIBLE
 
         if (open == null) {
-            grid.columnCount = COLUMNS
+            grid.columnCount = columns
             brands.drop(page * perPage).take(perPage).forEach { grid.addView(brandTile(it)) }
         } else {
             grid.columnCount = 1
@@ -127,7 +131,7 @@ class GuidesTab(private val activity: Activity, container: ViewGroup, onSyncRequ
     private fun brandTile(b: Brand): View {
         val tile = activity.layoutInflater.inflate(R.layout.brand_tile, grid, false)
         tile.layoutParams = GridLayout.LayoutParams().apply {
-            width = grid.width / COLUMNS
+            width = grid.width / columns
             height = tileHeight
         }
         val logo = b.logo?.let { BitmapFactory.decodeFile(activity.app.guides.imageFile(it).path) }
@@ -161,6 +165,7 @@ class GuidesTab(private val activity: Activity, container: ViewGroup, onSyncRequ
     }
 
     private companion object {
-        const val COLUMNS = 2
+        /** Narrowest brand tile, in dp. */
+        const val MIN_TILE_DP = 170f
     }
 }

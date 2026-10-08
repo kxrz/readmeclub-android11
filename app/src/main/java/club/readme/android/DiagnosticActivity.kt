@@ -24,6 +24,7 @@ class DiagnosticActivity : Activity() {
         val m = resources.displayMetrics
         findViewById<TextView>(R.id.display).text = buildString {
             appendLine("${Build.MANUFACTURER} ${Build.MODEL} · Android ${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})")
+            appendLine("readme.club ${BuildConfig.VERSION_NAME} · wallpapers for: ${app.wallpapers.deviceSlug ?: "all sizes"}")
             appendLine("Pixels: ${m.widthPixels}×${m.heightPixels}")
             appendLine("densityDpi: ${m.densityDpi} · density: ${m.density}")
             appendLine("xdpi/ydpi: ${m.xdpi} / ${m.ydpi}")
@@ -34,7 +35,7 @@ class DiagnosticActivity : Activity() {
         }
 
         val flash = findViewById<View>(R.id.flash)
-        findViewById<View>(R.id.refresh_test).setOnClickListener { FullRefresh.flash(flash) }
+        findViewById<View>(R.id.refresh_test).setOnClickListener { FullRefresh.flash(flash, force = true) }
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {

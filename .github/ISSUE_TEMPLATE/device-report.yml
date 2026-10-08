@@ -1,0 +1,57 @@
+name: Device report
+description: Tell us how the app runs on your e-reader, so we can list it as tested.
+title: "Device report: <brand> <model>"
+labels: ["device report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing readme.club on your reader! Tip: in the app, open
+        **Settings → About** and tap the version number **5 times** to open the diagnostic
+        screen. It shows most of what this form asks for.
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: Brand and model, as sold.
+      placeholder: e.g. Xteink S4
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostic
+    attributes:
+      label: Diagnostic screen
+      description: Copy the first lines of the diagnostic screen (model, Android version, pixels, density, dp), or attach a screenshot.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      placeholder: e.g. 1.0.3
+    validations:
+      required: true
+  - type: checkboxes
+    id: works
+    attributes:
+      label: What works
+      options:
+        - label: Install and launch
+        - label: News list and reader (pages, images)
+        - label: Guides shelf and reader
+        - label: Wallpapers grid shows images that fit the screen ("Fits this screen" in the header)
+        - label: Saving a wallpaper to Pictures/ReadmeClub
+        - label: Physical buttons turn pages
+        - label: Full refresh clears ghosting
+        - label: Update from Settings → About
+  - type: textarea
+    id: buttons
+    attributes:
+      label: Buttons
+      description: Which physical buttons does your reader have, and what does the diagnostic screen show when you press them?
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything odd?
+      description: Layout problems, crashes, slow screens… Screenshots help a lot (`adb exec-out screencap -p > screen.png`).
