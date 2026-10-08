@@ -19,6 +19,11 @@ class DeviceMatchTest {
     @Test fun modelNameWins() =
         assertEquals("xteink-s4", DeviceMatch.pick(registry, "XTEINK", "S4", 480, 800))
 
+    @Test fun manufacturerModelSlug() {
+        val unnamed = registry.map { if (it.slug == "xteink-s4") it.copy(name = "Pocket reader") else it }
+        assertEquals("xteink-s4", DeviceMatch.pick(unnamed, "XTEINK", "S4", 480, 800))
+    }
+
     @Test fun brandAndModelName() =
         assertEquals("tall", DeviceMatch.pick(registry, "Generic", "Acme Tall", 824, 1648))
 

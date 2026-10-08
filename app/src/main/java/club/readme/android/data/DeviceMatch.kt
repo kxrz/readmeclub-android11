@@ -22,7 +22,7 @@ object DeviceMatch {
     private const val RATIO_TOLERANCE = 0.02
 
     /**
-     * In order: the entry named like this model ("S4", "Xteink S4"), else one with the exact
+     * In order: the entry named like this model ("S4", "Xteink S4", slug "xteink-s4"), else one with the exact
      * screen resolution, else one with the same aspect ratio. Ties go to the entry reading the
      * most formats. Null when nothing fits: the gallery then shows every size.
      */
@@ -31,7 +31,8 @@ object DeviceMatch {
         val withScreen = candidates.filter { it.width != null && it.height != null && it.width > 0 && it.height > 0 }
 
         val names = setOf(model.trim().lowercase(), "${manufacturer.trim()} ${model.trim()}".lowercase())
-        candidates.firstOrNull { it.name.lowercase() in names || "${it.brand} ${it.name}".lowercase() in names }
+        val slug = "${manufacturer.trim()}-${model.trim()}".lowercase().replace(Regex("[^a-z0-9]+"), "-")
+        candidates.firstOrNull { it.slug == slug || it.name.lowercase() in names || "${it.brand} ${it.name}".lowercase() in names }
             ?.let { return it.slug }
 
         val exact = withScreen.filter { portrait(it.width!!, it.height!!) == shortSide to longSide }
