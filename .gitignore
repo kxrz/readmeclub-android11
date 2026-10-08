@@ -1,0 +1,16 @@
+# Gradle / Android Studio
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Signing — the release key never goes in the repo
+*.jks
+*.keystore
+keystore.properties
+
+.DS_Store
