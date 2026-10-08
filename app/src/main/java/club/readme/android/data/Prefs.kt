@@ -21,6 +21,11 @@ class Prefs(context: Context) {
         get() = prefs.getBoolean("serif", false)
         set(value) = prefs.edit().putBoolean("serif", value).apply()
 
+    /** False until the first-launch welcome screen has been shown. */
+    var welcomed: Boolean
+        get() = prefs.getBoolean("welcomed", false)
+        set(value) = prefs.edit().putBoolean("welcomed", value).apply()
+
     companion object {
         val REFRESH_CHOICES = listOf(1, 3, 6, 10)
         val TEXT_SIZES = listOf(16, 18, 20, 22, 24)

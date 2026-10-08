@@ -1,29 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <FrameLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#888888" />
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView style="@style/Tab" android:text="@string/tab_news" />
-        <TextView style="@style/Tab" android:text="@string/tab_guides" />
-        <TextView style="@style/Tab" android:text="@string/tab_wallpapers" />
-        <TextView style="@style/Tab" android:text="@string/tab_settings" />
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#888888" />
+
+        <LinearLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal">
+
+            <TextView style="@style/Tab" android:text="@string/tab_news" />
+            <TextView style="@style/Tab" android:text="@string/tab_guides" />
+            <TextView style="@style/Tab" android:text="@string/tab_wallpapers" />
+            <TextView style="@style/Tab" android:text="@string/tab_settings" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+    <!-- Welcome screen, first launch only: logo and version while the first sync starts. -->
+    <LinearLayout
+        android:id="@+id/splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="220dp"
+            android:layout_height="88dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/splash_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="@string/splash_tagline"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

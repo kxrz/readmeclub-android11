@@ -1,59 +1,60 @@
-# Publier une version de l'app
+# Publishing a version
 
-## Une seule fois : la clé de signature
+## Once: the signing key
 
-Toutes les versions distribuées doivent être signées avec **la même clé**. Si elle est
-perdue, plus aucune mise à jour ne pourra s'installer par-dessus l'app existante : chaque
-utilisateur devra désinstaller (et perdre ses données) puis réinstaller.
+Every distributed version must be signed with **the same key**. If it is lost, no update
+can ever install over the existing app: every user would have to uninstall (losing their
+data) and reinstall.
 
-1. Sur le Mac (`keytool` vient avec Java : `brew install openjdk` s'il manque) :
+1. On a computer with Java (`brew install openjdk@17` on a Mac, then call
+   `$(brew --prefix openjdk@17)/bin/keytool`):
 
    ```sh
    keytool -genkeypair -v -keystore readmeclub-release.jks -alias readmeclub \
      -keyalg RSA -keysize 4096 -validity 36500
    ```
 
-   Choisir un mot de passe solide (le même pour le keystore et la clé, c'est plus simple).
+   Pick a strong password (with the default PKCS12 format, the keystore and the key share it).
 
-2. **Sauvegarder** `readmeclub-release.jks` et le mot de passe dans le gestionnaire de mots
-   de passe, et une seconde copie ailleurs. Jamais dans un dépôt git.
+2. **Back up** `readmeclub-release.jks` and its password in a password manager, plus a
+   second copy elsewhere. Never in a git repository.
 
-3. Dans GitHub → `kxrz/readmeclub-android11` → Settings → Secrets and variables → Actions,
-   créer quatre secrets :
+3. In GitHub → `kxrz/readmeclub-android11` → Settings → Secrets and variables → Actions,
+   create four **repository** secrets:
 
-   | Secret | Valeur |
+   | Secret | Value |
    |---|---|
-   | `RELEASE_KEYSTORE_BASE64` | sortie de `base64 -i readmeclub-release.jks` |
-   | `RELEASE_KEYSTORE_PASSWORD` | le mot de passe du keystore |
+   | `RELEASE_KEYSTORE_BASE64` | output of `base64 -i readmeclub-release.jks` |
+   | `RELEASE_KEYSTORE_PASSWORD` | the keystore password |
    | `RELEASE_KEY_ALIAS` | `readmeclub` |
-   | `RELEASE_KEY_PASSWORD` | le mot de passe de la clé |
+   | `RELEASE_KEY_PASSWORD` | the key password (the same one) |
 
-## À chaque version
+## Every version
 
-1. Dans `app/build.gradle.kts`, augmenter `versionCode` (+1) et `versionName`.
-2. Commit, puis tag et push :
+1. In `app/build.gradle.kts`, bump `versionCode` (+1) and `versionName`.
+2. Commit, then tag and push:
 
    ```sh
    git tag v1.0.0 && git push origin v1.0.0
    ```
 
-3. La CI construit l'APK signé et minifié, et crée une GitHub Release avec
-   `readmeclub.apk`, `readmeclub-1.0.0.apk` et `manifest.json`.
+3. CI builds the signed, minified APK and creates a GitHub Release with
+   `readmeclub.apk`, `readmeclub-1.0.0.apk` and `manifest.json`.
 
-Rien d'autre à faire : l'APK est distribué par GitHub Releases. Au lancement, l'app lit
-`releases/latest/download/manifest.json` (version, URL de l'APK de cette release, SHA-256) ;
-si une version plus récente existe, l'onglet devient « Settings • » et About propose
-« Update to x.y.z » : téléchargement, vérification du SHA-256, puis écran de confirmation
-d'Android. La première fois, Android demande d'autoriser readme.club à installer des applis.
-Seules les builds release se mettent à jour (même clé de signature obligatoire). Un tag
-avec suffixe (`v1.0.0-rc1`) est publié en *pre-release* : il n'est pas « latest », donc
-jamais proposé comme mise à jour.
+Nothing else to do. At launch the app reads `releases/latest/download/manifest.json`
+(version, APK URL of that release, SHA-256). When a newer version exists, the tab reads
+"Settings •" and About offers "Update to x.y.z": download, SHA-256 check, then Android's
+confirmation screen. The first time, Android asks to allow readme.club to install apps.
+Only release builds update themselves (the signing key must match).
 
-Lien de téléchargement permanent de la dernière version (dépôt public) :
+A tag with a suffix (`v1.0.0-rc1`) is published as a *pre-release*: it is never "latest",
+so it is never offered as an update.
+
+Permanent download link for the latest version:
 `https://github.com/kxrz/readmeclub-android11/releases/latest/download/readmeclub.apk`
 
-## Builds de dev et release sur la même liseuse
+## Dev and release builds on the same reader
 
-Les builds de dev (`app-debug`, CI à chaque push) s'installent sous un autre identifiant
-(`club.readme.android.debug`) et s'appellent « readme.club dev » : ils cohabitent avec
-l'app distribuée (`club.readme.android`) sans conflit de signature.
+Dev builds (`app-debug`, built by CI on every push) install under their own id
+(`club.readme.android.debug`) and are called "readme.club dev": they live next to the
+distributed app (`club.readme.android`) without any signature clash.

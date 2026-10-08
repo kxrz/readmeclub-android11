@@ -1,27 +1,28 @@
 # readmeclub-android11
 
-App Android de readme.club pour la Xteink S4 (Android 11, e-ink 4,3"). Présentation : README.md ; particularités de l'appareil : docs/DEVICE.md.
+readme.club's Android app for the Xteink S4 (Android 11, 4.3" e-ink). Overview: README.md; device specifics: docs/DEVICE.md.
 
-## Règles non négociables
-- minSdk 30. Aucune dépendance aux Google Play Services.
-- Zéro animation, zéro couleur porteuse de sens, zéro défilement continu : tout est paginé.
-- L'UI lit uniquement le cache local ; seul le package `sync` écrit depuis le réseau.
-- Pas de framework d'injection : AppContainer dans Application.
-- Toute nouvelle dépendance doit être justifiée dans la PR.
-- Aucun lien vers l'extérieur : la S4 n'a pas de navigateur. Seuls les liens vers des articles et guides readme.club restent actifs, et ils s'ouvrent dans l'app.
+## Non-negotiable rules
+- minSdk 30. No dependency on Google Play Services.
+- No animation, no colour carrying meaning, no continuous scrolling: everything is paginated.
+- The UI only reads the local cache; only the `sync` package writes from the network.
+- No dependency-injection framework: the App class is the container.
+- Every new dependency must be justified in the PR.
+- No link leaves the app: the S4 has no browser. Only links to readme.club articles and guides stay active, and they open in the app.
+- Everything user-facing and everything in the repo is written in English.
 
-## Commandes
-- Build : ./gradlew assembleDebug
-- Tests : ./gradlew testDebugUnitTest
-- Installer sur le S4 : adb install -r app/build/outputs/apk/debug/app-debug.apk
+## Commands
+- Build: ./gradlew assembleDebug
+- Tests: ./gradlew testDebugUnitTest
+- Install on the S4: adb install -r app/build/outputs/apk/debug/app-debug.apk
 
-## Vérification
-- Le moteur `reader` a des tests unitaires (pagination de blocs connus, cas limites : image plus haute que l'écran, paragraphe sur 3 pages).
-- Avant de dire "fini" : build vert (debug et release) et tests verts sur GitHub Actions, puis test sur l'appareil.
+## Verification
+- The `reader` engine has unit tests (pagination of known layouts, edge cases: image taller than the screen, paragraph over 3 pages).
+- Before calling something done: green build (debug and release) and green tests on GitHub Actions, then a test on the device.
 
 ## Build
-- L'environnement cloud n'a ni SDK Android ni accès à Google Maven : le build se vérifie sur GitHub Actions (`.github/workflows/android.yml`).
-- Chaque push produit l'artefact `app-debug` (APK signé avec `app/debug.keystore`, partagé pour que les installs successives passent).
-- Un tag `v*` produit l'APK release signé et le publie dans GitHub Releases : procédure complète dans docs/RELEASE.md.
-- Les builds debug ont leur propre identifiant (`club.readme.android.debug`, « readme.club dev ») et cohabitent avec la release.
-- Stack volontairement minimale : vues Android natives, Kotlin, zéro dépendance AndroidX ; réseau via `HttpURLConnection` + `org.json`.
+- The cloud environment has no Android SDK nor access to Google Maven: builds are verified on GitHub Actions (`.github/workflows/android.yml`).
+- Every push produces the `app-debug` artifact (APK signed with `app/debug.keystore`, shared so successive installs go through).
+- A `v*` tag produces the signed release APK and publishes it on GitHub Releases: full procedure in docs/RELEASE.md.
+- Debug builds have their own id (`club.readme.android.debug`, "readme.club dev") and install next to the release.
+- Deliberately minimal stack: native Android views, Kotlin, no AndroidX; networking with `HttpURLConnection` + `org.json`.

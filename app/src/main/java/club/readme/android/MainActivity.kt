@@ -3,8 +3,11 @@ package club.readme.android
 import android.app.Activity
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
+import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
 import club.readme.android.ui.guides.GuidesTab
 import club.readme.android.ui.news.NewsTab
@@ -38,6 +41,24 @@ class MainActivity : Activity() {
             app.checkForUpdate(::markUpdate)
         }
         markUpdate()
+        if (!app.prefs.welcomed) showWelcome()
+    }
+
+    /** First launch only: logo and version over the app while the first sync starts. */
+    private fun showWelcome() {
+        app.prefs.welcomed = true
+        val splash = findViewById<View>(R.id.splash)
+        findViewById<TextView>(R.id.splash_version).text =
+            getString(R.string.version, BuildConfig.VERSION_NAME)
+        splash.visibility = View.VISIBLE
+        val hide = Runnable {
+            if (splash.visibility == View.VISIBLE) {
+                splash.visibility = View.GONE
+                FullRefresh.flash(findViewById(R.id.flash))
+            }
+        }
+        splash.setOnClickListener { hide.run() }
+        splash.postDelayed(hide, 2500)
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean = keys.handle(event) || super.dispatchKeyEvent(event)
@@ -48,13 +69,13 @@ class MainActivity : Activity() {
             guidesTab?.reload()
             settingsTab?.refresh()
         }
-        newsTab?.renderStatus()
+        newsTab?.reload() // shows the "fetching" card right away
         guidesTab?.renderStatus()
     }
 
     /** "Settings •" when an installable update is waiting there. */
     private fun markUpdate() {
-        val settings = tabs.getChildAt(TAB_SETTINGS) as android.widget.TextView
+        val settings = tabs.getChildAt(TAB_SETTINGS) as TextView
         val pending = app.latestRelease?.canInstall == true
         settings.text = getString(if (pending) R.string.tab_settings_update else R.string.tab_settings)
         settingsTab?.refreshUpdate()

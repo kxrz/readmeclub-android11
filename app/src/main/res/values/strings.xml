@@ -61,4 +61,7 @@
     <string name="downloading">Downloading…</string>
     <string name="allow_installs">Allow readme.club to install apps, then tap Update again.</string>
     <string name="update_failed">Update failed: %1$s</string>
+    <string name="splash_tagline">Everything your e-ink device needs,\nin one place.</string>
+    <string name="sync_card_title">Fetching the latest from readme.club…</string>
+    <string name="sync_card_body">News, guides and images are saved for offline reading. The first time takes a minute.</string>
 </resources>

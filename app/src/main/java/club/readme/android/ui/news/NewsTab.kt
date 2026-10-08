@@ -58,7 +58,11 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
         render()
     }
 
-    private val pageCount: Int get() = maxOf(1, (articles.size + perPage - 1) / perPage)
+    /** The list as shown: a "fetching" card first while a sync runs (null), then the articles. */
+    private val entries: List<Article?>
+        get() = if (activity.app.syncing) listOf(null) + articles else articles
+
+    private val pageCount: Int get() = maxOf(1, (entries.size + perPage - 1) / perPage)
 
     private fun turn(delta: Int) {
         val target = (page + delta).coerceIn(0, pageCount - 1)
@@ -70,15 +74,19 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
     private fun render() {
         renderStatus()
         items.removeAllViews()
-        if (articles.isEmpty()) {
+        if (entries.isEmpty()) {
             items.addView(TextView(activity).apply {
-                setText(if (activity.app.syncing) R.string.loading else R.string.news_empty)
+                setText(R.string.news_empty)
                 textSize = 17f
                 gravity = Gravity.CENTER
                 layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             })
         }
-        for (article in articles.drop(page * perPage).take(perPage)) {
+        for (article in entries.drop(page * perPage).take(perPage)) {
+            if (article == null) {
+                items.addView(activity.layoutInflater.inflate(R.layout.sync_card, items, false))
+                continue
+            }
             val item = activity.layoutInflater.inflate(R.layout.news_item, items, false)
             item.findViewById<TextView>(R.id.title).apply {
                 text = article.title
