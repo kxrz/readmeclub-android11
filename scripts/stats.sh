@@ -10,5 +10,6 @@ import json, sys
 for r in json.load(sys.stdin):
     counts = {a["name"]: a["download_count"] for a in r["assets"]}
     apk = sum(n for name, n in counts.items() if name.endswith(".apk"))
-    print(f"{r[\"tag_name\"]:<14} downloads {apk:>6}   launches {counts.get(\"manifest.json\", 0):>7}   {r[\"published_at\"][:10]}")
+    launches = counts.get("manifest.json", 0)
+    print("%-14s downloads %6d   launches %7d   %s" % (r["tag_name"], apk, launches, r["published_at"][:10]))
 '
