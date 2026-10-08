@@ -7,7 +7,16 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
-## [1.0.3] - Unreleased
+## [1.0.4] - Unreleased
+
+### Added
+- **Check for updates** in Settings → About, under the version, asks GitHub again for the
+  latest release without restarting the app.
+
+### Fixed
+- A failed update check now reads "Update check unavailable" instead of keeping the previous result.
+
+## [1.0.3] - 2026-10-08
 
 ### Added
 - **Continue reading**: articles and guides reopen on the page where you stopped, even after
@@ -22,8 +31,6 @@ and refuses to release a version that has no section here.
   registry (model name, then screen resolution, then aspect ratio) and falls back to all sizes.
 - Page-turn keys (`PAGE_DOWN` / `PAGE_UP`) turn pages like the volume keys.
 - "Off" choice for forced full refreshes, for readers that manage their own refresh modes.
-- **Check for updates** in Settings → About, under the version, asks GitHub again for the
-  latest release without restarting the app.
 - Diagnostic screen shows the app version and the device matched for wallpapers.
 - GitHub "Device report" issue form and a "Tested on" table in the README.
 
