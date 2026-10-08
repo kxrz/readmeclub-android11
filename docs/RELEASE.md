@@ -58,3 +58,9 @@ Permanent download link for the latest version:
 Dev builds (`app-debug`, built by CI on every push) install under their own id
 (`club.readme.android.debug`) and are called "readme.club dev": they live next to the
 distributed app (`club.readme.android`) without any signature clash.
+
+## Stats
+
+`scripts/stats.sh` prints, per release, APK downloads (installs and updates) and
+`manifest.json` downloads (app launches, since every launch checks for updates). These are
+volumes, not unique users; the app sends no identifier.
