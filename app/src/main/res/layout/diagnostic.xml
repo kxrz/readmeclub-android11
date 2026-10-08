@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView style="@style/Heading" android:text="@string/diagnostic" />
+
+        <TextView android:id="@+id/display" style="@style/Body" android:textSize="15sp" />
+
+        <TextView android:id="@+id/refresh_test" style="@style/Button" android:text="@string/refresh_test" />
+
+        <TextView android:id="@+id/keys" style="@style/Body" android:textSize="15sp"
+            android:fontFamily="monospace" android:text="@string/press_button" />
+    </LinearLayout>
+
+    <!-- Full-screen flash for the refresh test; hidden otherwise. -->
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

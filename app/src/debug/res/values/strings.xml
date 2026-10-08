@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dev builds install next to the release app, under their own name. -->
+    <string name="app_name">readme.club dev</string>
+</resources>

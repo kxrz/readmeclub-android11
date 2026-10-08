@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Two-line title + meta line; the list shows as many as fit the screen. -->
+    <dimen name="news_item_height">80dp</dimen>
+    <!-- Brand "book" on the guides shelf. -->
+    <dimen name="brand_tile_height">150dp</dimen>
+</resources>

@@ -1,0 +1,23 @@
+readme.club for Android e-ink
+Copyright (C) 2026 Florent Bertiaux
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License, version 3, as published by the
+Free Software Foundation (see LICENSE).
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+Additional terms, under section 7 of the GNU General Public License, version 3:
+
+(b) Attribution. Any distributed version of this program, modified or not, must
+    preserve the following notice, both in its user interface wherever it shows
+    its about or legal information, and in its documentation:
+
+        Based on readme.club for Android by Florent Bertiaux
+        https://github.com/kxrz/readmeclub-android11
+
+(e) Trademarks. This license grants no rights to the "readme.club" name, the
+    RMC logo or the app icon. Modified versions must not use them as their own
+    name, logo or icon, nor present themselves as the official readme.club app.
