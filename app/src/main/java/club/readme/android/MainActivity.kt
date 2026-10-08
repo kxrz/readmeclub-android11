@@ -64,11 +64,18 @@ class MainActivity : Activity() {
     override fun dispatchKeyEvent(event: KeyEvent): Boolean = keys.handle(event) || super.dispatchKeyEvent(event)
 
     private fun sync() {
-        app.sync {
-            newsTab?.reload()
-            guidesTab?.reload()
-            settingsTab?.refresh()
-        }
+        app.sync(
+            onText = {
+                newsTab?.reload()
+                guidesTab?.reload()
+            },
+            onProgress = { newsTab?.renderProgress() },
+            done = {
+                newsTab?.reload()
+                guidesTab?.reload()
+                settingsTab?.refresh()
+            },
+        )
         newsTab?.reload() // shows the "fetching" card right away
         guidesTab?.renderStatus()
     }

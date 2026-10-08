@@ -66,4 +66,5 @@
     <string name="splash_tagline">Everything your e-ink device needs,\nin one place.</string>
     <string name="sync_card_title">Fetching the latest from readme.club…</string>
     <string name="sync_card_body">News, guides and images are saved for offline reading. The first time takes a minute.</string>
+    <string name="sync_card_images">Articles are ready to read. Saving images for offline: %1$d / %2$d</string>
 </resources>

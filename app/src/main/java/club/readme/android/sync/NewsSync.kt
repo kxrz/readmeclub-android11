@@ -5,31 +5,24 @@ import club.readme.android.data.Article
 import club.readme.android.data.ContentStore
 import club.readme.android.reader.HtmlImages
 import org.json.JSONObject
-import java.io.File
 
-/** Pulls the latest published articles from the CMS into [ContentStore], images included. */
+/** Pulls the latest published articles from the CMS into [ContentStore]. Images are fetched afterwards, see App.sync. */
 class NewsSync(private val store: ContentStore) {
 
-    /** Returns false if the CMS could not be reached; the existing cache is then left untouched. */
-    fun run(): Boolean {
+    /**
+     * Saves the articles' text right away, so the list shows up before any image is downloaded,
+     * and returns the image `src`s they need. Null if the CMS could not be reached: the existing
+     * cache is then left untouched.
+     */
+    fun fetch(): List<String>? {
         val articles = try {
             parse(String(Http.get(LIST_URL)))
         } catch (e: Exception) {
             Log.w(TAG, "News sync failed", e)
-            return false
-        }
-
-        val images = mutableSetOf<File>()
-        for (article in articles) {
-            for (src in listOfNotNull(article.heroImage) + HtmlImages.sources(article.html)) {
-                val file = store.imageFile(src)
-                images += file
-                if (!file.exists()) ImageCache.download(HtmlImages.resolve(src), file)
-            }
+            return null
         }
         store.save(articles)
-        store.pruneImages(images)
-        return true
+        return articles.flatMap { listOfNotNull(it.heroImage) + HtmlImages.sources(it.html) }.distinct()
     }
 
     private fun parse(json: String): List<Article> {

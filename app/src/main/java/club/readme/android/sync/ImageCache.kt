@@ -6,18 +6,41 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.util.Log
 import java.io.File
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 /** Downloads images and stores them as JPEGs at most [MAX_WIDTH] px wide, ready for the e-ink screen. */
 object ImageCache {
 
     private const val TAG = "ImageCache"
     private const val MAX_WIDTH = 480
+    /** Enough to keep Wi-Fi busy without starving a small reader's CPU and memory. */
+    private const val PARALLEL = 4
 
     /** Shown on the diagnostic screen, so a failing image download can be read without adb. */
     @Volatile var failures = 0
         private set
     @Volatile var lastError: String? = null
         private set
+
+    /**
+     * Downloads [jobs] (url → target file) a few at a time, calling [onProgress] with
+     * (done, total) after each one, from a background thread. Returns when all are done.
+     */
+    fun downloadAll(jobs: List<Pair<String, File>>, onProgress: (Int, Int) -> Unit) {
+        if (jobs.isEmpty()) return
+        val pool = Executors.newFixedThreadPool(PARALLEL)
+        val done = AtomicInteger()
+        for ((url, target) in jobs) {
+            pool.execute {
+                download(url, target)
+                onProgress(done.incrementAndGet(), jobs.size)
+            }
+        }
+        pool.shutdown()
+        pool.awaitTermination(30, TimeUnit.MINUTES)
+    }
 
     /** Failures are logged and counted, never fatal: content stays readable without its images. */
     fun download(url: String, target: File) {

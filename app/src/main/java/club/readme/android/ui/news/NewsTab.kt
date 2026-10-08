@@ -26,6 +26,8 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
 
     private var articles: List<Article> = emptyList()
     private var page = 0
+    /** Body of the "fetching" card when it is on screen, updated in place with the image progress. */
+    private var syncCardBody: TextView? = null
     private var perPage = 1
 
     init {
@@ -52,6 +54,17 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
         }
     }
 
+    /** Updates the "fetching" card with the image download progress, without redrawing the list. */
+    fun renderProgress() {
+        val body = syncCardBody ?: return
+        val progress = activity.app.imageProgress
+        body.text = if (progress == null) {
+            activity.getString(R.string.sync_card_body)
+        } else {
+            activity.getString(R.string.sync_card_images, progress.first, progress.second)
+        }
+    }
+
     /** Next page, wrapping to the first one after the last (for the capacitive button). */
     fun nextPageWrapping() {
         page = if (page + 1 < pageCount) page + 1 else 0
@@ -74,6 +87,7 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
     private fun render() {
         renderStatus()
         items.removeAllViews()
+        syncCardBody = null
         if (entries.isEmpty()) {
             items.addView(TextView(activity).apply {
                 setText(R.string.news_empty)
@@ -84,7 +98,10 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
         }
         for (article in entries.drop(page * perPage).take(perPage)) {
             if (article == null) {
-                items.addView(activity.layoutInflater.inflate(R.layout.sync_card, items, false))
+                val card = activity.layoutInflater.inflate(R.layout.sync_card, items, false)
+                syncCardBody = card.findViewById(R.id.sync_card_body)
+                renderProgress()
+                items.addView(card)
                 continue
             }
             val item = activity.layoutInflater.inflate(R.layout.news_item, items, false)

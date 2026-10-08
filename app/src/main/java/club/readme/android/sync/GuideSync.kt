@@ -7,33 +7,26 @@ import club.readme.android.data.ContentStore
 import club.readme.android.reader.HtmlImages
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.File
 
-/** Pulls every published guide and the brands they belong to into [ContentStore], images and logos included. */
+/** Pulls every published guide and the brands they belong to into [ContentStore]. Images are fetched afterwards, see App.sync. */
 class GuideSync(private val store: ContentStore) {
 
-    /** Returns false if the CMS could not be reached; the existing cache is then left untouched. */
-    fun run(): Boolean {
+    /**
+     * Saves guides and brands right away and returns the image `src`s they need (logos,
+     * header and step images). Null if the CMS could not be reached: the cache is left untouched.
+     */
+    fun fetch(): List<String>? {
         val (guides, brands) = try {
             parseGuides(String(Http.get(GUIDES_URL))) to parseBrands(String(Http.get(BRANDS_URL)))
         } catch (e: Exception) {
             Log.w(TAG, "Guide sync failed", e)
-            return false
+            return null
         }
-
-        val images = mutableSetOf<File>()
-        val sources = brands.mapNotNull { it.logo } +
-            guides.flatMap { listOfNotNull(it.heroImage) + HtmlImages.sources(it.html) }
-        for (src in sources) {
-            val file = store.imageFile(src)
-            images += file
-            if (!file.exists()) ImageCache.download(HtmlImages.resolve(src), file)
-        }
-        store.save(guides)
         // Only brands that have at least one guide make it to the shelf.
-        store.saveBrands(brands.filter { b -> guides.any { b.slug in it.brands } })
-        store.pruneImages(images)
-        return true
+        val shelf = brands.filter { b -> guides.any { b.slug in it.brands } }
+        store.save(guides)
+        store.saveBrands(shelf)
+        return (shelf.mapNotNull { it.logo } + guides.flatMap { listOfNotNull(it.heroImage) + HtmlImages.sources(it.html) }).distinct()
     }
 
     private fun parseGuides(json: String): List<Article> {
