@@ -21,3 +21,8 @@ Additional terms, under section 7 of the GNU General Public License, version 3:
 (e) Trademarks. This license grants no rights to the "readme.club" name, the
     RMC logo or the app icon. Modified versions must not use them as their own
     name, logo or icon, nor present themselves as the official readme.club app.
+
+Third-party code:
+
+  app/src/main/java/io/nayuki/qrcodegen/ — QR Code generator library by Project Nayuki,
+  MIT License (header kept in each file), https://www.nayuki.io/page/qr-code-generator-library

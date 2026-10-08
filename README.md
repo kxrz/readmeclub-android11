@@ -30,19 +30,19 @@ News, guides and thousands of wallpapers — right on the device, offline, in gl
 
 | | |
 |---|---|
-| **News** | Fresh readme.club articles with their photos, saved for offline reading. A link to another article? It opens right in the app. |
-| **Guides** | A real bookshelf: pick a brand, pick a guide, follow the steps — even with Wi-Fi off. |
+| **News** | Fresh readme.club articles with their photos, saved for offline reading. New ones stand out in bold, and you pick up exactly where you stopped. Want it on your phone? Scan the QR code from the reader menu. |
+| **Guides** | A real bookshelf: pick a brand, pick a guide, jump to any step from its contents — even with Wi-Fi off. |
 | **Wallpapers** | 4,000+ community wallpapers, filtered to fit your screen exactly. One tap and the original lands in `Pictures/ReadmeClub`. |
 | **Settings** | Text size, Sans or Serif, refresh rhythm, storage per section — and one-tap updates. |
 
 ## Made for e-ink, not squeezed onto it
 
-- **Pages, never scrolling.** Everything is cut to the screen and turned like a book.
+- **Pages, never scrolling.** Everything is cut to the screen and turned like a book, with the minutes left in the footer.
 - **One button is all you need.** The capacitive button turns pages, a long press opens the menu. Prefer tapping? The screen edges work too.
 - **Crisp black on white.** No animations, no spinners; touch feedback is a clean inversion, and a full refresh wipes ghosting every few pages.
 - **Offline first.** One sync when you open the app, then everything reads from the device.
 - **Never leaves the app.** E-readers rarely have a browser, so nothing ever links out.
-- **Featherweight.** About 160 KB. Pure Kotlin, native Android views, zero third-party libraries.
+- **Featherweight.** About 160 KB. Pure Kotlin and native Android views, no library dependency (just a small MIT QR code generator vendored in the source).
 
 Built and loved on the **Xteink S4** (Android 11, 4.3", 480 × 800), and made for **any
 Android 11+ e-reader**: the layout grows with the screen, the wallpaper gallery matches your

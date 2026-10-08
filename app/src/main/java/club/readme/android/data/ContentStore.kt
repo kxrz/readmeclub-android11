@@ -31,6 +31,7 @@ class ContentStore(private val dir: File) {
                 html = o.getString("html"),
                 heroImage = o.optString("heroImage").ifEmpty { null },
                 brands = o.optJSONArray("brands")?.let { b -> (0 until b.length()).map(b::getString) } ?: emptyList(),
+                toc = o.optJSONArray("toc")?.let { t -> (0 until t.length()).map(t::getString) } ?: emptyList(),
             )
         }
     }
@@ -50,6 +51,7 @@ class ContentStore(private val dir: File) {
                     .put("html", a.html)
                     .put("heroImage", a.heroImage ?: "")
                     .put("brands", JSONArray(a.brands))
+                    .put("toc", JSONArray(a.toc))
             )
         }
         write(file, array.toString())

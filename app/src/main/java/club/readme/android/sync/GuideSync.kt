@@ -46,6 +46,8 @@ class GuideSync(private val store: ContentStore) {
                 html = o.string("contentHTML") ?: "",
                 heroImage = o.mediaUrl("heroImage", "card"),
                 brands = slugs(o.optJSONArray("brands")),
+                toc = o.optJSONArray("toc")?.let { t -> (0 until t.length()).mapNotNull { t.optJSONObject(it)?.string("text") } }
+                    ?: emptyList(),
             )
         }.sortedBy { it.title.lowercase() }
     }

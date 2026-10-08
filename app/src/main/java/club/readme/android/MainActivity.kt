@@ -68,6 +68,7 @@ class MainActivity : Activity() {
             onText = {
                 newsTab?.reload()
                 guidesTab?.reload()
+                markUnread()
             },
             onProgress = { newsTab?.renderProgress() },
             done = {
@@ -78,6 +79,20 @@ class MainActivity : Activity() {
         )
         newsTab?.reload() // shows the "fetching" card right away
         guidesTab?.renderStatus()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Back from the reader: the article is now read, and maybe left half-read.
+        newsTab?.reload()
+        markUnread()
+    }
+
+    /** "News · 3" when news arrived since the reader last looked. */
+    private fun markUnread() {
+        val news = tabs.getChildAt(TAB_NEWS) as TextView
+        val unread = app.reading.unreadNews.size
+        news.text = if (unread > 0) getString(R.string.tab_news_unread, unread) else getString(R.string.tab_news)
     }
 
     /** "Settings •" when an installable update is waiting there. */

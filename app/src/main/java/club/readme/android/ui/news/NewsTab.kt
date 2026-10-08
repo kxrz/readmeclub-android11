@@ -1,6 +1,7 @@
 package club.readme.android.ui.news
 
 import android.app.Activity
+import android.graphics.Typeface
 import android.text.TextUtils
 import android.text.format.DateFormat
 import android.view.Gravity
@@ -11,6 +12,7 @@ import android.widget.TextView
 import club.readme.android.R
 import club.readme.android.app
 import club.readme.android.data.Article
+import club.readme.android.data.ReadingState
 import club.readme.android.reader.InternalLinks
 import club.readme.android.reader.ReaderActivity
 import java.util.Date
@@ -71,9 +73,19 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
         render()
     }
 
-    /** The list as shown: a "fetching" card first while a sync runs (null), then the articles. */
-    private val entries: List<Article?>
-        get() = if (activity.app.syncing) listOf(null) + articles else articles
+    /** Marks the "fetching" card's slot in [entries]. */
+    private object SyncCard
+
+    /**
+     * The list as shown: a "fetching" card while a sync runs, a "continue reading" card when
+     * something was left half-read, then the articles.
+     */
+    private val entries: List<Any>
+        get() = buildList {
+            if (activity.app.syncing) add(SyncCard)
+            activity.app.reading.lastRead?.let(::add)
+            addAll(articles)
+        }
 
     private val pageCount: Int get() = maxOf(1, (entries.size + perPage - 1) / perPage)
 
@@ -96,26 +108,45 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
                 layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             })
         }
-        for (article in entries.drop(page * perPage).take(perPage)) {
-            if (article == null) {
-                val card = activity.layoutInflater.inflate(R.layout.sync_card, items, false)
-                syncCardBody = card.findViewById(R.id.sync_card_body)
-                renderProgress()
-                items.addView(card)
-                continue
+        val unread = activity.app.reading.unreadNews
+        for (entry in entries.drop(page * perPage).take(perPage)) {
+            when (entry) {
+                SyncCard -> {
+                    val card = activity.layoutInflater.inflate(R.layout.sync_card, items, false)
+                    syncCardBody = card.findViewById(R.id.sync_card_body)
+                    renderProgress()
+                    items.addView(card)
+                }
+                is ReadingState.LastRead -> items.addView(
+                    item(
+                        title = entry.title,
+                        meta = activity.getString(R.string.continue_reading_meta, entry.percent),
+                        bold = true,
+                        boxed = true,
+                    ) { activity.startActivity(ReaderActivity.intent(activity, entry.kind, entry.slug)) }
+                )
+                is Article -> items.addView(
+                    // Unread news stand out in bold: hierarchy by weight, never by colour.
+                    item(entry.title, entry.meta, bold = entry.slug in unread, boxed = false) {
+                        activity.startActivity(ReaderActivity.intent(activity, InternalLinks.NEWS, entry.slug))
+                    }
+                )
             }
-            val item = activity.layoutInflater.inflate(R.layout.news_item, items, false)
-            item.findViewById<TextView>(R.id.title).apply {
-                text = article.title
-                ellipsize = TextUtils.TruncateAt.END
-            }
-            item.findViewById<TextView>(R.id.meta).text = article.meta
-            item.setOnClickListener {
-                activity.startActivity(ReaderActivity.intent(activity, InternalLinks.NEWS, article.slug))
-            }
-            items.addView(item)
         }
         pageLabel.text = activity.getString(R.string.page_of, page + 1, pageCount)
+    }
+
+    private fun item(title: String, meta: String, bold: Boolean, boxed: Boolean, onClick: () -> Unit): View {
+        val item = activity.layoutInflater.inflate(R.layout.news_item, items, false)
+        if (boxed) item.setBackgroundResource(R.drawable.brand_tile_bg)
+        item.findViewById<TextView>(R.id.title).apply {
+            text = title
+            ellipsize = TextUtils.TruncateAt.END
+            setTypeface(null, if (bold) Typeface.BOLD else Typeface.NORMAL)
+        }
+        item.findViewById<TextView>(R.id.meta).text = meta
+        item.setOnClickListener { onClick() }
+        return item
     }
 
     fun renderStatus() {

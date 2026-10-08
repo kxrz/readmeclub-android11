@@ -17,6 +17,8 @@ data class Article(
     val heroImage: String? = null,
     /** Brand slugs (guides only). */
     val brands: List<String> = emptyList(),
+    /** Section titles in reading order (guides only), for the contents. */
+    val toc: List<String> = emptyList(),
 ) {
     /** "Reviews · Florent · Oct 1, 2026", skipping missing parts. */
     val meta: String

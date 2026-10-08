@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.Display
 import club.readme.android.data.ContentStore
 import club.readme.android.data.Prefs
+import club.readme.android.data.ReadingState
 import club.readme.android.reader.HtmlImages
 import club.readme.android.sync.GuideSync
 import club.readme.android.sync.ImageCache
@@ -29,6 +30,8 @@ class App : Application() {
         private set
     lateinit var wallpapers: WallpaperSync
         private set
+    lateinit var reading: ReadingState
+        private set
     val io: ExecutorService = Executors.newCachedThreadPool()
     private val main = Handler(Looper.getMainLooper())
 
@@ -45,6 +48,7 @@ class App : Application() {
         news = ContentStore(File(filesDir, "news"))
         guides = ContentStore(File(filesDir, "guides"))
         prefs = Prefs(this)
+        reading = ReadingState(this)
         // Physical size of the built-in screen, in its natural orientation.
         val mode = getSystemService(DisplayManager::class.java).getDisplay(Display.DEFAULT_DISPLAY).mode
         wallpapers = WallpaperSync(File(cacheDir, "wallpapers"), mode.physicalWidth, mode.physicalHeight)
@@ -75,6 +79,7 @@ class App : Application() {
         syncing = true
         io.execute {
             val newsImages = NewsSync(news).fetch()
+            if (newsImages != null) reading.registerNews(news.load().map { it.slug })
             main.post { onText() }
             val guideImages = GuideSync(guides).fetch()
             main.post { onText() }

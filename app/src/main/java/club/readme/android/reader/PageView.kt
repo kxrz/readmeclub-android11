@@ -29,6 +29,18 @@ class PageView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
         invalidate()
     }
 
+    /** Character offset where each page starts. */
+    val pageOffsets: IntArray
+        get() = layout?.let { l -> IntArray(pageCount) { l.getLineStart(pageStarts[it]) } } ?: intArrayOf(0)
+
+    /** End offset of the laid-out text. */
+    val textLength: Int get() = layout?.text?.length ?: 0
+
+    fun goTo(target: Int) {
+        page = target.coerceIn(0, pageCount - 1)
+        invalidate()
+    }
+
     /** Returns false when already at the end (or start) and nothing changed. */
     fun turn(delta: Int): Boolean {
         val target = (page + delta).coerceIn(0, pageCount - 1)
