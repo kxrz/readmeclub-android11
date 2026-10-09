@@ -7,6 +7,12 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
+## [Unreleased]
+
+### Changed
+- Device reports go through readme.club's contact form (no GitHub account needed); the
+  GitHub issue form stays available for contributors.
+
 ## [1.0.4] - 2026-10-09
 
 ### Added
