@@ -12,6 +12,7 @@ and refuses to release a version that has no section here.
 ### Changed
 - Device reports go through readme.club's contact form (no GitHub account needed); the
   GitHub issue form stays available for contributors.
+- Mudita Kompakt (Android 12) added to the "Tested on" table in the README.
 
 ## [1.0.4] - 2026-10-09
 
