@@ -1,12 +1,14 @@
 package club.readme.android
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
 import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
+import club.readme.android.game.LightsOutActivity
 
 /** About readme.club, on two screens (no scrolling): the promise and thanks, then the member account. */
 class AboutActivity : Activity() {
@@ -23,6 +25,10 @@ class AboutActivity : Activity() {
         pages = listOf(findViewById(R.id.page_promise), findViewById(R.id.page_account))
         pageLabel = findViewById(R.id.page_label)
         findViewById<View>(R.id.back).setOnClickListener { finish() }
+        findViewById<View>(R.id.about_logo).setOnLongClickListener {
+            startActivity(Intent(this, LightsOutActivity::class.java))
+            true
+        }
         findViewById<View>(R.id.previous).setOnClickListener { turn(-1) }
         findViewById<View>(R.id.next).setOnClickListener { turn(1) }
         show(0)

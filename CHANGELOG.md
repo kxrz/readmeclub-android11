@@ -7,6 +7,12 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
+## [Unreleased]
+
+### Added
+- Easter egg: a long press on the logo in About opens **Lights out**, a 5 × 5 puzzle made for
+  e-ink (turn-based, one redraw per move, black and white); the best score is kept.
+
 ## [1.0.5] - 2026-10-09
 
 ### Added

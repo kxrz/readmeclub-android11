@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView style="@style/Heading" android:paddingLeft="20dp" android:paddingRight="20dp" android:text="@string/lights_title" />
+
+        <TextView style="@style/Body" android:paddingLeft="20dp" android:paddingRight="20dp" android:text="@string/lights_rules" />
+
+        <club.readme.android.game.LightsView
+            android:id="@+id/grid"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="20dp" />
+
+        <View style="@style/Divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/back" style="@style/PagerButton" android:text="@string/back" />
+
+            <TextView
+                android:id="@+id/moves"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="14sp" />
+
+            <TextView android:id="@+id/new_game" style="@style/PagerButton" android:text="@string/lights_new" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

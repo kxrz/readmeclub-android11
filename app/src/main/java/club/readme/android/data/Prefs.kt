@@ -34,6 +34,11 @@ class Prefs(context: Context) {
         get() = prefs.getString("wallpaper_folder", null)
         set(value) = prefs.edit().putString("wallpaper_folder", value).apply()
 
+    /** Fewest moves to solve Lights Out (the About easter egg), 0 until a first win. */
+    var lightsOutBest: Int
+        get() = prefs.getInt("lights_out_best", 0)
+        set(value) = prefs.edit().putInt("lights_out_best", value).apply()
+
     /** False until the first-launch welcome screen has been shown. */
     var welcomed: Boolean
         get() = prefs.getBoolean("welcomed", false)

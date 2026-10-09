@@ -41,6 +41,11 @@
             android:name=".DiagnosticActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".game.LightsOutActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <receiver
             android:name=".update.InstallResultReceiver"
             android:exported="false" />

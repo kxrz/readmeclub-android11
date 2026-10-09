@@ -21,6 +21,14 @@
     <string name="next">Next ›</string>
     <string name="back">Back</string>
     <string name="menu">Menu</string>
+    <string name="lights_title">Lights out</string>
+    <string name="lights_rules">No frontlight? No problem. Turn every square white: a tap flips a square and its neighbours.</string>
+    <string name="lights_new">New game</string>
+    <string name="lights_solved">Solved in %1$d · best %2$d</string>
+    <plurals name="lights_moves">
+        <item quantity="one">%d move</item>
+        <item quantity="other">%d moves</item>
+    </plurals>
     <string name="link_not_saved">This article isn\'t saved on the device yet.</string>
     <string name="news_empty">No saved news yet.\nTap the status line above once online.</string>
     <string name="offline_saved">Offline — saved content · Retry</string>
