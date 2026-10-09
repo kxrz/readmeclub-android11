@@ -15,6 +15,9 @@ and refuses to release a version that has no section here.
   file browser doesn't show Pictures, the first Save asks for a folder, starting at SCREENSHOT.
 
 ### Changed
+- The reader always shows a bottom bar (Back, page and time left, Menu), and the diagnostic
+  screen has a Back button: readers without a hardware button (Supernote, most Android
+  e-readers) could not open the menu or leave without it.
 - Device reports go through readme.club's contact form (no GitHub account needed); the
   GitHub issue form stays available for contributors.
 - Mudita Kompakt (Android 12) added to the "Tested on" table in the README.

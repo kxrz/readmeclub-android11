@@ -17,15 +17,29 @@
             android:paddingTop="12dp"
             android:paddingRight="20dp" />
 
-        <TextView
-            android:id="@+id/page_number"
+        <!-- Always on screen: many readers have no button to open the menu or go back. -->
+        <View style="@style/Divider" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:gravity="center"
-            android:textSize="13sp" />
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/bar_back" style="@style/PagerButton" android:text="@string/back" />
+
+            <TextView
+                android:id="@+id/page_number"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="13sp" />
+
+            <TextView android:id="@+id/bar_menu" style="@style/PagerButton" android:text="@string/menu" />
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- Menu: tap in the middle of the page or long-press the button. -->
+    <!-- Menu: Menu in the bottom bar, a tap in the middle of the page or a long press on the button. -->
     <LinearLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"

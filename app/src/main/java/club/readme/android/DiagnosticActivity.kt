@@ -36,6 +36,7 @@ class DiagnosticActivity : Activity() {
 
         val flash = findViewById<View>(R.id.flash)
         findViewById<View>(R.id.refresh_test).setOnClickListener { FullRefresh.flash(flash, force = true) }
+        findViewById<View>(R.id.back).setOnClickListener { finish() }
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {

@@ -20,6 +20,7 @@
     <string name="previous">‹ Prev</string>
     <string name="next">Next ›</string>
     <string name="back">Back</string>
+    <string name="menu">Menu</string>
     <string name="link_not_saved">This article isn\'t saved on the device yet.</string>
     <string name="news_empty">No saved news yet.\nTap the status line above once online.</string>
     <string name="offline_saved">Offline — saved content · Retry</string>

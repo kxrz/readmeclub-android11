@@ -6,17 +6,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:orientation="vertical">
 
-        <TextView style="@style/Heading" android:text="@string/diagnostic" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <TextView android:id="@+id/display" style="@style/Body" android:textSize="15sp" />
+            <TextView style="@style/Heading" android:text="@string/diagnostic" />
 
-        <TextView android:id="@+id/refresh_test" style="@style/Button" android:text="@string/refresh_test" />
+            <TextView android:id="@+id/display" style="@style/Body" android:textSize="15sp" />
 
-        <TextView android:id="@+id/keys" style="@style/Body" android:textSize="15sp"
-            android:fontFamily="monospace" android:text="@string/press_button" />
+            <TextView android:id="@+id/refresh_test" style="@style/Button" android:text="@string/refresh_test" />
+
+            <TextView android:id="@+id/keys" style="@style/Body" android:textSize="15sp"
+                android:fontFamily="monospace" android:text="@string/press_button" />
+        </LinearLayout>
+
+        <View style="@style/Divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <TextView android:id="@+id/back" style="@style/PagerButton" android:text="@string/back" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Full-screen flash for the refresh test; hidden otherwise. -->

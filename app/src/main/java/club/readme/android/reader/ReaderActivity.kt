@@ -24,7 +24,9 @@ import club.readme.android.eink.PageKeys
 
 /**
  * Paginated reader. Button or right third = next page, left third = previous,
- * middle tap or long button press = menu (contents for guides, open on your phone, back).
+ * middle tap, long button press or Menu in the bottom bar = menu (contents for guides, open
+ * on your phone, back). The bottom bar (Back, page, Menu) is always shown: many readers have
+ * no hardware button.
  * Tapping a link to another article opens it here; there are no external links (the S4
  * has no browser). Reading resumes where it stopped, and the footer shows the time left.
  */
@@ -74,6 +76,8 @@ class ReaderActivity : Activity() {
             true
         }
         findViewById<View>(R.id.back).setOnClickListener { finish() }
+        findViewById<View>(R.id.bar_back).setOnClickListener { finish() }
+        findViewById<View>(R.id.bar_menu).setOnClickListener { toggleMenu() }
         findViewById<View>(R.id.open_contents).setOnClickListener { showContents() }
         findViewById<View>(R.id.open_qr).setOnClickListener { showQr() }
         qr.setOnClickListener { qr.visibility = View.GONE }
