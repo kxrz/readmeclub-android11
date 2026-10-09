@@ -25,7 +25,8 @@ and refuses to release a version that has no section here.
   the others.
 - Device reports go through readme.club's contact form (no GitHub account needed); the
   GitHub issue form stays available for contributors.
-- Mudita Kompakt (Android 12) added to the "Tested on" table in the README.
+- "Tested on" table in the README: Mudita Kompakt (Android 12), Supernote Nomad A6X2 and
+  Manta A5X2 (Android 11, Chauvet 3) and Boox Note Air5 C (Android 15) all work.
 
 ## [1.0.4] - 2026-10-09
 
