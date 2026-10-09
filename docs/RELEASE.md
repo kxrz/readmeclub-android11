@@ -33,11 +33,12 @@ data) and reinstall.
 
 1. In `app/build.gradle.kts`, bump `versionCode` (+1) and `versionName`, and in
    `CHANGELOG.md` replace "Unreleased" with today's date in that version's section.
-2. Commit, then tag and push:
+2. Commit and push to `main`, then start the release, either way:
+   - **From GitHub** (no computer needed): Actions → Android → *Run workflow*, branch `main`,
+     version `1.0.0`. The job creates the tag `v1.0.0` on that commit.
+   - **From a computer**: `git tag v1.0.0 && git push origin v1.0.0`.
 
-   ```sh
-   git tag v1.0.0 && git push origin v1.0.0
-   ```
+   Both check that the version matches `versionName`; a manual run refuses a tag that already exists.
 
 3. CI builds the signed, minified APK and creates a GitHub Release with
    `readmeclub.apk`, `readmeclub-1.0.0.apk` and `manifest.json`, using the version's

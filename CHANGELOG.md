@@ -21,6 +21,9 @@ and refuses to release a version that has no section here.
 ### Changed
 - The release manifest carries the version's notes (built with `jq`), and the APK ships
   CHANGELOG.md as an asset, so notes read before and after updating.
+- Releases can start without pushing a tag: Actions → Android → *Run workflow* on `main`
+  with the version creates the tag and the release. Both ways check the version against
+  `versionName`.
 
 ## [1.0.5] - 2026-10-09
 
