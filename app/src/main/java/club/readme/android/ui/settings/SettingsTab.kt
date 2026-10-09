@@ -15,6 +15,8 @@ import club.readme.android.DiagnosticActivity
 import club.readme.android.R
 import club.readme.android.app
 import club.readme.android.data.Prefs
+import club.readme.android.update.NotesActivity
+import club.readme.android.update.ReleaseNotes
 import club.readme.android.update.Updater
 import java.util.Date
 
@@ -125,6 +127,12 @@ class SettingsTab(
     private fun bindAbout() {
         root.findViewById<View>(R.id.about).setOnClickListener {
             activity.startActivity(Intent(activity, AboutActivity::class.java))
+        }
+        root.findViewById<View>(R.id.release_notes).setOnClickListener {
+            val changelog = NotesActivity.bundledChangelog(activity)
+            activity.startActivity(
+                NotesActivity.intent(activity, activity.getString(R.string.release_notes), ReleaseNotes.allVersions(changelog))
+            )
         }
         val version = root.findViewById<TextView>(R.id.version)
         version.text = activity.getString(R.string.version, BuildConfig.VERSION_NAME)

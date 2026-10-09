@@ -61,6 +61,27 @@ android {
     }
 }
 
+// CHANGELOG.md ships in the APK, so the installed version's release notes read offline.
+abstract class ChangelogAsset : DefaultTask() {
+    @get:InputFile abstract val changelog: RegularFileProperty
+    @get:OutputDirectory abstract val outputDir: DirectoryProperty
+
+    @TaskAction
+    fun copy() {
+        changelog.get().asFile.copyTo(outputDir.get().file("CHANGELOG.md").asFile, overwrite = true)
+    }
+}
+
+val changelogAsset = tasks.register<ChangelogAsset>("changelogAsset") {
+    changelog.set(rootProject.layout.projectDirectory.file("CHANGELOG.md"))
+}
+
+androidComponents {
+    onVariants { variant ->
+        variant.sources.assets?.addGeneratedSourceDirectory(changelogAsset, ChangelogAsset::outputDir)
+    }
+}
+
 kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_17)

@@ -35,6 +35,8 @@ class MainActivity : Activity() {
         for (i in 0 until tabs.childCount) {
             tabs.getChildAt(i).setOnClickListener { showTab(i) }
         }
+        // A fresh install has nothing to announce: only updates get the "updated" card in News.
+        if (!app.prefs.welcomed) app.prefs.notesSeenVersion = NewsTab.INSTALLED_VERSION
         showTab(savedInstanceState?.getInt(KEY_TAB) ?: 0)
         if (savedInstanceState == null) {
             sync() // one sync and one update check per launch
@@ -95,8 +97,9 @@ class MainActivity : Activity() {
         news.text = if (unread > 0) getString(R.string.tab_news_unread, unread) else getString(R.string.tab_news)
     }
 
-    /** "Settings •" when an installable update is waiting there. */
+    /** "Settings •" when an installable update is waiting there, and the update card in News. */
     private fun markUpdate() {
+        newsTab?.reload()
         val settings = tabs.getChildAt(TAB_SETTINGS) as TextView
         val pending = app.latestRelease?.canInstall == true
         settings.text = getString(if (pending) R.string.tab_settings_update else R.string.tab_settings)

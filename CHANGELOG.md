@@ -12,6 +12,15 @@ and refuses to release a version that has no section here.
 ### Added
 - Easter egg: a long press on the logo in About opens **Lights out**, a 5 × 5 puzzle made for
   e-ink (turn-based, one redraw per move, black and white); the best score is kept.
+- **Update card** at the top of News when the launch-time check finds a newer version; tap it
+  to read that version's notes before installing (from Settings → About, as before).
+- **"Updated to x.y.z" card** in News after an update, until opened: it shows the new
+  version's notes. A fresh install starts without it.
+- **Release notes** in Settings → About: the whole changelog, paginated, readable offline.
+
+### Changed
+- The release manifest carries the version's notes (built with `jq`), and the APK ships
+  CHANGELOG.md as an asset, so notes read before and after updating.
 
 ## [1.0.5] - 2026-10-09
 

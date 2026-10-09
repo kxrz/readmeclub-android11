@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Shown first in the News list while a sync runs, so a first launch never looks empty. -->
+<!-- Card at the top of News: "fetching" while a sync runs (so a first launch never looks empty),
+     and the update / updated cards that open the release notes. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/news_item_height"
@@ -10,8 +11,10 @@
     android:paddingRight="20dp">
 
     <TextView
+        android:id="@+id/sync_card_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:maxLines="1"
         android:text="@string/sync_card_title"
         android:textSize="16sp"

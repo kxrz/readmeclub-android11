@@ -43,6 +43,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".update.NotesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".game.LightsOutActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

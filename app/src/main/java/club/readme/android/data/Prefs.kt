@@ -39,6 +39,11 @@ class Prefs(context: Context) {
         get() = prefs.getInt("lights_out_best", 0)
         set(value) = prefs.edit().putInt("lights_out_best", value).apply()
 
+    /** Version whose release notes were last offered ("Updated to x.y.z" card in News). */
+    var notesSeenVersion: String?
+        get() = prefs.getString("notes_seen_version", null)
+        set(value) = prefs.edit().putString("notes_seen_version", value).apply()
+
     /** False until the first-launch welcome screen has been shown. */
     var welcomed: Boolean
         get() = prefs.getBoolean("welcomed", false)

@@ -9,12 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import club.readme.android.BuildConfig
 import club.readme.android.R
 import club.readme.android.app
 import club.readme.android.data.Article
 import club.readme.android.data.ReadingState
 import club.readme.android.reader.InternalLinks
 import club.readme.android.reader.ReaderActivity
+import club.readme.android.update.NotesActivity
+import club.readme.android.update.ReleaseNotes
+import club.readme.android.update.Updater
 import java.util.Date
 
 /** News tab: cached articles, one screen-sized page of the list at a time. */
@@ -76,13 +80,19 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
     /** Marks the "fetching" card's slot in [entries]. */
     private object SyncCard
 
+    /** Marks the "updated to x.y.z" card, shown once after an update. */
+    private object UpdatedCard
+
     /**
-     * The list as shown: a "fetching" card while a sync runs, a "continue reading" card when
-     * something was left half-read, then the articles.
+     * The list as shown: a "fetching" card while a sync runs, an "update available" card (from
+     * the launch-time check) or an "updated" card, a "continue reading" card when something was
+     * left half-read, then the articles.
      */
     private val entries: List<Any>
         get() = buildList {
             if (activity.app.syncing) add(SyncCard)
+            activity.app.latestRelease?.takeIf { it.isNewer }?.let(::add)
+            if (activity.app.prefs.notesSeenVersion != INSTALLED_VERSION) add(UpdatedCard)
             activity.app.reading.lastRead?.let(::add)
             addAll(articles)
         }
@@ -117,6 +127,22 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
                     renderProgress()
                     items.addView(card)
                 }
+                is Updater.Release -> items.addView(
+                    card(activity.getString(R.string.update_card_title, entry.version), activity.getString(R.string.update_card_body)) {
+                        activity.startActivity(
+                            NotesActivity.intent(activity, activity.getString(R.string.whats_new_in, entry.version), entry.notes)
+                        )
+                    }
+                )
+                UpdatedCard -> items.addView(
+                    card(activity.getString(R.string.updated_card_title, INSTALLED_VERSION), activity.getString(R.string.updated_card_body)) {
+                        activity.app.prefs.notesSeenVersion = INSTALLED_VERSION
+                        val notes = ReleaseNotes.section(NotesActivity.bundledChangelog(activity), INSTALLED_VERSION)
+                        activity.startActivity(
+                            NotesActivity.intent(activity, activity.getString(R.string.whats_new_in, INSTALLED_VERSION), notes)
+                        )
+                    }
+                )
                 is ReadingState.LastRead -> items.addView(
                     item(
                         title = entry.title,
@@ -134,6 +160,14 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
             }
         }
         pageLabel.text = activity.getString(R.string.page_of, page + 1, pageCount)
+    }
+
+    private fun card(title: String, body: String, onClick: () -> Unit): View {
+        val card = activity.layoutInflater.inflate(R.layout.sync_card, items, false)
+        card.findViewById<TextView>(R.id.sync_card_title).text = title
+        card.findViewById<TextView>(R.id.sync_card_body).text = body
+        card.setOnClickListener { onClick() }
+        return card
     }
 
     private fun item(title: String, meta: String, bold: Boolean, boxed: Boolean, onClick: () -> Unit): View {
@@ -158,5 +192,10 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
             lastSync > 0 -> activity.getString(R.string.updated_at, DateFormat.getTimeFormat(activity).format(Date(lastSync)))
             else -> ""
         }
+    }
+
+    companion object {
+        /** "1.0.6" for both the release and the debug build ("1.0.6-debug"). */
+        val INSTALLED_VERSION: String = BuildConfig.VERSION_NAME.substringBefore('-')
     }
 }

@@ -28,7 +28,8 @@ object Updater {
     // "latest" skips pre-releases (tags like v1.0.0-rc1), so test builds never show up as updates.
     private const val MANIFEST_URL = "https://github.com/kxrz/readmeclub-android11/releases/latest/download/manifest.json"
 
-    data class Release(val version: String, val apkUrl: String, val sha256: String?) {
+    /** [notes]: the version's CHANGELOG.md section, in manifests from 1.0.6 on. */
+    data class Release(val version: String, val apkUrl: String, val sha256: String?, val notes: String? = null) {
         val isNewer: Boolean get() = Versions.compare(version, BuildConfig.VERSION_NAME) > 0
 
         /**
@@ -42,7 +43,7 @@ object Updater {
     /** The latest published release, or null when offline or the manifest is unreadable. */
     fun latest(): Release? = try {
         val o = JSONObject(String(Http.get(MANIFEST_URL)))
-        Release(o.getString("latestVersion"), o.getString("apkUrl"), o.string("sha256")?.lowercase())
+        Release(o.getString("latestVersion"), o.getString("apkUrl"), o.string("sha256")?.lowercase(), o.string("notes")?.trim())
     } catch (e: Exception) {
         Log.w(TAG, "Update check failed", e)
         null

@@ -91,6 +91,13 @@
                 android:paddingLeft="8dp"
                 android:text="@string/about_open" />
 
+            <TextView
+                android:id="@+id/release_notes"
+                style="@style/Button"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="@string/release_notes" />
+
             <TextView android:id="@+id/version" style="@style/Body" />
 
             <TextView android:id="@+id/manifest_status" style="@style/Body" android:text="@string/loading" />

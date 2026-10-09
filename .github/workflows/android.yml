@@ -58,14 +58,14 @@ jobs:
           if ! grep -q '[^[:space:]]' release-notes.md; then
             echo "::error::CHANGELOG.md has no section for $version"; exit 1
           fi
-          # Read by the app's updater: version, APK of this exact release, checksum to verify it.
-          cat > manifest.json <<EOF
-          {
-            "latestVersion": "${GITHUB_REF_NAME#v}",
-            "apkUrl": "https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/readmeclub.apk",
-            "sha256": "$(sha256sum readmeclub.apk | cut -d' ' -f1)"
-          }
-          EOF
+          # Read by the app's updater: version, APK of this exact release, checksum to verify it,
+          # and the release notes to show before updating.
+          jq -n \
+            --arg version "${GITHUB_REF_NAME#v}" \
+            --arg apk "https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/readmeclub.apk" \
+            --arg sha "$(sha256sum readmeclub.apk | cut -d' ' -f1)" \
+            --rawfile notes release-notes.md \
+            '{latestVersion: $version, apkUrl: $apk, sha256: $sha, notes: $notes}' > manifest.json
       - uses: softprops/action-gh-release@v2
         with:
           files: |
