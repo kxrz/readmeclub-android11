@@ -11,16 +11,6 @@
         android:orientation="horizontal"
         android:paddingRight="16dp">
 
-        <!-- Back to the shelf, shown inside a brand. -->
-        <TextView
-            android:id="@+id/back_to_brands"
-            style="@style/PagerButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:text="‹"
-            android:textSize="24sp"
-            android:visibility="gone" />
-
         <TextView
             android:id="@+id/header_title"
             android:layout_width="wrap_content"
@@ -59,6 +49,9 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal">
+
+        <!-- Back to the shelf, shown inside a brand. -->
+        <TextView android:id="@+id/back_to_brands" style="@style/PagerButton" android:text="@string/back" android:visibility="gone" />
 
         <TextView android:id="@+id/previous" style="@style/PagerButton" android:text="@string/previous" />
 

@@ -18,6 +18,11 @@ and refuses to release a version that has no section here.
 - The reader always shows a bottom bar (Back, page and time left, Menu), and the diagnostic
   screen has a Back button: readers without a hardware button (Supernote, most Android
   e-readers) could not open the menu or leave without it.
+- One bottom bar everywhere, with the same layout: Back bottom left, Previous before the page
+  number, the main action on the right. Guides inside a brand get Back in that bar instead of
+  "‹" at the top; About and a guide's contents get Previous and a page number (About's Next
+  no longer wraps around); a wallpaper's bar is Back · Folder · Save, at the same height as
+  the others.
 - Device reports go through readme.club's contact form (no GitHub account needed); the
   GitHub issue form stays available for contributors.
 - Mudita Kompakt (Android 12) added to the "Tested on" table in the README.

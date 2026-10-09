@@ -224,8 +224,11 @@ class ReaderActivity : Activity() {
     private val contentsPerPage: Int
         get() = maxOf(1, contentsItems.height / (CONTENTS_ROW_DP * resources.displayMetrics.density).toInt())
 
+    private val contentsPages: Int
+        get() = maxOf(1, (sections.size + contentsPerPage - 1) / contentsPerPage)
+
     private fun turnContents(delta: Int) {
-        val pages = (sections.size + contentsPerPage - 1) / contentsPerPage
+        val pages = contentsPages
         val target = (contentsPage + delta).coerceIn(0, maxOf(0, pages - 1))
         if (target == contentsPage) return
         contentsPage = target
@@ -234,6 +237,7 @@ class ReaderActivity : Activity() {
 
     private fun renderContents() {
         contentsItems.removeAllViews()
+        findViewById<TextView>(R.id.contents_page).text = getString(R.string.page_of, contentsPage + 1, contentsPages)
         val rowHeight = (CONTENTS_ROW_DP * resources.displayMetrics.density).toInt()
         for ((title, page) in sections.drop(contentsPage * contentsPerPage).take(contentsPerPage)) {
             val row = layoutInflater.inflate(R.layout.contents_row, contentsItems, false) as TextView

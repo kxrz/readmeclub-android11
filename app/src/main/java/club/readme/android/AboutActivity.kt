@@ -15,7 +15,7 @@ class AboutActivity : Activity() {
     private lateinit var pageLabel: TextView
     private var page = 0
 
-    private val keys = PageKeys(onNext = { show((page + 1) % pages.size) }, onPrevious = { show(maxOf(0, page - 1)) })
+    private val keys = PageKeys(onNext = { turn(1) }, onPrevious = { turn(-1) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +23,14 @@ class AboutActivity : Activity() {
         pages = listOf(findViewById(R.id.page_promise), findViewById(R.id.page_account))
         pageLabel = findViewById(R.id.page_label)
         findViewById<View>(R.id.back).setOnClickListener { finish() }
-        findViewById<View>(R.id.next).setOnClickListener { show((page + 1) % pages.size) }
+        findViewById<View>(R.id.previous).setOnClickListener { turn(-1) }
+        findViewById<View>(R.id.next).setOnClickListener { turn(1) }
         show(0)
+    }
+
+    private fun turn(delta: Int) {
+        val target = (page + delta).coerceIn(0, pages.size - 1)
+        if (target != page) show(target)
     }
 
     private fun show(index: Int) {

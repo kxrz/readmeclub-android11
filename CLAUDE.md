@@ -5,6 +5,11 @@ readme.club's Android app for e-ink readers, built on the Xteink S4 (Android 11,
 ## Non-negotiable rules
 - minSdk 30. No dependency on Google Play Services.
 - No animation, no colour carrying meaning, no continuous scrolling: everything is paginated.
+- One bottom bar on every screen, the same everywhere (48 dp, divider above, `PagerButton` style; the tab bar stays under it on the main screens). Never assume a hardware button: every action is reachable on screen.
+  - **Back** is always bottom left, always labelled "Back", and shown whenever there is somewhere to go back to; never a back control at the top.
+  - The **right** button is the screen's main action: Next on a paginated screen, Menu in the reader, Save on a wallpaper.
+  - **Previous** sits just before the page number ("2 / 5"); with no Back (main tabs) it is the leftmost button. Next never wraps around.
+  - Page keys (volume, page up/down, the S4's button) turn pages wherever there are pages.
 - The UI only reads the local cache; only the `sync` package writes from the network.
 - No dependency-injection framework: the App class is the container.
 - Every new dependency must be justified in the PR.
