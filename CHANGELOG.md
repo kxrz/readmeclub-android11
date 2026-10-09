@@ -7,7 +7,7 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
-## [1.0.4] - Unreleased
+## [1.0.4] - 2026-10-09
 
 ### Added
 - **Check for updates** in Settings → About, under the version, asks GitHub again for the
