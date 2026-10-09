@@ -33,7 +33,10 @@
     <string name="offline_retry">Offline · Retry</string>
     <string name="wallpaper_unavailable">Offline: this wallpaper hasn\'t been downloaded yet.</string>
     <string name="save">Save</string>
-    <string name="wallpaper_saved">Saved to Pictures/ReadmeClub</string>
+    <string name="wallpaper_saved">Saved to %1$s</string>
+    <string name="folder">Folder</string>
+    <string name="pick_folder_supernote">Pick a folder your Supernote shows, like SCREENSHOT.</string>
+    <string name="no_folder_picker">This device can\'t choose folders: saving to Pictures/ReadmeClub.</string>
     <string name="wallpaper_failed">Failed: %1$s</string>
     <string name="guides_empty">No saved guides yet.\nTap the status line above once online.</string>
     <plurals name="guide_count">

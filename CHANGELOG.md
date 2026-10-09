@@ -9,6 +9,11 @@ and refuses to release a version that has no section here.
 
 ## [Unreleased]
 
+### Added
+- **Folder** button on a wallpaper: pick where Save puts images (Android's folder picker),
+  kept for every later save; Pictures/ReadmeClub stays the default. On a Supernote, whose
+  file browser doesn't show Pictures, the first Save asks for a folder, starting at SCREENSHOT.
+
 ### Changed
 - Device reports go through readme.club's contact form (no GitHub account needed); the
   GitHub issue form stays available for contributors.

@@ -61,11 +61,13 @@
                 android:id="@+id/actions"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:orientation="horizontal"
                 android:visibility="invisible">
 
                 <TextView android:id="@+id/save" style="@style/PagerButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/save" />
+
+                <TextView android:id="@+id/folder" style="@style/PagerButton" android:layout_width="0dp" android:layout_weight="1" android:text="@string/folder" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -29,6 +29,11 @@ class Prefs(context: Context) {
         get() = prefs.getBoolean("serif", false)
         set(value) = prefs.edit().putBoolean("serif", value).apply()
 
+    /** Folder picked for saved wallpapers (a document tree URI), or null for Pictures/ReadmeClub. */
+    var wallpaperFolder: String?
+        get() = prefs.getString("wallpaper_folder", null)
+        set(value) = prefs.edit().putString("wallpaper_folder", value).apply()
+
     /** False until the first-launch welcome screen has been shown. */
     var welcomed: Boolean
         get() = prefs.getBoolean("welcomed", false)
