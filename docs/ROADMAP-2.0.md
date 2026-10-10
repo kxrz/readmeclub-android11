@@ -77,10 +77,10 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 
 ### M5 — The Stacks (L) · beta.5
 
-- [ ] Engine, content loader, saves (spec sections 3–12), unit tests
-- [ ] Screens: intro, room, outcome, fight, hero & bag, floor cleared, death, achievements
-- [ ] Launch content (spec section 15), with the public-domain check
-- [ ] Writing pass by the team; volunteers' template for new rooms and monsters
+- [x] Engine, content loader, saves (spec sections 3–12), unit tests (including a robot playing thousands of actions)
+- [x] Screens: intro, room, outcome, fight, hero & bag, floor cleared, death, achievements
+- [x] Launch content (spec section 15), with the public-domain check
+- [ ] Writing pass by the team; volunteers' template ([stacks-content.md](games/stacks-content.md)) done
 
 ### M6 — Member account (L) · beta.6
 
@@ -131,6 +131,6 @@ M1 and M2 come first: everything else is built from their components. Site work 
 | [M2 Home and sections](https://github.com/kxrz/readmeclub-android11/issues/3) | Built, to test on the S4 | — |
 | [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Built, to test on the S4 | — |
 | [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Built, to test on the S4; 3 packs to review and publish in the CMS | — |
-| [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Not started | — |
+| [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Built, to test on the S4; writing pass by the team | — |
 | [M6 Member account](https://github.com/kxrz/readmeclub-android11/issues/7) | Not started | — |
 | [M7 Hardening and launch](https://github.com/kxrz/readmeclub-android11/issues/8) | Not started | — |

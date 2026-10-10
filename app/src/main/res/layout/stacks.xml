@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Stacks: one skeleton for every screen; StacksActivity fills it and builds the choices. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/Ds.Title"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:textSize="20sp" />
+
+            <TextView android:id="@+id/pill" style="@style/Ds.Pill" android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/status_line"
+            style="@style/Ds.Mono"
+            android:paddingLeft="16dp"
+            android:paddingTop="4dp"
+            android:paddingRight="16dp" />
+
+        <TextView
+            android:id="@+id/sticker"
+            style="@style/Ds.Sticker"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/index_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/ds_button"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingTop="6dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="8dp"
+            android:visibility="gone">
+
+            <TextView style="@style/Ds.Label" android:text="@string/stacks_index_says" />
+
+            <TextView
+                android:id="@+id/index_text"
+                style="@style/Ds.Text"
+                android:paddingTop="2dp"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/card"
+            style="@style/Ds.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView android:id="@+id/card_title" style="@style/Ds.Text" android:textSize="17sp" android:textStyle="bold" />
+
+            <TextView android:id="@+id/card_meta" style="@style/Ds.Text" android:textSize="15sp" />
+
+            <TextView android:id="@+id/card_bar" style="@style/Ds.Mono" android:paddingTop="4dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/body"
+            style="@style/Ds.Text"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/pills"
+            style="@style/Ds.Mono"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/choices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp"
+            android:paddingRight="16dp" />
+
+        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+
+        <LinearLayout style="@style/Ds.Bar">
+
+            <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
+
+            <TextView android:id="@+id/previous" style="@style/Ds.Button" android:layout_marginLeft="6dp" android:text="@string/previous" android:visibility="gone" />
+
+            <TextView android:id="@+id/status" style="@style/Ds.BarStatus" />
+
+            <TextView android:id="@+id/primary" style="@style/Ds.Button.Primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

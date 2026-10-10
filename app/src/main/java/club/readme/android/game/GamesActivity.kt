@@ -10,6 +10,7 @@ import club.readme.android.R
 import club.readme.android.app
 import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
+import club.readme.android.game.stacks.StacksActivity
 import club.readme.android.learn.FlashcardsActivity
 import club.readme.android.learn.LearnStore
 import club.readme.android.learn.PacksActivity
@@ -38,6 +39,7 @@ class GamesActivity : Activity() {
         tabLearn.setOnClickListener { showTab(learn = true) }
         findViewById<View>(R.id.back).setOnClickListener { finish() }
         resume.setOnClickListener { open(SudokuActivity::class.java) }
+        findViewById<View>(R.id.game_stacks).setOnClickListener { open(StacksActivity::class.java) }
         findViewById<View>(R.id.game_sudoku).setOnClickListener { open(SudokuActivity::class.java) }
         findViewById<View>(R.id.game_mines).setOnClickListener { open(MinesActivity::class.java) }
         findViewById<View>(R.id.game_lights).setOnClickListener { open(LightsOutActivity::class.java) }
@@ -58,6 +60,9 @@ class GamesActivity : Activity() {
         super.onResume()
         val sudokuSize = GameStore.sudokuSize(resources.configuration.screenWidthDp)
         val minesSize = GameStore.minesSize(resources.configuration.screenWidthDp)
+        tile(R.id.game_stacks, R.string.stacks_title, StacksActivity.summary(this)?.let { (floor, level) ->
+            getString(R.string.games_stacks_progress, floor, level)
+        } ?: getString(R.string.games_stacks_new))
         tile(R.id.game_sudoku, R.string.sudoku_title, when (val saved = store.loadSudoku()) {
             null -> getString(R.string.games_sudoku_meta, sudokuSize, sudokuSize)
             else -> getString(R.string.games_sudoku_progress, saved.sudoku.filled, saved.sudoku.cells.size)

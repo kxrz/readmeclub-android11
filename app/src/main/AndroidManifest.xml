@@ -73,6 +73,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".game.stacks.StacksActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".learn.QuizActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

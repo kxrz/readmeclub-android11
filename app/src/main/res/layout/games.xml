@@ -50,6 +50,8 @@
             android:paddingTop="12dp"
             android:paddingRight="16dp">
 
+            <include android:id="@+id/game_stacks" layout="@layout/game_tile" />
+
             <include android:id="@+id/game_sudoku" layout="@layout/game_tile" />
 
             <include android:id="@+id/game_mines" layout="@layout/game_tile" />

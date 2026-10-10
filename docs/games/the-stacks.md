@@ -27,7 +27,7 @@ action bottom right, touch targets ≥ 44 dp, body text ≥ 15 sp.
 | **Room** | Header: floor, room name; status line `HP 14/20 · Lv 4 · 37 coins`; Index box (optional, one line); room text; 1–3 choices, each with the stat it tests | Back · "Autosaved" · Hero & bag |
 | **Outcome** | What happened (≤ 2 sentences), gains and losses as pills (`+12 XP`, `−3 HP`, `Biscuit`) | Back · Continue |
 | **Fight** | Enemy card (name, level, weakness, HP as 10 squares), last two turns in one sentence each, 4 actions in a 2 × 2 grid | Back · status |
-| **Hero & bag** | Level and XP bar, GUTS / WITS / LUCK, bag (6 slots, tap to use or drop), latest achievement | Back · Continue |
+| **Hero & bag** | Level and XP bar, GUTS / WITS / LUCK, bag (6 slots, tap an item to use or drop it) | Back · Achievements |
 | **Floor cleared** | Floor summary, narrator line, full e-ink refresh | Back · Go down |
 | **Death** | How you died (one line), what you keep and lose, narrator line | Back · Try again |
 | **Achievements** | Paginated list, unlocked ones in bold, locked ones as "???" | Back · Previous · n / N · Next |
@@ -72,7 +72,7 @@ The same room never appears twice on a floor.
   - *Spine Breaker*: GUTS 3, WITS 1, LUCK 2.
   - *Speed Reader*: LUCK 3, GUTS 2, WITS 1.
 - **Max HP** = 10 + 2 × GUTS + 2 × level.
-- **Level up** at 50 × level XP: +1 stat point (player picks), full heal, narrator line.
+- **Level up** after 50 × level XP (the counter starts again at each level): +1 stat point (player picks), full heal, narrator line.
 - **Coins**: found in rooms and on enemies, spent in shops.
 - **Bag**: 6 slots. Consumables are used up; trinkets give a passive effect while carried.
   A full bag asks which item to drop.
@@ -102,7 +102,7 @@ Turn order: the player acts, then the enemy (if still standing).
 | **Attack** | d6 + GUTS vs enemy DEF | Damage = 1 + (total − DEF), crit doubles | Miss |
 | **Talk it down** | d6 + WITS vs enemy RESOLVE | Enemy RESOLVE −1 per success; at 0 it leaves and drops its loot | It is offended: next enemy hit +1 |
 | **Use an item** | none | Item effect | — |
-| **Flee** | d6 + LUCK vs 4 + ⌊enemy level ÷ 2⌋ | Back to the previous room, no reward | Enemy gets a free hit |
+| **Flee** | d6 + LUCK vs 4 + ⌊enemy level ÷ 2⌋ | You get away and move on to the next room, no reward | Enemy gets a free hit |
 
 Enemy turn: d6 + ATK vs 4 + GUTS; on success, damage = ATK (×2 on a natural 6).
 
@@ -211,6 +211,8 @@ Item entry: `id`, `name`, `text`, `kind` (`consumable` | `trinket`), `rarity`
 
 ## 13. Packs
 
+Not in 2.0.0: biome packs come later (2.1), on the same format.
+
 A **biome pack** has the same tables plus `pack.json` (`id`, `title`, `version`,
 `tiers`). It is listed in the same catalogue as quiz packs, downloaded once, stored in the
 app's files and works offline. Removing a pack never breaks a save: rooms from a missing
@@ -254,4 +256,4 @@ packs on the website (the content format is ready for it).
 
 - Final name: "The Stacks" (working title).
 - Should a linked member account unlock a cosmetic title ("Member #042, Founding Reader")?
-- Rest rooms: full heal, or half, to keep tension on later floors?
+- ~~Rest rooms: full heal, or half?~~ Half (`heal:half`), to keep tension on later floors.

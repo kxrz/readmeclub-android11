@@ -21,6 +21,14 @@ and refuses to release a version that has no section here.
   - **Mines**: 7 × 7 on small screens, 10 × 10 from 480 dp wide; tap to open, hold or use
     the Flag button to flag; the first tap is always safe.
   - **Lights out**, until now hidden in About (the long press on the logo still opens it).
+- **The Stacks**, an endless, absurd text dungeon under a bookshop, in Games › Play: pick
+  a class, explore floors of 6 to 8 rooms (events, monsters, rooms named after
+  public-domain authors, loot, rest, a shop), roll a d6 plus a stat against the floor's
+  difficulty, fight (attack, talk it down, use an item, flee), level up, collect 30
+  achievements, and listen to a sarcastic narrator. A boss every fifth floor; death sends
+  you back to the start of the floor, keeping your level. Two biomes (Bookshop Basement,
+  The Archive), then they cycle with modifiers. Saved after every tap, fully offline.
+- Writing guide for The Stacks content (`docs/games/stacks-content.md`), checked by tests.
 - **Learn**: quizzes in rounds of 10, with four answers, then the right one and why. The
   **General knowledge** pack ships in the app: 200 questions in eight themes (History,
   Geography, Science, Nature, Arts & music, Books & words, Sport & games, Food & everyday),
