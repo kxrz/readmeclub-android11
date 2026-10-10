@@ -39,6 +39,11 @@ and refuses to release a version that has no section here.
 - CI fails a build whose release APK is over 450 KB. Small-screen and design-system rules
   added to CLAUDE.md. `versionName` is 2.0.0 while 2.0 is built; 1.0.6 stays the public version.
 
+### Security
+- Wallpaper ids from the site are checked (plain tokens only) before they name cache files
+  or URL paths; anything else is skipped.
+- CI runs with a read-only GitHub token; only the release job can create tags and releases.
+
 ## [1.0.6] - 2026-10-09
 
 ### Added

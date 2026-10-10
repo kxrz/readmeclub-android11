@@ -118,9 +118,11 @@ class WallpaperSync(private val dir: File, private val screenWidth: Int, private
         val o = JSONObject(json)
         val items = o.getJSONArray("items")
         return WallpaperPage(
-            items = (0 until items.length()).map { i ->
+            items = (0 until items.length()).mapNotNull { i ->
                 val w = items.getJSONObject(i)
                 val id = w.getString("id")
+                // The id names cache files and URL paths: anything but a plain token is skipped.
+                if (!isSafeId(id)) return@mapNotNull null
                 Wallpaper(
                     id = id,
                     title = w.string("title") ?: "Untitled",
@@ -172,5 +174,9 @@ class WallpaperSync(private val dir: File, private val screenWidth: Int, private
         const val TAG = "WallpaperSync"
         const val SITE = "https://www.readme.club"
         const val THUMB_WIDTH = 240
+
+        private val SAFE_ID = Regex("[A-Za-z0-9_-]{1,64}")
+
+        fun isSafeId(id: String) = SAFE_ID.matches(id)
     }
 }

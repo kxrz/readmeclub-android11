@@ -51,8 +51,8 @@ class GamesActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
-        val sudokuSize = if (resources.configuration.screenWidthDp >= 440) 9 else 6
-        val minesSize = if (resources.configuration.screenWidthDp >= 480) 10 else 7
+        val sudokuSize = GameStore.sudokuSize(resources.configuration.screenWidthDp)
+        val minesSize = GameStore.minesSize(resources.configuration.screenWidthDp)
         tile(R.id.game_sudoku, R.string.sudoku_title, when (val saved = store.loadSudoku()) {
             null -> getString(R.string.games_sudoku_meta, sudokuSize, sudokuSize)
             else -> getString(R.string.games_sudoku_progress, saved.sudoku.filled, saved.sudoku.cells.size)

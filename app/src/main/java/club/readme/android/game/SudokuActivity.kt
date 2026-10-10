@@ -63,7 +63,7 @@ class SudokuActivity : Activity() {
         }
     }
 
-    private fun sizeForScreen() = if (resources.configuration.screenWidthDp >= WIDE_DP) 9 else 6
+    private fun sizeForScreen() = GameStore.sudokuSize(resources.configuration.screenWidthDp)
 
     private fun buildLevels() {
         val row = findViewById<LinearLayout>(R.id.levels)
@@ -192,9 +192,4 @@ class SudokuActivity : Activity() {
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean = keys.handle(event) || super.dispatchKeyEvent(event)
-
-    private companion object {
-        /** 9 cells of 44 dp plus margins. */
-        const val WIDE_DP = 440
-    }
 }

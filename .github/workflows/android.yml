@@ -12,6 +12,10 @@ on:
         description: "Version to release, as in versionName (e.g. 1.0.6). Creates the tag v<version>."
         required: true
 
+# Read-only token by default; only the release job may write (tags and releases).
+permissions:
+  contents: read
+
 jobs:
   debug:
     if: ${{ github.event_name != 'workflow_dispatch' && !startsWith(github.ref, 'refs/tags/') }}

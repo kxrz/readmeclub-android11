@@ -22,7 +22,11 @@ class GameStore(context: Context) {
         val p = prefs.getString("sudoku", null)!!.split("|")
         val size = p[0].toInt()
         fun digits(s: String) = IntArray(s.length) { s[it] - '0' }
-        val sudoku = Sudoku(size, digits(p[2]), BooleanArray(p[3].length) { p[3][it] == '1' }, digits(p[4]))
+        val cells = size * size
+        require(size == 6 || size == 9)
+        require(p[2].length == cells && p[3].length == cells && p[4].length == cells)
+        val sudoku = Sudoku(size, digits(p[2]), BooleanArray(cells) { p[3][it] == '1' }, digits(p[4]))
+        require(sudoku.solution.all { it in 1..size } && sudoku.cells.all { it in 0..size })
         SavedSudoku(sudoku, Sudoku.Level.valueOf(p[1]), p[5].toLong())
     }.getOrNull()
 
@@ -42,6 +46,14 @@ class GameStore(context: Context) {
     }
 
     companion object {
+        /** Sudoku is 9 × 9 from this width (9 cells of 44 dp plus margins), else 6 × 6. */
+        private const val SUDOKU_WIDE_DP = 440
+        /** Mines is 10 × 10 from this width (10 cells of 44 dp plus margins), else 7 × 7. */
+        private const val MINES_WIDE_DP = 480
+
+        fun sudokuSize(widthDp: Int) = if (widthDp >= SUDOKU_WIDE_DP) 9 else 6
+        fun minesSize(widthDp: Int) = if (widthDp >= MINES_WIDE_DP) 10 else 7
+
         fun time(ms: Long): String {
             val s = ms / 1000
             return "%d:%02d".format(s / 60, s % 60)

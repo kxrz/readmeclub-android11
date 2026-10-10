@@ -51,7 +51,7 @@ class MinesActivity : Activity() {
     }
 
     private fun newGame() {
-        val size = if (resources.configuration.screenWidthDp >= WIDE_DP) 10 else 7
+        val size = GameStore.minesSize(resources.configuration.screenWidthDp)
         mines = Mines.forSize(size)
         board.mines = mines
         flagMode.isSelected = false
@@ -98,9 +98,4 @@ class MinesActivity : Activity() {
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean = keys.handle(event) || super.dispatchKeyEvent(event)
-
-    private companion object {
-        /** 10 cells of 44 dp plus margins. */
-        const val WIDE_DP = 480
-    }
 }
