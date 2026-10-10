@@ -115,8 +115,6 @@
         <item quantity="one">%d right</item>
         <item quantity="other">%d right</item>
     </plurals>
-    <string name="quiz_right">Right</string>
-    <string name="quiz_wrong">Not quite</string>
     <string name="quiz_score_button">Score</string>
     <string name="quiz_done">Done</string>
     <string name="quiz_final">%1$d / %2$d</string>
@@ -124,11 +122,22 @@
     <string name="quiz_round_over">Round over</string>
     <string name="quiz_best">Best %1$d / %2$d</string>
     <string name="quiz_none_missed">Not a single miss.</string>
-    <plurals name="quiz_missed">
-        <item quantity="one">%d question added to Questions I missed.</item>
-        <item quantity="other">%d questions added to Questions I missed.</item>
-    </plurals>
     <string name="quiz_again">Play again</string>
+    <string name="quiz_skip">Skip</string>
+    <string name="quiz_why">Why</string>
+    <string name="quiz_added">Added to “Questions I missed”.</string>
+    <string name="quiz_mark_right">✓   %1$s · Right</string>
+    <string name="quiz_mark_yours">✗   %1$s · Your answer</string>
+    <string name="quiz_comment_all">Flawless.</string>
+    <string name="quiz_comment_good">Well read.</string>
+    <string name="quiz_comment_fair">Not bad at all.</string>
+    <string name="quiz_comment_low">The library is open late.</string>
+    <string name="quiz_previous_best">Previous best %1$d/%2$d · %3$d min</string>
+    <string name="quiz_minutes">%1$d min</string>
+    <string name="quiz_missed_label">Missed · now in flashcards</string>
+    <string name="quiz_missed_more">and %1$d more in the flashcards</string>
+    <string name="quiz_review">Review missed</string>
+    <string name="quiz_other_packs">Other packs</string>
     <string name="cards_knew">I knew it</string>
     <string name="cards_not_yet">Not yet</string>
     <string name="cards_show">Show answer</string>

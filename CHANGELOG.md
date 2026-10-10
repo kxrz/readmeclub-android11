@@ -42,7 +42,9 @@ and refuses to release a version that has no section here.
   encounters stay near the floor's level. A save the app cannot read is kept aside as
   `stacks-save.bak` instead of being replaced.
 - Writing guide for The Stacks content (`docs/games/stacks-content.md`), checked by tests.
-- **Learn**: quizzes in rounds of 10, with four answers, then the right one and why. The
+- **Learn**: quizzes in rounds of 10, with four answers (A to D, or Skip), then the same
+  answers with the right one and yours marked, and why; the score screen lists the
+  questions missed, with Review missed and Other packs. The
   **General knowledge** pack ships in the app: 200 questions in eight themes (History,
   Geography, Science, Nature, Arts & music, Books & words, Sport & games, Food & everyday),
   unseen questions first, best score kept.
