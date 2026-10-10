@@ -4,7 +4,9 @@ import android.app.Activity
 import android.text.format.DateFormat
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import club.readme.android.BuildConfig
 import club.readme.android.R
 import club.readme.android.app
 import club.readme.android.game.GameStore
@@ -29,12 +31,12 @@ class HomeScreen(
     private val continueCard: View = root.findViewById(R.id.continue_card)
     private val status: TextView = root.findViewById(R.id.home_status)
     private val tiles = mapOf(
-        Section.NEWS to tile(R.id.tile_news, R.string.tab_news),
-        Section.GUIDES to tile(R.id.tile_guides, R.string.tab_guides),
-        Section.WALLPAPERS to tile(R.id.tile_wallpapers, R.string.tab_wallpapers),
-        Section.GAMES to tile(R.id.tile_games, R.string.tab_games),
-        Section.MEMBER to tile(R.id.tile_member, R.string.tab_member),
-        Section.SETTINGS to tile(R.id.tile_settings, R.string.tab_settings),
+        Section.NEWS to tile(R.id.tile_news, R.string.tab_news, R.drawable.ds_icon_news),
+        Section.GUIDES to tile(R.id.tile_guides, R.string.tab_guides, R.drawable.ds_icon_guides),
+        Section.WALLPAPERS to tile(R.id.tile_wallpapers, R.string.tab_wallpapers, R.drawable.ds_icon_wallpapers),
+        Section.GAMES to tile(R.id.tile_games, R.string.tab_games, R.drawable.ds_icon_games),
+        Section.MEMBER to tile(R.id.tile_member, R.string.tab_member, R.drawable.ds_icon_member),
+        Section.SETTINGS to tile(R.id.tile_settings, R.string.tab_settings, R.drawable.ds_icon_settings),
     )
 
     init {
@@ -44,8 +46,11 @@ class HomeScreen(
         refresh()
     }
 
-    private fun tile(id: Int, label: Int): View =
-        root.findViewById<View>(id).also { it.findViewById<TextView>(R.id.label).setText(label) }
+    private fun tile(id: Int, label: Int, icon: Int): View =
+        root.findViewById<View>(id).also {
+            it.findViewById<TextView>(R.id.label).setText(label)
+            it.findViewById<ImageView>(R.id.icon).setImageResource(icon)
+        }
 
     /** Re-reads what the home shows: last read, unread news, pending update, sync state. */
     fun refresh() {
@@ -57,6 +62,8 @@ class HomeScreen(
             val kind = activity.getString(if (last.kind == InternalLinks.GUIDES) R.string.kind_guide else R.string.kind_news)
             continueCard.findViewById<TextView>(R.id.continue_meta).text =
                 activity.getString(R.string.continue_meta, kind, last.percent)
+            val filled = (last.percent / 10).coerceIn(0, 10)
+            continueCard.findViewById<TextView>(R.id.continue_bar).text = "■".repeat(filled) + "□".repeat(10 - filled)
             continueCard.setOnClickListener {
                 activity.startActivity(ReaderActivity.intent(activity, last.kind, last.slug))
             }
@@ -66,7 +73,15 @@ class HomeScreen(
         badge(Section.NEWS, if (unread > 0) activity.getString(R.string.badge_new, unread) else null, sticker = true)
         val games = if (GameStore(activity).hasSudoku) R.string.badge_games_resume else R.string.badge_games
         badge(Section.GAMES, activity.getString(games), sticker = false)
-        badge(Section.MEMBER, app.prefs.memberNumber, sticker = false)
+        val member = app.prefs.memberNumber
+        root.findViewById<TextView>(R.id.member_pill).apply {
+            visibility = if (member == null) View.GONE else View.VISIBLE
+            text = member
+        }
+        tiles.getValue(Section.MEMBER).findViewById<TextView>(R.id.sub).apply {
+            visibility = View.VISIBLE
+            setText(if (member == null) R.string.home_member_unlinked else R.string.home_member_linked)
+        }
         badge(Section.SETTINGS, if (app.latestRelease?.canInstall == true) activity.getString(R.string.badge_update) else null, sticker = false)
         renderStatus()
     }
@@ -91,7 +106,7 @@ class HomeScreen(
             images != null -> activity.getString(R.string.home_images, images.first, images.second)
             app.syncing -> activity.getString(R.string.home_syncing)
             app.lastSyncFailed -> activity.getString(R.string.home_offline)
-            lastSync > 0 -> activity.getString(R.string.home_updated, DateFormat.getTimeFormat(activity).format(Date(lastSync)))
+            lastSync > 0 -> activity.getString(R.string.home_updated, DateFormat.getTimeFormat(activity).format(Date(lastSync)), BuildConfig.VERSION_NAME.substringBefore('-'))
             else -> ""
         }
     }

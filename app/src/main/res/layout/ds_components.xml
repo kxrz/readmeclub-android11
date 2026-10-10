@@ -63,11 +63,22 @@
                 <LinearLayout
                     style="@style/Ds.Tile"
                     android:layout_width="0dp"
-                    android:layout_height="72dp"
+                    android:layout_height="84dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView style="@style/Ds.Pill" android:text="Quiz ready" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:duplicateParentState="true"
+                            android:importantForAccessibility="no" android:src="@drawable/ds_icon_games" android:tint="@color/ds_on_button" />
+
+                        <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+
+                        <TextView style="@style/Ds.Pill" android:text="Quiz ready" />
+                    </LinearLayout>
 
                     <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
 
@@ -78,15 +89,21 @@
                 <LinearLayout
                     style="@style/Ds.Tile"
                     android:layout_width="0dp"
-                    android:layout_height="72dp"
+                    android:layout_height="84dp"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
+                    <ImageView android:layout_width="24dp" android:layout_height="24dp" android:duplicateParentState="true"
+                        android:importantForAccessibility="no" android:src="@drawable/ds_icon_member" android:tint="@color/ds_on_button" />
+
                     <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
 
                     <TextView style="@style/Ds.Text" android:textStyle="bold" android:duplicateParentState="true"
-                        android:textColor="@color/ds_on_button" android:text="Wallpapers" />
+                        android:textColor="@color/ds_on_button" android:text="Member" />
+
+                    <TextView style="@style/Ds.Mono" android:duplicateParentState="true" android:textSize="12sp"
+                        android:textColor="@color/ds_on_button" android:text="Not linked" />
                 </LinearLayout>
             </LinearLayout>
 

@@ -34,8 +34,7 @@
     <!-- A row of home tiles; rows share the space left under the Continue card. -->
     <style name="HomeRow">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">84dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:orientation">horizontal</item>
     </style>

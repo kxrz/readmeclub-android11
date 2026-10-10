@@ -63,7 +63,9 @@
     <string name="card_dark">Dark version</string>
     <string name="card_light">Light version</string>
     <string name="continue_reading">Continue reading</string>
-    <string name="home_updated">Updated %1$s</string>
+    <string name="home_updated">Updated %1$s · v%2$s</string>
+    <string name="home_member_linked">Favourites · card</string>
+    <string name="home_member_unlinked">Not linked</string>
     <string name="home_offline">Offline · saved content</string>
     <string name="home_syncing">Syncing…</string>
     <string name="home_images">Images %1$d / %2$d</string>

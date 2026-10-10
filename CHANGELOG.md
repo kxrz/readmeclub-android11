@@ -10,9 +10,11 @@ and refuses to release a version that has no section here.
 ## [2.0.0] - Unreleased
 
 ### Added
-- **Home screen** in place of the tabs: Continue reading, one tile per section (News with a
-  "3 new" sticker, Guides, Wallpapers, Games, Settings with an "Update" pill) and the sync
-  status with **Sync** in the bottom bar.
+- **Home screen** in place of the tabs: Continue reading with its progress, one tile per
+  section with its icon (News with a "3 new" sticker, Guides, Wallpapers, Games, Member
+  with "Not linked" or "Favourites · card", Settings with an "Update" pill), the member
+  number at the top once linked, and the sync status and version with **Sync** in the
+  bottom bar.
 - **Games**, from its Home tile: Play and Learn, everything offline. Play holds three
   games, each with its best score:
   - **Sudoku**: 6 × 6 on small screens, 9 × 9 from 440 dp wide; Easy, Medium and Hard; every
