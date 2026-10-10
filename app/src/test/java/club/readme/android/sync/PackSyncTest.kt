@@ -35,9 +35,11 @@ class PackSyncTest {
     fun theCatalogueSkipsUnsafeSlugs() {
         val json = """{"docs": [
             {"title": "Ok", "slug": "literature", "questionCount": 40, "updatedAt": "x"},
-            {"title": "Bad", "slug": "../../shared_prefs/learn", "questionCount": 10, "updatedAt": "y"}]}"""
+            {"title": "Bad", "slug": "../../shared_prefs/learn", "questionCount": 10, "updatedAt": "y"},
+            {"title": "No description", "slug": "geography", "description": null, "questionCount": 30, "updatedAt": "z"}]}"""
         val entries = PackSync.parseCatalogue(json)
-        assertEquals(listOf("literature"), entries.map { it.slug })
+        assertEquals(listOf("literature", "geography"), entries.map { it.slug })
+        assertEquals("", entries[1].description) // JSON null is not the text "null"
         assertEquals(40, entries[0].questions)
         assertTrue(PackSync.isSafeSlug("e-ink-books"))
         assertFalse(PackSync.isSafeSlug("E-Ink"))

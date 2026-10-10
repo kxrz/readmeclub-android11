@@ -63,7 +63,7 @@ class PackSync(private val dir: File) {
                 val o = docs.getJSONObject(i)
                 val slug = o.optString("slug")
                 if (!isSafeSlug(slug)) return@mapNotNull null
-                Entry(slug, o.getString("title"), o.optString("description"), o.optInt("questionCount"), o.optString("updatedAt"))
+                Entry(slug, o.getString("title"), o.string("description") ?: "", o.optInt("questionCount"), o.string("updatedAt") ?: "")
             }
         }
 
@@ -86,8 +86,8 @@ class PackSync(private val dir: File) {
             return JSONObject()
                 .put("id", slug)
                 .put("title", doc.getString("title"))
-                .put("description", doc.optString("description"))
-                .put("updatedAt", doc.optString("updatedAt"))
+                .put("description", doc.string("description") ?: "")
+                .put("updatedAt", doc.string("updatedAt") ?: "")
                 .put("questions", questions)
                 .toString()
         }
