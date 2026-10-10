@@ -24,7 +24,8 @@ and refuses to release a version that has no section here.
     the Flag button to flag; the first tap is always safe.
   - **Lights out**, until now hidden in About (the long press on the logo still opens it).
 - **Member**, from its Home tile: link this e-reader to your readme.club account with your
-  member number, the part of your email before the @ and the code we email you. Then: your
+  member number, the part of your email before the @ and the code we email you, typed on
+  the app's own keypad (six boxes, Resend), in two steps. Then: your
   favourite wallpapers and your uploads (every size), your member card as a wallpaper
   (light or dark), and Unlink. The link only reads your things, stays as long as you use
   it (6 months idle at most), and shows in your account settings on the site, where you

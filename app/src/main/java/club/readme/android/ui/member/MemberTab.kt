@@ -2,8 +2,10 @@ package club.readme.android.ui.member
 
 import android.app.Activity
 import android.text.InputType
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
@@ -47,6 +49,10 @@ class MemberTab(
         else -> Step.DETAILS
     }
     private var number = pending.orEmpty()
+    /** The start of the email, kept for Resend while this screen lives. */
+    private var start = ""
+    private var code = ""
+    private val boxes: List<TextView>
     private var busy = false
     private var confirmUnlink = false
 
@@ -61,6 +67,7 @@ class MemberTab(
             activity.startActivity(WallpaperActivity.cardIntent(activity, dark = false))
         }
         unlink.setOnClickListener { unlink() }
+        boxes = buildCode()
         show()
         if (step == Step.LINKED) refresh()
     }
@@ -81,19 +88,35 @@ class MemberTab(
         val linking = step != Step.LINKED
         root.findViewById<View>(R.id.link).visibility = if (linking) View.VISIBLE else View.GONE
         root.findViewById<View>(R.id.linked).visibility = if (linking) View.GONE else View.VISIBLE
+        val details = step == Step.DETAILS
+        val coding = step == Step.CODE
+        for (id in listOf(R.id.field1_label, R.id.field1, R.id.field2_label, R.id.field2, R.id.perks_label, R.id.perks)) {
+            root.findViewById<View>(id).visibility = if (details) View.VISIBLE else View.GONE
+        }
+        for (id in listOf(R.id.code_boxes, R.id.keypad)) root.findViewById<View>(id).visibility = if (coding) View.VISIBLE else View.GONE
+        root.findViewById<TextView>(R.id.member_step).apply {
+            visibility = if (linking) View.VISIBLE else View.GONE
+            text = activity.getString(R.string.member_step, if (coding) 2 else 1)
+        }
+        root.findViewById<TextView>(R.id.member_title).setText(
+            when (step) {
+                Step.DETAILS -> R.string.member_link_title
+                Step.CODE -> R.string.member_code_title
+                Step.LINKED -> R.string.tab_member
+            },
+        )
         when (step) {
             Step.DETAILS -> {
                 // A message (an error, "disconnected") takes the intro's place: the bar is too narrow.
-                text.text = message ?: activity.getString(R.string.member_intro)
+                text.text = message ?: activity.getString(R.string.member_intro_short)
                 field(field1, R.id.field1_label, R.string.member_number, InputType.TYPE_CLASS_NUMBER, number)
-                field(field2, R.id.field2_label, R.string.member_email_start, InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, "")
+                field(field2, R.id.field2_label, R.string.member_email_start, InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, start)
                 primary.setText(R.string.member_send_code)
             }
             Step.CODE -> {
-                text.text = activity.getString(R.string.member_code_sent, number)
-                field(field1, R.id.field1_label, R.string.member_code, InputType.TYPE_CLASS_NUMBER, "")
-                field2.visibility = View.GONE
-                root.findViewById<View>(R.id.field2_label).visibility = View.GONE
+                text.text = message ?: activity.getString(R.string.member_code_sent, number)
+                code = ""
+                renderCode()
                 primary.setText(R.string.member_link)
             }
             Step.LINKED -> {
@@ -126,16 +149,11 @@ class MemberTab(
         when (step) {
             Step.DETAILS -> {
                 number = field1.text.toString().filter(Char::isDigit)
-                val start = field2.text.toString().trim().substringBefore('@')
+                start = field2.text.toString().trim().substringBefore('@')
                 if (number.isEmpty() || start.isEmpty()) return status.setText(R.string.member_fill_both)
-                run(R.string.member_sending, { member.sendCode(number, start) }) {
-                    activity.app.prefs.memberPending = "$number|${System.currentTimeMillis()}"
-                    step = Step.CODE
-                    show()
-                }
+                sendCode()
             }
             Step.CODE -> {
-                val code = field1.text.toString().filter(Char::isDigit)
                 if (code.length != 6) return status.setText(R.string.member_code_six)
                 run(R.string.member_linking, { member.verify(number, code) }) {
                     activity.app.prefs.memberPending = null
@@ -147,6 +165,91 @@ class MemberTab(
             Step.LINKED -> refresh()
         }
     }
+
+    private fun sendCode() {
+        run(R.string.member_sending, { member.sendCode(number, start) }) {
+            activity.app.prefs.memberPending = "$number|${System.currentTimeMillis()}"
+            step = Step.CODE
+            show()
+        }
+    }
+
+    /** Resend: a new code for the same details; back to them when this screen no longer has the email. */
+    private fun resend() {
+        if (busy) return
+        if (start.isEmpty()) {
+            activity.app.prefs.memberPending = null
+            step = Step.DETAILS
+            show()
+        } else {
+            sendCode()
+        }
+    }
+
+    /** Six boxes for the code, then a 3 × 4 keypad: 1–9, Resend, 0, Delete. */
+    private fun buildCode(): List<TextView> {
+        val row = root.findViewById<LinearLayout>(R.id.code_boxes)
+        val boxes = List(6) { i ->
+            TextView(activity, null, 0, R.style.Ds_Mono).also {
+                it.textSize = 24f
+                it.gravity = Gravity.CENTER
+                it.setBackgroundResource(R.drawable.ds_button)
+                val lp = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
+                if (i < 5) lp.rightMargin = dp(6)
+                row.addView(it, lp)
+            }
+        }
+        val pad = root.findViewById<LinearLayout>(R.id.keypad)
+        val keys = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", RESEND, "0", DELETE)
+        keys.chunked(3).forEach { chunk ->
+            val line = LinearLayout(activity)
+            chunk.forEachIndexed { i, key ->
+                val b = TextView(activity, null, 0, R.style.Ds_Button)
+                when (key) {
+                    RESEND -> b.setText(R.string.member_resend)
+                    DELETE -> {
+                        b.text = "⌫"
+                        b.contentDescription = activity.getString(R.string.member_delete)
+                        b.textSize = 20f
+                    }
+                    else -> {
+                        b.text = key
+                        b.textSize = 20f
+                        b.typeface = activity.resources.getFont(R.font.space_mono_bold)
+                    }
+                }
+                b.setOnClickListener { press(key) }
+                val lp = LinearLayout.LayoutParams(0, dp(48), 1f)
+                if (i < 2) lp.rightMargin = dp(8)
+                line.addView(b, lp)
+            }
+            val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            lp.bottomMargin = dp(8)
+            pad.addView(line, lp)
+        }
+        return boxes
+    }
+
+    private fun press(key: String) {
+        if (busy) return
+        when (key) {
+            RESEND -> return resend()
+            DELETE -> code = code.dropLast(1)
+            else -> if (code.length < 6) code += key
+        }
+        renderCode()
+    }
+
+    /** The digits typed so far; the next box is marked with a hard shadow. */
+    private fun renderCode() {
+        boxes.forEachIndexed { i, box ->
+            box.text = code.getOrNull(i)?.toString() ?: if (i == code.length) "_" else ""
+            box.setBackgroundResource(if (i == code.length) R.drawable.ds_card else R.drawable.ds_button)
+        }
+        status.text = activity.getString(R.string.member_code_count, code.length)
+    }
+
+    private fun dp(v: Int) = (v * activity.resources.displayMetrics.density).toInt()
 
     /** Runs [call] off the main thread; [onOk] on success, else the site's message or "offline". */
     private fun run(working: Int, call: () -> MemberSync.Result, onOk: () -> Unit) {
@@ -229,5 +332,7 @@ class MemberTab(
     private companion object {
         /** Codes expire after 15 minutes on the site. */
         const val CODE_MS = 15 * 60 * 1000L
+        const val RESEND = "resend"
+        const val DELETE = "delete"
     }
 }
