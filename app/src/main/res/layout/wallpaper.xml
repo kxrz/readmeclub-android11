@@ -50,19 +50,21 @@
 
         <LinearLayout style="@style/Ds.Bar">
 
-            <TextView android:id="@+id/back" style="@style/Ds.Button" android:layout_width="0dp" android:layout_weight="1" android:text="@string/back" />
+            <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
+
+            <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
 
             <LinearLayout
                 android:id="@+id/actions"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:visibility="invisible">
 
-                <TextView android:id="@+id/folder" style="@style/Ds.Button" android:layout_width="0dp" android:layout_weight="1" android:text="@string/folder" />
+                <TextView android:id="@+id/folder" style="@style/Ds.Button" android:text="@string/folder" />
 
-                <TextView android:id="@+id/save" style="@style/Ds.Button.Primary" android:layout_width="0dp" android:layout_weight="1" android:text="@string/save" />
+                <TextView android:id="@+id/save" style="@style/Ds.Button.Primary" android:layout_marginLeft="8dp" android:text="@string/save" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

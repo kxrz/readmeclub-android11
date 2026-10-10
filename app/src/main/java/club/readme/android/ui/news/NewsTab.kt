@@ -16,6 +16,7 @@ import club.readme.android.data.Article
 import club.readme.android.data.ReadingState
 import club.readme.android.reader.InternalLinks
 import club.readme.android.reader.ReaderActivity
+import club.readme.android.reader.ReadingMath
 import club.readme.android.update.NotesActivity
 import club.readme.android.update.ReleaseNotes
 import club.readme.android.update.Updater
@@ -28,6 +29,7 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
     private val status: TextView = root.findViewById(R.id.status)
     private val items: LinearLayout = root.findViewById(R.id.items)
     private val pageLabel: TextView = root.findViewById(R.id.page_label)
+    private val readingMinutes = mutableMapOf<String, Int>()
     private val itemHeight = activity.resources.getDimensionPixelSize(R.dimen.news_item_height)
 
     private var articles: List<Article> = emptyList()
@@ -156,7 +158,7 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
                 )
                 is Article -> items.addView(
                     // Unread news stand out in bold: hierarchy by weight, never by colour.
-                    item(entry.title, entry.meta, bold = entry.slug in unread, boxed = false) {
+                    item(entry.title, activity.getString(R.string.news_minutes, entry.meta, minutes(entry)), bold = entry.slug in unread, boxed = false, new = entry.slug in unread) {
                         activity.startActivity(ReaderActivity.intent(activity, InternalLinks.NEWS, entry.slug))
                     }
                 )
@@ -173,7 +175,13 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
         return card
     }
 
-    private fun item(title: String, meta: String, bold: Boolean, boxed: Boolean, onClick: () -> Unit): View {
+    /** Reading time of an article, from its word count; worked out once per article. */
+    private fun minutes(article: Article): Int = readingMinutes.getOrPut(article.slug) {
+        val text = TAGS.replace(article.html, " ")
+        maxOf(1, (ReadingMath.countWords(text, 0, text.length) + ReadingMath.WORDS_PER_MINUTE / 2) / ReadingMath.WORDS_PER_MINUTE)
+    }
+
+    private fun item(title: String, meta: String, bold: Boolean, boxed: Boolean, new: Boolean = false, onClick: () -> Unit): View {
         val item = activity.layoutInflater.inflate(R.layout.news_item, items, false)
         if (boxed) item.setBackgroundResource(R.drawable.brand_tile_bg)
         item.findViewById<TextView>(R.id.title).apply {
@@ -182,6 +190,7 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
             setTypeface(null, if (bold) Typeface.BOLD else Typeface.NORMAL)
         }
         item.findViewById<TextView>(R.id.meta).text = meta
+        item.findViewById<View>(R.id.new_pill).visibility = if (new) View.VISIBLE else View.GONE
         item.setOnClickListener { onClick() }
         return item
     }
@@ -198,6 +207,7 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
     }
 
     companion object {
+        private val TAGS = Regex("<[^>]+>")
         /** "1.0.6" for both the release and the debug build ("1.0.6-debug"). */
         val INSTALLED_VERSION: String = BuildConfig.VERSION_NAME.substringBefore('-')
     }

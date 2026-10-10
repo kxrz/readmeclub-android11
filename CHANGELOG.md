@@ -64,6 +64,9 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- News: each row shows its reading time, and a New pill on the ones not read yet.
+- The bottom bar reads Previous and Next everywhere; the wallpaper screen uses the same bar
+  as the others (Back on the left, Folder and Save on the right); Games offers Resume Sudoku.
 - Reader: a News or Guide label over the title, a header image a third of the page at most so
   the text starts on the first page, and the menu opens above the bottom bar instead of
   covering it.

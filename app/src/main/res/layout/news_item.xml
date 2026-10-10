@@ -8,6 +8,33 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
+    <!-- "NEW" on unread news, then the meta line (section · author · date · reading time). -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/new_pill"
+            style="@style/Ds.Pill"
+            android:layout_marginRight="6dp"
+            android:duplicateParentState="true"
+            android:text="@string/news_new"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/meta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:duplicateParentState="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/tab_text"
+            android:textSize="13sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
@@ -15,16 +42,7 @@
         android:duplicateParentState="true"
         android:maxLines="2"
         android:textColor="@color/tab_text"
-        android:textSize="17sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/meta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:duplicateParentState="true"
-        android:maxLines="1"
+        android:textSize="16sp"
         android:paddingTop="2dp"
-        android:textColor="@color/tab_text"
-        android:textSize="13sp" />
+        android:textStyle="bold" />
 </LinearLayout>

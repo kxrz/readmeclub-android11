@@ -17,8 +17,8 @@
     <string name="refresh_test">Full refresh test</string>
     <string name="press_button">Press any button (short, then long).</string>
     <string name="page_of">%1$d / %2$d</string>
-    <string name="previous">‹ Prev</string>
-    <string name="next">Next ›</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="menu">Menu</string>
     <string name="components">Components</string>
@@ -80,6 +80,8 @@
     <string name="badge_update">Update</string>
     <string name="badge_games">4 games</string>
     <string name="kind_news">News</string>
+    <string name="news_new">New</string>
+    <string name="news_minutes">%1$s · %2$d min</string>
     <string name="kind_guide">Guide</string>
     <string name="continue_meta">%1$s · %2$d%% read</string>
     <string name="update_card_title">readme.club %1$s is available</string>
@@ -156,7 +158,7 @@
         <item quantity="other">Done for now. %d cards stay in the deck for next time.</item>
     </plurals>
     <string name="games_offline">All offline</string>
-    <string name="games_resume">Resume</string>
+    <string name="games_resume">Resume Sudoku</string>
     <string name="games_best">Best %1$s</string>
     <string name="games_sudoku_meta">%1$d × %2$d · Easy, Medium, Hard</string>
     <string name="games_sudoku_progress">In progress · %1$d / %2$d</string>
