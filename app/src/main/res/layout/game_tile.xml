@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A game in Games › Play: its name and one line (size, best score, game in progress). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Ds.Tile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:minHeight="@dimen/ds_choice"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/Ds.Title"
+        android:duplicateParentState="true"
+        android:textColor="@color/ds_on_button"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/meta"
+        style="@style/Ds.Text"
+        android:duplicateParentState="true"
+        android:textColor="@color/ds_on_button"
+        android:textSize="15sp" />
+</LinearLayout>

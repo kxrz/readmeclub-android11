@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import club.readme.android.R
 import club.readme.android.app
+import club.readme.android.game.GameStore
 import club.readme.android.reader.InternalLinks
 import club.readme.android.reader.ReaderActivity
 import java.util.Date
@@ -62,7 +63,8 @@ class HomeScreen(
 
         val unread = app.reading.unreadNews.size
         badge(Section.NEWS, if (unread > 0) activity.getString(R.string.badge_new, unread) else null, sticker = true)
-        badge(Section.GAMES, activity.getString(R.string.badge_games), sticker = false)
+        val games = if (GameStore(activity).hasSudoku) R.string.badge_games_resume else R.string.badge_games
+        badge(Section.GAMES, activity.getString(games), sticker = false)
         badge(Section.SETTINGS, if (app.latestRelease?.canInstall == true) activity.getString(R.string.badge_update) else null, sticker = false)
         renderStatus()
     }

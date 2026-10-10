@@ -9,7 +9,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
-import club.readme.android.game.LightsOutActivity
+import club.readme.android.game.GamesActivity
 import club.readme.android.ui.guides.GuidesTab
 import club.readme.android.ui.home.HomeScreen
 import club.readme.android.ui.home.HomeScreen.Section
@@ -122,7 +122,7 @@ class MainActivity : Activity() {
     /** Home (null) or a section, in place; Games opens its own screen. */
     private fun show(target: Section?) {
         if (target == Section.GAMES) {
-            startActivity(Intent(this, LightsOutActivity::class.java))
+            startActivity(Intent(this, GamesActivity::class.java))
             return
         }
         section = target

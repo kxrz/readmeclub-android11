@@ -56,6 +56,21 @@
             android:name=".game.LightsOutActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".game.GamesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".game.SudokuActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".game.MinesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <receiver
             android:name=".update.InstallResultReceiver"
             android:exported="false" />

@@ -12,7 +12,15 @@ and refuses to release a version that has no section here.
 ### Added
 - **Home screen** in place of the tabs: Continue reading, one tile per section (News with a
   "3 new" sticker, Guides, Wallpapers, Games, Settings with an "Update" pill) and the sync
-  status with **Sync** in the bottom bar. Games opens Lights out for now.
+  status with **Sync** in the bottom bar.
+- **Games**, from its Home tile: Play and Learn (Learn arrives with quizzes in a coming
+  beta). Play holds three games that work offline, each with its best score:
+  - **Sudoku**: 6 × 6 on small screens, 9 × 9 from 440 dp wide; Easy, Medium and Hard; every
+    grid has a single solution. The game in progress is saved; Games and the Home tile offer
+    to resume it.
+  - **Mines**: 7 × 7 on small screens, 10 × 10 from 480 dp wide; tap to open, hold or use
+    the Flag button to flag; the first tap is always safe.
+  - **Lights out**, until now hidden in About (the long press on the logo still opens it).
 - **Search and sort** in Wallpapers: a search field (the keyboard's search key runs it) and
   Latest, Popular, Name and Author.
 - **readme.club design system** for e-ink, from the brand page in black and white: buttons

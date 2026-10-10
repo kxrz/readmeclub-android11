@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Games: Play (the games in the APK) and Learn (quizzes, coming with M4). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Ds.Title"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp"
+            android:text="@string/tab_games" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/tab_play"
+                style="@style/Ds.Button"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="8dp"
+                android:text="@string/games_play" />
+
+            <TextView
+                android:id="@+id/tab_learn"
+                style="@style/Ds.Button"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/games_learn" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/play"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp">
+
+            <include android:id="@+id/game_sudoku" layout="@layout/game_tile" />
+
+            <include android:id="@+id/game_mines" layout="@layout/game_tile" />
+
+            <include android:id="@+id/game_lights" layout="@layout/game_tile" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/learn"
+            style="@style/Ds.Text"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/games_learn_soon"
+            android:visibility="gone" />
+
+        <LinearLayout style="@style/Ds.Bar">
+
+            <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
+
+            <TextView style="@style/Ds.BarStatus" android:text="@string/games_offline" />
+
+            <TextView android:id="@+id/resume" style="@style/Ds.Button.Primary" android:text="@string/games_resume" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

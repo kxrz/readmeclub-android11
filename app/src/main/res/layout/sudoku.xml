@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sudoku: levels, the grid, a digit pad built in code, the bar. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                style="@style/Ds.Title"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/sudoku_title" />
+
+            <TextView android:id="@+id/best" style="@style/Ds.Mono" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/levels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp" />
+
+        <club.readme.android.game.SudokuView
+            android:id="@+id/board"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="16dp" />
+
+        <LinearLayout
+            android:id="@+id/pad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout style="@style/Ds.Bar">
+
+            <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
+
+            <TextView android:id="@+id/status" style="@style/Ds.BarStatus" />
+
+            <TextView android:id="@+id/new_game" style="@style/Ds.Button.Primary" android:text="@string/lights_new" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

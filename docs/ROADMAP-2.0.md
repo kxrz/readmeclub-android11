@@ -60,11 +60,11 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 
 ### M3 — Games: Play (M) · beta.3
 
-- [ ] Games space with Play and Learn tabs
-- [ ] Lights out moved from the easter egg to Play (the long press in About stays)
-- [ ] Sudoku: 6 × 6 under 400 dp, 9 × 9 above; generator with a unique solution; Easy, Medium, Hard
-- [ ] Mines: 7 × 7 under 400 dp, 10 × 10 above; tap to open, long press to flag; first tap always safe
-- [ ] Saves and best scores per game; resume card
+- [x] Games space with Play and Learn tabs
+- [x] Lights out moved from the easter egg to Play (the long press in About stays)
+- [x] Sudoku: 6 × 6 under 440 dp, 9 × 9 above (cells stay ≥ 44 dp); generator with a unique solution; Easy, Medium, Hard
+- [x] Mines: 7 × 7 under 480 dp, 10 × 10 above; tap to open, long press (or the Flag button) to flag; first tap always safe
+- [x] Saves and best scores per game; resume (Games bar and Home tile). Mines rounds are short and not saved
 
 ### M4 — Games: Learn (L) · beta.4
 
@@ -129,7 +129,7 @@ M1 and M2 come first: everything else is built from their components. Site work 
 |---|---|---|
 | [M1 Design system](https://github.com/kxrz/readmeclub-android11/issues/2) | Built, to test on the S4 | 2.0.0-beta.1 |
 | [M2 Home and sections](https://github.com/kxrz/readmeclub-android11/issues/3) | Built, to test on the S4 | — |
-| [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Not started | — |
+| [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Built, to test on the S4 | — |
 | [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Not started | — |
 | [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Not started | — |
 | [M6 Member account](https://github.com/kxrz/readmeclub-android11/issues/7) | Not started | — |
