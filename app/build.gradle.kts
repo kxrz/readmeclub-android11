@@ -50,6 +50,13 @@ android {
         buildConfig = true
     }
 
+    // Kotlin metadata only serves reflection, which the app never uses: kept out of the APK budget.
+    packaging {
+        resources {
+            excludes += listOf("kotlin/**", "META-INF/*.kotlin_module", "META-INF/*.version", "DebugProbesKt.bin")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

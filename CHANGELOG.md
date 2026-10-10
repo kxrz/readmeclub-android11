@@ -70,6 +70,8 @@ and refuses to release a version that has no section here.
 
 ### Build
 - Unit tests use `org.json` from Maven (test classpath only; the APK keeps Android's own).
+- Kotlin metadata files (reflection only) are left out of the APK, and CI lists the heaviest
+  APK entries next to the size check.
 
 ## [1.0.6] - 2026-10-09
 
