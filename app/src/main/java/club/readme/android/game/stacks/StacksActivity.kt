@@ -396,7 +396,7 @@ class StacksActivity : Activity() {
         label.textSize = 15f
         label.setTypeface(label.typeface, android.graphics.Typeface.BOLD)
         label.setTextColor(getColorStateList(R.color.ds_on_button))
-        label.duplicateParentState = true
+        label.isDuplicateParentStateEnabled = true
         label.maxLines = 2
         row.addView(label, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f))
         if (tag.isNotEmpty()) {
@@ -404,7 +404,7 @@ class StacksActivity : Activity() {
             t.text = tag
             t.textSize = 12f
             t.setTextColor(getColorStateList(R.color.ds_on_button))
-            t.duplicateParentState = true
+            t.isDuplicateParentStateEnabled = true
             row.addView(t)
         }
         val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, resources.getDimensionPixelSize(R.dimen.ds_choice))
