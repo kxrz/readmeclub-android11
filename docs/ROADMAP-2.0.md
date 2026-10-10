@@ -42,7 +42,7 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 ### M1 — Design system in code (M) · beta.1
 
 - [x] Brand tokens as Android resources: black on white, 2 dp borders, 12 dp corners, hard shadows
-- [ ] Optional terracotta accent for colour readers: moved to M2 (a Settings option)
+- [ ] Optional terracotta accent for colour readers: moved to 2.1 (not needed for 2.0.0)
 - [x] Shared views: bottom bar, button (primary, secondary), pill, sticker, window card, tile
 - [x] Fonts: Space Grotesk (titles) and Space Mono (numbers) bundled; body stays the system sans
 - [x] CLAUDE.md: small-screen and design-system rules (the home-hub navigation rule comes with M2)
@@ -50,13 +50,13 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 
 ### M2 — Home and migrated sections (L) · beta.2
 
-- [ ] Home hub: Continue reading card, six tiles with their pills and stickers, Sync
-- [ ] News: list, reader, unread, update card, "Updated to" card, QR, time left (all current features)
-- [ ] Guides: brand shelf, contents, reader
-- [ ] Wallpapers: gallery that fits the device, Save, Folder, member credit
-- [ ] Wallpapers: **search** and **sort** (Latest, Popular, Name, Author) on the existing API
-- [ ] Settings: all current settings, About, Release notes, Check for updates, Account row
-- [ ] Larger readers: columns and margins (Nomad, Note Air5 C)
+- [x] Home hub: Continue reading card, six tiles with their pills and stickers, Sync
+- [x] News: list, reader, unread, update card, "Updated to" card, QR, time left (all current features)
+- [x] Guides: brand shelf, contents, reader
+- [x] Wallpapers: gallery that fits the device, Save, Folder, member credit
+- [x] Wallpapers: **search** and **sort** (Latest, Popular, Name, Author) on the existing API
+- [x] Settings: all current settings, About, Release notes, Check for updates (the Account row comes with M6)
+- [ ] Larger readers: columns and margins (Nomad, Note Air5 C) — grids already adapt; to check on a large reader
 
 ### M3 — Games: Play (M) · beta.3
 
@@ -127,8 +127,8 @@ M1 and M2 come first: everything else is built from their components. Site work 
 
 | Milestone | State | Beta |
 |---|---|---|
-| [M1 Design system](https://github.com/kxrz/readmeclub-android11/issues/2) | Built, to test on the S4 | — |
-| [M2 Home and sections](https://github.com/kxrz/readmeclub-android11/issues/3) | Not started | — |
+| [M1 Design system](https://github.com/kxrz/readmeclub-android11/issues/2) | Built, to test on the S4 | 2.0.0-beta.1 |
+| [M2 Home and sections](https://github.com/kxrz/readmeclub-android11/issues/3) | Built, to test on the S4 | — |
 | [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Not started | — |
 | [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Not started | — |
 | [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Not started | — |
