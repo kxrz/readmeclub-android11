@@ -5,6 +5,7 @@ the readme.club brand, six sections (News, Guides, Wallpapers, Games, Member, Se
 games and learning that work fully offline, and an optional member account.
 
 This file is the single place to see where we are. Tick boxes as work lands on `main`.
+GitHub tracking: [Release 2.0.0](https://github.com/kxrz/readmeclub-android11/issues/1), one sub-issue per milestone.
 Mockups: the 2.0 UX canvas (S4, 350 × 584 dp). Game design: [games/the-stacks.md](games/the-stacks.md).
 
 ## Release rules for 2.0.0
@@ -125,10 +126,10 @@ M1 and M2 come first: everything else is built from their components. Site work 
 
 | Milestone | State | Beta |
 |---|---|---|
-| M1 Design system | Not started | — |
-| M2 Home and sections | Not started | — |
-| M3 Games: Play | Not started | — |
-| M4 Games: Learn | Not started | — |
-| M5 The Stacks | Not started | — |
-| M6 Member account | Not started | — |
-| M7 Hardening and launch | Not started | — |
+| [M1 Design system](https://github.com/kxrz/readmeclub-android11/issues/2) | Not started | — |
+| [M2 Home and sections](https://github.com/kxrz/readmeclub-android11/issues/3) | Not started | — |
+| [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Not started | — |
+| [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Not started | — |
+| [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Not started | — |
+| [M6 Member account](https://github.com/kxrz/readmeclub-android11/issues/7) | Not started | — |
+| [M7 Hardening and launch](https://github.com/kxrz/readmeclub-android11/issues/8) | Not started | — |
