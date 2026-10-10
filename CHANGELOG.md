@@ -82,6 +82,8 @@ and refuses to release a version that has no section here.
 - CI runs with a read-only GitHub token; only the release job can create tags and releases.
 
 ### Build
+- Screenshots workflow (Actions › Screenshots): tours every screen of the debug build on an
+  Android 11 emulator set up like the S4 and pushes the PNGs to the `screenshots` branch.
 - Unit tests use `org.json` from Maven (test classpath only; the APK keeps Android's own).
 - Kotlin metadata files (reflection only) are left out of the APK, and CI lists the heaviest
   APK entries next to the size check.
