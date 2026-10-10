@@ -35,12 +35,14 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Menu: Menu in the bottom bar, a tap in the middle of the page or a long press on the button. -->
+    <!-- Menu: Menu in the bottom bar, a tap in the middle of the page or a long press on the
+         button. It opens above the bar, which stays: Back and Menu (to close it) keep their place. -->
     <LinearLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/ds_bar"
         android:background="@android:color/white"
         android:orientation="vertical"
         android:visibility="gone">
@@ -51,7 +53,6 @@
 
         <TextView android:id="@+id/open_qr" style="@style/Button" android:layout_height="56dp" android:text="@string/open_on_phone" />
 
-        <TextView android:id="@+id/back" style="@style/Button" android:layout_height="56dp" android:text="@string/back" />
     </LinearLayout>
 
     <!-- Contents of a guide: one section per row, paginated. -->

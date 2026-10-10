@@ -75,7 +75,6 @@ class ReaderActivity : Activity() {
             }
             true
         }
-        findViewById<View>(R.id.back).setOnClickListener { finish() }
         findViewById<View>(R.id.bar_back).setOnClickListener { finish() }
         findViewById<View>(R.id.bar_menu).setOnClickListener { toggleMenu() }
         findViewById<View>(R.id.open_contents).setOnClickListener { showContents() }
@@ -129,7 +128,8 @@ class ReaderActivity : Activity() {
         }
         val width = pageView.contentWidth
         val height = pageView.contentHeight
-        val text = ArticleText.build(article, store(kind), resources, width, height)
+        val label = getString(if (kind == InternalLinks.GUIDES) R.string.kind_guide else R.string.kind_news)
+        val text = ArticleText.build(article, label, store(kind), resources, width, height)
         val layout = StaticLayout.Builder.obtain(text, 0, text.length, paint, width)
             .setLineSpacing(0f, 1.2f)
             .setIncludePad(false)

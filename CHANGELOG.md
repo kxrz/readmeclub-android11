@@ -64,6 +64,9 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- Reader: a News or Guide label over the title, a header image a third of the page at most so
+  the text starts on the first page, and the menu opens above the bottom bar instead of
+  covering it.
 - Volume up and page up turn back a page in News, Guides, Wallpapers and Settings.
 - A brushed button no longer throws work away: a new Sudoku grid over a game in progress,
   removing a quiz pack and unlinking the reader each ask for a second tap.

@@ -18,11 +18,12 @@ import android.text.style.URLSpan
 import club.readme.android.data.Article
 import club.readme.android.data.ContentStore
 
-/** Turns an article into styled text for the reader: title, meta line, then the body HTML. */
+/** Turns an article into styled text for the reader: image, label, title, meta line, then the body HTML. */
 object ArticleText {
 
     fun build(
         article: Article,
+        label: String,
         store: ContentStore,
         resources: Resources,
         maxImageWidth: Int,
@@ -30,9 +31,14 @@ object ArticleText {
     ): CharSequence {
         val text = SpannableStringBuilder()
         article.heroImage?.let { src ->
-            val image = loadImage(store, resources, src, maxImageWidth, maxImageHeight / 2)
+            // A third of the page at most, so the text starts on the first page.
+            val image = loadImage(store, resources, src, maxImageWidth, maxImageHeight / 3)
             if (image.bounds.width() > 0) text.append("\uFFFC", ImageSpan(image), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE).append("\n\n")
         }
+        val labelStart = text.length
+        text.append(label.uppercase(), StyleSpan(Typeface.BOLD), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        text.setSpan(RelativeSizeSpan(0.7f), labelStart, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        text.append("\n")
         val titleStart = text.length
         text.append(article.title, StyleSpan(Typeface.BOLD), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         text.setSpan(RelativeSizeSpan(1.4f), titleStart, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
