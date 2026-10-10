@@ -26,7 +26,9 @@ class MinesActivity : Activity() {
     private lateinit var flagMode: TextView
     private lateinit var flash: View
     private lateinit var mines: Mines
-    private var startedAt = 0L
+    /** Play time so far, and when the current stretch started (0 when the round isn't running). */
+    private var playedMs = 0L
+    private var resumedAt = 0L
     private var finishedMs = 0L
     private var movesSinceRefresh = 0
 
@@ -61,16 +63,21 @@ class MinesActivity : Activity() {
     }
 
     private fun open(index: Int) {
-        if (!mines.started) startedAt = SystemClock.elapsedRealtime()
+        if (mines.state != Mines.State.PLAYING) return
+        if (!mines.started) {
+            playedMs = 0
+            resumedAt = SystemClock.elapsedRealtime()
+        }
         mines.open(index)
         if (mines.state == Mines.State.WON) {
-            finishedMs = SystemClock.elapsedRealtime() - startedAt
+            finishedMs = playedMs + SystemClock.elapsedRealtime() - resumedAt
             store.offerBest(bestKey(), finishedMs)
         }
         moved()
     }
 
     private fun flag(index: Int) {
+        if (mines.state != Mines.State.PLAYING) return
         mines.toggleFlag(index)
         moved()
     }
@@ -95,6 +102,17 @@ class MinesActivity : Activity() {
             Mines.State.LOST -> getString(R.string.mines_lost)
             Mines.State.PLAYING -> getString(R.string.mines_flags, mines.flags, mines.mineCount)
         }
+    }
+
+    // Time away from the screen doesn't count.
+    override fun onPause() {
+        super.onPause()
+        if (mines.started && mines.state == Mines.State.PLAYING) playedMs += SystemClock.elapsedRealtime() - resumedAt
+    }
+
+    override fun onResume() {
+        super.onResume()
+        resumedAt = SystemClock.elapsedRealtime()
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean = keys.handle(event) || super.dispatchKeyEvent(event)

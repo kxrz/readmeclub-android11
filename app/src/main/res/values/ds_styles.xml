@@ -74,6 +74,20 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <!-- A text field (search, member number, code): a choice-height box, ink on paper. -->
+    <style name="Ds.Field">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/ds_choice</item>
+        <item name="android:background">@drawable/ds_button</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:importantForAutofill">no</item>
+        <item name="android:textColor">@color/ds_ink</item>
+        <item name="android:textColorHint">@color/ds_ink</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <!-- A section entry on the home screen; content goes inside (icon, label, pill). -->
     <style name="Ds.Tile">
         <item name="android:background">@drawable/ds_button</item>

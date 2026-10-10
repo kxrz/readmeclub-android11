@@ -44,10 +44,9 @@
 
             <TextView
                 android:id="@+id/continue_meta"
-                style="@style/Ds.Text"
+                style="@style/Ds.Mono"
                 android:duplicateParentState="true"
-                android:textColor="@color/ds_on_button"
-                android:textSize="13sp" />
+                android:textColor="@color/ds_on_button" />
         </LinearLayout>
 
         <LinearLayout

@@ -54,11 +54,13 @@ class WallpaperSync(private val dir: File, private val screenWidth: Int, private
             // A member's own lists show every size: they chose those wallpapers.
             val filter = when (scope) {
                 Scope.All -> deviceSlug?.let { "fits=$it&" } ?: ""
-                Scope.Favorites -> "favorites=1&"
+                is Scope.Favorites -> "favorites=1&"
                 is Scope.Uploads -> "member_id=${URLEncoder.encode(scope.member, "UTF-8")}&"
             }
             val search = if (q.isEmpty()) "" else "q=${URLEncoder.encode(q, "UTF-8")}&"
-            val json = String(Http.get("$SITE/api/wallpapers?${filter}${search}hide_sensitive=1&sort=$sort&page=$page&page_size=$pageSize", token))
+            // The member's own lists show everything they chose, like their count on Member.
+            val sensitive = if (scope == Scope.All) "hide_sensitive=1&" else ""
+            val json = String(Http.get("$SITE/api/wallpapers?${filter}${search}${sensitive}sort=$sort&page=$page&page_size=$pageSize", token))
             val parsed = parse(json)
             write(cached, json.toByteArray())
             for (w in parsed.items) {
@@ -181,11 +183,13 @@ class WallpaperSync(private val dir: File, private val screenWidth: Int, private
     /** Which wallpapers: all of them, the linked member's favourites, or one member's uploads. */
     sealed class Scope(val key: String) {
         object All : Scope("all")
-        object Favorites : Scope("favorites")
+        /** Keyed by member number, so another account never sees these cached pages. */
+        class Favorites(member: String) : Scope(FAVORITES_PREFIX + member.filter(Char::isDigit))
         class Uploads(val member: String) : Scope("uploads-" + member.filter(Char::isDigit))
     }
 
     companion object {
+        const val FAVORITES_PREFIX = "favorites-"
         const val SORT_LATEST = "latest"
         /** Sort orders the site accepts, in the order the pills show them. */
         val SORTS = listOf(SORT_LATEST, "popular", "name", "author")

@@ -11,6 +11,12 @@ class Leitner(private val boxes: MutableMap<String, Int> = linkedMapOf(), var se
 
     fun box(id: String): Int = boxes[id] ?: 0
 
+    fun ids(): List<String> = boxes.keys.toList()
+
+    fun remove(id: String) {
+        boxes.remove(id)
+    }
+
     fun add(id: String) {
         boxes[id] = 1
     }

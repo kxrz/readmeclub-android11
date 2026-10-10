@@ -31,6 +31,7 @@ class PacksActivity : Activity() {
     private var rows = listOf<Row>()
     private var page = 0
     private var selected: String? = null
+    private var confirmRemove = false
 
     private val keys = PageKeys(onNext = { turn(1) }, onPrevious = { turn(-1) })
 
@@ -81,6 +82,8 @@ class PacksActivity : Activity() {
 
     private fun select(slug: String?) {
         selected = slug
+        confirmRemove = false
+        findViewById<TextView>(R.id.remove).setText(R.string.packs_remove)
         render()
     }
 
@@ -164,9 +167,17 @@ class PacksActivity : Activity() {
         }
     }
 
+    /** Two taps: the first asks, the second removes the pack and everything it left behind. */
     private fun remove() {
         val row = selectedRow() ?: return
+        val button = findViewById<TextView>(R.id.remove)
+        if (!confirmRemove) {
+            confirmRemove = true
+            button.setText(R.string.packs_remove_confirm)
+            return
+        }
         sync.remove(row.slug)
+        store.forget(row.slug)
         rebuild()
         select(null)
     }

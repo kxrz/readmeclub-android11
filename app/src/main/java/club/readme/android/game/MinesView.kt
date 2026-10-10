@@ -2,7 +2,6 @@ package club.readme.android.game
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
@@ -27,11 +26,11 @@ class MinesView(context: Context, attrs: AttributeSet?) : BoardView(context, att
 
     override val n: Int get() = mines?.size ?: 1
 
-    private val line = Paint().apply { color = Color.BLACK; style = Paint.Style.STROKE; strokeWidth = 2 * density }
-    private val ink = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.BLACK }
+    private val line = Paint().apply { color = context.getColor(R.color.ds_ink); style = Paint.Style.STROKE; strokeWidth = 2 * density }
+    private val ink = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = context.getColor(R.color.ds_ink) }
     private val openFill = Paint().apply { color = context.getColor(R.color.ds_soft) }
     private val number = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.BLACK
+        color = context.getColor(R.color.ds_ink)
         textAlign = Paint.Align.CENTER
         typeface = context.resources.getFont(R.font.space_mono_bold)
     }

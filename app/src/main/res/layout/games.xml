@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Games: Play (the games in the APK) and Learn (quizzes, coming with M4). -->
+<!-- Games: Play (the games in the APK) and Learn (quiz packs, Questions I missed). -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

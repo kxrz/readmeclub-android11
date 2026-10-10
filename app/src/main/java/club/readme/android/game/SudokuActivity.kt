@@ -31,6 +31,8 @@ class SudokuActivity : Activity() {
     private var elapsedMs = 0L
     private var resumedAt = 0L
     private var movesSinceRefresh = 0
+    /** The level a second tap would start, after a first tap on a game in progress. */
+    private var confirmNew: Sudoku.Level? = null
 
     // Swallow the page keys: there are no pages here.
     private val keys = PageKeys(onNext = {})
@@ -44,7 +46,7 @@ class SudokuActivity : Activity() {
         best = findViewById(R.id.best)
         flash = findViewById(R.id.flash)
         findViewById<View>(R.id.back).setOnClickListener { finish() }
-        findViewById<View>(R.id.new_game).setOnClickListener { newGame(level) }
+        findViewById<View>(R.id.new_game).setOnClickListener { askNewGame(level) }
         board.onSelect = { index ->
             val s = sudoku
             board.selected = if (s == null || s.given[index] || s.solved) -1 else index
@@ -73,7 +75,7 @@ class SudokuActivity : Activity() {
             Sudoku.Level.HARD to R.string.sudoku_hard,
         )
         for ((l, name) in names) {
-            val button = button(getString(name)) { if (l != level || sudoku?.solved == true) newGame(l) }
+            val button = button(getString(name)) { if (l != level || sudoku?.solved == true) askNewGame(l) }
             row.addView(button, weighted(last = l == Sudoku.Level.HARD))
             levelButtons[l] = button
         }
@@ -113,12 +115,28 @@ class SudokuActivity : Activity() {
 
     private fun dp(v: Int) = (v * resources.displayMetrics.density).toInt()
 
+    /**
+     * A new grid at [l]. A game with the player's own digits is only replaced on a second tap
+     * (a brushed button on e-ink must not throw away 20 minutes); nothing happens while a
+     * grid is being made.
+     */
+    private fun askNewGame(l: Sudoku.Level) {
+        val s = sudoku ?: return
+        val progress = !s.solved && s.cells.indices.any { s.cells[it] != 0 && !s.given[it] }
+        if (progress && confirmNew != l) {
+            confirmNew = l
+            status.setText(R.string.sudoku_confirm_new)
+            return
+        }
+        confirmNew = null
+        newGame(l)
+    }
+
     private fun newGame(l: Sudoku.Level) {
         level = l
         sudoku = null
         board.sudoku = null
         board.selected = -1
-        store.clearSudoku()
         status.setText(R.string.sudoku_generating)
         val size = sizeForScreen()
         buildPad(size)
@@ -128,6 +146,8 @@ class SudokuActivity : Activity() {
                 if (isFinishing || level != l || sudoku != null) return@runOnUiThread
                 elapsedMs = 0
                 resumedAt = SystemClock.elapsedRealtime()
+                // The old save goes only once the new grid is there.
+                store.clearSudoku()
                 show(generated)
             }
         }
@@ -144,6 +164,7 @@ class SudokuActivity : Activity() {
 
     private fun enter(digit: Int) {
         val s = sudoku ?: return
+        confirmNew = null
         val index = board.selected
         if (index < 0 || s.solved) return
         s.set(index, digit)
@@ -173,7 +194,7 @@ class SudokuActivity : Activity() {
         status.text = when {
             s.solved -> getString(R.string.sudoku_solved, GameStore.time(elapsedMs))
             s.filled == s.cells.size -> resources.getQuantityString(R.plurals.sudoku_wrong, s.errors(), s.errors())
-            else -> getString(R.string.page_of, s.filled, s.cells.size)
+            else -> getString(R.string.sudoku_filled, s.filled, s.cells.size)
         }
     }
 

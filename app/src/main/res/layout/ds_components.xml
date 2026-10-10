@@ -92,6 +92,8 @@
 
             <TextView style="@style/Ds.Choice" android:layout_marginTop="12dp" android:text="A   Mary Shelley" />
 
+            <EditText style="@style/Ds.Field" android:layout_marginTop="12dp" android:hint="Ds.Field" android:inputType="text" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

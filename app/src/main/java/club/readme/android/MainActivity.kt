@@ -35,10 +35,14 @@ class MainActivity : Activity() {
     private var memberTab: MemberTab? = null
     /** Set by Member before opening Wallpapers on the member's favourites or uploads. */
     private var wallpaperScope: Pair<WallpaperSync.Scope, Int>? = null
+    /** Where Member was opened from (Settings' Member account row), for its Back. */
+    private var memberOrigin: Section? = null
 
-    // Capacitive button: next page of the open section's list (nothing on Home).
+    // Page keys: the open section's next / previous page (nothing on Home). On the S4's single
+    // button, next wraps to the first page so the button alone can always reach everything.
     private var nextPage: (() -> Unit)? = null
-    private val keys = PageKeys(onNext = { nextPage?.invoke() })
+    private var previousPage: (() -> Unit)? = null
+    private val keys = PageKeys(onNext = { nextPage?.invoke() }, onPrevious = { previousPage?.invoke() })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +50,7 @@ class MainActivity : Activity() {
         content = findViewById(R.id.content)
         // A fresh install has nothing to announce: only updates get the "updated" card in News.
         if (!app.prefs.welcomed) app.prefs.notesSeenVersion = NewsTab.INSTALLED_VERSION
+        if (savedInstanceState != null) restoreScope(savedInstanceState)
         show(savedInstanceState?.getString(KEY_SECTION)?.let { name -> Section.values().firstOrNull { it.name == name } })
         if (savedInstanceState == null) {
             sync() // one sync and one update check per launch
@@ -124,6 +129,22 @@ class MainActivity : Activity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         section?.let { outState.putString(KEY_SECTION, it.name) }
+        memberOrigin?.let { outState.putString(KEY_MEMBER_ORIGIN, it.name) }
+        wallpaperScope?.let { (scope, title) ->
+            outState.putString(KEY_SCOPE, if (scope is WallpaperSync.Scope.Uploads) "uploads" else "favorites")
+            outState.putInt(KEY_SCOPE_TITLE, title)
+        }
+    }
+
+    /** Member's origin and scoped gallery, as onSaveInstanceState left them. */
+    private fun restoreScope(state: Bundle) {
+        memberOrigin = state.getString(KEY_MEMBER_ORIGIN)?.let { name -> Section.values().firstOrNull { it.name == name } }
+        val number = app.prefs.memberNumber ?: return
+        wallpaperScope = when (state.getString(KEY_SCOPE)) {
+            "favorites" -> WallpaperSync.Scope.Favorites(number) to state.getInt(KEY_SCOPE_TITLE)
+            "uploads" -> WallpaperSync.Scope.Uploads(number) to state.getInt(KEY_SCOPE_TITLE)
+            else -> null
+        }
     }
 
     /** Home (null) or a section, in place; Games opens its own screen. */
@@ -140,20 +161,38 @@ class MainActivity : Activity() {
         settingsTab = null
         memberTab = null
         nextPage = null
+        previousPage = null
         val scope = wallpaperScope.takeIf { target == Section.WALLPAPERS }
         wallpaperScope = scope
+        // Member keeps its origin while it or its scoped galleries are open.
+        if (target != Section.MEMBER && scope == null) memberOrigin = null
         when (target) {
             null -> home = HomeScreen(this, content, ::show, ::sync)
-            Section.NEWS -> newsTab = NewsTab(this, content, ::sync).also { nextPage = it::nextPageWrapping }
-            Section.GUIDES -> guidesTab = GuidesTab(this, content, ::sync) { show(null) }.also { nextPage = it::nextPageWrapping }
-            Section.WALLPAPERS -> nextPage = (
+            Section.NEWS -> newsTab = NewsTab(this, content, ::sync).also {
+                nextPage = it::nextPageWrapping
+                previousPage = it::previousPage
+            }
+            Section.GUIDES -> guidesTab = GuidesTab(this, content, ::sync) { show(null) }.also {
+                nextPage = it::nextPageWrapping
+                previousPage = it::previousPage
+            }
+            Section.WALLPAPERS -> (
                 if (scope == null) WallpapersTab(this, content) else WallpapersTab(this, content, scope.first, scope.second)
-            )::nextPageWrapping
+            ).also {
+                nextPage = it::nextPageWrapping
+                previousPage = it::previousPage
+            }
             Section.MEMBER -> memberTab = MemberTab(this, content, { s, title ->
                 wallpaperScope = s to title
                 show(Section.WALLPAPERS)
-            }) { show(null) }
-            Section.SETTINGS -> settingsTab = SettingsTab(this, content, ::sync, { app.checkForUpdate(::markUpdate) }) { show(Section.MEMBER) }.also { nextPage = it::nextPageWrapping }
+            }) { show(memberOrigin) }
+            Section.SETTINGS -> settingsTab = SettingsTab(this, content, ::sync, { app.checkForUpdate(::markUpdate) }) {
+                memberOrigin = Section.SETTINGS
+                show(Section.MEMBER)
+            }.also {
+                nextPage = it::nextPageWrapping
+                previousPage = it::previousPage
+            }
             Section.GAMES -> Unit
         }
         // Every section's bar starts with Back (Guides and Member handle their own steps;
@@ -166,5 +205,8 @@ class MainActivity : Activity() {
 
     private companion object {
         const val KEY_SECTION = "section"
+        const val KEY_MEMBER_ORIGIN = "member_origin"
+        const val KEY_SCOPE = "wallpaper_scope"
+        const val KEY_SCOPE_TITLE = "wallpaper_scope_title"
     }
 }

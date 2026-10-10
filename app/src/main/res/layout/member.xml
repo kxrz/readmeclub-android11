@@ -8,17 +8,17 @@
     <TextView
         android:id="@+id/member_title"
         style="@style/Ds.Title"
-        android:paddingLeft="16dp"
+        android:paddingLeft="@dimen/ds_gutter"
         android:paddingTop="12dp"
-        android:paddingRight="16dp"
+        android:paddingRight="@dimen/ds_gutter"
         android:text="@string/tab_member" />
 
     <TextView
         android:id="@+id/member_text"
         style="@style/Ds.Text"
-        android:paddingLeft="16dp"
+        android:paddingLeft="@dimen/ds_gutter"
         android:paddingTop="8dp"
-        android:paddingRight="16dp"
+        android:paddingRight="@dimen/ds_gutter"
         android:textSize="15sp" />
 
     <!-- Linking: one or two fields at a time. -->
@@ -27,41 +27,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
+        android:paddingLeft="@dimen/ds_gutter"
         android:paddingTop="12dp"
-        android:paddingRight="16dp">
+        android:paddingRight="@dimen/ds_gutter">
 
         <TextView android:id="@+id/field1_label" style="@style/Ds.Label" />
 
         <EditText
             android:id="@+id/field1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_choice"
+            style="@style/Ds.Field"
             android:layout_marginTop="4dp"
-            android:background="@drawable/ds_button"
-            android:fontFamily="@font/space_mono_bold"
-            android:importantForAutofill="no"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:singleLine="true"
-            android:textColor="@color/ds_ink"
-            android:textSize="18sp" />
+            android:fontFamily="@font/space_mono_bold" />
 
         <TextView android:id="@+id/field2_label" style="@style/Ds.Label" android:layout_marginTop="14dp" />
 
         <EditText
             android:id="@+id/field2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_choice"
+            style="@style/Ds.Field"
             android:layout_marginTop="4dp"
-            android:background="@drawable/ds_button"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress|textNoSuggestions"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:singleLine="true"
-            android:textColor="@color/ds_ink"
-            android:textSize="18sp" />
+            android:inputType="textEmailAddress|textNoSuggestions" />
     </LinearLayout>
 
     <!-- Linked: the member's card, then up to four choices. -->
@@ -70,9 +54,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
+        android:paddingLeft="@dimen/ds_gutter"
         android:paddingTop="12dp"
-        android:paddingRight="16dp"
+        android:paddingRight="@dimen/ds_gutter"
         android:visibility="gone">
 
         <LinearLayout style="@style/Ds.Card" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
@@ -84,7 +68,7 @@
                 style="@style/Ds.Mono"
                 android:textSize="36sp" />
 
-            <TextView android:id="@+id/name" style="@style/Ds.Text" android:textSize="15sp" />
+            <TextView android:id="@+id/name" style="@style/Ds.Text" android:textSize="15sp" android:visibility="gone" />
         </LinearLayout>
 
         <TextView android:id="@+id/favorites" style="@style/Ds.Choice" android:layout_marginTop="16dp" />

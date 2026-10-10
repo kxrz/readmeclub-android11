@@ -32,7 +32,8 @@ class GameStore(context: Context) {
 
     fun clearSudoku() = prefs.edit().remove("sudoku").apply()
 
-    val hasSudoku: Boolean get() = prefs.contains("sudoku")
+    /** A game to resume: a readable save, not just a key (a save this version can't read doesn't count). */
+    val hasSudoku: Boolean get() = prefs.contains("sudoku") && loadSudoku() != null
 
     /** Best time in ms for [key], 0 if none yet. */
     fun best(key: String): Long = prefs.getLong("best/$key", 0)

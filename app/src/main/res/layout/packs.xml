@@ -20,6 +20,8 @@
         <TextView
             android:id="@+id/note"
             style="@style/Ds.Text"
+            android:ellipsize="end"
+            android:maxLines="8"
             android:paddingLeft="16dp"
             android:paddingTop="6dp"
             android:paddingRight="16dp"

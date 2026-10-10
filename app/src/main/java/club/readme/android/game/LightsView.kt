@@ -2,11 +2,11 @@ package club.readme.android.game
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import club.readme.android.R
 
 /** The Lights Out grid: black squares are lit, white ones are off. Redrawn once per press, no animation. */
 class LightsView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
@@ -20,9 +20,9 @@ class LightsView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
     /** Called with (row, col) when a square is tapped. */
     var onPress: (Int, Int) -> Unit = { _, _ -> }
 
-    private val fill = Paint().apply { color = Color.BLACK; style = Paint.Style.FILL }
+    private val fill = Paint().apply { color = context.getColor(R.color.ds_ink); style = Paint.Style.FILL }
     private val line = Paint().apply {
-        color = Color.BLACK
+        color = context.getColor(R.color.ds_ink)
         style = Paint.Style.STROKE
         strokeWidth = 2 * resources.displayMetrics.density
     }

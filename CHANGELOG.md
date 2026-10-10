@@ -56,6 +56,12 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- Volume up and page up turn back a page in News, Guides, Wallpapers and Settings.
+- A brushed button no longer throws work away: a new Sudoku grid over a game in progress,
+  removing a quiz pack and unlinking the reader each ask for a second tap.
+- Member keeps the "code sent" step for 15 minutes if you leave it, shows its messages in
+  full, says when the site could not be told about an unlink (offline), and goes back to
+  Settings when opened from there.
 - **About**, redesigned on four pages: readme.club; Help, with a QR code that opens the
   site's contact form already filled in with this reader's model, Android and app versions
   and screen; the member account (join, or the account this reader is linked to); and the

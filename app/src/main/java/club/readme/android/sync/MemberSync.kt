@@ -56,7 +56,7 @@ class MemberSync(private val prefs: Prefs, private val cacheDir: File, private v
         val token = prefs.memberToken ?: return null
         return try {
             val response = Http.send("GET", "$SITE/api/app/me", token = token)
-            if (response.code == 401) {
+            if (response.code in REFUSED) {
                 forget()
                 return null
             }
@@ -86,17 +86,26 @@ class MemberSync(private val prefs: Prefs, private val cacheDir: File, private v
         }
     }
 
-    /** Unlinks this reader on the site (when online) and here (always). */
-    fun unlink() {
-        val token = prefs.memberToken ?: return
-        runCatching { Http.send("DELETE", "$SITE/api/app/me", token = token) }
+    /**
+     * Unlinks this reader here (always) and on the site; false when the site could not be
+     * told (offline), so the member knows to disconnect it there too.
+     */
+    fun unlink(): Boolean {
+        val token = prefs.memberToken ?: return true
+        val told = runCatching { Http.send("DELETE", "$SITE/api/app/me", token = token).code }
+            .getOrNull().let { it != null && (it == 200 || it in REFUSED) }
         forget()
+        return told
     }
 
+    /** Forgets the account here: token, number, card and cached favourites. */
     private fun forget() {
         prefs.memberToken = null
         prefs.memberNumber = null
+        prefs.memberPending = null
         File(cacheDir, "member").deleteRecursively()
+        File(cacheDir, "wallpapers/pages").listFiles { f -> f.name.startsWith(WallpaperSync.FAVORITES_PREFIX) }
+            ?.forEach { it.delete() }
     }
 
     private fun call(request: () -> Http.Response): Result = try {
@@ -113,5 +122,7 @@ class MemberSync(private val prefs: Prefs, private val cacheDir: File, private v
     private companion object {
         const val TAG = "MemberSync"
         const val SITE = WallpaperSync.SITE
+        /** What the site answers for a token it no longer knows. */
+        val REFUSED = listOf(401, 403, 410)
     }
 }

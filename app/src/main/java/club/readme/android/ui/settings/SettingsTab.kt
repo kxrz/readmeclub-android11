@@ -75,6 +75,9 @@ class SettingsTab(
     /** Next page, wrapping to the first one after the last (for the capacitive button). */
     fun nextPageWrapping() = show((page + 1) % pages.size)
 
+    /** Previous page (volume up, page up); stops at the first one. */
+    fun previousPage() = show(maxOf(0, page - 1))
+
     /** Re-reads sync time and storage sizes (after a sync or a clear). */
     fun refresh() {
         val app = activity.app

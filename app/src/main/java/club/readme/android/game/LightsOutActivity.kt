@@ -12,8 +12,8 @@ import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
 
 /**
- * Easter egg (long press on the logo in About): Lights Out, a puzzle an e-reader without a
- * frontlight is perfectly suited to. Turn-based, so it costs one redraw per move.
+ * Lights Out, in Games › Play (and still behind a long press on the logo in About): a puzzle
+ * an e-reader without a frontlight is perfectly suited to. Turn-based, one redraw per move.
  */
 class LightsOutActivity : Activity() {
 

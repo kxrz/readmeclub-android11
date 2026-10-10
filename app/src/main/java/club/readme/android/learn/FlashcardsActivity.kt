@@ -27,12 +27,14 @@ class FlashcardsActivity : Activity() {
         setContentView(R.layout.flashcards)
         store = LearnStore(this)
         deck = store.deck()
-        // Cards whose question is no longer in any pack are dropped from the session.
-        cards = deck.due().mapNotNull(store::question)
-        if (cards.isNotEmpty()) {
-            deck.session++
+        // Cards whose question is no longer in any pack (a removed or edited pack) leave the deck,
+        // so they never take the place of real ones.
+        val orphans = deck.ids().filter { store.question(it) == null }
+        if (orphans.isNotEmpty()) {
+            orphans.forEach(deck::remove)
             store.saveDeck(deck)
         }
+        cards = deck.due().mapNotNull(store::question)
         primary = findViewById(R.id.primary)
         findViewById<View>(R.id.back).setOnClickListener { finish() }
         primary.setOnClickListener { if (index < cards.size) showAnswer() else finish() }
@@ -81,6 +83,8 @@ class FlashcardsActivity : Activity() {
     }
 
     private fun grade(knew: Boolean) {
+        // A session counts once a card is graded, not when the screen merely opens.
+        if (index == 0) deck.session++
         val id = cards[index].id
         if (knew) deck.knew(id) else deck.notYet(id)
         store.saveDeck(deck)

@@ -85,6 +85,9 @@ class WallpapersTab(
     }
 
     /** Next page, wrapping to the first one after the last (for the capacitive button). */
+    /** Previous page (volume up, page up); stops at the first one. */
+    fun previousPage() = turn(-1)
+
     fun nextPageWrapping() {
         page = if (page < pageCount) page + 1 else 1
         load()
@@ -128,7 +131,7 @@ class WallpapersTab(
             val result = activity.app.wallpapers.page(
                 requested.first, pageSize, requested.second, requested.third, scope,
                 // The token goes only where it is needed: the member's favourites.
-                activity.app.prefs.memberToken.takeIf { scope == WallpaperSync.Scope.Favorites },
+                activity.app.prefs.memberToken.takeIf { scope is WallpaperSync.Scope.Favorites },
             )
             activity.runOnUiThread {
                 loading = false

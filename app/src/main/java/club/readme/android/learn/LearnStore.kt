@@ -8,12 +8,11 @@ class LearnStore(private val context: Context) {
 
     private val prefs = context.getSharedPreferences("learn", Context.MODE_PRIVATE)
 
-    /** The packs in the APK, read once. */
-    val bundled: List<QuizPack> by lazy {
-        context.assets.list(PACK_DIR).orEmpty().sorted().map { name ->
+    /** The packs in the APK, parsed once per process (the General pack is 50 KB of JSON). */
+    val bundled: List<QuizPack>
+        get() = bundledCache ?: context.assets.list(PACK_DIR).orEmpty().sorted().map { name ->
             QuizPack.parse(context.assets.open("$PACK_DIR/$name").bufferedReader().use { it.readText() })
-        }
-    }
+        }.also { bundledCache = it }
 
     /** Where PackSync stores downloaded packs. */
     val downloadDir = File(context.filesDir, PACK_DIR)
@@ -25,9 +24,13 @@ class LearnStore(private val context: Context) {
             .filter { p -> bundled.none { it.id == p.id } }
             .sortedBy { it.title }
 
+    /** How many packs were downloaded, without reading them. */
+    fun downloadedCount(): Int = downloadDir.listFiles { f -> f.name.endsWith(".json") }?.size ?: 0
+
     val packs: List<QuizPack> get() = bundled + downloaded()
 
-    fun pack(id: String): QuizPack? = packs.firstOrNull { it.id == id }
+    fun pack(id: String): QuizPack? = bundled.firstOrNull { it.id == id }
+        ?: File(downloadDir, "$id.json").takeIf { it.exists() }?.let { runCatching { QuizPack.parse(it.readText()) }.getOrNull() }
 
     private val all by lazy { packs }
 
@@ -38,7 +41,8 @@ class LearnStore(private val context: Context) {
 
     /** Adds [ids] to the questions seen in [pack]; once every question was seen, starts over. */
     fun markSeen(pack: QuizPack, ids: Collection<String>) {
-        var seen = seen(pack.id) + ids
+        // Only ids still in the pack count, so an edited pack does not reset too early.
+        var seen = (seen(pack.id) + ids).intersect(pack.questions.map { it.id }.toSet())
         if (seen.size >= pack.questions.size) seen = emptySet()
         prefs.edit().putStringSet("seen/${pack.id}", seen).apply()
     }
@@ -57,7 +61,17 @@ class LearnStore(private val context: Context) {
 
     fun saveDeck(deck: Leitner) = prefs.edit().putString("deck", deck.encode()).apply()
 
+    /** Forgets a removed pack: its progress, best score and its cards in the deck. */
+    fun forget(pack: String) {
+        prefs.edit().remove("seen/$pack").remove("best/$pack").apply()
+        val deck = deck()
+        deck.ids().filter { it.startsWith("$pack-") }.forEach(deck::remove)
+        saveDeck(deck)
+    }
+
     companion object {
         const val PACK_DIR = "packs"
+
+        @Volatile private var bundledCache: List<QuizPack>? = null
     }
 }

@@ -72,6 +72,9 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
     }
 
     /** Next page, wrapping to the first one after the last (for the capacitive button). */
+    /** Previous page (volume up, page up); stops at the first one. */
+    fun previousPage() = turn(-1)
+
     fun nextPageWrapping() {
         page = if (page + 1 < pageCount) page + 1 else 0
         render()

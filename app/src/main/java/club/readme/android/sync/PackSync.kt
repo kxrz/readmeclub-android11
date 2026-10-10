@@ -29,7 +29,8 @@ class PackSync(private val dir: File) {
             val docs = JSONObject(String(Http.get(PACK_URL + slug))).getJSONArray("docs")
             if (docs.length() == 0) return false
             val json = toPack(docs.getJSONObject(0))
-            QuizPack.parse(json) // refuse anything the app couldn't play
+            // Refuse anything the app couldn't play, or that would not fit the screen.
+            check(QuizPack.fits(QuizPack.parse(json))) { "Pack $slug has text too long for the screen" }
             dir.mkdirs()
             val tmp = File(dir, "$slug.json.tmp")
             tmp.writeText(json)

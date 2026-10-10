@@ -59,6 +59,11 @@ class Prefs(context: Context) {
         get() = prefs.getString("member_number", null)
         set(value) = prefs.edit().putString("member_number", value).apply()
 
+    /** "number|time" of a code requested but not typed yet, so leaving Member doesn't lose it. */
+    var memberPending: String?
+        get() = prefs.getString("member_pending", null)
+        set(value) = prefs.edit().putString("member_pending", value).apply()
+
     companion object {
         const val REFRESH_OFF = 0
         val REFRESH_CHOICES = listOf(1, 3, 6, 10, REFRESH_OFF)

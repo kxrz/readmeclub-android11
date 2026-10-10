@@ -2,7 +2,6 @@ package club.readme.android.game
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.AttributeSet
@@ -26,9 +25,9 @@ class SudokuView(context: Context, attrs: AttributeSet?) : BoardView(context, at
 
     override val n: Int get() = sudoku?.size ?: 1
 
-    private val thin = Paint().apply { color = Color.BLACK; style = Paint.Style.STROKE; strokeWidth = density }
-    private val thick = Paint().apply { color = Color.BLACK; style = Paint.Style.STROKE; strokeWidth = 3 * density }
-    private val fill = Paint().apply { color = Color.BLACK }
+    private val thin = Paint().apply { color = context.getColor(R.color.ds_ink); style = Paint.Style.STROKE; strokeWidth = density }
+    private val thick = Paint().apply { color = context.getColor(R.color.ds_ink); style = Paint.Style.STROKE; strokeWidth = 3 * density }
+    private val fill = Paint().apply { color = context.getColor(R.color.ds_ink) }
     private val givenText = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         textAlign = Paint.Align.CENTER
         typeface = context.resources.getFont(R.font.space_mono_bold)
@@ -50,7 +49,7 @@ class SudokuView(context: Context, attrs: AttributeSet?) : BoardView(context, at
             val digit = s.cells[i]
             if (digit != 0) {
                 val paint = if (s.given[i]) givenText else playerText
-                paint.color = if (inverted) Color.WHITE else Color.BLACK
+                paint.color = if (inverted) context.getColor(R.color.ds_paper) else context.getColor(R.color.ds_ink)
                 canvas.drawText(digit.toString(), x + cell / 2, y + cell / 2 - (paint.ascent() + paint.descent()) / 2, paint)
             }
         }

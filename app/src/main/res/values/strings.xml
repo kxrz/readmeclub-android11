@@ -47,7 +47,7 @@
     <string name="member_linking">Linking…</string>
     <string name="member_failed">That did not work. Try again.</string>
     <string name="member_offline">Offline. Try again online.</string>
-    <string name="member_linked_text">This e-reader is linked to your account. It can only read your things; disconnect it here or in your account settings on readme.club.</string>
+    <string name="member_linked_text">This reader is linked. It can only read your things.</string>
     <string name="member_favorites_title">My favourites</string>
     <string name="member_favorites">My favourites (%1$d)</string>
     <string name="member_uploads">My uploads</string>
@@ -55,7 +55,8 @@
     <string name="member_card">Member card</string>
     <string name="member_unlink">Unlink this e-reader</string>
     <string name="member_unlink_confirm">Tap again to unlink</string>
-    <string name="member_unlinked">Unlinked.</string>
+    <string name="member_unlinked">Unlinked. Link it again any time below.</string>
+    <string name="member_unlinked_offline">Unlinked here, but we could not tell readme.club (offline). Disconnect it in your account settings on the site too.</string>
     <string name="member_unlinked_remote">This e-reader was disconnected from your account. Link it again below.</string>
     <string name="member_refresh">Refresh</string>
     <string name="member_up_to_date">Up to date</string>
@@ -98,6 +99,7 @@
     <string name="packs_download">Download</string>
     <string name="packs_update">Update the pack</string>
     <string name="packs_remove">Remove from this reader</string>
+    <string name="packs_remove_confirm">Tap again to remove it</string>
     <string name="packs_downloading">Downloading…</string>
     <string name="packs_failed">Download failed. Try again online.</string>
     <string name="learn_pack_meta">%1$d questions · rounds of 10</string>
@@ -194,6 +196,8 @@
     <string name="sudoku_hard">Hard</string>
     <string name="sudoku_erase">Erase</string>
     <string name="sudoku_generating">New grid…</string>
+    <string name="sudoku_filled">%1$d of %2$d filled</string>
+    <string name="sudoku_confirm_new">Tap again: new grid</string>
     <string name="sudoku_solved">Solved %1$s</string>
     <plurals name="sudoku_wrong">
         <item quantity="one">%d wrong</item>

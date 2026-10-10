@@ -48,11 +48,17 @@ class GamesActivity : Activity() {
 
     private fun open(activity: Class<out Activity>) = startActivity(Intent(this, activity))
 
+    /** Resume Sudoku is Play's main action; Learn has none of its own. */
+    private fun updateResume() {
+        resume.visibility = if (tabPlay.isSelected && store.hasSudoku) View.VISIBLE else View.GONE
+    }
+
     private fun showTab(learn: Boolean) {
         tabPlay.isSelected = !learn
         tabLearn.isSelected = learn
         findViewById<View>(R.id.play).visibility = if (learn) View.GONE else View.VISIBLE
         findViewById<View>(R.id.learn).visibility = if (learn) View.VISIBLE else View.GONE
+        updateResume()
         FullRefresh.flash(findViewById(R.id.flash))
     }
 
@@ -72,7 +78,7 @@ class GamesActivity : Activity() {
         val lightsBest = app.prefs.lightsOutBest
         tile(R.id.game_lights, R.string.lights_title, getString(R.string.games_lights_meta) +
             if (lightsBest > 0) " · " + getString(R.string.games_best, resources.getQuantityString(R.plurals.lights_moves, lightsBest, lightsBest)) else "")
-        resume.visibility = if (store.hasSudoku) View.VISIBLE else View.GONE
+        updateResume()
         showLearn()
     }
 
@@ -82,10 +88,10 @@ class GamesActivity : Activity() {
         val general = learn.bundled.first()
         val best = learn.best(general.id)
         tile(R.id.learn_general, 0, getString(R.string.learn_pack_meta, general.questions.size) +
-            if (best >= 0) " · " + getString(R.string.quiz_best, best, QuizRound.SIZE) else "")
+            if (best >= 0) " · " + getString(R.string.quiz_best, best, minOf(QuizRound.SIZE, general.questions.size)) else "")
         findViewById<View>(R.id.learn_general).findViewById<TextView>(R.id.name).text = general.title
         findViewById<View>(R.id.learn_general).setOnClickListener { startActivity(QuizActivity.intent(this, general.id)) }
-        val installed = learn.downloaded().size
+        val installed = learn.downloadedCount()
         tile(R.id.learn_all, R.string.packs_title, if (installed == 0) getString(R.string.learn_all_meta_none)
             else resources.getQuantityString(R.plurals.learn_all_meta, installed, installed))
         findViewById<View>(R.id.learn_all).setOnClickListener { open(PacksActivity::class.java) }

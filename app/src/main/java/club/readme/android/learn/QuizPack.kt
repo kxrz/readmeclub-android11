@@ -27,6 +27,11 @@ class QuizPack(
         const val MAX_ANSWER = 30
         const val MAX_WHY = 160
 
+        /** True when every question, answer and explanation fits one S4 screen. */
+        fun fits(pack: QuizPack): Boolean = pack.questions.all { q ->
+            q.text.length <= MAX_QUESTION && q.why.length <= MAX_WHY && q.answers.all { it.length <= MAX_ANSWER }
+        }
+
         fun parse(json: String): QuizPack {
             val o = JSONObject(json)
             val items = o.getJSONArray("questions")
@@ -42,6 +47,7 @@ class QuizPack(
                     why = q.getString("why"),
                 )
             }
+            require(questions.isNotEmpty()) { "Pack ${o.optString("id")} has no questions" }
             return QuizPack(o.getString("id"), o.getString("title"), o.optInt("version", 1), questions, o.optString("description"), o.optString("updatedAt"))
         }
     }

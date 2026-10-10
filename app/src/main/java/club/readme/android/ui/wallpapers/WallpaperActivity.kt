@@ -127,7 +127,7 @@ class WallpaperActivity : Activity() {
     private fun save(file: File) {
         val mime = BitmapFactory.Options().apply { inJustDecodeBounds = true }
             .also { BitmapFactory.decodeFile(file.path, it) }.outMimeType ?: "image/jpeg"
-        val name = "readmeclub-${file.name}.${mime.substringAfter('/')}"
+        val name = "readmeclub-${file.nameWithoutExtension}.${mime.substringAfter('/')}"
         val tree = app.prefs.wallpaperFolder?.let(Uri::parse)
         try {
             val uri = if (tree != null) {
