@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A home tile: a badge (pill or sticker) on top, the section name at the bottom. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Ds.Tile"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <TextView android:id="@+id/badge" style="@style/Ds.Pill" android:visibility="invisible" />
+
+    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/label"
+        style="@style/Ds.Title"
+        android:duplicateParentState="true"
+        android:textColor="@color/ds_on_button"
+        android:textSize="18sp" />
+</LinearLayout>

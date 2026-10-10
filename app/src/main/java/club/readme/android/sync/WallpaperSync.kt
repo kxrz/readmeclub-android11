@@ -9,6 +9,7 @@ import club.readme.android.data.Wallpaper
 import club.readme.android.data.WallpaperPage
 import org.json.JSONObject
 import java.io.File
+import java.net.URLEncoder
 
 /**
  * Wallpapers from the readme.club gallery, filtered to those that fit this reader's screen.
@@ -34,13 +35,18 @@ class WallpaperSync(private val dir: File, private val screenWidth: Int, private
         dir.deleteRecursively()
     }
 
-    /** One page of the gallery: fresh from the site, else the cached copy, else null. */
-    fun page(page: Int, pageSize: Int): WallpaperPage? {
-        val cached = File(dir, "pages/$pageSize-$page.json")
+    /**
+     * One page of the gallery, searched ([query], blank for all) and sorted ([sort]: latest,
+     * popular, name or author): fresh from the site, else the cached copy, else null.
+     */
+    fun page(page: Int, pageSize: Int, query: String = "", sort: String = SORT_LATEST): WallpaperPage? {
+        val q = query.trim()
+        val cached = File(dir, "pages/$sort-${q.hashCode()}-$pageSize-$page.json")
         try {
             resolveDevice()
             val fits = deviceSlug?.let { "fits=$it&" } ?: ""
-            val json = String(Http.get("$SITE/api/wallpapers?${fits}hide_sensitive=1&sort=latest&page=$page&page_size=$pageSize"))
+            val search = if (q.isEmpty()) "" else "q=${URLEncoder.encode(q, "UTF-8")}&"
+            val json = String(Http.get("$SITE/api/wallpapers?${fits}${search}hide_sensitive=1&sort=$sort&page=$page&page_size=$pageSize"))
             val parsed = parse(json)
             write(cached, json.toByteArray())
             for (w in parsed.items) {
@@ -158,7 +164,11 @@ class WallpaperSync(private val dir: File, private val screenWidth: Int, private
 
     private fun absolute(path: String) = if (path.startsWith("/")) SITE + path else path
 
-    private companion object {
+    companion object {
+        const val SORT_LATEST = "latest"
+        /** Sort orders the site accepts, in the order the pills show them. */
+        val SORTS = listOf(SORT_LATEST, "popular", "name", "author")
+
         const val TAG = "WallpaperSync"
         const val SITE = "https://www.readme.club"
         const val THUMB_WIDTH = 240

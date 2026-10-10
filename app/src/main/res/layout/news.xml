@@ -18,8 +18,8 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="@string/tab_news"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/space_grotesk_bold"
+            android:textSize="22sp" />
 
         <!-- Sync status; tap to sync now (also the "Retry" when offline). -->
         <TextView
@@ -42,16 +42,14 @@
         android:layout_weight="1"
         android:orientation="vertical" />
 
-    <View style="@style/Divider" />
+    <LinearLayout style="@style/Ds.Bar">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal">
+        <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
 
-        <TextView android:id="@+id/previous" style="@style/PagerButton" android:text="@string/previous" />
+        <TextView android:id="@+id/previous" style="@style/Ds.Button" android:layout_marginLeft="6dp" android:text="@string/previous" />
 
         <TextView
+            style="@style/Ds.BarStatus"
             android:id="@+id/page_label"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -59,6 +57,6 @@
             android:gravity="center"
             android:textSize="14sp" />
 
-        <TextView android:id="@+id/next" style="@style/PagerButton" android:text="@string/next" />
+        <TextView android:id="@+id/next" style="@style/Ds.Button.Primary" android:text="@string/next" />
     </LinearLayout>
 </LinearLayout>

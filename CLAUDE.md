@@ -5,10 +5,11 @@ readme.club's Android app for e-ink readers, built on the Xteink S4 (Android 11,
 ## Non-negotiable rules
 - minSdk 30. No dependency on Google Play Services.
 - No animation, no colour carrying meaning, no continuous scrolling: everything is paginated.
-- One bottom bar on every screen, the same everywhere (48 dp, divider above, `PagerButton` style; the tab bar stays under it on the main screens). Never assume a hardware button: every action is reachable on screen.
-  - **Back** is always bottom left, always labelled "Back", and shown whenever there is somewhere to go back to; never a back control at the top.
-  - The **right** button is the screen's main action: Next on a paginated screen, Menu in the reader, Save on a wallpaper.
-  - **Previous** sits just before the page number ("2 / 5"); with no Back (main tabs) it is the leftmost button. Next never wraps around.
+- Navigation: the Home screen (Continue reading, one tile per section, Sync) is the entry to every section; there are no tabs. Never assume a hardware button: every action is reachable on screen.
+- One bottom bar on every screen, the same everywhere (`Ds.Bar`, 56 dp, a 2 dp rule above, `Ds.Button`s).
+  - **Back** is always bottom left, always labelled "Back", and shown whenever there is somewhere to go back to (every screen but Home); never a back control at the top.
+  - The **right** button is the screen's main action, in `Ds.Button.Primary`: Next on a paginated screen, Menu in the reader, Save on a wallpaper, Sync on Home.
+  - **Previous** sits just before the page number ("2 / 5"). Next never wraps around.
   - Page keys (volume, page up/down, the S4's button) turn pages wherever there are pages.
 - Small screens first: designed for the S4 (350 × 584 dp), then adapted. Touch targets ≥ 44 dp (choices 52 dp), body text ≥ 15 sp, labels ≥ 11 sp, at most 4 choices per screen, text that does not fit is paginated. Larger screens add columns and margins, never smaller targets.
 - Design system (www.readme.club/brand, in black and white): new screens use the `Ds.*` styles and `ds_*` drawables (`res/values/ds_*.xml`), never raw colours or sizes. Every component shows on the diagnostic's Components screen. Fonts: Space Grotesk Bold for titles, Space Mono Bold for numbers (Latin subsets, OFL, see `licenses/`); body text uses the system sans.

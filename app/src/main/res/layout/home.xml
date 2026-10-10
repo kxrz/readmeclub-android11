@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home: the entry to every section (replaces the 1.x tabs). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ds_paper"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/ds_gutter"
+        android:paddingTop="12dp"
+        android:paddingRight="@dimen/ds_gutter">
+
+        <TextView style="@style/Ds.Title" android:text="@string/app_name" />
+
+        <!-- Continue reading: the article or guide left half-read. -->
+        <LinearLayout
+            android:id="@+id/continue_card"
+            style="@style/Ds.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView style="@style/Ds.Label" android:duplicateParentState="true"
+                android:textColor="@color/ds_on_button" android:text="@string/continue_reading" />
+
+            <TextView
+                android:id="@+id/continue_title"
+                style="@style/Ds.Title"
+                android:layout_marginTop="4dp"
+                android:duplicateParentState="true"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/ds_on_button"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/continue_meta"
+                style="@style/Ds.Text"
+                android:duplicateParentState="true"
+                android:textColor="@color/ds_on_button"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/HomeRow">
+                <include android:id="@+id/tile_news" layout="@layout/home_tile" />
+                <View android:layout_width="10dp" android:layout_height="0dp" />
+                <include android:id="@+id/tile_guides" layout="@layout/home_tile" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/HomeRow">
+                <include android:id="@+id/tile_wallpapers" layout="@layout/home_tile" />
+                <View android:layout_width="10dp" android:layout_height="0dp" />
+                <include android:id="@+id/tile_games" layout="@layout/home_tile" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/HomeRow">
+                <include android:id="@+id/tile_settings" layout="@layout/home_tile" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/Ds.Bar">
+
+        <TextView
+            android:id="@+id/home_status"
+            style="@style/Ds.BarStatus"
+            android:layout_height="match_parent"
+            android:background="@drawable/ds_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:textColor="@color/ds_on_button" />
+
+        <TextView android:id="@+id/sync" style="@style/Ds.Button.Primary" android:layout_marginLeft="8dp"
+            android:text="@string/sync" />
+    </LinearLayout>
+</LinearLayout>

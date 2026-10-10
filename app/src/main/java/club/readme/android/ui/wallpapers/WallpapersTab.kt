@@ -6,6 +6,9 @@ import android.graphics.BitmapFactory
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,11 +16,13 @@ import club.readme.android.R
 import club.readme.android.app
 import club.readme.android.data.WallpaperPage
 import club.readme.android.reader.ReaderActivity
+import club.readme.android.sync.WallpaperSync
 import kotlin.math.roundToInt
 
 /**
- * Wallpapers tab: a grid of wallpapers that fit this screen, one page at a time.
- * The grid follows the screen size: 3 × 2 on the S4, more cells on larger readers.
+ * Wallpapers: a grid of wallpapers that fit this screen, one page at a time, with a search
+ * field and four sort orders. The grid follows the screen size: 3 columns on the S4, more
+ * cells on larger readers.
  */
 class WallpapersTab(private val activity: Activity, container: ViewGroup) {
 
@@ -30,12 +35,31 @@ class WallpapersTab(private val activity: Activity, container: ViewGroup) {
     private var rows = 2
     private val pageSize: Int get() = columns * rows
 
+    private val search: EditText = root.findViewById(R.id.search)
+    private val clear: View = root.findViewById(R.id.clear)
+    private val sorts: ViewGroup = root.findViewById(R.id.sorts)
+
     private var page = 1
     private var pageCount = 1
     private var loading = false
+    private var query = ""
+    private var sort = WallpaperSync.SORT_LATEST
 
     init {
         status.setOnClickListener { load() }
+        search.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId != EditorInfo.IME_ACTION_SEARCH) return@setOnEditorActionListener false
+            runSearch(search.text.toString())
+            true
+        }
+        clear.setOnClickListener {
+            search.setText("")
+            runSearch("")
+        }
+        for (i in 0 until sorts.childCount) {
+            sorts.getChildAt(i).setOnClickListener { sortBy(WallpaperSync.SORTS[i]) }
+        }
+        showSort()
         root.findViewById<View>(R.id.previous).setOnClickListener { turn(-1) }
         root.findViewById<View>(R.id.next).setOnClickListener { turn(1) }
         ReaderActivity.whenLaidOut(grid) {
@@ -57,6 +81,28 @@ class WallpapersTab(private val activity: Activity, container: ViewGroup) {
         load()
     }
 
+    private fun runSearch(text: String) {
+        query = text.trim()
+        clear.visibility = if (query.isEmpty()) View.GONE else View.VISIBLE
+        activity.getSystemService(InputMethodManager::class.java)?.hideSoftInputFromWindow(search.windowToken, 0)
+        search.clearFocus()
+        page = 1
+        load()
+    }
+
+    private fun sortBy(order: String) {
+        if (order == sort) return
+        sort = order
+        showSort()
+        page = 1
+        load()
+    }
+
+    /** The active sort is inverted, like a selected setting. */
+    private fun showSort() {
+        for (i in 0 until sorts.childCount) sorts.getChildAt(i).isSelected = WallpaperSync.SORTS[i] == sort
+    }
+
     private fun turn(delta: Int) {
         val target = (page + delta).coerceIn(1, pageCount)
         if (target == page) return
@@ -68,12 +114,12 @@ class WallpapersTab(private val activity: Activity, container: ViewGroup) {
         if (loading) return
         loading = true
         status.setText(R.string.loading)
-        val requested = page
+        val requested = Triple(page, query, sort)
         activity.app.io.execute {
-            val result = activity.app.wallpapers.page(requested, pageSize)
+            val result = activity.app.wallpapers.page(requested.first, pageSize, requested.second, requested.third)
             activity.runOnUiThread {
                 loading = false
-                if (requested != page) return@runOnUiThread load()
+                if (requested != Triple(page, query, sort)) return@runOnUiThread load()
                 render(result)
             }
         }

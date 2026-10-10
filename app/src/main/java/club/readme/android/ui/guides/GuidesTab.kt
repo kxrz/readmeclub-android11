@@ -20,11 +20,15 @@ import club.readme.android.reader.ReaderActivity
  * Guides tab, a bookshelf: first the brands, then the guides of the chosen brand.
  * Reads the local cache only; the app-wide sync fills it.
  */
-class GuidesTab(private val activity: Activity, container: ViewGroup, onSyncRequested: () -> Unit) {
+class GuidesTab(
+    private val activity: Activity,
+    container: ViewGroup,
+    onSyncRequested: () -> Unit,
+    private val onHome: () -> Unit,
+) {
 
     private val root: View = activity.layoutInflater.inflate(R.layout.guides, container, true)
     private val title: TextView = root.findViewById(R.id.header_title)
-    private val back: View = root.findViewById(R.id.back_to_brands)
     private val status: TextView = root.findViewById(R.id.status)
     private val grid: GridLayout = root.findViewById(R.id.grid)
     private val pageLabel: TextView = root.findViewById(R.id.page_label)
@@ -39,11 +43,16 @@ class GuidesTab(private val activity: Activity, container: ViewGroup, onSyncRequ
 
     init {
         status.setOnClickListener { onSyncRequested() }
-        back.setOnClickListener { openBrand(null) }
+        root.findViewById<View>(R.id.back).setOnClickListener { back() }
         root.findViewById<View>(R.id.previous).setOnClickListener { turn(-1) }
         root.findViewById<View>(R.id.next).setOnClickListener { turn(1) }
         ReaderActivity.whenLaidOut(grid) { render() }
         reload()
+    }
+
+    /** Back: from a brand to the shelf, from the shelf to the home screen. */
+    fun back() {
+        if (brand != null) openBrand(null) else onHome()
     }
 
     fun reload() {
@@ -108,7 +117,6 @@ class GuidesTab(private val activity: Activity, container: ViewGroup, onSyncRequ
         pageLabel.text = activity.getString(R.string.page_of, page + 1, pageCount)
         val open = brand
         title.text = open?.name ?: activity.getString(R.string.tab_guides)
-        back.visibility = if (open == null) View.GONE else View.VISIBLE
 
         if (open == null) {
             grid.columnCount = columns

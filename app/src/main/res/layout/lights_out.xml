@@ -19,16 +19,12 @@
             android:layout_weight="1"
             android:padding="20dp" />
 
-        <View style="@style/Divider" />
+        <LinearLayout style="@style/Ds.Bar">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-
-            <TextView android:id="@+id/back" style="@style/PagerButton" android:text="@string/back" />
+            <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
 
             <TextView
+                style="@style/Ds.BarStatus"
                 android:id="@+id/moves"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -36,7 +32,7 @@
                 android:gravity="center"
                 android:textSize="14sp" />
 
-            <TextView android:id="@+id/new_game" style="@style/PagerButton" android:text="@string/lights_new" />
+            <TextView android:id="@+id/new_game" style="@style/Ds.Button.Primary" android:text="@string/lights_new" />
         </LinearLayout>
     </LinearLayout>
 

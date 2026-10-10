@@ -10,6 +10,11 @@ and refuses to release a version that has no section here.
 ## [2.0.0] - Unreleased
 
 ### Added
+- **Home screen** in place of the tabs: Continue reading, one tile per section (News with a
+  "3 new" sticker, Guides, Wallpapers, Games, Settings with an "Update" pill) and the sync
+  status with **Sync** in the bottom bar. Games opens Lights out for now.
+- **Search and sort** in Wallpapers: a search field (the keyboard's search key runs it) and
+  Latest, Popular, Name and Author.
 - **readme.club design system** for e-ink, from the brand page in black and white: buttons
   (secondary, and a primary with a hard shadow), choices, tiles, cards, pills, stickers and
   the bottom bar, as shared styles. A Components screen in the diagnostic shows each one.
@@ -19,6 +24,10 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- Every screen in the new design: one bottom bar (56 dp, Back on the left, the main action as
+  a black button with a hard shadow on the right), 44 dp buttons that invert when tapped,
+  2 dp rules, titles in Space Grotesk. News, Guides, Wallpapers and Settings start their bar
+  with Back to Home; the hardware Back key does the same.
 - CI fails a build whose release APK is over 450 KB. Small-screen and design-system rules
   added to CLAUDE.md. `versionName` is 2.0.0 while 2.0 is built; 1.0.6 stays the public version.
 

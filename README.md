@@ -68,7 +68,7 @@ The [device report issue form](../../issues/new?template=device-report.yml) work
 
 1. Download **[readmeclub.apk](../../releases/latest/download/readmeclub.apk)** onto your reader.
 2. Open it and allow installing apps from this source when Android asks.
-3. Enjoy. New versions show up as **Settings •** and install from **About → Update**.
+3. Enjoy. New versions show an **Update** pill on Settings and install from **About → Update**.
 
 Got a computer handy? `adb install -r readmeclub.apk` works too.
 

@@ -20,8 +20,8 @@
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/space_grotesk_bold"
+            android:textSize="22sp" />
 
         <!-- Sync status; tap to sync now. -->
         <TextView
@@ -43,19 +43,15 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <View style="@style/Divider" />
+    <LinearLayout style="@style/Ds.Bar">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal">
+        <!-- Back to the shelf inside a brand, to the home screen on the shelf. -->
+        <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
 
-        <!-- Back to the shelf, shown inside a brand. -->
-        <TextView android:id="@+id/back_to_brands" style="@style/PagerButton" android:text="@string/back" android:visibility="gone" />
-
-        <TextView android:id="@+id/previous" style="@style/PagerButton" android:text="@string/previous" />
+        <TextView android:id="@+id/previous" style="@style/Ds.Button" android:layout_marginLeft="6dp" android:text="@string/previous" />
 
         <TextView
+            style="@style/Ds.BarStatus"
             android:id="@+id/page_label"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -63,6 +59,6 @@
             android:gravity="center"
             android:textSize="14sp" />
 
-        <TextView android:id="@+id/next" style="@style/PagerButton" android:text="@string/next" />
+        <TextView android:id="@+id/next" style="@style/Ds.Button.Primary" android:text="@string/next" />
     </LinearLayout>
 </LinearLayout>

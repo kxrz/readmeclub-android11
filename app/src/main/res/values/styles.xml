@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Tab">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/tab_text</item>
-        <item name="android:background">@drawable/inverting_bg</item>
-    </style>
-
     <style name="Body">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -20,32 +9,45 @@
     </style>
 
     <style name="Heading" parent="Body">
-        <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
+    <!-- Full-width action row in the design-system look (Ds.Button, full width). -->
     <style name="Button" parent="Body">
-        <item name="android:minHeight">48dp</item>
+        <item name="android:minHeight">@dimen/ds_touch</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
         <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/tab_text</item>
-        <item name="android:background">@drawable/inverting_bg</item>
+        <item name="android:textColor">@color/ds_on_button</item>
+        <item name="android:background">@drawable/ds_button</item>
     </style>
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">#888888</item>
+        <item name="android:layout_height">@dimen/ds_border</item>
+        <item name="android:background">@color/ds_ink</item>
     </style>
 
-    <style name="PagerButton">
-        <item name="android:layout_width">96dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/tab_text</item>
-        <item name="android:background">@drawable/inverting_bg</item>
+    <!-- A row of home tiles; rows share the space left under the Continue card. -->
+    <style name="HomeRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- One sort option above the wallpaper grid; the active one is inverted. -->
+    <style name="WallpaperSort" parent="Ds.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginRight">6dp</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="ChoiceRow">
@@ -69,9 +71,5 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="RowButton" parent="PagerButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:paddingRight">12dp</item>
-    </style>
+    <style name="RowButton" parent="Ds.Button" />
 </resources>

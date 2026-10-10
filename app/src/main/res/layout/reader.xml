@@ -18,16 +18,12 @@
             android:paddingRight="20dp" />
 
         <!-- Always on screen: many readers have no button to open the menu or go back. -->
-        <View style="@style/Divider" />
+        <LinearLayout style="@style/Ds.Bar">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-
-            <TextView android:id="@+id/bar_back" style="@style/PagerButton" android:text="@string/back" />
+            <TextView android:id="@+id/bar_back" style="@style/Ds.Button" android:text="@string/back" />
 
             <TextView
+                style="@style/Ds.BarStatus"
                 android:id="@+id/page_number"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -35,7 +31,7 @@
                 android:gravity="center"
                 android:textSize="13sp" />
 
-            <TextView android:id="@+id/bar_menu" style="@style/PagerButton" android:text="@string/menu" />
+            <TextView android:id="@+id/bar_menu" style="@style/Ds.Button.Primary" android:text="@string/menu" />
         </LinearLayout>
     </LinearLayout>
 
@@ -79,18 +75,14 @@
             android:layout_weight="1"
             android:orientation="vertical" />
 
-        <View style="@style/Divider" />
+        <LinearLayout style="@style/Ds.Bar">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
+            <TextView android:id="@+id/contents_close" style="@style/Ds.Button" android:text="@string/back" />
 
-            <TextView android:id="@+id/contents_close" style="@style/PagerButton" android:text="@string/back" />
-
-            <TextView android:id="@+id/contents_previous" style="@style/PagerButton" android:text="@string/previous" />
+            <TextView android:id="@+id/contents_previous" style="@style/Ds.Button" android:text="@string/previous" />
 
             <TextView
+                style="@style/Ds.BarStatus"
                 android:id="@+id/contents_page"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -98,7 +90,7 @@
                 android:gravity="center"
                 android:textSize="14sp" />
 
-            <TextView android:id="@+id/contents_next" style="@style/PagerButton" android:text="@string/next" />
+            <TextView android:id="@+id/contents_next" style="@style/Ds.Button.Primary" android:text="@string/next" />
         </LinearLayout>
     </LinearLayout>
 
