@@ -198,12 +198,12 @@ def games():
 
 
 def board_games():
-    start("SudokuActivity")
+    start("game.SudokuActivity")
     shot("sudoku")
-    start("MinesActivity")
+    start("game.MinesActivity")
     tap_in("board", 24, wait=3)
     shot("mines")
-    start("LightsOutActivity")
+    start("game.LightsOutActivity")
     shot("lights-out")
 
 
