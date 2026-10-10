@@ -404,11 +404,13 @@ class StacksActivity : Activity() {
             box.orientation = LinearLayout.VERTICAL
             box.gravity = Gravity.CENTER
             box.setBackgroundResource(R.drawable.ds_button)
-            box.addView(TextView(this, null, 0, R.style.Ds_Label).apply { text = name })
+            val full = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            box.addView(TextView(this, null, 0, R.style.Ds_Label).apply { text = name; gravity = Gravity.CENTER }, full)
             box.addView(TextView(this, null, 0, R.style.Ds_Mono).apply {
                 text = engine.stat(name).toString()
                 textSize = 20f
-            })
+                gravity = Gravity.CENTER
+            }, LinearLayout.LayoutParams(full))
             val lp = LinearLayout.LayoutParams(0, dp(56), 1f)
             if (i < 2) lp.rightMargin = dp(8)
             line.addView(box, lp)
