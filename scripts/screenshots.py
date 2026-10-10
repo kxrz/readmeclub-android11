@@ -201,7 +201,9 @@ def board_games():
     start("game.SudokuActivity")
     shot("sudoku")
     start("game.MinesActivity")
-    tap_in("board", 24, wait=3)
+    board = by_id("board")
+    if board:
+        tap_node(board[0], wait=3)  # a custom view: tap its middle
     shot("mines")
     start("game.LightsOutActivity")
     shot("lights-out")
