@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Decoration (www.readme.club/brand, Shape "plus"), in black and white: never behind text,
+     never in a touch area, two per screen at most. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <path android:pathData="M40,4H60V40H96V60H60V96H40V60H4V40H40Z" android:fillColor="@color/ds_soft"
+        android:strokeColor="@color/ds_ink" android:strokeWidth="6" android:strokeLineJoin="round" />
+</vector>

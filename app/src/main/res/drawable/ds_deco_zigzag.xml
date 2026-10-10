@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Decoration (www.readme.club/brand, Shape "zigzag"), in black and white: never behind text,
+     never in a touch area, two per screen at most. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="12dp"
+    android:viewportWidth="120"
+    android:viewportHeight="40">
+    <path android:pathData="M2,36L22,6L42,30L62,4L82,32L102,8L118,34" android:strokeColor="@color/ds_ink"
+        android:strokeWidth="7" android:strokeLineCap="round" android:strokeLineJoin="round" />
+</vector>

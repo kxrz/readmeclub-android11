@@ -65,6 +65,8 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- The brand's decorations (plus, ring, circle, zigzag) in black and white: two at most per
+  screen, on Home and About, never behind text or on a button; all four on Components.
 - Guide shelf and news cards use the design system's tile: rounded corners, inverted when pressed.
 - Learn offers a Quick quiz (10 general knowledge questions) as its main action. Flashcards
   show the question larger, a hint, and when each card comes back. The Stacks' hero screen
