@@ -91,12 +91,6 @@
     <string name="font">Font</string>
     <string name="font_sans">Sans</string>
     <string name="font_serif">Serif</string>
-    <string name="sync">Sync</string>
-    <string name="search_wallpapers">Search wallpapers</string>
-    <string name="sort_latest">Latest</string>
-    <string name="sort_popular">Popular</string>
-    <string name="sort_name">Name</string>
-    <string name="sort_author">Author</string>
     <string name="sync_now">Sync now</string>
     <string name="last_sync">Last sync: %1$s</string>
     <string name="never_synced">Never synced</string>
