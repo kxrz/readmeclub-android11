@@ -31,44 +31,81 @@
             <TextView android:id="@+id/member_pill" style="@style/Ds.Pill" android:textAllCaps="false" android:visibility="gone" />
         </LinearLayout>
 
-        <!-- Continue reading: the article or guide left half-read. -->
+        <!-- Continue reading (the article or guide left half-read) or, before any, Start reading
+             (the latest news): a window card, its label in a strip over the title. -->
         <LinearLayout
             android:id="@+id/continue_card"
-            style="@style/Ds.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ds_card"
             android:clickable="true"
             android:focusable="true"
             android:orientation="vertical"
+            android:paddingRight="4dp"
+            android:paddingBottom="4dp"
             android:visibility="gone">
 
-            <TextView style="@style/Ds.Label" android:duplicateParentState="true"
-                android:textColor="@color/ds_on_button" android:text="@string/continue_reading" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingTop="6dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="6dp">
 
-            <TextView
-                android:id="@+id/continue_title"
-                style="@style/Ds.Title"
-                android:layout_marginTop="4dp"
-                android:duplicateParentState="true"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@color/ds_on_button"
-                android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/continue_label"
+                    style="@style/Ds.Label"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:duplicateParentState="true"
+                    android:textColor="@color/ds_on_button" />
 
-            <TextView
-                android:id="@+id/continue_meta"
-                style="@style/Ds.Mono"
-                android:duplicateParentState="true"
-                android:textColor="@color/ds_on_button" />
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/ds_dot"
+                    android:duplicateParentState="true" />
+            </LinearLayout>
 
-            <!-- Progress as ten squares: e-ink friendly, no colour. -->
-            <TextView
-                android:id="@+id/continue_bar"
-                style="@style/Ds.Mono"
-                android:duplicateParentState="true"
-                android:letterSpacing="0.1"
-                android:textColor="@color/ds_on_button" />
+            <View style="@style/Divider" android:duplicateParentState="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingTop="8dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/continue_title"
+                    style="@style/Ds.Title"
+                    android:duplicateParentState="true"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/ds_on_button"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/continue_meta"
+                    style="@style/Ds.Mono"
+                    android:layout_marginTop="4dp"
+                    android:duplicateParentState="true"
+                    android:textColor="@color/ds_on_button" />
+
+                <!-- Progress as ten squares: e-ink friendly, no colour. -->
+                <TextView
+                    android:id="@+id/continue_bar"
+                    style="@style/Ds.Mono"
+                    android:duplicateParentState="true"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/ds_on_button" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

@@ -10,7 +10,8 @@ and refuses to release a version that has no section here.
 ## [2.0.0] - Unreleased
 
 ### Added
-- **Home screen** in place of the tabs: Continue reading with its progress, one tile per
+- **Home screen** in place of the tabs: Continue reading with its progress (or, before
+  anything is read, the latest news), one tile per
   section with its icon (News with a "3 new" sticker, Guides, Wallpapers, Games, Member
   with "Not linked" or "Favourites · card", Settings with an "Update" pill), the member
   number at the top once linked, and the sync status and version with **Sync** in the
@@ -64,6 +65,7 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- Guide shelf and news cards use the design system's tile: rounded corners, inverted when pressed.
 - Learn offers a Quick quiz (10 general knowledge questions) as its main action. Flashcards
   show the question larger, a hint, and when each card comes back. The Stacks' hero screen
   shows GUTS, WITS and LUCK as three boxes.

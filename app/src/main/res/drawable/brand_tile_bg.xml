@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Black-bordered tile; pressed = inverted, like every other touch target. -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true">
-        <inset android:inset="6dp">
-            <shape><solid android:color="@android:color/black" /></shape>
-        </inset>
-    </item>
-    <item>
-        <inset android:inset="6dp">
-            <shape>
-                <solid android:color="@android:color/white" />
-                <stroke android:width="2dp" android:color="@android:color/black" />
-            </shape>
-        </inset>
-    </item>
-</selector>
+<!-- A tile in a grid (guide shelf, news cards): the design-system button shape (2 dp border,
+     12 dp corners; pressed = inverted), inset so neighbouring tiles keep a gap. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ds_button"
+    android:inset="6dp" />

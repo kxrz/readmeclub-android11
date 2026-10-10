@@ -56,16 +56,23 @@ class HomeScreen(
     fun refresh() {
         val app = activity.app
         val last = app.reading.lastRead
-        continueCard.visibility = if (last == null) View.GONE else View.VISIBLE
         if (last != null) {
-            continueCard.findViewById<TextView>(R.id.continue_title).text = last.title
             val kind = activity.getString(if (last.kind == InternalLinks.GUIDES) R.string.kind_guide else R.string.kind_news)
-            continueCard.findViewById<TextView>(R.id.continue_meta).text =
-                activity.getString(R.string.continue_meta, kind, last.percent)
             val filled = (last.percent / 10).coerceIn(0, 10)
-            continueCard.findViewById<TextView>(R.id.continue_bar).text = "■".repeat(filled) + "□".repeat(10 - filled)
-            continueCard.setOnClickListener {
+            showCard(R.string.continue_reading, last.title, activity.getString(R.string.continue_meta, kind, last.percent),
+                "■".repeat(filled) + "□".repeat(10 - filled)) {
                 activity.startActivity(ReaderActivity.intent(activity, last.kind, last.slug))
+            }
+        } else {
+            // Nothing started yet: the latest news, read from the cache off the main thread.
+            app.io.execute {
+                val latest = app.news.load().firstOrNull()
+                activity.runOnUiThread {
+                    if (latest == null || app.reading.lastRead != null) return@runOnUiThread
+                    showCard(R.string.start_reading, latest.title, latest.meta, null) {
+                        activity.startActivity(ReaderActivity.intent(activity, InternalLinks.NEWS, latest.slug))
+                    }
+                }
             }
         }
 
@@ -84,6 +91,18 @@ class HomeScreen(
         }
         badge(Section.SETTINGS, if (app.latestRelease?.canInstall == true) activity.getString(R.string.badge_update) else null, sticker = false)
         renderStatus()
+    }
+
+    private fun showCard(label: Int, title: String, meta: String, bar: String?, onClick: () -> Unit) {
+        continueCard.visibility = View.VISIBLE
+        continueCard.findViewById<TextView>(R.id.continue_label).setText(label)
+        continueCard.findViewById<TextView>(R.id.continue_title).text = title
+        continueCard.findViewById<TextView>(R.id.continue_meta).text = meta
+        continueCard.findViewById<TextView>(R.id.continue_bar).apply {
+            visibility = if (bar == null) View.GONE else View.VISIBLE
+            text = bar
+        }
+        continueCard.setOnClickListener { onClick() }
     }
 
     /** A sticker (one per screen: the news count) or a pill on a tile; null hides it. */

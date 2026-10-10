@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The window card's dot: an ink ring, filled (brand: the orange dot, in black and white). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <solid android:color="@color/ds_ink" />
+    <stroke android:width="@dimen/ds_border" android:color="@color/ds_ink" />
+</shape>
