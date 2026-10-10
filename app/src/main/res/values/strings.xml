@@ -49,7 +49,42 @@
     <string name="notes_missing">No release notes for this version.</string>
     <string name="games_play">Play</string>
     <string name="games_learn">Learn</string>
-    <string name="games_learn_soon">Quizzes and flashcards, in packs by theme, arrive in a coming beta. Like the games, they will work without a connection.</string>
+    <string name="learn_more_soon">Themed packs to download (Literature, Geography, E-ink &amp; books) arrive in a coming beta.</string>
+    <string name="learn_pack_meta">%1$d questions · rounds of 10</string>
+    <string name="learn_missed">Questions I missed</string>
+    <string name="learn_missed_empty">Empty for now: questions you miss land here</string>
+    <plurals name="learn_missed_meta">
+        <item quantity="one">%d card to review</item>
+        <item quantity="other">%d cards to review</item>
+    </plurals>
+    <plurals name="quiz_score">
+        <item quantity="one">%d right</item>
+        <item quantity="other">%d right</item>
+    </plurals>
+    <string name="quiz_right">Right</string>
+    <string name="quiz_wrong">Not quite</string>
+    <string name="quiz_score_button">Score</string>
+    <string name="quiz_done">Done</string>
+    <string name="quiz_final">%1$d / %2$d</string>
+    <string name="quiz_record">New best</string>
+    <string name="quiz_round_over">Round over</string>
+    <string name="quiz_best">Best %1$d / %2$d</string>
+    <string name="quiz_none_missed">Not a single miss.</string>
+    <plurals name="quiz_missed">
+        <item quantity="one">%d question added to Questions I missed.</item>
+        <item quantity="other">%d questions added to Questions I missed.</item>
+    </plurals>
+    <string name="quiz_again">Play again</string>
+    <string name="cards_knew">I knew it</string>
+    <string name="cards_not_yet">Not yet</string>
+    <string name="cards_show">Show answer</string>
+    <string name="cards_box">Box %1$d / %2$d</string>
+    <string name="cards_finish">Done</string>
+    <string name="cards_empty">No cards yet. Every question you miss in a quiz becomes a card here, until you know it three times in a row.</string>
+    <plurals name="cards_done">
+        <item quantity="one">Done for now. %d card stays in the deck for next time.</item>
+        <item quantity="other">Done for now. %d cards stay in the deck for next time.</item>
+    </plurals>
     <string name="games_offline">All offline</string>
     <string name="games_resume">Resume</string>
     <string name="games_best">Best %1$s</string>

@@ -71,6 +71,16 @@
             android:name=".game.MinesActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".learn.QuizActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".learn.FlashcardsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <receiver
             android:name=".update.InstallResultReceiver"
             android:exported="false" />

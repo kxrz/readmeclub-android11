@@ -68,9 +68,9 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 
 ### M4 — Games: Learn (L) · beta.4
 
-- [ ] Quiz engine: packs of questions (4 answers, one right, explanation, theme), rounds of 10
-- [ ] **General knowledge** pack shipped in the APK (200 questions)
-- [ ] Flashcards with Leitner boxes; "Questions I missed" deck filled by quizzes
+- [x] Quiz engine: packs of questions (4 answers, one right, explanation, theme), rounds of 10
+- [x] **General knowledge** pack shipped in the APK (200 questions, 8 themes; length limits checked by a test so each screen fits the S4)
+- [x] Flashcards with Leitner boxes (3 boxes); "Questions I missed" deck filled by quizzes
 - [ ] Quiz Packs collection in the CMS **[site]**, catalogue API **[site]**
 - [ ] Download, store and delete packs in the app; everything offline once downloaded
 - [ ] 3 themed packs at launch (Literature, Geography, E-ink & books)
@@ -130,7 +130,7 @@ M1 and M2 come first: everything else is built from their components. Site work 
 | [M1 Design system](https://github.com/kxrz/readmeclub-android11/issues/2) | Built, to test on the S4 | 2.0.0-beta.1 |
 | [M2 Home and sections](https://github.com/kxrz/readmeclub-android11/issues/3) | Built, to test on the S4 | — |
 | [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Built, to test on the S4 | — |
-| [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Not started | — |
+| [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | In progress: app side built; catalogue and themed packs to do | — |
 | [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Not started | — |
 | [M6 Member account](https://github.com/kxrz/readmeclub-android11/issues/7) | Not started | — |
 | [M7 Hardening and launch](https://github.com/kxrz/readmeclub-android11/issues/8) | Not started | — |

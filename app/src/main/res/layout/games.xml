@@ -57,16 +57,31 @@
             <include android:id="@+id/game_lights" layout="@layout/game_tile" />
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
             android:id="@+id/learn"
-            style="@style/Ds.Text"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:orientation="vertical"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
+            android:paddingTop="12dp"
             android:paddingRight="16dp"
-            android:text="@string/games_learn_soon"
-            android:visibility="gone" />
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/learn_packs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <include android:id="@+id/learn_missed" layout="@layout/game_tile" />
+
+            <TextView
+                style="@style/Ds.Text"
+                android:paddingTop="4dp"
+                android:text="@string/learn_more_soon"
+                android:textSize="15sp" />
+        </LinearLayout>
 
         <LinearLayout style="@style/Ds.Bar">
 

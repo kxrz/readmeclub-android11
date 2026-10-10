@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A quiz round: question and four answers, then the answer and why, then the score. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/theme"
+                style="@style/Ds.Label"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
+
+            <TextView android:id="@+id/progress" style="@style/Ds.Pill" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/question"
+            style="@style/Ds.Text"
+            android:paddingLeft="16dp"
+            android:paddingTop="10dp"
+            android:paddingRight="16dp"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/answers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp"
+            android:paddingRight="16dp">
+
+            <TextView android:id="@+id/a0" style="@style/Ds.Choice" android:layout_marginBottom="10dp" />
+
+            <TextView android:id="@+id/a1" style="@style/Ds.Choice" android:layout_marginBottom="10dp" />
+
+            <TextView android:id="@+id/a2" style="@style/Ds.Choice" android:layout_marginBottom="10dp" />
+
+            <TextView android:id="@+id/a3" style="@style/Ds.Choice" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/feedback"
+            style="@style/Ds.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView android:id="@+id/verdict" style="@style/Ds.Label" />
+
+            <TextView
+                android:id="@+id/right_answer"
+                style="@style/Ds.Text"
+                android:paddingTop="4dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/why"
+                style="@style/Ds.Text"
+                android:paddingTop="6dp"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+
+        <LinearLayout style="@style/Ds.Bar">
+
+            <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
+
+            <TextView android:id="@+id/status" style="@style/Ds.BarStatus" />
+
+            <TextView android:id="@+id/primary" style="@style/Ds.Button.Primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

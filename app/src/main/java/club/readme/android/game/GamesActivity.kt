@@ -5,13 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import club.readme.android.R
 import club.readme.android.app
 import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
+import club.readme.android.learn.FlashcardsActivity
+import club.readme.android.learn.LearnStore
+import club.readme.android.learn.QuizRound
+import club.readme.android.learn.QuizActivity
 
-/** Games: Play (Sudoku, Mines, Lights out, all offline) and Learn (quizzes, coming next). */
+/** Games: Play (Sudoku, Mines, Lights out) and Learn (quiz packs, Questions I missed), all offline. */
 class GamesActivity : Activity() {
 
     private lateinit var store: GameStore
@@ -63,6 +68,27 @@ class GamesActivity : Activity() {
         tile(R.id.game_lights, R.string.lights_title, getString(R.string.games_lights_meta) +
             if (lightsBest > 0) " · " + getString(R.string.games_best, resources.getQuantityString(R.plurals.lights_moves, lightsBest, lightsBest)) else "")
         resume.visibility = if (store.hasSudoku) View.VISIBLE else View.GONE
+        showLearn()
+    }
+
+    /** One tile per quiz pack, then Questions I missed. */
+    private fun showLearn() {
+        val learn = LearnStore(this)
+        val packs = findViewById<LinearLayout>(R.id.learn_packs)
+        packs.removeAllViews()
+        for (pack in learn.packs) {
+            val tile = layoutInflater.inflate(R.layout.game_tile, packs, false)
+            tile.findViewById<TextView>(R.id.name).text = pack.title
+            val best = learn.best(pack.id)
+            tile.findViewById<TextView>(R.id.meta).text = getString(R.string.learn_pack_meta, pack.questions.size) +
+                if (best >= 0) " · " + getString(R.string.quiz_best, best, QuizRound.SIZE) else ""
+            tile.setOnClickListener { startActivity(QuizActivity.intent(this, pack.id)) }
+            packs.addView(tile)
+        }
+        val deck = learn.deck()
+        tile(R.id.learn_missed, R.string.learn_missed, if (deck.size == 0) getString(R.string.learn_missed_empty)
+            else resources.getQuantityString(R.plurals.learn_missed_meta, deck.size, deck.size))
+        findViewById<View>(R.id.learn_missed).setOnClickListener { open(FlashcardsActivity::class.java) }
     }
 
     private fun best(key: String): String {

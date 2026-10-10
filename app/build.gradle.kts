@@ -90,4 +90,6 @@ kotlin {
 
 dependencies {
     testImplementation("junit:junit:4.13.2")
+    // Unit tests run on the JVM, where Android's org.json is only a stub (test classpath only, not in the APK).
+    testImplementation("org.json:json:20240303")
 }
