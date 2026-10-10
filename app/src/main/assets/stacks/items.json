@@ -1,0 +1,553 @@
+[
+ {
+  "id": "eraser-crumb",
+  "name": "Eraser crumb",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 4,
+  "text": "Rubs out one mistake. Mostly yours.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 5,
+  "effects": [
+   "hp:+3"
+  ],
+  "tags": [
+   "fine print"
+  ]
+ },
+ {
+  "id": "stale-biscuit",
+  "name": "Stale biscuit",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 4,
+  "text": "Found behind the till. Older than some of the stock. Still technically food.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 4,
+  "effects": [
+   "hp:+4"
+  ],
+  "tags": []
+ },
+ {
+  "id": "pocket-magnifier",
+  "name": "Pocket magnifier",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "Makes the small print legible and furious. Point it at the enemy.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 8,
+  "effects": [
+   "damage:4"
+  ],
+  "tags": [
+   "fine print"
+  ]
+ },
+ {
+  "id": "spare-lamp-bulb",
+  "name": "Spare lamp bulb",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "Forty watts of artificial daylight. Things in basements hate that.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 7,
+  "effects": [
+   "damage:4"
+  ],
+  "tags": [
+   "daylight"
+  ]
+ },
+ {
+  "id": "strong-tea",
+  "name": "Strong tea",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 4,
+  "text": "Brewed until the spoon stands up on its own. Restores body and opinions.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 6,
+  "effects": [
+   "hp:+5"
+  ],
+  "tags": []
+ },
+ {
+  "id": "paper-clip",
+  "name": "Bent paper clip",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 4,
+  "text": "Straightened, it is a tiny sword. Bent, it is a tiny, sadder sword.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 3,
+  "effects": [
+   "damage:2"
+  ],
+  "tags": [
+   "paper cut"
+  ]
+ },
+ {
+  "id": "tube-of-paste",
+  "name": "Tube of paste",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "School paste. Sticks anything to anything, including regret.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 5,
+  "effects": [
+   "damage:3"
+  ],
+  "tags": [
+   "glue"
+  ]
+ },
+ {
+  "id": "shush-card",
+  "name": "Laminated shush card",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "Says QUIET in a font that means it. Hold it up and glare.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 6,
+  "effects": [
+   "damage:3"
+  ],
+  "tags": [
+   "silence"
+  ]
+ },
+ {
+  "id": "receipt-roll",
+  "name": "Receipt roll",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 3,
+  "text": "Two metres of old receipts. Someone forgot to claim a refund. Now you have.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 4,
+  "effects": [
+   "coins:+8"
+  ],
+  "tags": []
+ },
+ {
+  "id": "bookmark-tassel",
+  "name": "Bookmark tassel",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "Marks where someone stopped reading. You learn from their failure.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 6,
+  "effects": [
+   "xp:15"
+  ],
+  "tags": []
+ },
+ {
+  "id": "earplugs",
+  "name": "Foam earplugs",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "Block out the narrator for a moment. Deeply restful.",
+  "kind": "consumable",
+  "rarity": "common",
+  "price": 7,
+  "effects": [
+   "hp:+6"
+  ],
+  "tags": []
+ },
+ {
+  "id": "matchbook",
+  "name": "Matchbook",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 2,
+  "text": "From a hotel that no longer exists. Use with care, you are in a paper building.",
+  "kind": "consumable",
+  "rarity": "odd",
+  "price": 12,
+  "effects": [
+   "damage:5"
+  ],
+  "tags": [
+   "fire"
+  ]
+ },
+ {
+  "id": "clue-envelope",
+  "name": "Clue in an envelope",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 2,
+  "text": "Contains the obvious answer nobody noticed. Elementary, and quite sharp.",
+  "kind": "consumable",
+  "rarity": "odd",
+  "price": 14,
+  "effects": [
+   "damage:5"
+  ],
+  "tags": [
+   "deduction"
+  ]
+ },
+ {
+  "id": "footnote-dagger",
+  "name": "Footnote dagger",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 2,
+  "text": "The little cross printers use for footnotes. Turns out it is an actual dagger.",
+  "kind": "consumable",
+  "rarity": "odd",
+  "price": 15,
+  "effects": [
+   "damage:5"
+  ],
+  "tags": [
+   "footnotes"
+  ]
+ },
+ {
+  "id": "index-card",
+  "name": "Blank index card",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 2,
+  "text": "Write down one lesson. The Stacks will pretend you learned it.",
+  "kind": "consumable",
+  "rarity": "odd",
+  "price": 10,
+  "effects": [
+   "xp:25"
+  ],
+  "tags": []
+ },
+ {
+  "id": "thermos-cocoa",
+  "name": "Thermos of cocoa",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 2,
+  "text": "Still warm. Nobody knows whose it is. Nobody is asking.",
+  "kind": "consumable",
+  "rarity": "odd",
+  "price": 16,
+  "effects": [
+   "heal:half"
+  ],
+  "tags": []
+ },
+ {
+  "id": "jar-of-daylight",
+  "name": "Jar of daylight",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "Collected on a sunny afternoon in 1911. Open away from your eyes.",
+  "kind": "consumable",
+  "rarity": "rare",
+  "price": 22,
+  "effects": [
+   "damage:6"
+  ],
+  "tags": [
+   "daylight"
+  ]
+ },
+ {
+  "id": "ibid-bottle",
+  "name": "Ibid. in a bottle",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "Refers to the previous blow, and repeats it with academic spite.",
+  "kind": "consumable",
+  "rarity": "rare",
+  "price": 30,
+  "effects": [
+   "damage:7"
+  ],
+  "tags": [
+   "footnotes"
+  ]
+ },
+ {
+  "id": "signed-first-edition",
+  "name": "Signed first edition",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "Signed by the author, or by someone with a pen. A dealer will not ask.",
+  "kind": "consumable",
+  "rarity": "rare",
+  "price": 25,
+  "effects": [
+   "coins:+30"
+  ],
+  "tags": []
+ },
+ {
+  "id": "unwritten-sequel",
+  "name": "The unwritten sequel",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "It answers every loose end. Reading it heals you and ruins the mystery.",
+  "kind": "consumable",
+  "rarity": "absurd",
+  "price": 70,
+  "effects": [
+   "heal:full",
+   "xp:50"
+  ],
+  "tags": []
+ },
+ {
+  "id": "deerstalker",
+  "name": "Deerstalker cap",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 2,
+  "text": "Flaps on both ends, so you can deduce in two directions at once.",
+  "kind": "trinket",
+  "rarity": "odd",
+  "price": 18,
+  "effects": [
+   "stat:WITS:+1"
+  ],
+  "tags": [
+   "deduction"
+  ]
+ },
+ {
+  "id": "lucky-bookmark",
+  "name": "Lucky bookmark",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "Always falls open at the right page. Survives everything, including you.",
+  "kind": "trinket",
+  "rarity": "common",
+  "price": 9,
+  "effects": [
+   "stat:LUCK:+1"
+  ],
+  "tags": [],
+  "keep": true
+ },
+ {
+  "id": "elbow-patches",
+  "name": "Elbow patches",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "Corduroy armour. Confers the confidence of a tenured lecturer.",
+  "kind": "trinket",
+  "rarity": "common",
+  "price": 8,
+  "effects": [
+   "stat:GUTS:+1"
+  ],
+  "tags": []
+ },
+ {
+  "id": "reading-glasses",
+  "name": "Reading glasses",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 3,
+  "text": "Plus two dioptres. Nothing in small print escapes you now.",
+  "kind": "trinket",
+  "rarity": "common",
+  "price": 10,
+  "effects": [
+   "stat:WITS:+1"
+  ],
+  "tags": [
+   "fine print"
+  ]
+ },
+ {
+  "id": "thimble",
+  "name": "Thimble",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 2,
+  "text": "A tiny helmet for one finger. Paper cuts bounce off it.",
+  "kind": "trinket",
+  "rarity": "odd",
+  "price": 12,
+  "effects": [
+   "stat:GUTS:+1"
+  ],
+  "tags": [
+   "paper cut"
+  ]
+ },
+ {
+  "id": "candle-stub",
+  "name": "Candle stub",
+  "tiers": [
+   1,
+   2
+  ],
+  "weight": 2,
+  "text": "Banned in every library on earth, which is why you carry it.",
+  "kind": "trinket",
+  "rarity": "odd",
+  "price": 14,
+  "effects": [
+   "stat:LUCK:+1"
+  ],
+  "tags": [
+   "fire"
+  ]
+ },
+ {
+  "id": "pocket-sundial",
+  "name": "Pocket sundial",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 2,
+  "text": "Useless underground, but it remembers the sun and says so loudly.",
+  "kind": "trinket",
+  "rarity": "odd",
+  "price": 16,
+  "effects": [
+   "stat:LUCK:+1"
+  ],
+  "tags": [
+   "daylight"
+  ]
+ },
+ {
+  "id": "librarian-lanyard",
+  "name": "Librarian's lanyard",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "Grants authority to shush. Few things in the Archive can resist it.",
+  "kind": "trinket",
+  "rarity": "rare",
+  "price": 30,
+  "effects": [
+   "stat:WITS:+1"
+  ],
+  "tags": [
+   "silence"
+  ]
+ },
+ {
+  "id": "bone-folder",
+  "name": "Bone folder",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "A bookbinder's tool. Creases paper, unsticks glue, settles arguments.",
+  "kind": "trinket",
+  "rarity": "rare",
+  "price": 38,
+  "effects": [
+   "stat:GUTS:+2"
+  ],
+  "tags": [
+   "glue"
+  ]
+ },
+ {
+  "id": "ex-libris-plate",
+  "name": "Ex libris plate",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "Declares that you belong to a library. The Stacks respects ownership.",
+  "kind": "trinket",
+  "rarity": "absurd",
+  "price": 75,
+  "effects": [
+   "stat:LUCK:+2"
+  ],
+  "tags": [
+   "footnotes"
+  ],
+  "keep": true
+ }
+]

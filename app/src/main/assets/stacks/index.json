@@ -1,0 +1,324 @@
+{
+ "lines": [
+  {
+   "trigger": "intro",
+   "text": "Welcome to the Stacks, {hero}. I am the Index. I list everything down here, including you, under Pending."
+  },
+  {
+   "trigger": "intro",
+   "text": "Another reader. How lovely. The last one is filed under Returns. Mind the bin on your way down."
+  },
+  {
+   "trigger": "intro",
+   "text": "The bookshop closed at six. You did not leave. Bold choice, {hero}. Let us see how it reviews."
+  },
+  {
+   "trigger": "intro",
+   "text": "Rules of the Stacks: no food, no talking, no surviving. Two of those are negotiable."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "Floor {floor}. The air smells of foxing and poor decisions."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "Welcome to floor {floor}. Nobody has dusted here since the invention of dust."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "Floor {floor}. I would describe it, but you would only skim."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "You have reached floor {floor}. Your library card is not valid here. Or anywhere, frankly."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "Floor {floor}, {hero}. Deeper than most readers get. Shallower than most readers end up."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "Floor {floor}. The stairs behind you have been reshelved. Do not ask where."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "Down to floor {floor}. Somewhere above, a customer is asking for a book with a blue cover."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "Floor {floor}. My records show you here now. My records also show a cat as head of acquisitions."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "This is floor {floor}. It was catalogued once, in pencil, by someone who was clearly crying."
+  },
+  {
+   "trigger": "enter_floor",
+   "text": "Floor {floor}. Please keep your voice down. Things down here are reading."
+  },
+  {
+   "trigger": "room",
+   "text": "A new room. It has been waiting for you, the way a dentist waits."
+  },
+  {
+   "trigger": "room",
+   "text": "Note the shelving. Note the silence. Note that I am taking notes."
+  },
+  {
+   "trigger": "room",
+   "text": "This room has a five-star rating from one reviewer, who is still in it."
+  },
+  {
+   "trigger": "room",
+   "text": "Proceed carefully, {hero}. Or carelessly. I get paid by the obituary either way."
+  },
+  {
+   "trigger": "room",
+   "text": "Someone has left a bookmark on the floor. Its owner reached page eleven. Of their life story."
+  },
+  {
+   "trigger": "room",
+   "text": "I have cross-referenced this room. It refers you to another room. That one refers you here."
+  },
+  {
+   "trigger": "room",
+   "text": "The draught in here is the only plot development for miles."
+  },
+  {
+   "trigger": "room",
+   "text": "A sign says Quiet Please. Underneath, smaller: Or Else."
+  },
+  {
+   "trigger": "room",
+   "text": "There is a chapter break in the air. Something is about to happen, probably to you."
+  },
+  {
+   "trigger": "room",
+   "text": "You have read this paragraph before. Rooms down here reuse their prose. Budget cuts."
+  },
+  {
+   "trigger": "room",
+   "text": "This room has been described as atmospheric, mostly by the atmosphere."
+  },
+  {
+   "trigger": "room",
+   "text": "Check your pockets. Something down here already did."
+  },
+  {
+   "trigger": "room",
+   "text": "I would recommend a different room, but this is the one you have been issued."
+  },
+  {
+   "trigger": "room",
+   "text": "Every room is a metaphor, {hero}. This one is a metaphor for a room you may die in."
+  },
+  {
+   "trigger": "room",
+   "text": "The light flickers in a pattern. It is Morse code for: overdue."
+  },
+  {
+   "trigger": "room",
+   "text": "You are on floor {floor}, in a room, holding your breath. Two of those are sensible."
+  },
+  {
+   "trigger": "room",
+   "text": "Somewhere a page turns by itself. Do not look. Looking encourages it."
+  },
+  {
+   "trigger": "room",
+   "text": "The previous reader left a review scratched into the wall. It is one word. It is not kind."
+  },
+  {
+   "trigger": "room",
+   "text": "Fun fact: this room is load-bearing. So, apparently, is your optimism."
+  },
+  {
+   "trigger": "room",
+   "text": "The index card for this room reads: see also, regret. I wrote it in advance."
+  },
+  {
+   "trigger": "critical",
+   "text": "A six. I had to check it twice. Then I had it laminated."
+  },
+  {
+   "trigger": "critical",
+   "text": "Magnificent, {hero}. I shall add an asterisk to your entry. A small, grudging one."
+  },
+  {
+   "trigger": "critical",
+   "text": "That went so well it is almost suspicious. I am opening an inquiry."
+  },
+  {
+   "trigger": "critical",
+   "text": "Flawless. Somewhere a critic sighs and puts down their pen."
+  },
+  {
+   "trigger": "critical",
+   "text": "A critical success. Please do not let it go to your head. There is not much room up there."
+  },
+  {
+   "trigger": "critical",
+   "text": "Excellent. That will be quoted on the back cover, out of context."
+  },
+  {
+   "trigger": "fumble",
+   "text": "A one. Statistically rare. Personally, I saw it coming from the first chapter."
+  },
+  {
+   "trigger": "fumble",
+   "text": "That was a fumble, {hero}. I have filed it under Comedy, subsection Slapstick."
+  },
+  {
+   "trigger": "fumble",
+   "text": "You failed with such commitment that it loops back to art. It does not loop back to success."
+  },
+  {
+   "trigger": "fumble",
+   "text": "Remarkable. You found a way to make it worse that the author never considered."
+  },
+  {
+   "trigger": "fumble",
+   "text": "Oh dear. I will not describe that. I will merely index it, in bold."
+  },
+  {
+   "trigger": "fumble",
+   "text": "If clumsiness were a genre, you would be the anthology."
+  },
+  {
+   "trigger": "flee",
+   "text": "A strategic retreat. Also known as running, with better publicity."
+  },
+  {
+   "trigger": "flee",
+   "text": "You flee, {hero}. The monster seems relieved. It had other plans tonight."
+  },
+  {
+   "trigger": "flee",
+   "text": "Exit, pursued by nothing in particular. Very dramatic."
+  },
+  {
+   "trigger": "flee",
+   "text": "Cowardice noted. Also survival noted. The two are often filed together."
+  },
+  {
+   "trigger": "flee",
+   "text": "You leave at speed. Your dignity follows at a more leisurely pace."
+  },
+  {
+   "trigger": "death",
+   "text": "And so {hero} was returned, slightly damaged, to the bin. Restocking at the top of floor {floor}."
+  },
+  {
+   "trigger": "death",
+   "text": "Dead. Again. I have started a second volume for you."
+  },
+  {
+   "trigger": "death",
+   "text": "Cause of death: the plot. Contributing factor: you."
+  },
+  {
+   "trigger": "death",
+   "text": "You have died, {hero}. Do not worry, nothing down here stays dead. Except the prose."
+  },
+  {
+   "trigger": "death",
+   "text": "Here lies {hero}. Spine cracked, pages loose, marked down to clear."
+  },
+  {
+   "trigger": "death",
+   "text": "That was fatal. On the bright side, you are now a cautionary tale. Those sell well."
+  },
+  {
+   "trigger": "death",
+   "text": "Deceased. I have updated your status from Reader to Footnote."
+  },
+  {
+   "trigger": "death",
+   "text": "The returns bin welcomes you back. It kept your seat warm. It is always warm. Do not ask why."
+  },
+  {
+   "trigger": "death",
+   "text": "Oh, {hero}. That ending was rushed. I blame the editor."
+  },
+  {
+   "trigger": "level_up",
+   "text": "Level up. You are now slightly less likely to die. Slightly."
+  },
+  {
+   "trigger": "level_up",
+   "text": "Congratulations, {hero}. You have grown as a person. The monsters have noticed."
+  },
+  {
+   "trigger": "level_up",
+   "text": "A new level. I have moved you from the bargain table to the regular shelf."
+  },
+  {
+   "trigger": "level_up",
+   "text": "You feel stronger, wiser and luckier. Two of those are real. Find out which."
+  },
+  {
+   "trigger": "level_up",
+   "text": "Experience gained. Mostly the experience of nearly dying, which is the best kind."
+  },
+  {
+   "trigger": "achievement",
+   "text": "An achievement. I have added a gold star to your file. It is made of paper. Like everything."
+  },
+  {
+   "trigger": "achievement",
+   "text": "Well done, {hero}. That is now permanent record. So is everything else, unfortunately."
+  },
+  {
+   "trigger": "achievement",
+   "text": "Achievement unlocked. The prize is the feeling. The feeling is non-refundable."
+  },
+  {
+   "trigger": "achievement",
+   "text": "Recognition at last. Frame it. Down here, frames are the only furniture."
+  },
+  {
+   "trigger": "boss",
+   "text": "Something large is between you and the stairs. It has a title. Titles mean trouble."
+  },
+  {
+   "trigger": "boss",
+   "text": "This one has a name, {hero}. Things with names have sequels. Try not to be in it."
+  },
+  {
+   "trigger": "boss",
+   "text": "A guardian of floor {floor}. It has been waiting a long time. It has prepared remarks."
+  },
+  {
+   "trigger": "boss",
+   "text": "Boss fight. I would wish you luck, but I already wrote the ending, and it is a short one."
+  },
+  {
+   "trigger": "shop",
+   "text": "A shop. Prices are final. So, often, are the products."
+  },
+  {
+   "trigger": "shop",
+   "text": "Welcome, valued customer. You are valued at roughly four coins."
+  },
+  {
+   "trigger": "shop",
+   "text": "Browse freely, {hero}. Shoplifters will be shelved."
+  },
+  {
+   "trigger": "shop",
+   "text": "All sales are final. All refunds are fictional."
+  },
+  {
+   "trigger": "shop",
+   "text": "The shopkeeper has been here since the first edition. The stock has been here longer."
+  },
+  {
+   "trigger": "idle_return",
+   "text": "Oh. You came back. I had already written your disappearance up as a mystery."
+  },
+  {
+   "trigger": "idle_return",
+   "text": "Welcome back, {hero}. Floor {floor} kept your place. It folded the corner, sadly."
+  }
+ ]
+}

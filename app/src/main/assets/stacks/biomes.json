@@ -1,0 +1,22 @@
+{
+ "biomes": [
+  {
+   "tier": 1,
+   "name": "Bookshop Basement",
+   "text": "Returns, receipts and lost bookmarks, stacked to the ceiling. The till still rings at night. Nobody is buying."
+  },
+  {
+   "tier": 2,
+   "name": "The Archive",
+   "text": "Damp corridors of filing cabinets, each drawer labelled Miscellaneous. Somewhere ahead, the Overdue Librarian is counting."
+  }
+ ],
+ "modifiers": [
+  "Damp",
+  "Upside-down",
+  "Second edition",
+  "Abridged",
+  "Annotated",
+  "Remaindered"
+ ]
+}

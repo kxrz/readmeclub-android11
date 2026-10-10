@@ -1,0 +1,552 @@
+[
+ {
+  "id": "overdue-notice",
+  "name": "An Overdue Notice",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 4,
+  "text": "A pink slip of paper, furious about a book you have never borrowed.",
+  "level": 1,
+  "hp": 8,
+  "atk": 1,
+  "def": 4,
+  "resolve": 2,
+  "weakness": "fine print",
+  "loot": [
+   "eraser-crumb"
+  ]
+ },
+ {
+  "id": "bookmark-moth",
+  "name": "A Bookmark Moth",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 4,
+  "text": "It lays its eggs at page 47 of every abandoned novel. It is very busy.",
+  "level": 1,
+  "hp": 7,
+  "atk": 1,
+  "def": 3,
+  "resolve": 3,
+  "weakness": "daylight",
+  "loot": [
+   "spare-lamp-bulb"
+  ]
+ },
+ {
+  "id": "price-sticker-swarm",
+  "name": "A Price Sticker Swarm",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 3,
+  "text": "Two hundred stickers that will not peel off cleanly. They know it.",
+  "level": 1,
+  "hp": 6,
+  "atk": 2,
+  "def": 3,
+  "resolve": 2,
+  "weakness": "fine print",
+  "loot": [
+   "receipt-roll"
+  ]
+ },
+ {
+  "id": "feral-dust-jacket",
+  "name": "A Feral Dust Jacket",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 3,
+  "text": "Escaped from its hardback years ago. Flaps menacingly. Has no spine.",
+  "level": 2,
+  "hp": 10,
+  "atk": 2,
+  "def": 5,
+  "resolve": 3,
+  "weakness": "paper cut",
+  "loot": [
+   "paper-clip"
+  ]
+ },
+ {
+  "id": "receipt-golem",
+  "name": "The Receipt Golem",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 3,
+  "text": "Every receipt the till ever printed, folded into a man. It wants a refund.",
+  "level": 2,
+  "hp": 11,
+  "atk": 2,
+  "def": 4,
+  "resolve": 3,
+  "weakness": "fire",
+  "loot": [
+   "receipt-roll",
+   "matchbook"
+  ]
+ },
+ {
+  "id": "audiobook-mouth-breather",
+  "name": "A Mouth-Breathing Audiobook",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 3,
+  "text": "Reads itself aloud at full volume, doing all the voices badly.",
+  "level": 2,
+  "hp": 9,
+  "atk": 2,
+  "def": 4,
+  "resolve": 3,
+  "weakness": "silence",
+  "loot": [
+   "earplugs"
+  ]
+ },
+ {
+  "id": "returns-bin-mimic",
+  "name": "The Returns Bin Mimic",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 3,
+  "text": "Looks like a returns bin. Accepts returns. Also accepts readers.",
+  "level": 3,
+  "hp": 13,
+  "atk": 2,
+  "def": 5,
+  "resolve": 4,
+  "weakness": "glue",
+  "loot": [
+   "stale-biscuit",
+   "tube-of-paste"
+  ]
+ },
+ {
+  "id": "very-large-beetle",
+  "name": "A Very Large Beetle",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 2,
+  "text": "Insists it is a travelling salesman and is late for the five o'clock train.",
+  "level": 3,
+  "hp": 14,
+  "atk": 2,
+  "def": 5,
+  "resolve": 3,
+  "weakness": "silence",
+  "loot": [
+   "strong-tea"
+  ],
+  "source": {
+   "author": "Franz Kafka",
+   "died": 1924,
+   "work": "The Metamorphosis",
+   "published": 1915
+  }
+ },
+ {
+  "id": "cheshire-grin",
+  "name": "A Grin Without a Cat",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 2,
+  "text": "Only the grin remains. It is hard to hit something that is mostly absent.",
+  "level": 3,
+  "hp": 11,
+  "atk": 2,
+  "def": 5,
+  "resolve": 4,
+  "weakness": "deduction",
+  "loot": [
+   "clue-envelope"
+  ],
+  "source": {
+   "author": "Lewis Carroll",
+   "died": 1898,
+   "work": "Alice's Adventures in Wonderland",
+   "published": 1865
+  }
+ },
+ {
+  "id": "clearance-hydra",
+  "name": "The Clearance Box Hydra",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 2,
+  "text": "Sell one book and two more appear in the box. Everything is 50p.",
+  "level": 4,
+  "hp": 15,
+  "atk": 3,
+  "def": 5,
+  "resolve": 4,
+  "weakness": "fire",
+  "loot": [
+   "matchbook",
+   "bookmark-tassel"
+  ]
+ },
+ {
+  "id": "bookshop-cat",
+  "name": "The Bookshop Cat",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 1,
+  "text": "Owns the shop. Tolerates the owner. Has never tolerated you.",
+  "level": 5,
+  "hp": 16,
+  "atk": 3,
+  "def": 6,
+  "resolve": 6,
+  "weakness": "daylight",
+  "loot": [
+   "lucky-bookmark",
+   "thermos-cocoa"
+  ],
+  "named": true,
+  "special": {
+   "name": "Off the Shelf",
+   "text": "It looks at you, then at a heavy dictionary on the top shelf. Then it pushes. Slowly."
+  }
+ },
+ {
+  "id": "jabberwock",
+  "name": "The Jabberwock",
+  "tiers": [
+   1,
+   1
+  ],
+  "weight": 1,
+  "text": "Jaws that bite, claws that catch, and a vocabulary nobody can follow.",
+  "level": 5,
+  "hp": 18,
+  "atk": 3,
+  "def": 6,
+  "resolve": 5,
+  "weakness": "paper cut",
+  "loot": [
+   "thimble",
+   "index-card"
+  ],
+  "named": true,
+  "special": {
+   "name": "Burbling",
+   "text": "It comes whiffling through the tulgey wood and burbles at you. Somehow that hurts."
+  },
+  "source": {
+   "author": "Lewis Carroll",
+   "died": 1898,
+   "work": "Through the Looking-Glass",
+   "published": 1871
+  }
+ },
+ {
+  "id": "erratum-slip",
+  "name": "An Erratum Slip",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 4,
+  "text": "For 'you are safe' read 'you are not safe'. The publisher regrets the error.",
+  "level": 3,
+  "hp": 11,
+  "atk": 2,
+  "def": 5,
+  "resolve": 3,
+  "weakness": "fine print",
+  "loot": [
+   "eraser-crumb",
+   "pocket-magnifier"
+  ]
+ },
+ {
+  "id": "damp-filing-cabinet",
+  "name": "A Damp Filing Cabinet",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 4,
+  "text": "Four drawers of mould and one drawer of teeth. Guess which one opens.",
+  "level": 3,
+  "hp": 13,
+  "atk": 2,
+  "def": 5,
+  "resolve": 3,
+  "weakness": "fire",
+  "loot": [
+   "matchbook"
+  ]
+ },
+ {
+  "id": "microfiche-wraith",
+  "name": "The Microfiche Wraith",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 3,
+  "text": "A newspaper from 1923, shrunk and bitter. It glows faintly in the reader.",
+  "level": 4,
+  "hp": 14,
+  "atk": 2,
+  "def": 6,
+  "resolve": 4,
+  "weakness": "daylight",
+  "loot": [
+   "jar-of-daylight"
+  ]
+ },
+ {
+  "id": "catalogue-centipede",
+  "name": "The Card Catalogue Centipede",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 3,
+  "text": "A thousand legs, each one a drawer, each drawer filed under the wrong letter.",
+  "level": 4,
+  "hp": 15,
+  "atk": 3,
+  "def": 5,
+  "resolve": 4,
+  "weakness": "fine print",
+  "loot": [
+   "index-card",
+   "reading-glasses"
+  ]
+ },
+ {
+  "id": "angry-ibid",
+  "name": "An Angry Ibid.",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 3,
+  "text": "Refers to the same place as before. Hits you in the same place as before.",
+  "level": 5,
+  "hp": 14,
+  "atk": 3,
+  "def": 6,
+  "resolve": 5,
+  "weakness": "footnotes",
+  "loot": [
+   "footnote-dagger"
+  ]
+ },
+ {
+  "id": "silverfish-sommelier",
+  "name": "The Silverfish Sommelier",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 3,
+  "text": "Tastes the binding glue of every book. Finds your spine full-bodied.",
+  "level": 5,
+  "hp": 16,
+  "atk": 3,
+  "def": 6,
+  "resolve": 5,
+  "weakness": "glue",
+  "loot": [
+   "tube-of-paste",
+   "bone-folder"
+  ]
+ },
+ {
+  "id": "bartleby",
+  "name": "A Scrivener Who Prefers Not",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 2,
+  "text": "He would prefer not to fight. He would also prefer not to move out of your way.",
+  "level": 5,
+  "hp": 15,
+  "atk": 2,
+  "def": 7,
+  "resolve": 6,
+  "weakness": "silence",
+  "loot": [
+   "shush-card"
+  ],
+  "source": {
+   "author": "Herman Melville",
+   "died": 1891,
+   "work": "Bartleby, the Scrivener",
+   "published": 1853
+  }
+ },
+ {
+  "id": "hound-of-the-archive",
+  "name": "A Gigantic Hound",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 2,
+  "text": "Glowing jaws, enormous paws, last seen on a moor. Nobody explains it here.",
+  "level": 6,
+  "hp": 20,
+  "atk": 4,
+  "def": 7,
+  "resolve": 5,
+  "weakness": "deduction",
+  "loot": [
+   "deerstalker",
+   "clue-envelope"
+  ],
+  "source": {
+   "author": "Arthur Conan Doyle",
+   "died": 1930,
+   "work": "The Hound of the Baskervilles",
+   "published": 1902
+  }
+ },
+ {
+  "id": "mr-hyde",
+  "name": "Mr Hyde, After Hours",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 2,
+  "text": "A small, unpleasant man who tramples readers in the corridors. Dislikes mornings.",
+  "level": 6,
+  "hp": 19,
+  "atk": 4,
+  "def": 6,
+  "resolve": 5,
+  "weakness": "daylight",
+  "loot": [
+   "pocket-sundial"
+  ],
+  "source": {
+   "author": "Robert Louis Stevenson",
+   "died": 1894,
+   "work": "Strange Case of Dr Jekyll and Mr Hyde",
+   "published": 1886
+  }
+ },
+ {
+  "id": "the-shredder",
+  "name": "The Shredder",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 2,
+  "text": "Confidential waste with an appetite. It turns readers into strips.",
+  "level": 6,
+  "hp": 18,
+  "atk": 4,
+  "def": 7,
+  "resolve": 5,
+  "weakness": "glue",
+  "loot": [
+   "tube-of-paste",
+   "paper-clip"
+  ]
+ },
+ {
+  "id": "unread-classics",
+  "name": "A Stack of Unread Classics",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 2,
+  "text": "Every book you said you had read. They have come to check.",
+  "level": 7,
+  "hp": 22,
+  "atk": 4,
+  "def": 7,
+  "resolve": 6,
+  "weakness": "footnotes",
+  "loot": [
+   "ibid-bottle",
+   "signed-first-edition"
+  ]
+ },
+ {
+  "id": "overdue-librarian",
+  "name": "The Overdue Librarian",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "Has been waiting since 1887 for a book to come back. It is you. You are the book.",
+  "level": 8,
+  "hp": 20,
+  "atk": 4,
+  "def": 8,
+  "resolve": 7,
+  "weakness": "fine print",
+  "loot": [
+   "librarian-lanyard",
+   "unwritten-sequel"
+  ],
+  "named": true,
+  "special": {
+   "name": "Compound Late Fee",
+   "text": "Your fine doubles. Then it doubles again. Interest is a weapon and she is fluent in it."
+  }
+ },
+ {
+  "id": "phantom-of-the-archive",
+  "name": "The Phantom of the Archive",
+  "tiers": [
+   2,
+   2
+  ],
+  "weight": 1,
+  "text": "A masked figure who lives under the stacks and has opinions about your humming.",
+  "level": 8,
+  "hp": 22,
+  "atk": 4,
+  "def": 7,
+  "resolve": 7,
+  "weakness": "silence",
+  "loot": [
+   "ex-libris-plate",
+   "jar-of-daylight"
+  ],
+  "named": true,
+  "special": {
+   "name": "The Chandelier",
+   "text": "A chandelier of reading lamps falls from the ceiling. Nobody installed a chandelier. That is the point."
+  },
+  "source": {
+   "author": "Gaston Leroux",
+   "died": 1927,
+   "work": "The Phantom of the Opera",
+   "published": 1910
+  }
+ }
+]

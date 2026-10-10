@@ -1,0 +1,212 @@
+[
+ {
+  "id": "died-of-mild-inconvenience",
+  "name": "Died of Mild Inconvenience",
+  "text": "Reward: a coupon for nothing. Valid nowhere.",
+  "counter": "deaths",
+  "at": 1
+ },
+ {
+  "id": "frequent-returner",
+  "name": "Frequent Returner",
+  "text": "Five deaths. The returns bin now greets you by name.",
+  "counter": "deaths",
+  "at": 5
+ },
+ {
+  "id": "loyalty-card",
+  "name": "Loyalty Card, Fully Stamped",
+  "text": "Twenty-five deaths. Your next one is free. They were all free.",
+  "counter": "deaths",
+  "at": 25
+ },
+ {
+  "id": "mind-the-step",
+  "name": "Mind the Step",
+  "text": "Reached floor 2. Reward: the knowledge that there is a floor 3.",
+  "counter": "floor",
+  "at": 2
+ },
+ {
+  "id": "below-the-bargain-bin",
+  "name": "Below the Bargain Bin",
+  "text": "Floor 5. Reward: a bookmark shaped like a slightly smaller bookmark.",
+  "counter": "floor",
+  "at": 5
+ },
+ {
+  "id": "deep-catalogue",
+  "name": "Deep Catalogue",
+  "text": "Floor 10. Nobody upstairs remembers you. Nobody upstairs remembered you before.",
+  "counter": "floor",
+  "at": 10
+ },
+ {
+  "id": "out-of-print",
+  "name": "Out of Print",
+  "text": "Floor 20. You are now officially hard to find. Collectors are interested.",
+  "counter": "floor",
+  "at": 20
+ },
+ {
+  "id": "second-chapter",
+  "name": "Second Chapter",
+  "text": "Level 2. Reward: a sense of momentum, lent, due back Tuesday.",
+  "counter": "level",
+  "at": 2
+ },
+ {
+  "id": "well-thumbed",
+  "name": "Well Thumbed",
+  "text": "Level 5. Your spine shows signs of use. That is a compliment, here.",
+  "counter": "level",
+  "at": 5
+ },
+ {
+  "id": "revised-and-expanded",
+  "name": "Revised and Expanded",
+  "text": "Level 10. Now with a new foreword by nobody.",
+  "counter": "level",
+  "at": 10
+ },
+ {
+  "id": "lucky-six",
+  "name": "Lucky Six",
+  "text": "One critical. Reward: the die now winks at you. It will not do it again.",
+  "counter": "crits",
+  "at": 1
+ },
+ {
+  "id": "rave-reviews",
+  "name": "Rave Reviews",
+  "text": "Ten criticals. A blurb about you reads: Competent. Occasionally.",
+  "counter": "crits",
+  "at": 10
+ },
+ {
+  "id": "butterfingers",
+  "name": "Butterfingers",
+  "text": "One fumble. Reward: a second, smaller pair of hands. Do not use them.",
+  "counter": "fumbles",
+  "at": 1
+ },
+ {
+  "id": "slapstick-classic",
+  "name": "A Slapstick Classic",
+  "text": "Ten fumbles. Now taught in clown school, as a warning.",
+  "counter": "fumbles",
+  "at": 10
+ },
+ {
+  "id": "tactical-exit",
+  "name": "Tactical Exit",
+  "text": "Fled once. Reward: a medal, which you left behind in your hurry.",
+  "counter": "flees",
+  "at": 1
+ },
+ {
+  "id": "personal-best",
+  "name": "Personal Best",
+  "text": "Fled twenty times. Your running shoes have filed a complaint.",
+  "counter": "flees",
+  "at": 20
+ },
+ {
+  "id": "first-blood",
+  "name": "First Blood, Mostly Ink",
+  "text": "One kill. Reward: a sticker that says I Did A Violence. Peels at once.",
+  "counter": "kills",
+  "at": 1
+ },
+ {
+  "id": "pest-control",
+  "name": "Pest Control",
+  "text": "Ten kills. The monsters have started a support group.",
+  "counter": "kills",
+  "at": 10
+ },
+ {
+  "id": "pulp-fiction",
+  "name": "Pulp",
+  "text": "Fifty kills. Everything you touch is now recycled paper.",
+  "counter": "kills",
+  "at": 50
+ },
+ {
+  "id": "dewey-decimated",
+  "name": "Dewey Decimated",
+  "text": "Two hundred kills. A whole classification system weeps quietly.",
+  "counter": "kills",
+  "at": 200
+ },
+ {
+  "id": "named-and-shamed",
+  "name": "Named and Shamed",
+  "text": "One boss down. Reward: their title, which does not fit you.",
+  "counter": "bosses",
+  "at": 1
+ },
+ {
+  "id": "series-finale",
+  "name": "Series Finale",
+  "text": "Five bosses. Each promised a sequel. None will get one.",
+  "counter": "bosses",
+  "at": 5
+ },
+ {
+  "id": "strongly-worded",
+  "name": "Strongly Worded Letter",
+  "text": "Talked one down. Your weapon of choice: a polite but firm tone.",
+  "counter": "talked_down",
+  "at": 1
+ },
+ {
+  "id": "book-club-moderator",
+  "name": "Book Club Moderator",
+  "text": "Ten talked down. Reward: a folding chair and nobody listening.",
+  "counter": "talked_down",
+  "at": 10
+ },
+ {
+  "id": "read-the-label",
+  "name": "Read the Label",
+  "text": "Used ten items. Reward: a warning sticker, applied to you.",
+  "counter": "items_used",
+  "at": 10
+ },
+ {
+  "id": "name-dropper",
+  "name": "Name Dropper",
+  "text": "Visited five author rooms. You may now say you knew them before they were dead.",
+  "counter": "author_rooms",
+  "at": 5
+ },
+ {
+  "id": "power-nap",
+  "name": "Power Nap",
+  "text": "Rested ten times. Reward: a pillow stuffed with rejected manuscripts.",
+  "counter": "rests",
+  "at": 10
+ },
+ {
+  "id": "window-shopper",
+  "name": "Window Shopper",
+  "text": "Visited a shop. There is no window. Reward withdrawn.",
+  "counter": "shops",
+  "at": 1
+ },
+ {
+  "id": "big-spender",
+  "name": "Big Spender",
+  "text": "Spent 100 coins. Reward: a receipt longer than most novels.",
+  "counter": "coins_spent",
+  "at": 100
+ },
+ {
+  "id": "patron-of-the-arts",
+  "name": "Patron of the Arts",
+  "text": "Spent 1000 coins. A plaque in your honour, hung facing the wall.",
+  "counter": "coins_spent",
+  "at": 1000
+ }
+]

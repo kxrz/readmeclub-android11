@@ -1,0 +1,3528 @@
+[
+ {
+  "id": "bb-returns-desk",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Returns Desk",
+  "text": "{enemy} stands behind the returns desk, refunding a book nobody bought. It looks up. It wants a receipt. You have never had a receipt in your life.",
+  "choices": [
+   {
+    "label": "Fight it",
+    "stat": "SAFE",
+    "success": {
+     "text": "You vault the counter. Customer service is now a contact sport.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Forge a receipt",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "The forgery is flawless. It refunds you for something. Do not ask what.",
+     "effects": [
+      "coins:+6",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "It holds the receipt to the light. The watermark is a doodle of a duck.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You hand over your shopping list. It reads 'eggs, revenge'. It takes the hint.",
+     "effects": [
+      "hp:-1",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Slip past the queue",
+    "stat": "LUCK",
+    "success": {
+     "text": "Nobody notices you. Nobody ever notices anyone in a queue.",
+     "effects": [
+      "xp:8"
+     ]
+    },
+    "failure": {
+     "text": "Someone shouts 'there's a queue'. Everyone turns. So does it.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-bargain-bin",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   1,
+   2
+  ],
+  "name": "The Bargain Bin",
+  "text": "A bin of books at 50p each. Something rustles under the diet guides from 1987. {enemy} surfaces, wearing a dust jacket as a cape.",
+  "choices": [
+   {
+    "label": "Fight it",
+    "stat": "SAFE",
+    "success": {
+     "text": "Everything must go. Starting with it.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Haggle it down",
+    "stat": "WITS",
+    "success": {
+     "text": "You argue it down to 20p. It leaves, ashamed of its new value.",
+     "effects": [
+      "xp:12",
+      "coins:+3"
+     ]
+    },
+    "failure": {
+     "text": "It refuses to be discounted further. It takes this personally.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "critical": {
+     "text": "You haggle so well it pays you to leave. It throws in a book.",
+     "effects": [
+      "xp:15",
+      "item:random"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-stockroom-door",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Staff Only",
+  "text": "A door marked STAFF ONLY. Behind it, cardboard boxes stacked to the ceiling. {enemy} is unpacking them with great hostility.",
+  "choices": [
+   {
+    "label": "Fight it",
+    "stat": "SAFE",
+    "success": {
+     "text": "You were never staff. You are about to become management.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Pretend to work here",
+    "stat": "WITS",
+    "success": {
+     "text": "You say 'I'm on my break'. It nods with deep respect and lets you pass.",
+     "effects": [
+      "xp:12"
+     ]
+    },
+    "failure": {
+     "text": "It asks for your staff number. You say 'seven'. Wrong.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You pretend so hard it hands you a box cutter and a shift. You quit mid-fight.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Hide in a box",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "It shelves you by mistake under Self-Help. You climb out, helped.",
+     "effects": [
+      "xp:10",
+      "coins:+2"
+     ]
+    },
+    "failure": {
+     "text": "It opens your box. It is not pleased with the contents.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-receipt-drift",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Receipt Drifts",
+  "text": "Knee-deep receipts, curled like dead leaves. Every one says THANK YOU FOR SHOPPING. {enemy} rises from the drift, still printing.",
+  "choices": [
+   {
+    "label": "Fight it",
+    "stat": "SAFE",
+    "success": {
+     "text": "Thank you for fighting. Please keep your receipt.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Wade through fast",
+    "stat": "GUTS",
+    "success": {
+     "text": "You wade out, paper-cut but proud. It is still printing.",
+     "effects": [
+      "xp:10",
+      "hp:-1"
+     ]
+    },
+    "failure": {
+     "text": "The receipts close over your knees. It catches up.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You slip on a receipt for a bookmark. Total: 1 bookmark, 1 dignity.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Ask for a gift receipt",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "It gets confused and prints you a voucher. It runs out of paper and sulks off.",
+     "effects": [
+      "coins:+8",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "It only does gift receipts for gifts. You are not a gift.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-escalator-landing",
+  "kind": "encounter",
+  "weight": 2,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Escalator to Nowhere",
+  "text": "A broken escalator climbs into a ceiling with no hole in it. Halfway up, {enemy} sits on a step, waiting for it to start again.",
+  "choices": [
+   {
+    "label": "Charge up the steps",
+    "stat": "GUTS",
+    "success": {
+     "text": "You knock it down the steps. It was going nowhere anyway.",
+     "effects": [
+      "xp:10",
+      "fight"
+     ]
+    },
+    "failure": {
+     "text": "Broken escalators are just stairs with ambition. You trip on one.",
+     "effects": [
+      "hp:-1",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Press the red button",
+    "stat": "LUCK",
+    "success": {
+     "text": "The escalator lurches into reverse. It is carried away, outraged.",
+     "effects": [
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "The button says 'Do not press'. A siren plays. It is now awake.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "The escalator starts. Upward. Into the ceiling. You bump your head.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    },
+    "critical": {
+     "text": "It reverses so fast it drops a coin purse on its way to nowhere.",
+     "effects": [
+      "xp:15",
+      "coins:+10"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-till-of-doom",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Till",
+  "text": "An ancient till, the kind that goes ka-ching. The drawer is open. {enemy} guards the float, counting coppers with both fists.",
+  "choices": [
+   {
+    "label": "Fight it",
+    "stat": "SAFE",
+    "success": {
+     "text": "Ka-ching.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Grab a handful",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "You grab and run. It is still counting. It will be counting for days.",
+     "effects": [
+      "coins:+10"
+     ]
+    },
+    "failure": {
+     "text": "The drawer snaps shut on your fingers. It looks very pleased.",
+     "effects": [
+      "hp:-1",
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You grab a handful of coupons. Expired. It laughs at you.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Ask for change",
+    "stat": "WITS",
+    "success": {
+     "text": "It hands you change for a note you never gave. Accounting is hard.",
+     "effects": [
+      "coins:+5",
+      "xp:8"
+     ]
+    },
+    "failure": {
+     "text": "It asks to see the note. You have no note. Things escalate.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-lost-property",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   1,
+   2
+  ],
+  "name": "Lost Property",
+  "text": "A crate labelled LOST PROPERTY: one glove, four umbrellas, a single reading glass. {enemy} is curled in the crate, claiming to be lost too.",
+  "choices": [
+   {
+    "label": "Fight it",
+    "stat": "SAFE",
+    "success": {
+     "text": "Nobody claims it. You decide to.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Claim it as yours",
+    "stat": "WITS",
+    "success": {
+     "text": "You fill in the form. It is so embarrassed to be yours that it flees.",
+     "effects": [
+      "xp:12"
+     ]
+    },
+    "failure": {
+     "text": "It reads the form. You misspelled its name. Unforgivable.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Rummage anyway",
+    "stat": "LUCK",
+    "success": {
+     "text": "Under the umbrellas: something useful. It does not notice.",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "You grab the glove. There is a hand in it. Its hand.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You open an umbrella indoors. Seven years of bad luck start now. So does it.",
+     "effects": [
+      "hp:-1",
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-reading-corner-squatter",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Comfy Chair",
+  "text": "The reading corner has one comfy chair, and {enemy} is sitting in it. It has been there since the shop opened. It is on page 3.",
+  "choices": [
+   {
+    "label": "Demand the chair",
+    "stat": "GUTS",
+    "success": {
+     "text": "It gives up the chair. Then it gives up pretending to be calm.",
+     "effects": [
+      "xp:10",
+      "fight"
+     ]
+    },
+    "failure": {
+     "text": "It does not look up. It does turn the page, menacingly.",
+     "effects": [
+      "hp:-1",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Spoil the ending",
+    "stat": "WITS",
+    "success": {
+     "text": "You whisper the ending. It closes the book and leaves in tears.",
+     "effects": [
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "You spoil the wrong book. It is now furious and confused.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "critical": {
+     "text": "It leaves the chair, the book and a tip. You sit. Bliss.",
+     "effects": [
+      "xp:15",
+      "hp:+2"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-bookmark-graveyard",
+  "kind": "encounter",
+  "weight": 2,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Bookmark Graveyard",
+  "text": "Where lost bookmarks go: bus tickets, love letters, a slice of ham. {enemy} tends the graves and does not like visitors.",
+  "choices": [
+   {
+    "label": "Fight it",
+    "stat": "SAFE",
+    "success": {
+     "text": "You will be needing a bookmark. Several.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Pay your respects",
+    "stat": "WITS",
+    "mod": -1,
+    "success": {
+     "text": "You bow to the ham. It is moved. It lets you pass.",
+     "effects": [
+      "xp:10",
+      "flag:mourned-ham"
+     ]
+    },
+    "failure": {
+     "text": "You giggle at the ham. It was a very respected ham.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You trip into an open grave and mark your own place. Ouch.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Tiptoe through",
+    "stat": "LUCK",
+    "success": {
+     "text": "You tiptoe out with a bus ticket worth a few coins.",
+     "effects": [
+      "coins:+4",
+      "xp:5"
+     ]
+    },
+    "failure": {
+     "text": "A love letter crackles underfoot. It turns around.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-signing-table",
+  "kind": "encounter",
+  "weight": 2,
+  "tiers": [
+   1,
+   2
+  ],
+  "name": "The Signing Table",
+  "text": "A signing table, a pile of unsold hardbacks and a pen chained to the desk. {enemy} sits behind it, waiting for a fan. You are the first in years.",
+  "choices": [
+   {
+    "label": "Ask for a dedication",
+    "stat": "WITS",
+    "success": {
+     "text": "It signs a book 'To my only reader'. It weeps. You keep the book.",
+     "effects": [
+      "item:random",
+      "xp:8"
+     ]
+    },
+    "failure": {
+     "text": "You spell your name for it. It writes something else. Rude.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You ask it to sign 'to my biggest critic'. It agrees, with the chained pen.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Critique its prose",
+    "stat": "GUTS",
+    "success": {
+     "text": "Your review lands like a punch. It flinches. Then it swings.",
+     "effects": [
+      "xp:10",
+      "fight"
+     ]
+    },
+    "failure": {
+     "text": "It reads you a chapter as revenge. Then it fights you anyway.",
+     "effects": [
+      "hp:-1",
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-mystery-box",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Mystery Book Box",
+  "text": "A box wrapped in brown paper: BLIND DATE WITH A BOOK. It ticks faintly. Books are not supposed to tick.",
+  "choices": [
+   {
+    "label": "Unwrap it",
+    "stat": "LUCK",
+    "success": {
+     "text": "It is a novel and a clock. A perfect date.",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "It is a cookbook. It stands you up.",
+     "effects": [
+      "hp:-1"
+     ]
+    },
+    "fumble": {
+     "text": "It is an alarm clock. It goes off. Every book in the basement wakes up.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Shake it",
+    "stat": "WITS",
+    "success": {
+     "text": "You deduce it is a thriller. You are right. That is enough.",
+     "effects": [
+      "xp:12"
+     ]
+    },
+    "failure": {
+     "text": "Shaking a ticking box. Bold. Painful.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Walk away",
+    "stat": "SAFE",
+    "success": {
+     "text": "You leave the date waiting. Somewhere, a book sighs.",
+     "effects": [
+      "xp:3"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-loyalty-card",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Loyalty Card",
+  "text": "On the floor: a loyalty card with nine stamps out of ten. The tenth stamp is the free book. The stamp itself is on a high shelf.",
+  "choices": [
+   {
+    "label": "Climb the shelf",
+    "stat": "GUTS",
+    "success": {
+     "text": "Stamp! Ten out of ten. The card pays out in sincere coins.",
+     "effects": [
+      "coins:+8",
+      "xp:8"
+     ]
+    },
+    "failure": {
+     "text": "The shelf is not a ladder. The floor reminds you.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "critical": {
+     "text": "You stamp it twice. Two free books. The system was not built for you.",
+     "effects": [
+      "item:random",
+      "coins:+5"
+     ]
+    }
+   },
+   {
+    "label": "Draw the stamp",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "Your fake stamp is better than the real one. The card accepts it.",
+     "effects": [
+      "coins:+6",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "You draw a duck. The card is no longer loyal to you.",
+     "effects": [
+      "xp:2"
+     ]
+    }
+   },
+   {
+    "label": "Pocket the card",
+    "stat": "SAFE",
+    "success": {
+     "text": "Nine stamps. Close enough to feel good about.",
+     "effects": [
+      "coins:+2"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-staff-picks",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   1,
+   2
+  ],
+  "name": "Staff Picks",
+  "text": "A shelf of handwritten cards: 'A triumph!', 'I cried!', 'Chewed my leg off to finish it!' The staff are long gone. Their opinions remain.",
+  "choices": [
+   {
+    "label": "Read a recommendation",
+    "stat": "WITS",
+    "success": {
+     "text": "Good taste is contagious. You feel cleverer.",
+     "effects": [
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "It recommends a 900-page saga. You read the first chapter. Time passes.",
+     "effects": [
+      "hp:-1"
+     ]
+    },
+    "fumble": {
+     "text": "You follow the card's advice and chew your leg a little. Why.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Write your own card",
+    "stat": "SAFE",
+    "success": {
+     "text": "You write 'It was fine.' The most honest review in the building.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-card-machine",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Card Machine Declined",
+  "text": "A card machine blinks on the counter: PLEASE INSERT CARD. You have no card. It does not care. It has been waiting a long time.",
+  "choices": [
+   {
+    "label": "Insert a bookmark",
+    "stat": "LUCK",
+    "success": {
+     "text": "APPROVED. It spits out coins in gratitude.",
+     "effects": [
+      "coins:+10"
+     ]
+    },
+    "failure": {
+     "text": "DECLINED. It beeps at you until your ears hurt.",
+     "effects": [
+      "hp:-1"
+     ]
+    },
+    "fumble": {
+     "text": "It eats the bookmark, and then your sleeve. Contactless, it is not.",
+     "effects": [
+      "hp:-2",
+      "lose_item"
+     ]
+    }
+   },
+   {
+    "label": "Guess the PIN",
+    "stat": "WITS",
+    "mod": 2,
+    "success": {
+     "text": "1234. Of course it was 1234. Payment accepted.",
+     "effects": [
+      "coins:+12",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "Wrong. Card blocked. You are now blocked too, somehow.",
+     "effects": [
+      "hp:-1"
+     ]
+    }
+   },
+   {
+    "label": "Unplug it",
+    "stat": "SAFE",
+    "success": {
+     "text": "Silence. It never loved you anyway.",
+     "effects": [
+      "xp:3"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-damp-corner",
+  "kind": "event",
+  "weight": 2,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Damp Corner",
+  "text": "One corner of the basement is damp. The books here have swollen to twice their size and gossip in low, soggy voices.",
+  "choices": [
+   {
+    "label": "Listen in",
+    "stat": "WITS",
+    "success": {
+     "text": "They know where the stairs are. They tell you, for a laugh.",
+     "effects": [
+      "goto:stairs"
+     ]
+    },
+    "failure": {
+     "text": "They are talking about you. It is not kind.",
+     "effects": [
+      "hp:-1"
+     ]
+    }
+   },
+   {
+    "label": "Wring one out",
+    "stat": "GUTS",
+    "success": {
+     "text": "Coins fall out of the pages. Someone used them as bookmarks.",
+     "effects": [
+      "coins:+7"
+     ]
+    },
+    "failure": {
+     "text": "It wrings you out instead. You are now damp and humbled.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "fumble": {
+     "text": "You squeeze a bath book. It squeaks. Your dignity drowns.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-reserved-shelf",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Customer Orders",
+  "text": "A shelf of books on hold, each with a slip: 'For Mrs P., collect by 1994'. One slip has your name on it. You ordered nothing.",
+  "choices": [
+   {
+    "label": "Collect your order",
+    "stat": "LUCK",
+    "success": {
+     "text": "It is exactly what you needed. How did they know?",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "It is the bill. For thirty years of storage.",
+     "effects": [
+      "coins:-5"
+     ]
+    }
+   },
+   {
+    "label": "Read Mrs P.'s order",
+    "stat": "WITS",
+    "success": {
+     "text": "Mrs P. had excellent taste. You learn things.",
+     "effects": [
+      "xp:12"
+     ]
+    },
+    "failure": {
+     "text": "Mrs P. had ordered a book on curses. It works.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "fumble": {
+     "text": "Mrs P. appears behind you, thirty years late and very cross.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Leave it on hold",
+    "stat": "SAFE",
+    "success": {
+     "text": "Some things should stay ordered and never collected.",
+     "effects": [
+      "xp:4"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-tannoy",
+  "kind": "event",
+  "weight": 2,
+  "tiers": [
+   1,
+   2
+  ],
+  "name": "Tannoy Announcement",
+  "text": "A speaker crackles: 'Would {hero} please come to the information desk.' There is no information desk. There never was.",
+  "choices": [
+   {
+    "label": "Find the desk",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "You find it. It has information. Mostly coupons.",
+     "effects": [
+      "coins:+6",
+      "xp:8"
+     ]
+    },
+    "failure": {
+     "text": "You walk into a pillar labelled INFORMATION.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Answer the speaker",
+    "stat": "WITS",
+    "success": {
+     "text": "You say 'Busy, call back.' The tannoy respects that.",
+     "effects": [
+      "xp:12"
+     ]
+    },
+    "failure": {
+     "text": "It plays the hold music. Forever. You leave with a headache.",
+     "effects": [
+      "hp:-1"
+     ]
+    },
+    "critical": {
+     "text": "You take over the tannoy and announce a sale. Coins rain from nowhere.",
+     "effects": [
+      "coins:+12",
+      "xp:10"
+     ]
+    }
+   },
+   {
+    "label": "Ignore it",
+    "stat": "SAFE",
+    "success": {
+     "text": "They call your name twice more. You feel important.",
+     "effects": [
+      "xp:3"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-book-tower",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Leaning Tower",
+  "text": "Someone stacked unsold copies of the same cookbook into a tower. It leans. Wobbles. The top copy holds a twenty-coin note as a bookmark.",
+  "choices": [
+   {
+    "label": "Pull the bottom one",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "The tower stays up, defying physics and good sense. The note drifts down.",
+     "effects": [
+      "coins:+15"
+     ]
+    },
+    "failure": {
+     "text": "The tower comes down on you. 400 recipes for soup.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "It falls, and you are now in the index under 'Fools, crushed'.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   },
+   {
+    "label": "Climb it",
+    "stat": "GUTS",
+    "success": {
+     "text": "You climb a cookbook mountain. The view is mostly soup.",
+     "effects": [
+      "coins:+10",
+      "xp:8"
+     ]
+    },
+    "failure": {
+     "text": "You climb three books high, then sit down on the floor, quickly.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Admire it",
+    "stat": "SAFE",
+    "success": {
+     "text": "Art is fragile. So is the note. You let both be.",
+     "effects": [
+      "xp:4"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-dropped-receipt",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "A Very Long Receipt",
+  "text": "A receipt unrolls across the floor and out of sight. It lists every book ever sold here. At the very end: a total, and a prize.",
+  "choices": [
+   {
+    "label": "Follow it to the end",
+    "stat": "GUTS",
+    "success": {
+     "text": "Three miles later: 'You are our millionth customer!' The prize is real.",
+     "effects": [
+      "xp:15",
+      "coins:+8"
+     ]
+    },
+    "failure": {
+     "text": "You follow it in a circle and arrive back where you began, tired.",
+     "effects": [
+      "hp:-2",
+      "goto:previous"
+     ]
+    }
+   },
+   {
+    "label": "Check the maths",
+    "stat": "WITS",
+    "success": {
+     "text": "You find an error in your favour. The shop owes you.",
+     "effects": [
+      "coins:+10"
+     ]
+    },
+    "failure": {
+     "text": "You find an error in their favour. You pay it, out of shame.",
+     "effects": [
+      "coins:-4"
+     ]
+    },
+    "critical": {
+     "text": "You audit the whole shop. You are now technically the owner. For a minute.",
+     "effects": [
+      "coins:+15",
+      "xp:15"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-kafka-returns",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Kafka Returns Office",
+  "text": "A clerk the size of a beetle explains that your return was rejected for reasons you cannot be told, by an office that will not see you.",
+  "choices": [
+   {
+    "label": "Appeal the decision",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "Your appeal is accepted. Nobody knows why. Nobody ever will.",
+     "effects": [
+      "xp:20",
+      "coins:+5"
+     ]
+    },
+    "failure": {
+     "text": "Your appeal is filed. It will be heard in about a hundred years.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "fumble": {
+     "text": "You wake up as a form, in triplicate. It takes a while to unfold.",
+     "effects": [
+      "hp:-3",
+      "flag:became-form"
+     ]
+    }
+   },
+   {
+    "label": "Turn into a beetle",
+    "stat": "LUCK",
+    "success": {
+     "text": "Beetles need no receipts. You scuttle through the office unbothered.",
+     "effects": [
+      "xp:15",
+      "goto:stairs"
+     ]
+    },
+    "failure": {
+     "text": "Your family is very disappointed. Someone throws an apple.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Accept your fate",
+    "stat": "SAFE",
+    "success": {
+     "text": "You accept. The clerk stamps something. You feel guilty of it.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Franz Kafka",
+   "died": 1924,
+   "work": "The Metamorphosis",
+   "published": 1915
+  }
+ },
+ {
+  "id": "bb-bartleby-till",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Bartleby at the Till",
+  "text": "A pale clerk sits at the till. You ask him to ring up a book. He looks at you for a long time and says: 'I would prefer not to.'",
+  "choices": [
+   {
+    "label": "Insist politely",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "He prefers not to, but he prefers not to argue even more. Sale complete.",
+     "effects": [
+      "item:random",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "He would prefer not to. You would prefer to leave. You both win.",
+     "effects": [
+      "xp:3"
+     ]
+    },
+    "fumble": {
+     "text": "You catch it. You would now prefer not to as well. You stand there an hour.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Ring it up yourself",
+    "stat": "GUTS",
+    "success": {
+     "text": "You work the till. He watches. He would prefer not to stop you.",
+     "effects": [
+      "coins:+8",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "The drawer slams. He would prefer not to help.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Prefer not to",
+    "stat": "SAFE",
+    "success": {
+     "text": "You both prefer not to. A deep, silent friendship forms.",
+     "effects": [
+      "xp:6"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Herman Melville",
+   "died": 1891,
+   "work": "Bartleby, the Scrivener",
+   "published": 1853
+  }
+ },
+ {
+  "id": "bb-rabbit-escalator",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Down the Rabbit Escalator",
+  "text": "A white rabbit runs down the broken escalator, checking a pocket watch: 'Late! Late!' Two bottles on a step: DRINK ME and READ ME.",
+  "choices": [
+   {
+    "label": "Drink me",
+    "stat": "LUCK",
+    "success": {
+     "text": "You shrink and slip under a door to somewhere better.",
+     "effects": [
+      "goto:stairs",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "You grow. The basement is now a hat. You hit your head.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "You grow and shrink at the same time. Your knees disagree about it.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   },
+   {
+    "label": "Read me",
+    "stat": "WITS",
+    "success": {
+     "text": "It is a riddle with no answer. You enjoy it anyway. Very curious.",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "Why is a raven like a writing desk? You think about it too long.",
+     "effects": [
+      "hp:-1"
+     ]
+    },
+    "critical": {
+     "text": "You answer the unanswerable riddle. The rabbit gives you its watch.",
+     "effects": [
+      "xp:20",
+      "item:random"
+     ]
+    }
+   },
+   {
+    "label": "Follow the rabbit",
+    "stat": "SAFE",
+    "success": {
+     "text": "It is late. So are you. You arrive somewhere, out of breath.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Lewis Carroll",
+   "died": 1898,
+   "work": "Alice's Adventures in Wonderland",
+   "published": 1865
+  }
+ },
+ {
+  "id": "bb-quixote-stockroom",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Quixote in the Stockroom",
+  "text": "A thin knight in cardboard armour charges a pallet of boxes. 'Giants!' he cries. They are boxes of calendars. Last year's.",
+  "choices": [
+   {
+    "label": "Charge with him",
+    "stat": "GUTS",
+    "success": {
+     "text": "The calendars fall. The knight names you his squire. Glory!",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "The calendars win. They usually do. Every month.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "You get caught on the pallet jack and wave round and round. Like a windmill.",
+     "effects": [
+      "hp:-4",
+      "flag:windmilled"
+     ]
+    }
+   },
+   {
+    "label": "Tell him they're boxes",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "He is crushed, then grateful. He gives you his tin-foil helmet.",
+     "effects": [
+      "item:random",
+      "xp:8"
+     ]
+    },
+    "failure": {
+     "text": "He knights you an enemy of chivalry. With a ruler. Hard.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Hold his horse",
+    "stat": "SAFE",
+    "success": {
+     "text": "The horse is a mop. You hold it with dignity.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Miguel de Cervantes",
+   "died": 1616,
+   "work": "Don Quixote",
+   "published": 1605
+  }
+ },
+ {
+  "id": "bb-scrooge-counting",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Scrooge's Cash-Up",
+  "text": "In a cold back office, a miser counts the day's takings by one candle. 'Bah,' he says, to you, to the till, to the concept of customers.",
+  "choices": [
+   {
+    "label": "Haunt him a bit",
+    "stat": "GUTS",
+    "success": {
+     "text": "You rattle a chain of paperclips. He repents and tips you generously.",
+     "effects": [
+      "coins:+12",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "He bills you for the chain. And the fright.",
+     "effects": [
+      "coins:-5"
+     ]
+    },
+    "critical": {
+     "text": "He repents so hard he buys everyone a goose. You get the wishbone.",
+     "effects": [
+      "coins:+15",
+      "item:random"
+     ]
+    }
+   },
+   {
+    "label": "Ask for a raise",
+    "stat": "WITS",
+    "mod": 2,
+    "success": {
+     "text": "He gives you one more coal for the fire. You feel warmer, and wiser.",
+     "effects": [
+      "hp:+2",
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "He docks your pay. You do not work here. He docks it anyway.",
+     "effects": [
+      "coins:-4"
+     ]
+    },
+    "fumble": {
+     "text": "Three ghosts arrive to discuss your attitude. It takes all night.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Say 'Humbug'",
+    "stat": "SAFE",
+    "success": {
+     "text": "He nods. A rare moment of mutual understanding.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Charles Dickens",
+   "died": 1870,
+   "work": "A Christmas Carol",
+   "published": 1843
+  }
+ },
+ {
+  "id": "bb-raven-returns",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Raven at Returns",
+  "text": "Upon the returns bin perches a raven. You ask when your book will be back in stock. It says one word, and you already know which.",
+  "choices": [
+   {
+    "label": "Ask it a better question",
+    "stat": "WITS",
+    "success": {
+     "text": "'Is the exit this way?' 'Nevermore.' So, the other way. Clever you.",
+     "effects": [
+      "xp:15",
+      "goto:stairs"
+     ]
+    },
+    "failure": {
+     "text": "'Will I ever get my refund?' You did not want that answer.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "fumble": {
+     "text": "You ask it about Lenore. Twelve stanzas follow. You are drained.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Shoo it off the bin",
+    "stat": "GUTS",
+    "success": {
+     "text": "It leaves a feather and a coin in the bin. Quoth the raven: bye.",
+     "effects": [
+      "coins:+6",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "It pecks you on the bust of your forehead.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Return it",
+    "stat": "SAFE",
+    "success": {
+     "text": "You put the raven in the returns bin. It is not accepted.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Edgar Allan Poe",
+   "died": 1849,
+   "work": "The Raven",
+   "published": 1845
+  }
+ },
+ {
+  "id": "bb-unclaimed-parcel",
+  "kind": "loot",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "Unclaimed Parcel",
+  "text": "A parcel addressed to 'Whoever Finds This'. You are whoever. It is wrapped in so much tape it is mostly tape, with a parcel inside.",
+  "choices": [
+   {
+    "label": "Tear it open",
+    "stat": "GUTS",
+    "success": {
+     "text": "Ten minutes of tape later: {item}. Worth it.",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "The tape wins. You are now wrapped too, and lightly bruised.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "fumble": {
+     "text": "You tape yourself to the floor. You lose something getting free.",
+     "effects": [
+      "lose_item",
+      "hp:-1"
+     ]
+    }
+   },
+   {
+    "label": "Sign for it",
+    "stat": "SAFE",
+    "success": {
+     "text": "You sign. A delivery fee appears. So does the parcel.",
+     "effects": [
+      "item:random",
+      "coins:-5"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-display-window",
+  "kind": "loot",
+  "weight": 3,
+  "tiers": [
+   1,
+   2
+  ],
+  "name": "The Window Display",
+  "text": "A window display faces a brick wall. The prize piece sits on a velvet cushion, and the cushion sits on a pressure plate.",
+  "choices": [
+   {
+    "label": "Swap it for a book",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "Same weight, no alarm. You walk away with {item}.",
+     "effects": [
+      "item:random",
+      "xp:8"
+     ]
+    },
+    "failure": {
+     "text": "A bell rings. A trapdoor opens. You drop into the previous room.",
+     "effects": [
+      "hp:-1",
+      "goto:previous"
+     ]
+    },
+    "critical": {
+     "text": "Perfect swap. You also pocket the change jar behind the cushion.",
+     "effects": [
+      "item:random",
+      "coins:+8"
+     ]
+    }
+   },
+   {
+    "label": "Grab and run",
+    "stat": "GUTS",
+    "success": {
+     "text": "Alarms, shouting, nobody. You keep {item} and your pride.",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "The cushion bites. You did not know cushions could bite.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Window-shop",
+    "stat": "SAFE",
+    "success": {
+     "text": "Looking is free. That is the one free thing in here.",
+     "effects": [
+      "xp:3"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-reading-nook",
+  "kind": "rest",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Reading Nook",
+  "text": "A beanbag, a lamp, a sign: QUIET PLEASE. For once the basement is silent. Even the books are holding their breath.",
+  "choices": [
+   {
+    "label": "Have a nap",
+    "stat": "SAFE",
+    "success": {
+     "text": "You sleep a chapter. You wake with a page stuck to your face. Refreshed.",
+     "effects": [
+      "heal:half"
+     ]
+    }
+   },
+   {
+    "label": "Search the beanbag",
+    "stat": "LUCK",
+    "success": {
+     "text": "Inside the beanbag: beans, and {item}.",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "The beanbag bursts. You will be finding beans for weeks.",
+     "effects": [
+      "hp:-1"
+     ]
+    },
+    "fumble": {
+     "text": "You break the silence. SHHH, says everything at once. It hurts.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-staff-kitchen",
+  "kind": "rest",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Staff Kitchen",
+  "text": "A kettle, a fridge with a note: 'DO NOT EAT MY YOGHURT. - D.' A tin of biscuits. A chair that has seen things.",
+  "choices": [
+   {
+    "label": "Tea and biscuits",
+    "stat": "SAFE",
+    "success": {
+     "text": "A cup of tea fixes most things. You are most things.",
+     "effects": [
+      "heal:half"
+     ]
+    }
+   },
+   {
+    "label": "Eat D.'s yoghurt",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "Delicious. Forbidden. You feel stronger and slightly wanted.",
+     "effects": [
+      "hp:+4",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "Best before 2009. Your stomach files a complaint.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "D. is behind you. D. has a ladle. D. is not happy.",
+     "effects": [
+      "hp:-4",
+      "flag:ate-yoghurt"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "bb-secondhand-stall",
+  "kind": "shop",
+  "weight": 3,
+  "tiers": [
+   1,
+   1
+  ],
+  "name": "The Secondhand Stall",
+  "text": "A trestle table under a bare bulb. A seller in fingerless gloves nods at three things laid out on a tea towel. 'No refunds. No questions.'",
+  "choices": []
+ },
+ {
+  "id": "ar-cabinet-drawer",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Drawer Marked Z",
+  "text": "A filing cabinet drawer slides open by itself. Inside, filed under Z, is {enemy}. It looks annoyed to have been found so late in the alphabet.",
+  "choices": [
+   {
+    "label": "Slam the drawer",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "Clunk. It stays filed. You take the petty cash taped under the drawer.",
+     "effects": [
+      "coins:+10",
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "The drawer bounces back open. So does the fight.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You file your own fingers under Z. They are now alphabetised.",
+     "effects": [
+      "hp:-3",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Refile it under A",
+    "stat": "WITS",
+    "success": {
+     "text": "Moved to the front, it panics about being seen first and flees.",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "It refuses the new letter and climbs out swinging.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Fight it properly",
+    "stat": "SAFE",
+    "success": {
+     "text": "You roll up your sleeves. The cabinet hums with approval.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-microfiche-reader",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Microfiche Glow",
+  "text": "A microfiche reader hums in the dark. Projected on its screen, enlarged forty times, is {enemy}. Then it steps out of the screen at normal size.",
+  "choices": [
+   {
+    "label": "Switch off the lamp",
+    "stat": "LUCK",
+    "success": {
+     "text": "Click. Without the projection it loses all confidence and leaves.",
+     "effects": [
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "Wrong switch. You turned on the fan. It is now angry and well ventilated.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You pull the plug of the fire alarm instead. Silence is broken. So are you.",
+     "effects": [
+      "hp:-4",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Zoom out until it's tiny",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "It shrinks to a footnote. You step over it and pocket its lunch money.",
+     "effects": [
+      "xp:25",
+      "coins:+8"
+     ]
+    },
+    "failure": {
+     "text": "You zoom in. It is now enormous and very interested in you.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    },
+    "critical": {
+     "text": "It shrinks to a full stop. You file it at the end of a sentence for good.",
+     "effects": [
+      "xp:35",
+      "coins:+12"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-card-catalogue",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Card Catalogue Ambush",
+  "text": "Ten thousand index cards rustle at once. One drawer holds a single card: your name, and below it, {enemy}. The card says it is already here.",
+  "choices": [
+   {
+    "label": "Tear up the card",
+    "stat": "GUTS",
+    "success": {
+     "text": "Without a card, it has no reason to exist. It wanders off to find one.",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "The card was laminated. You only hurt your wrists and its feelings.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Look it up first",
+    "stat": "WITS",
+    "success": {
+     "text": "Cross-reference says: see also, your boot. You see to it with your boot.",
+     "effects": [
+      "xp:20",
+      "fight"
+     ]
+    },
+    "failure": {
+     "text": "The cross-reference sends you to another drawer. It follows you there.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You find a card for your own death. It is overdue. You panic loudly.",
+     "effects": [
+      "hp:-3",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Sneak past",
+    "stat": "LUCK",
+    "success": {
+     "text": "You tiptoe past in the order of the Dewey Decimal System. Respect.",
+     "effects": [
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "A drawer squeaks. It turns, slowly, like a librarian hearing a crisp packet.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-stamp-desk",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Rubber Stamp Desk",
+  "text": "A desk covered in rubber stamps: RECEIVED, DENIED, DAMP. Behind it sits {enemy}, holding the stamp marked YOU. It raises it slowly.",
+  "choices": [
+   {
+    "label": "Grab the DENIED stamp",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "Thunk. DENIED, right on its forehead. It leaves to file an appeal.",
+     "effects": [
+      "xp:25"
+     ]
+    },
+    "failure": {
+     "text": "You grab DAMP instead. Everything was already damp. Nothing happens.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You stamp yourself DENIED. Your own left knee stops cooperating.",
+     "effects": [
+      "hp:-4",
+      "fight"
+     ]
+    },
+    "critical": {
+     "text": "DENIED, then FILED, then ARCHIVED. It is gone. The ink pad was full of coins.",
+     "effects": [
+      "xp:35",
+      "coins:+15"
+     ]
+    }
+   },
+   {
+    "label": "Ask for form 27-B",
+    "stat": "WITS",
+    "success": {
+     "text": "Form 27-B is out of stock. It is so embarrassed it hides under the desk.",
+     "effects": [
+      "xp:20",
+      "coins:+6"
+     ]
+    },
+    "failure": {
+     "text": "It hands you form 27-B. It is a fight, in triplicate.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-silent-reading",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Silent Reading Room",
+  "text": "SILENCE, says a sign. SILENCE IS LAW, says a smaller sign. In the corner, {enemy} is reading. It looks up. Neither of you can make a sound.",
+  "choices": [
+   {
+    "label": "Mime a threat",
+    "stat": "WITS",
+    "success": {
+     "text": "Your mime is so strong it believes you have a sword. It leaves, quietly.",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "It thinks you are miming a fight. It accepts, silently.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You mime being trapped in a box. You are, emotionally. It attacks.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Shush it first",
+    "stat": "GUTS",
+    "success": {
+     "text": "A perfect shush. It is legally obliged to leave. You find coins in its chair.",
+     "effects": [
+      "xp:15",
+      "coins:+8"
+     ]
+    },
+    "failure": {
+     "text": "Your shush is too loud. You are both in breach. Only one walks out.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-damp-corridor",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Very Damp Corridor",
+  "text": "Water drips from pipes labelled DO NOT DRIP. The floor is a soggy carpet of forms. Something squelches towards you: {enemy}, wearing a raincoat.",
+  "choices": [
+   {
+    "label": "Stand your ground",
+    "stat": "SAFE",
+    "success": {
+     "text": "You stand. It squelches. Here we go.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Slide past on a form",
+    "stat": "LUCK",
+    "success": {
+     "text": "You surf a wet tax return all the way to the next door. Gnarly.",
+     "effects": [
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "You slide straight into it. Now you are both wet and fighting.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You slide in a full circle and apologise to it. It does not accept.",
+     "effects": [
+      "hp:-3",
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-returns-chute",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Returns Chute",
+  "text": "A brass chute marked RETURNS ONLY. A thump, then another. Something climbs out that was never meant to be returned: {enemy}.",
+  "choices": [
+   {
+    "label": "Shove it back up",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "Back up the chute. Someone upstairs gets a nasty surprise. Not your problem.",
+     "effects": [
+      "xp:25"
+     ]
+    },
+    "failure": {
+     "text": "It is heavier than it looks. It is also angrier than it looks.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Stamp it as received",
+    "stat": "WITS",
+    "success": {
+     "text": "Received. Processed. It sits in a tray, satisfied. You take the late fee.",
+     "effects": [
+      "xp:15",
+      "coins:+10"
+     ]
+    },
+    "failure": {
+     "text": "Wrong date on the stamp. It takes this very personally.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You stamp the chute instead. The chute sends down eleven more books. Ow.",
+     "effects": [
+      "hp:-4",
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-index-tunnel",
+  "kind": "encounter",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Between Two Shelves",
+  "text": "A gap between shelving units, exactly one reader wide. Halfway along, {enemy} is stuck. It sees you. You are also, somehow, now stuck.",
+  "choices": [
+   {
+    "label": "Wriggle free",
+    "stat": "LUCK",
+    "success": {
+     "text": "You pop out like a cork. It stays stuck. You leave it a polite note.",
+     "effects": [
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "You wriggle towards it instead. Close quarters it is.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Push the shelf over",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "The shelf falls the other way. It is now under four volumes of tax law.",
+     "effects": [
+      "xp:30"
+     ]
+    },
+    "failure": {
+     "text": "The shelf does not move. You only look like you are hugging it.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "The shelf falls your way. Volume one is fine. Volumes two to nine hurt.",
+     "effects": [
+      "hp:-5",
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-overdue-patrol",
+  "kind": "encounter",
+  "weight": 2,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Overdue Patrol",
+  "text": "A trolley squeaks down the aisle. Pushing it, on behalf of the Overdue Librarian, is {enemy}. It is checking every reader against a list.",
+  "choices": [
+   {
+    "label": "Show your library card",
+    "stat": "LUCK",
+    "success": {
+     "text": "Your card is valid until the heat death of the universe. It waves you on.",
+     "effects": [
+      "xp:15",
+      "coins:+5"
+     ]
+    },
+    "failure": {
+     "text": "Your card expired in 1987. You were not alive in 1987. Still a fight.",
+     "effects": [
+      "fight"
+     ]
+    },
+    "fumble": {
+     "text": "You show it a biscuit. It is offended on behalf of all librarians.",
+     "effects": [
+      "hp:-3",
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Steal the trolley",
+    "stat": "GUTS",
+    "success": {
+     "text": "You ride the trolley away, laughing silently. It chases. You fight on wheels.",
+     "effects": [
+      "xp:10",
+      "fight"
+     ]
+    },
+    "failure": {
+     "text": "One wheel squeaks. Every wheel squeaks. You are caught.",
+     "effects": [
+      "hp:-2",
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-shredder-room",
+  "kind": "encounter",
+  "weight": 2,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Room of the Shredder",
+  "text": "A huge shredder labelled CONFIDENTIAL chews on nothing. Next to it, {enemy} is feeding it documents. One of them has your photo on it.",
+  "choices": [
+   {
+    "label": "Rescue your file",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "You snatch it back. It lists you as brave. And mildly overdue.",
+     "effects": [
+      "xp:25"
+     ]
+    },
+    "failure": {
+     "text": "Half your file is shredded. Your left half feels it.",
+     "effects": [
+      "hp:-3",
+      "fight"
+     ]
+    },
+    "critical": {
+     "text": "You save your file and feed it the shredder's manual. It sulks off.",
+     "effects": [
+      "xp:35",
+      "coins:+10"
+     ]
+    }
+   },
+   {
+    "label": "Unplug the shredder",
+    "stat": "WITS",
+    "success": {
+     "text": "Silence. Without its machine, it has no purpose and resigns.",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "The shredder has a backup battery. And a friend. Fight.",
+     "effects": [
+      "fight"
+     ]
+    }
+   },
+   {
+    "label": "Fight it now",
+    "stat": "SAFE",
+    "success": {
+     "text": "Fine. No paperwork.",
+     "effects": [
+      "fight"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-form-in-triplicate",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Form in Triplicate",
+  "text": "A clerk's window. A sign: TO PROCEED, FILL IN FORM 9 IN TRIPLICATE. The pen is chained to the desk. The chain is shorter than the form.",
+  "choices": [
+   {
+    "label": "Fill it in neatly",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "Three perfect copies. The window opens. A hand gives you a reward and a receipt.",
+     "effects": [
+      "xp:25",
+      "coins:+12"
+     ]
+    },
+    "failure": {
+     "text": "You smudge copy two. All three are void. Paper cut for your trouble.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "fumble": {
+     "text": "You fill it in with the chain. It says CHAIN in very bad handwriting.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Write in all caps",
+    "stat": "GUTS",
+    "success": {
+     "text": "Shouting on paper works. The clerk is frightened into a refund.",
+     "effects": [
+      "coins:+10"
+     ]
+    },
+    "failure": {
+     "text": "Caps are shouting. Shouting is noise. Noise is fined.",
+     "effects": [
+      "coins:-8"
+     ]
+    }
+   },
+   {
+    "label": "Leave it blank",
+    "stat": "SAFE",
+    "success": {
+     "text": "You hand in a blank form. It is accepted. Nobody reads them anyway.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-dewey-lift",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Dewey Lift",
+  "text": "A lift with buttons numbered by the Dewey Decimal System. 000 to 999. A note says the stairs are at 027. Or possibly 720. The note is damp.",
+  "choices": [
+   {
+    "label": "Press 027",
+    "stat": "WITS",
+    "success": {
+     "text": "Ding. Libraries and archives. The doors open straight onto the stairs.",
+     "effects": [
+      "goto:stairs"
+     ]
+    },
+    "failure": {
+     "text": "Ding. 720, Architecture. You admire a column and lose some time.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "critical": {
+     "text": "Ding. Stairs, plus a coin someone left in the lift. Very librarian.",
+     "effects": [
+      "goto:stairs",
+      "coins:+8"
+     ]
+    }
+   },
+   {
+    "label": "Press every button",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "The lift visits every subject. You learn a little about everything.",
+     "effects": [
+      "xp:30"
+     ]
+    },
+    "failure": {
+     "text": "The lift visits every subject. It takes six hours. You are hungry.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "Floor 616, Diseases. You catch a mild case of footnotes.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   },
+   {
+    "label": "Take the stairs",
+    "stat": "SAFE",
+    "success": {
+     "text": "There are no stairs. You walk back out. Healthy, at least.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-lost-property",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Lost Property Cage",
+  "text": "A wire cage full of lost things: umbrellas, one glove, a bookmark shaped like a bookmark. A padlock. A sign: CLAIMS BY FORM ONLY.",
+  "choices": [
+   {
+    "label": "Pick the lock",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "Click. You take a glove full of coins. Someone was saving for a second glove.",
+     "effects": [
+      "coins:+15",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "The lock pinches you. Then it files a complaint about you.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "fumble": {
+     "text": "You lock yourself in. You are now lost property. Someone claims you. Painfully.",
+     "effects": [
+      "hp:-4",
+      "lose_item"
+     ]
+    }
+   },
+   {
+    "label": "Fill in a claim form",
+    "stat": "LUCK",
+    "success": {
+     "text": "Your claim is approved within the hour. A very wet umbrella is yours.",
+     "effects": [
+      "xp:15",
+      "coins:+5"
+     ]
+    },
+    "failure": {
+     "text": "Claim rejected. Processing fee applies.",
+     "effects": [
+      "coins:-5"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-sneeze",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Dust Cloud",
+  "text": "A box marked 1904 TO 1911, DO NOT OPEN. You opened it. Archive dust rises, ancient and ticklish. A sneeze is coming. Silence is law.",
+  "choices": [
+   {
+    "label": "Hold it in",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "You hold it. Your eyes water. Somewhere, the law nods at you.",
+     "effects": [
+      "xp:25"
+     ]
+    },
+    "failure": {
+     "text": "It escapes as a tiny squeak. A fine arrives by pneumatic tube.",
+     "effects": [
+      "coins:-10"
+     ]
+    },
+    "fumble": {
+     "text": "The sneeze is heard three floors up. The ceiling sends down a filing cabinet.",
+     "effects": [
+      "hp:-5"
+     ]
+    }
+   },
+   {
+    "label": "Sneeze into a book",
+    "stat": "LUCK",
+    "success": {
+     "text": "The book absorbs it. Inside, a pressed coin. Sorry, book.",
+     "effects": [
+      "coins:+8",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "The book was a pop-up book. It sneezes back.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-pneumatic-tubes",
+  "kind": "event",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Pneumatic Tube Station",
+  "text": "A wall of brass tubes, each labelled with a department. A capsule rattles in, addressed to {hero}. You did not know you had a department.",
+  "choices": [
+   {
+    "label": "Open the capsule",
+    "stat": "LUCK",
+    "success": {
+     "text": "A memo of praise and some coins. Your department likes you. Who knew.",
+     "effects": [
+      "coins:+12",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "It is a fine for receiving post during silent hours.",
+     "effects": [
+      "coins:-8"
+     ]
+    },
+    "fumble": {
+     "text": "The capsule was still under pressure. It hits you in the eyebrow.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   },
+   {
+    "label": "Send yourself a reply",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "You write yourself a clear reply. Reading it later, you feel wiser.",
+     "effects": [
+      "xp:30"
+     ]
+    },
+    "failure": {
+     "text": "The tube sucks in your sleeve. And then, briefly, you.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-retention-schedule",
+  "kind": "event",
+  "weight": 2,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Retention Schedule",
+  "text": "A chart on the wall says how long everything is kept. Forms: 7 years. Minutes: 10 years. Readers: 'see Overdue Librarian'. Your name is circled.",
+  "choices": [
+   {
+    "label": "Erase your name",
+    "stat": "LUCK",
+    "success": {
+     "text": "Gone. Officially, you were never here. Unofficially, you gain confidence.",
+     "effects": [
+      "xp:20",
+      "flag:erased-from-schedule"
+     ]
+    },
+    "failure": {
+     "text": "The eraser was ink. Now your name is circled and smudged. Suspicious.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Add yourself a holiday",
+    "stat": "WITS",
+    "success": {
+     "text": "Two weeks of annual leave, approved. You take a short one now.",
+     "effects": [
+      "hp:+3",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "Holiday denied. The chart deducts it from your health instead.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "You schedule yourself for destruction. You narrowly cancel it.",
+     "effects": [
+      "hp:-5"
+     ]
+    }
+   },
+   {
+    "label": "Walk away slowly",
+    "stat": "SAFE",
+    "success": {
+     "text": "Some things are best not read. This is most things, here.",
+     "effects": []
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-humidity-gauge",
+  "kind": "event",
+  "weight": 2,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Humidity Gauge",
+  "text": "A dial reads DAMP, DAMPER, SOUP. The needle is on SOUP. A tap labelled DEHUMIDIFY is rusted shut. The books are sweating.",
+  "choices": [
+   {
+    "label": "Force the tap",
+    "stat": "GUTS",
+    "success": {
+     "text": "It turns. The air dries. The books thank you with a small rain of coins.",
+     "effects": [
+      "coins:+10",
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "It turns the other way. The needle now reads LAKE.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "The tap comes off in your hand. So does a jet of very old water.",
+     "effects": [
+      "hp:-4",
+      "lose_item"
+     ]
+    }
+   },
+   {
+    "label": "Tap the gauge",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "The needle drops to MOIST. Nobody likes that word, but it is better.",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "The glass cracks. Soup comes out of the gauge itself.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-accession-number",
+  "kind": "event",
+  "weight": 2,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Accession Desk",
+  "text": "A machine stamps a number on everything that enters the Archive. It has noticed you entering. Its stamp is warming up.",
+  "choices": [
+   {
+    "label": "Accept a number",
+    "stat": "SAFE",
+    "success": {
+     "text": "You are now item 2-0417. It is oddly comforting to belong.",
+     "effects": [
+      "xp:10"
+     ]
+    }
+   },
+   {
+    "label": "Dodge the stamp",
+    "stat": "LUCK",
+    "success": {
+     "text": "The stamp hits the desk. The desk is now item 2-0418. It looks proud.",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "Stamped on the forehead, upside down. 8140-2. Sore.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Feed it a fake form",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "It accessions the form and pays out a finder's fee. Bureaucracy, beaten.",
+     "effects": [
+      "coins:+15",
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "The machine detects fraud. It charges an admin fee.",
+     "effects": [
+      "coins:-10"
+     ]
+    },
+    "fumble": {
+     "text": "It accessions your shoe. With your foot still in it.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-ladder-cart",
+  "kind": "event",
+  "weight": 2,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Rolling Ladder",
+  "text": "A library ladder on rails, shelves rising into the dark. At the top, a box labelled MISC, VALUABLE. The rails are damp. Of course they are.",
+  "choices": [
+   {
+    "label": "Climb to the top",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "You reach MISC, VALUABLE. It is mostly coins and one sad postcard.",
+     "effects": [
+      "coins:+18",
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "The ladder rolls. You go along the shelves at speed, then down them.",
+     "effects": [
+      "hp:-4"
+     ]
+    },
+    "fumble": {
+     "text": "You ride the ladder the full length of the Archive, screaming silently.",
+     "effects": [
+      "hp:-5",
+      "goto:previous"
+     ]
+    },
+    "critical": {
+     "text": "You reach the box and find a better box inside it.",
+     "effects": [
+      "coins:+20",
+      "item:random"
+     ]
+    }
+   },
+   {
+    "label": "Push it from below",
+    "stat": "LUCK",
+    "success": {
+     "text": "The box falls off the top. It lands softly on your foot. Coins!",
+     "effects": [
+      "coins:+10",
+      "hp:-1"
+     ]
+    },
+    "failure": {
+     "text": "The ladder rolls into the next aisle. Someone in there swears in Latin.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-overcoat-office",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Copying Clerk's Office",
+  "text": "A clerk in a threadbare overcoat copies documents by hand, lovingly, forever. He has a spare pen. He also has a spare desk, which is worse.",
+  "choices": [
+   {
+    "label": "Copy one page",
+    "stat": "WITS",
+    "success": {
+     "text": "Your letters are beautiful. He weeps a little and gives you his savings.",
+     "effects": [
+      "coins:+15",
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "You copy it wrong. He corrects it. Then corrects you. For an hour.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "You copy your own hand onto the page. The ink will not come off.",
+     "effects": [
+      "hp:-2",
+      "coins:-5"
+     ]
+    }
+   },
+   {
+    "label": "Steal the overcoat",
+    "stat": "LUCK",
+    "mod": 2,
+    "success": {
+     "text": "It is warm and full of pockets. One holds something useful.",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "Bad idea. Very bad. You feel haunted for the rest of the floor.",
+     "effects": [
+      "hp:-5"
+     ]
+    }
+   },
+   {
+    "label": "Compliment his coat",
+    "stat": "SAFE",
+    "success": {
+     "text": "He beams. You have made a clerk happy. That is rare in literature.",
+     "effects": [
+      "xp:10"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Nikolai Gogol",
+   "died": 1852,
+   "work": "The Overcoat",
+   "published": 1842
+  }
+ },
+ {
+  "id": "ar-government-sneeze",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Clerk Who Sneezed",
+  "text": "At a tiny theatre in the Archive, a clerk sneezes on the bald head of a general in the row in front. He has apologised nine times. He is going for ten.",
+  "choices": [
+   {
+    "label": "Tell him to let it go",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "He lets it go. Literature trembles. You get a medal from the general.",
+     "effects": [
+      "xp:30",
+      "coins:+10"
+     ]
+    },
+    "failure": {
+     "text": "He apologises to you for apologising. You apologise back. It never ends.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Apologise for him",
+    "stat": "LUCK",
+    "success": {
+     "text": "The general accepts. Everyone goes home alive, which is a first.",
+     "effects": [
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "The general glares at you. You feel very small, then smaller.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "You sneeze on the general too. Two clerks, one glare. Ouch.",
+     "effects": [
+      "hp:-4",
+      "coins:-6"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Anton Chekhov",
+   "died": 1904,
+   "work": "The Death of a Government Clerk",
+   "published": 1883
+  }
+ },
+ {
+  "id": "ar-prisoner-24601",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "File 24601",
+  "text": "An inspector stands over a single file, numbered 24601. He has read it every night for twenty years. He asks if you have stolen any candlesticks.",
+  "choices": [
+   {
+    "label": "Show empty pockets",
+    "stat": "LUCK",
+    "success": {
+     "text": "Empty. He is disappointed. He gives you a coin, sternly, for honesty.",
+     "effects": [
+      "coins:+8",
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "There is a candlestick in your pocket. You have no idea how.",
+     "effects": [
+      "coins:-12"
+     ]
+    },
+    "fumble": {
+     "text": "Two candlesticks. And a loaf of bread. You will be chased for chapters.",
+     "effects": [
+      "hp:-4",
+      "coins:-8"
+     ]
+    }
+   },
+   {
+    "label": "Argue about mercy",
+    "stat": "WITS",
+    "mod": 1,
+    "success": {
+     "text": "You argue so well that his whole worldview wobbles. He wanders off to think.",
+     "effects": [
+      "xp:30"
+     ]
+    },
+    "failure": {
+     "text": "He is unmoved. He is never moved. He is a statue in a hat.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "critical": {
+     "text": "He closes file 24601 forever and hands you its reward money.",
+     "effects": [
+      "xp:35",
+      "coins:+15"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Victor Hugo",
+   "died": 1885,
+   "work": "Les Miserables",
+   "published": 1862
+  }
+ },
+ {
+  "id": "ar-chateau-tunnel",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Abbe's Tunnel",
+  "text": "A hole in the wall of a records cell. Through it, an old abbe whispers that he has been digging for years and there is treasure on an island. Very far down.",
+  "choices": [
+   {
+    "label": "Help him dig",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "You dig for what feels like fourteen years. The tunnel leads to the stairs.",
+     "effects": [
+      "goto:stairs",
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "You dig into the warden's office. He is not amused.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   },
+   {
+    "label": "Learn his map",
+    "stat": "WITS",
+    "success": {
+     "text": "He teaches you languages, chemistry and where the coins are hidden.",
+     "effects": [
+      "xp:25",
+      "coins:+15"
+     ]
+    },
+    "failure": {
+     "text": "The map is in Italian, in code, on burnt paper. You get a headache.",
+     "effects": [
+      "hp:-2"
+     ]
+    },
+    "fumble": {
+     "text": "You pretend to be dead to escape. They believe you. A bit too much.",
+     "effects": [
+      "hp:-5"
+     ]
+    }
+   },
+   {
+    "label": "Wish him luck",
+    "stat": "SAFE",
+    "success": {
+     "text": "He thanks you and goes back to digging. Revenge can wait.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Alexandre Dumas",
+   "died": 1870,
+   "work": "The Count of Monte Cristo",
+   "published": 1844
+  }
+ },
+ {
+  "id": "ar-two-handwritings",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Handwriting Cabinet",
+  "text": "Two letters in two hands: one neat and doctorly, one jagged and rude. A lawyer insists they were written by the same man. There is a smoking flask.",
+  "choices": [
+   {
+    "label": "Compare the hands",
+    "stat": "WITS",
+    "success": {
+     "text": "Same slant, same loops. You solve it in one room. The lawyer pays you to stay quiet.",
+     "effects": [
+      "xp:25",
+      "coins:+12"
+     ]
+    },
+    "failure": {
+     "text": "You decide they are different men. The rude one disagrees, rudely.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Drink the flask",
+    "stat": "LUCK",
+    "mod": 2,
+    "success": {
+     "text": "You feel bigger, hairier and full of terrible ideas. Mostly good ones.",
+     "effects": [
+      "stat:GUTS:+1"
+     ]
+    },
+    "failure": {
+     "text": "You feel smaller and worse. Your handwriting gets jagged.",
+     "effects": [
+      "hp:-4"
+     ]
+    },
+    "fumble": {
+     "text": "You spend the next room as someone much ruder. Nobody here forgives you.",
+     "effects": [
+      "hp:-5",
+      "coins:-10"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "Robert Louis Stevenson",
+   "died": 1894,
+   "work": "Strange Case of Dr Jekyll and Mr Hyde",
+   "published": 1886
+  }
+ },
+ {
+  "id": "ar-green-porcelain",
+  "kind": "author",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "Palace of Green Porcelain",
+  "text": "A ruined museum from the far future. The books here have rotted to brown rags. A traveller with a machine and some matches says this is your library, later.",
+  "choices": [
+   {
+    "label": "Search the rags",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "One page survived. It is your library card. Still valid. Deeply comforting.",
+     "effects": [
+      "xp:25",
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "Only dust. It goes straight up your nose. Silence is not law in the future.",
+     "effects": [
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Borrow his matches",
+    "stat": "GUTS",
+    "success": {
+     "text": "You light the way and find a drawer of coins nobody needs any more.",
+     "effects": [
+      "coins:+15",
+      "xp:15"
+     ]
+    },
+    "failure": {
+     "text": "Matches near rotten paper. The room has opinions about that.",
+     "effects": [
+      "hp:-4"
+     ]
+    },
+    "fumble": {
+     "text": "You burn the traveller's eyebrow. He leaves for the year 802,701 in a huff.",
+     "effects": [
+      "hp:-3",
+      "coins:-5"
+     ]
+    }
+   }
+  ],
+  "source": {
+   "author": "H. G. Wells",
+   "died": 1946,
+   "work": "The Time Machine",
+   "published": 1895
+  }
+ },
+ {
+  "id": "ar-evidence-locker",
+  "kind": "loot",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Evidence Locker",
+  "text": "A locker marked EVIDENCE, DO NOT REMOVE. Something inside is useful. Every item has a tag tied to it. Every tag has a bell tied to it.",
+  "choices": [
+   {
+    "label": "Take it slowly",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "Not a single jingle. You take {item} and the silence is yours.",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "Jingle. A fine arrives before you finish wincing. You keep the item.",
+     "effects": [
+      "item:random",
+      "coins:-10"
+     ]
+    },
+    "fumble": {
+     "text": "Every bell rings. You are hit by a falling sign that reads QUIET.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   },
+   {
+    "label": "Cut the bells off",
+    "stat": "WITS",
+    "success": {
+     "text": "Snip, snip. Two items, no noise. A clean heist.",
+     "effects": [
+      "item:random",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "You cut the wrong string. A filing drawer closes on your hand.",
+     "effects": [
+      "hp:-3"
+     ]
+    }
+   },
+   {
+    "label": "Leave the evidence",
+    "stat": "SAFE",
+    "success": {
+     "text": "Responsible. The locker is visibly disappointed in you.",
+     "effects": [
+      "xp:5"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-deaccession-bin",
+  "kind": "loot",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Deaccession Bin",
+  "text": "A bin of things the Archive no longer wants. A label: FREE TO A GOOD HOME. A smaller label: CONTENTS MAY BITE. One item glints.",
+  "choices": [
+   {
+    "label": "Reach in",
+    "stat": "GUTS",
+    "success": {
+     "text": "You pull out {item}. Only slightly chewed.",
+     "effects": [
+      "item:random"
+     ]
+    },
+    "failure": {
+     "text": "You get {item}, and the bin gets a piece of your thumb.",
+     "effects": [
+      "item:random",
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "The bin takes something of yours instead. It seems happy with the trade.",
+     "effects": [
+      "lose_item",
+      "hp:-2"
+     ]
+    }
+   },
+   {
+    "label": "Tip the bin over",
+    "stat": "LUCK",
+    "mod": 1,
+    "success": {
+     "text": "Out spills {item} and some loose change. Nothing bites. Today.",
+     "effects": [
+      "item:random",
+      "coins:+6"
+     ]
+    },
+    "failure": {
+     "text": "Out spills a lot of angry staples. You get the item, eventually.",
+     "effects": [
+      "item:random",
+      "hp:-4"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-reading-lamp",
+  "kind": "rest",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Last Dry Armchair",
+  "text": "An armchair under a green reading lamp. It is the only dry thing in the Archive. A sign says SEAT RESERVED. It does not say for whom.",
+  "choices": [
+   {
+    "label": "Sit and rest",
+    "stat": "SAFE",
+    "success": {
+     "text": "You doze under the lamp. Nobody claims the seat. You feel restored.",
+     "effects": [
+      "heal:half"
+     ]
+    }
+   },
+   {
+    "label": "Search the cushions",
+    "stat": "LUCK",
+    "success": {
+     "text": "Coins, a pencil and a sweet from 1952. You take the coins.",
+     "effects": [
+      "coins:+12",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "The owner of the seat arrives. He has been dead a while. He is still cross.",
+     "effects": [
+      "hp:-3"
+     ]
+    },
+    "fumble": {
+     "text": "The armchair folds shut on you like a book. You are a bookmark now.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-staff-room",
+  "kind": "rest",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Staff Room",
+  "text": "A staff room with a kettle, a sofa and a rota for washing up. Nobody has done the washing up since the Archive opened. The kettle is still warm.",
+  "choices": [
+   {
+    "label": "Make tea and rest",
+    "stat": "SAFE",
+    "success": {
+     "text": "Tea. A biscuit. Feet up on the rota. Bliss.",
+     "effects": [
+      "heal:half"
+     ]
+    }
+   },
+   {
+    "label": "Do the washing up",
+    "stat": "GUTS",
+    "mod": 1,
+    "success": {
+     "text": "Heroic. Under the last mug, someone's lost wages. Finders keepers.",
+     "effects": [
+      "coins:+15",
+      "xp:20"
+     ]
+    },
+    "failure": {
+     "text": "Something in the sink has evolved. It does not want to be washed.",
+     "effects": [
+      "hp:-4"
+     ]
+    }
+   },
+   {
+    "label": "Raid the fridge",
+    "stat": "LUCK",
+    "success": {
+     "text": "A yoghurt, still in date. A miracle. You feel strong.",
+     "effects": [
+      "hp:+4",
+      "xp:10"
+     ]
+    },
+    "failure": {
+     "text": "It was labelled. It was the Overdue Librarian's. You will pay.",
+     "effects": [
+      "coins:-12"
+     ]
+    },
+    "fumble": {
+     "text": "The yoghurt was older than you. Your stomach files a formal complaint.",
+     "effects": [
+      "hp:-5"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "id": "ar-fines-office",
+  "kind": "shop",
+  "weight": 3,
+  "tiers": [
+   2,
+   2
+  ],
+  "name": "The Fines Office",
+  "text": "A window where readers pay their fines. Since nobody does, the clerk sells confiscated items instead. Prices are non-negotiable. So is the silence.",
+  "choices": []
+ }
+]
