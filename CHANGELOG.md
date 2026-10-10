@@ -36,6 +36,9 @@ and refuses to release a version that has no section here.
   achievements, and listen to a sarcastic narrator. A boss every fifth floor; death sends
   you back to the start of the floor, keeping your level. Two biomes (Bookshop Basement,
   The Archive), then they cycle with modifiers. Saved after every tap, fully offline.
+  Every screen keeps its bottom bar in view; bosses are written for their floor, and floor
+  encounters stay near the floor's level. A save the app cannot read is kept aside as
+  `stacks-save.bak` instead of being replaced.
 - Writing guide for The Stacks content (`docs/games/stacks-content.md`), checked by tests.
 - **Learn**: quizzes in rounds of 10, with four answers, then the right one and why. The
   **General knowledge** pack ships in the app: 200 questions in eight themes (History,

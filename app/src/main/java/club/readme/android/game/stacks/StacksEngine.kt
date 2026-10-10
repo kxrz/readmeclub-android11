@@ -9,6 +9,9 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
 
     private val rng = Rng(state.seed)
 
+    /** The item the last effect gave, for `{item}` in its outcome text. */
+    private var lastItem: Item? = null
+
     /** A choice as the screen shows it: label, the tag on its right, and whether it can be taken. */
     class ChoiceView(val label: String, val tag: String, val enabled: Boolean = true)
 
@@ -29,7 +32,20 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
 
     val difficulty: Int get() = minOf(9, 4 + state.floor / 3) + minOf(cycle, 3)
 
-    fun named(name: String): String = modifier?.let { "$it $name" } ?: name
+    /** A name with the cycle's modifier after its article: "The Damp Shredder", "An Upside-down Erratum Slip". */
+    fun named(name: String): String {
+        val m = modifier ?: return name
+        val article = ARTICLES.firstOrNull { name.startsWith("$it ") } ?: return "$m $name"
+        val a = if (article == "The") article else if (m.first().lowercaseChar() in "aeiou") "An" else "A"
+        return "$a $m ${name.removePrefix("$article ")}"
+    }
+
+    /** [named] as it reads mid-sentence: "a bookmark moth", "the Shredder". */
+    private fun namedInText(name: String): String {
+        val n = named(name)
+        val article = ARTICLES.firstOrNull { n.startsWith("$it ") } ?: return n
+        return article.lowercase() + n.removePrefix(article)
+    }
 
     fun carried(): List<Item> = state.bag.mapNotNull(content::item)
 
@@ -39,11 +55,14 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
     fun choices(): List<ChoiceView> {
         val r = room ?: return emptyList()
         if (r.kind == "shop") {
-            return state.shop.mapNotNull(content::item).map { ChoiceView(it.name, "${it.price}c", state.coins >= it.price) } +
+            return state.shop.mapNotNull(content::item).map { ChoiceView(it.name, "${it.price}c", canBuy(it)) } +
                 ChoiceView(LEAVE, "SAFE")
         }
         return r.choices.map { ChoiceView(fill(it.label), it.stat.name) }
     }
+
+    /** A purchase needs the coins and a free slot: a bought item is never left behind. */
+    private fun canBuy(item: Item) = state.coins >= item.price && state.bag.size < BAG
 
     fun roomText(): String = room?.let { fill(it.text) }.orEmpty()
 
@@ -76,7 +95,7 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
         state.critical = false
         if (c.stat == Stat.SAFE) {
             outcome = c.success
-            text = fill(outcome.text)
+            text = ""
         } else {
             val d = rng.d6()
             val value = stat(c.stat.name)
@@ -98,10 +117,10 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
                 bump("fumbles")
                 state.indexLine = line("fumble")
             }
-            text = "You roll $d + ${c.stat.name} $value = $total (needs $needed). " + fill(outcome.text)
+            text = "You roll $d + ${c.stat.name} $value = $total (needs $needed). "
         }
         pills += apply(outcome.effects)
-        showOutcome(text, pills)
+        showOutcome(text + fill(outcome.text), pills)
     }
 
     /** Continue from an outcome, a cleared floor ("Go down") or death ("Try again"). */
@@ -116,8 +135,12 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
                 state.fight = null
                 state.pendingFight = null
                 state.pendingItem = null
-                state.pendingLevelUps = 0
                 enterRoom()
+                // Levels earned just before dying are kept: pick them now, then play the room.
+                if (state.pendingLevelUps > 0 && state.screen == Screen.ROOM) {
+                    state.stay = true
+                    state.screen = Screen.LEVEL_UP
+                }
             }
             else -> return
         }
@@ -153,6 +176,10 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
         if (state.screen != Screen.FIGHT) return
         clearNotes()
         val d = rng.d6()
+        if (action != Action.ATTACK) {
+            if (d == 6) bump("crits")
+            if (d == 1) bump("fumbles")
+        }
         when (action) {
             Action.ATTACK -> {
                 val guts = stat("GUTS")
@@ -230,6 +257,7 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
                 if (f.hp <= 0) win(f, e, talked = false) else enemyTurn(f, e)
             }
         } else if (state.pendingLevelUps > 0 && state.screen == Screen.ROOM) {
+            state.stay = true
             state.screen = Screen.LEVEL_UP
         }
         checkAchievements()
@@ -297,7 +325,11 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
         }
         val r = content.room(id) ?: return advance()
         when (r.kind) {
-            "encounter" -> state.roomEnemy = rng.pick(content.enemies.filter { !it.named && biomeTier in it.tiers }) { it.weight }?.id
+            "encounter" -> {
+                val pool = content.enemies.filter { !it.named && biomeTier in it.tiers }
+                val near = pool.filter { it.level <= state.floor + 1 || cycle > 0 }.ifEmpty { pool }
+                state.roomEnemy = rng.pick(near) { it.weight }?.id
+            }
             "shop" -> {
                 val stock = content.items.filter { biomeTier in it.tiers }.toMutableList()
                 repeat(3) { rng.pick(stock) { itemWeight(it) }?.let { stock.remove(it); state.shop += it.id } }
@@ -352,7 +384,7 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
             showOutcome("You leave without buying anything. The till sulks.", emptyList())
             return
         }
-        if (state.coins < item.price) return
+        if (!canBuy(item)) return
         state.coins -= item.price
         bump("coins_spent", item.price)
         state.shop.remove(item.id)
@@ -363,10 +395,14 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
 
     private fun startFight(enemyId: String) {
         val e = content.enemy(enemyId) ?: return advance()
-        val scale = 1 + 0.15 * (state.floor - 1)
+        // Base stats are set for the enemy's first floor: regular enemies grow with the floors
+        // into their own biome, named ones (written for their boss floor) with each cycle.
+        val into = maxOf(0, state.floor - 1 - FLOORS_PER_TIER * (e.tiers.first() - 1))
+        val scale = if (e.named) 1 + 0.75 * cycle else 1 + 0.15 * into
         fun scaled(v: Int) = maxOf(1, Math.round(v * scale).toInt())
-        val hp = scaled(e.hp) * if (e.named) 3 else 1
-        state.fight = FightState(e.id, e.named, e.level, hp, hp, scaled(e.atk), scaled(e.def), scaled(e.resolve))
+        val hp = if (e.named) Math.round(scaled(e.hp) * 1.5).toInt() else scaled(e.hp)
+        val def = e.def + (if (e.named) cycle else into / 4)
+        state.fight = FightState(e.id, e.named, e.level, hp, hp, scaled(e.atk), def, scaled(e.resolve))
         state.roomEnemy = e.id
         state.screen = Screen.FIGHT
     }
@@ -376,7 +412,7 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
         val guts = stat("GUTS")
         val name = named(e.name)
         if (f.named && f.turn % 3 == 0) {
-            val damage = f.atk * 2
+            val damage = f.atk + 2
             state.hp -= damage
             log(f, "${e.specialName ?: "A special move"}: ${e.specialText ?: "it hits hard."} You lose $damage HP.")
         } else {
@@ -475,7 +511,8 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
                     pills += (if (n >= 0) "+$n " else "−${-n} ") + s
                 }
                 "goto" -> when (arg) {
-                    "previous" -> if (state.position > 0) state.rooms.add(state.position + 1, state.rooms[state.position - 1])
+                    // On a floor's first room, "previous" is the room itself.
+                    "previous" -> state.rooms.add(state.position + 1, state.rooms[maxOf(0, state.position - 1)])
                     "stairs" -> {
                         // Drop the rooms left before the stairs, but never the boss.
                         val boss = state.rooms.indexOf(BOSS)
@@ -502,6 +539,7 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
     }
 
     private fun give(item: Item): String {
+        lastItem = item
         if (state.bag.size < BAG) state.bag += item.id else state.pendingItem = item.id
         return item.name
     }
@@ -556,8 +594,9 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
     fun fill(text: String): String = text
         .replace("{hero}", heroName)
         .replace("{floor}", state.floor.toString())
-        .replace("{enemy}", enemy?.let { named(it.name) } ?: "something")
-        .replace("{item}", state.bag.lastOrNull()?.let(content::item)?.name ?: "something")
+        .replace(SENTENCE_START_ENEMY) { it.groupValues[1] + (enemy?.let { e -> named(e.name) } ?: "Something") }
+        .replace("{enemy}", enemy?.let { namedInText(it.name) } ?: "something")
+        .replace("{item}", lastItem?.name ?: "something")
 
     /** Keeps the generator's position in the state, so saving the state saves the run. */
     private fun save() {
@@ -570,6 +609,8 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
         const val BOSS = "#boss"
         const val LEAVE = "Leave"
         private const val DAY_MS = 24 * 60 * 60 * 1000L
+        private val ARTICLES = listOf("The", "An", "A")
+        private val SENTENCE_START_ENEMY = Regex("(^|[.!?] )\\{enemy\\}")
 
         val CLASSES = mapOf(
             "Margin Scribbler" to mapOf("WITS" to 3, "GUTS" to 1, "LUCK" to 2),

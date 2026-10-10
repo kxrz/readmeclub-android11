@@ -186,8 +186,8 @@
     <string name="stacks_hero_name">Reader</string>
     <string name="stacks_xp">%1$d / %2$d XP to level %3$d</string>
     <string name="stacks_bag_label">Bag · %1$d / %2$d · tap an item</string>
-    <string name="stacks_use">Use %1$s</string>
-    <string name="stacks_drop">Drop %1$s</string>
+    <string name="stacks_use_short">Use</string>
+    <string name="stacks_drop_short">Drop</string>
     <string name="stacks_best">Best floor %1$d · %2$d deaths</string>
     <string name="stacks_back_to_fight">Fight</string>
     <string name="stacks_achievements">Achievements</string>

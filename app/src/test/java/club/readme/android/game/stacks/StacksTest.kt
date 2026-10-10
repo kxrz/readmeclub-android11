@@ -109,6 +109,62 @@ class StacksTest {
     }
 
     @Test
+    fun anXpItemUsedInARoomKeepsYouInThatRoom() {
+        val e = engine(5)
+        e.start("Margin Scribbler")
+        assertEquals(Screen.ROOM, e.state.screen)
+        val room = e.state.position
+        e.state.xp = 40
+        e.state.bag += "index-card"
+        e.use(e.state.bag.lastIndex)
+        assertEquals(Screen.LEVEL_UP, e.state.screen)
+        e.levelUp("WITS")
+        assertEquals(Screen.ROOM, e.state.screen)
+        assertEquals(room, e.state.position)
+        assertEquals(2, e.state.level)
+    }
+
+    @Test
+    fun deathKeepsTheLevelsEarnedJustBefore() {
+        val e = engine(6)
+        e.start("Speed Reader")
+        e.state.pendingLevelUps = 1
+        e.state.screen = Screen.DEATH
+        e.next()
+        assertEquals(Screen.LEVEL_UP, e.state.screen)
+        e.levelUp("LUCK")
+        assertEquals(2, e.state.level)
+        assertEquals(Screen.ROOM, e.state.screen)
+        assertEquals(0, e.state.position)
+    }
+
+    @Test
+    fun modifiersGoAfterTheArticle() {
+        val e = engine()
+        e.start("Speed Reader")
+        assertEquals("The Shredder", e.named("The Shredder"))
+        e.state.floor = 11
+        val m = e.modifier!!
+        assertEquals("The $m Shredder", e.named("The Shredder"))
+        assertTrue(e.named("A Bookmark Moth").endsWith(" $m Bookmark Moth"))
+    }
+
+    @Test
+    fun bossesAreWrittenForTheirFloor() {
+        val e = engine()
+        e.start("Spine Breaker")
+        e.state.floor = 5
+        val cat = content.enemy("bookshop-cat")!!
+        e.state.pendingFight = cat.id
+        e.state.screen = Screen.OUTCOME
+        e.next()
+        val f = e.state.fight!!
+        assertEquals(Math.round(cat.hp * 1.5).toInt(), f.maxHp)
+        assertEquals(cat.def, f.def)
+        assertEquals(cat.atk, f.atk)
+    }
+
+    @Test
     fun anUnknownSaveIsRefused() {
         assertEquals(null, StacksState.fromJson("{\"version\": 99}"))
         assertEquals(null, StacksState.fromJson("not json"))

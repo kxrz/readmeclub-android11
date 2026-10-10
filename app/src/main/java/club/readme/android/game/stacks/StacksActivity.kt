@@ -46,13 +46,22 @@ class StacksActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.stacks)
         content = load(this)
-        val state = runCatching { StacksState.fromJson(saveFile.readText()) }.getOrNull()
-            ?: StacksState().apply { seed = System.nanoTime() }
+        val saved = runCatching { saveFile.readText() }.getOrNull()
+        val state = saved?.let { runCatching { StacksState.fromJson(it) }.getOrNull() }
+            ?: StacksState().apply {
+                seed = System.nanoTime()
+                // A save this version cannot read is kept aside, never overwritten.
+                if (saved != null) saveFile.renameTo(File(filesDir, "$SAVE.bak"))
+            }
         engine = StacksEngine(content, state)
-        engine.welcomeBack(System.currentTimeMillis())
         findViewById<View>(R.id.back).setOnClickListener { back() }
         previous.setOnClickListener { pageKey(-1) }
         primary.setOnClickListener { primaryAction() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        engine.welcomeBack(System.currentTimeMillis())
         render()
     }
 
@@ -182,6 +191,8 @@ class StacksActivity : Activity() {
         title(engine.named(room.name))
         pill(getString(R.string.stacks_floor_room, engine.state.floor, engine.state.position + 1, engine.state.rooms.size))
         body(engine.roomText())
+        // Four choices (a shop) fill the screen: the Index keeps quiet there.
+        if (engine.choices().size >= 4) findViewById<View>(R.id.index_box).visibility = View.GONE
         engine.choices().forEachIndexed { i, c ->
             row(c.label, c.tag, enabled = c.enabled) { act { engine.choose(i) } }
         }
@@ -265,14 +276,12 @@ class StacksActivity : Activity() {
         val s = engine.state
         title(getString(R.string.stacks_hero_name))
         pill("Lv ${s.level}")
-        statusLine()
         val xp = engine.xpToNext
         card(
-            "${s.heroClass} · HP ${s.hp}/${engine.maxHp} · ${s.coins} coins",
-            getString(R.string.stacks_xp, s.xp, xp, s.level + 1),
-            squares(s.xp, xp),
+            s.heroClass,
+            "HP ${s.hp}/${engine.maxHp} · ${s.coins} coins\nGUTS ${engine.stat("GUTS")} · WITS ${engine.stat("WITS")} · LUCK ${engine.stat("LUCK")}",
+            squares(s.xp, xp) + " " + getString(R.string.stacks_xp, s.xp, xp, s.level + 1),
         )
-        body("GUTS ${engine.stat("GUTS")} · WITS ${engine.stat("WITS")} · LUCK ${engine.stat("LUCK")}")
         val bag = engine.carried()
         val item = bag.getOrNull(slot)
         label(getString(R.string.stacks_bag_label, bag.size, StacksEngine.BAG))
@@ -287,21 +296,22 @@ class StacksActivity : Activity() {
             columns = 3, heightDp = 56,
         )
         if (item != null) {
-            pills(listOf(item.text))
-            if (!item.trinket && !(item.effects.any { it.startsWith("damage:") } && !fightBag)) {
-                row(getString(R.string.stacks_use, item.name), "") {
-                    val pills = engine.use(slot)
-                    slot = -1
-                    note = pills.joinToString(" · ")
-                    if (fightBag) overlay = Overlay.NONE
-                    act { }
-                }
+            body(item.text)
+            val usable = !item.trinket && !(item.effects.any { it.startsWith("damage:") } && !fightBag)
+            // Use and Drop side by side, under the bag.
+            val actions = mutableListOf<Cell>()
+            if (usable) actions += Cell(getString(R.string.stacks_use_short), null, textSp = 15f) {
+                val pills = engine.use(slot)
+                slot = -1
+                if (fightBag) overlay = Overlay.NONE else note = pills.joinToString(" · ")
+                act { }
             }
-            if (!fightBag) row(getString(R.string.stacks_drop, item.name), "") {
+            if (!fightBag) actions += Cell(getString(R.string.stacks_drop_short), null, textSp = 15f) {
                 engine.drop(slot)
                 slot = -1
                 act { }
             }
+            if (actions.isNotEmpty()) grid(actions, columns = 2, heightDp = 52)
         }
         status.text = note ?: getString(R.string.stacks_best, s.count("floor"), s.count("deaths"))
         note = null
@@ -347,8 +357,12 @@ class StacksActivity : Activity() {
         findViewById<View>(R.id.index_box).visibility = View.VISIBLE
     }
 
+    /** A second sticker on the same screen (a critical that unlocks an achievement) joins the first. */
     private fun sticker(text: String) {
-        findViewById<TextView>(R.id.sticker).apply { this.text = text; visibility = View.VISIBLE }
+        findViewById<TextView>(R.id.sticker).apply {
+            this.text = if (visibility == View.VISIBLE) "${this.text} · $text" else text
+            visibility = View.VISIBLE
+        }
     }
 
     private fun card(title: String, meta: String, bar: String) {
@@ -412,7 +426,7 @@ class StacksActivity : Activity() {
         choices.addView(row, lp)
     }
 
-    private class Cell(val text: String, val sub: String?, val enabled: Boolean = true, val selected: Boolean = false, val onClick: () -> Unit)
+    private class Cell(val text: String, val sub: String?, val enabled: Boolean = true, val selected: Boolean = false, val textSp: Float? = null, val onClick: () -> Unit)
 
     /** Buttons in a grid ([columns] per row, [heightDp] tall): fight actions, the bag. */
     private fun grid(cells: List<Cell>, columns: Int, heightDp: Int) {
@@ -422,7 +436,7 @@ class StacksActivity : Activity() {
             for ((i, c) in chunk.withIndex()) {
                 val b = TextView(this, null, 0, R.style.Ds_Button)
                 b.text = if (c.sub == null) c.text else "${c.text}\n${c.sub}"
-                b.textSize = if (c.sub == null) 12f else 15f
+                b.textSize = c.textSp ?: if (c.sub == null) 12f else 15f
                 b.maxLines = 3
                 b.setPadding(dp(4), 0, dp(4), 0)
                 b.isEnabled = c.enabled
@@ -452,7 +466,7 @@ class StacksActivity : Activity() {
 
     companion object {
         private const val SAVE = "stacks-save.json"
-        private const val PER_PAGE = 5
+        private const val PER_PAGE = 3
 
         fun load(activity: Activity): StacksContent = StacksContent.parse(
             StacksContent.FILES.associateWith { name ->

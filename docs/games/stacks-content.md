@@ -111,10 +111,10 @@ Text may use `{hero}` (the hero's name), `{floor}`, `{enemy}` (the room's enemy)
 | `name` | ≤ 32 characters |
 | `text` | ≤ 160 characters, shown on the fight card |
 | `level` | 1 to 10 |
-| `hp`, `atk`, `def`, `resolve` | Base values for floor 1; the engine scales them by floor. Guide for a level 1 enemy: HP 6–10, ATK 1–2, DEF 3–5, RESOLVE 2–4 |
+| `hp`, `atk`, `def`, `resolve` | Base values for the first floor of the enemy's first biome; the engine scales them by floor. Guide for a level 1 enemy: HP 6–10, ATK 1–2, DEF 3–5, RESOLVE 2–4 |
 | `weakness` | A tag (≤ 16 characters) items can carry |
 | `loot` | 0 to 3 item ids |
-| `named` | `true` for a boss (fought before the stairs every 5th floor): 3 × HP and a `special` |
+| `named` | `true` for a boss (fought before the stairs every 5th floor): 1.5 × HP and a `special`; its stats are not scaled in the first cycle, so write them for the boss floor |
 | `special` | Named enemies: `{ "name": "≤ 24", "text": "≤ 140" }`, a heavy hit every third turn |
 
 ## Items — `items.json`

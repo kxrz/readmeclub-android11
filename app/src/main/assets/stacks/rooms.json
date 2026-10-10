@@ -254,7 +254,7 @@
     "label": "Charge up the steps",
     "stat": "GUTS",
     "success": {
-     "text": "You knock it down the steps. It was going nowhere anyway.",
+     "text": "You reach the step before it can stand. It stands anyway, furious.",
      "effects": [
       "xp:10",
       "fight"
@@ -1935,7 +1935,7 @@
     "label": "Look it up first",
     "stat": "WITS",
     "success": {
-     "text": "Cross-reference says: see also, your boot. You see to it with your boot.",
+     "text": "Cross-reference says: see also, your boot. Time to see to it with your boot.",
      "effects": [
       "xp:20",
       "fight"
@@ -1995,7 +1995,7 @@
      ]
     },
     "failure": {
-     "text": "You grab DAMP instead. Everything was already damp. Nothing happens.",
+     "text": "You grab DAMP instead. Everything was already damp. It takes this personally.",
      "effects": [
       "fight"
      ]
@@ -3322,7 +3322,7 @@
     "label": "Cut the bells off",
     "stat": "WITS",
     "success": {
-     "text": "Snip, snip. Two items, no noise. A clean heist.",
+     "text": "Snip, snip. One item, no noise. A clean heist.",
      "effects": [
       "item:random",
       "xp:10"

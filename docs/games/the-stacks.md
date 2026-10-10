@@ -110,8 +110,11 @@ Enemy turn: d6 + ATK vs 4 + GUTS; on success, damage = ATK (×2 on a natural 6).
 the matching tag deals double damage or succeeds automatically. The fight screen always
 shows the weakness, so the right item is a choice, not a guess.
 
-**Enemy stats** scale with the floor: each stat = base × (1 + 0.15 × (floor − 1)),
-rounded. Named enemies have 3 × HP and one special move.
+**Enemy stats** are written for the enemy's first floor, then grow. A regular enemy counts
+the floors since its biome's first floor (n): HP, ATK and RESOLVE = base × (1 + 0.15 × n),
+rounded, and DEF = base + ⌊n ÷ 4⌋. Floor encounters pick enemies up to one level above the
+floor. A named enemy keeps its base stats in its first cycle (1.5 × HP), grows by 75 % and
++1 DEF per later cycle, and every third turn uses its special move for ATK + 2 damage.
 
 Rewards: XP = 10 × enemy level, coins = d6 × level, plus the enemy's loot table.
 
