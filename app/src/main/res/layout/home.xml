@@ -70,6 +70,8 @@
             </LinearLayout>
 
             <LinearLayout style="@style/HomeRow">
+                <include android:id="@+id/tile_member" layout="@layout/home_tile" />
+                <View android:layout_width="10dp" android:layout_height="0dp" />
                 <include android:id="@+id/tile_settings" layout="@layout/home_tile" />
             </LinearLayout>
         </LinearLayout>

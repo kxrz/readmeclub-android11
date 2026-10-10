@@ -21,6 +21,13 @@ and refuses to release a version that has no section here.
   - **Mines**: 7 × 7 on small screens, 10 × 10 from 480 dp wide; tap to open, hold or use
     the Flag button to flag; the first tap is always safe.
   - **Lights out**, until now hidden in About (the long press on the logo still opens it).
+- **Member**, from its Home tile: link this e-reader to your readme.club account with your
+  member number, the part of your email before the @ and the code we email you. Then: your
+  favourite wallpapers and your uploads (every size), your member card as a wallpaper
+  (light or dark), and Unlink. The link only reads your things, stays as long as you use
+  it (6 months idle at most), and shows in your account settings on the site, where you
+  can disconnect it. Linking records the reader's maker, model, Android and app versions
+  and screen size, nothing else.
 - **The Stacks**, an endless, absurd text dungeon under a bookshop, in Games › Play: pick
   a class, explore floors of 6 to 8 rooms (events, monsters, rooms named after
   public-domain authors, loot, rest, a shop), roll a d6 plus a stat against the floor's

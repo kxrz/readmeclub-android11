@@ -40,11 +40,25 @@ class WallpaperActivity : Activity() {
         setContentView(R.layout.wallpaper)
         status = findViewById(R.id.status)
         actions = findViewById(R.id.actions)
-        val id = intent.getStringExtra(EXTRA_ID) ?: return finish()
+        val card = intent.hasExtra(EXTRA_CARD_DARK)
+        val id = intent.getStringExtra(EXTRA_ID)
+        if (id == null && !card) return finish()
         findViewById<TextView>(R.id.title).text = intent.getStringExtra(EXTRA_TITLE)
         val author = intent.getStringExtra(EXTRA_AUTHOR)
         val member = findViewById<TextView>(R.id.member)
         member.text = author
+        if (card) {
+            // The member's own card: one button switches between the light and dark versions.
+            val dark = intent.getBooleanExtra(EXTRA_CARD_DARK, false)
+            member.setBackgroundResource(R.drawable.ds_button)
+            member.minimumHeight = resources.getDimensionPixelSize(R.dimen.ds_touch)
+            member.gravity = android.view.Gravity.CENTER
+            member.setText(if (dark) R.string.card_light else R.string.card_dark)
+            member.setOnClickListener {
+                startActivity(cardIntent(this, !dark))
+                finish()
+            }
+        }
 
         findViewById<View>(R.id.back).setOnClickListener { finish() }
         findViewById<View>(R.id.save).setOnClickListener {
@@ -60,13 +74,13 @@ class WallpaperActivity : Activity() {
 
         status.setText(R.string.loading)
         app.io.execute {
-            val full = app.wallpapers.full(id)
+            val full = if (id != null) app.wallpapers.full(id) else app.member.card(intent.getBooleanExtra(EXTRA_CARD_DARK, false))
             val bitmap = full?.let { BitmapFactory.decodeFile(it.path) }
-            val number = app.wallpapers.memberNumber(id)
+            val number = id?.let { app.wallpapers.memberNumber(it) }
             runOnUiThread {
                 if (isDestroyed) return@runOnUiThread
                 // "#042 · pseudo", like "Shared by" on the site.
-                member.text = listOfNotNull(number, author).joinToString(" · ")
+                if (id != null) member.text = listOfNotNull(number, author).joinToString(" · ")
                 if (full == null || bitmap == null) {
                     status.setText(R.string.wallpaper_unavailable)
                     return@runOnUiThread
@@ -142,6 +156,15 @@ class WallpaperActivity : Activity() {
     override fun dispatchKeyEvent(event: KeyEvent): Boolean = keys.handle(event) || super.dispatchKeyEvent(event)
 
     companion object {
+        /** The linked member's card (see MemberSync.card) instead of a gallery wallpaper. */
+        private const val EXTRA_CARD_DARK = "card_dark"
+
+        fun cardIntent(context: android.content.Context, dark: Boolean): Intent =
+            Intent(context, WallpaperActivity::class.java)
+                .putExtra(EXTRA_CARD_DARK, dark)
+                .putExtra(EXTRA_TITLE, context.getString(R.string.member_card))
+                .putExtra(EXTRA_AUTHOR, context.app.prefs.memberNumber)
+
         const val EXTRA_ID = "id"
         const val EXTRA_TITLE = "title"
         const val EXTRA_AUTHOR = "author"

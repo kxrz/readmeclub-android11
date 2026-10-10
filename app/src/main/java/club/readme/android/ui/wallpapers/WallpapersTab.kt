@@ -24,7 +24,13 @@ import kotlin.math.roundToInt
  * field and four sort orders. The grid follows the screen size: 3 columns on the S4, more
  * cells on larger readers.
  */
-class WallpapersTab(private val activity: Activity, container: ViewGroup) {
+class WallpapersTab(
+    private val activity: Activity,
+    container: ViewGroup,
+    /** All wallpapers, or the linked member's favourites or uploads (from Member). */
+    private val scope: WallpaperSync.Scope = WallpaperSync.Scope.All,
+    title: Int = R.string.tab_wallpapers,
+) {
 
     private val root: View = activity.layoutInflater.inflate(R.layout.wallpapers, container, true)
     private val status: TextView = root.findViewById(R.id.status)
@@ -46,6 +52,9 @@ class WallpapersTab(private val activity: Activity, container: ViewGroup) {
     private var sort = WallpaperSync.SORT_LATEST
 
     init {
+        root.findViewById<TextView>(R.id.title).setText(title)
+        // A member's own lists are short: no search, sorting is enough.
+        if (scope != WallpaperSync.Scope.All) root.findViewById<View>(R.id.search_row).visibility = View.GONE
         status.setOnClickListener { load() }
         search.setOnEditorActionListener { _, actionId, _ ->
             if (actionId != EditorInfo.IME_ACTION_SEARCH) return@setOnEditorActionListener false
@@ -116,7 +125,11 @@ class WallpapersTab(private val activity: Activity, container: ViewGroup) {
         status.setText(R.string.loading)
         val requested = Triple(page, query, sort)
         activity.app.io.execute {
-            val result = activity.app.wallpapers.page(requested.first, pageSize, requested.second, requested.third)
+            val result = activity.app.wallpapers.page(
+                requested.first, pageSize, requested.second, requested.third, scope,
+                // The token goes only where it is needed: the member's favourites.
+                activity.app.prefs.memberToken.takeIf { scope == WallpaperSync.Scope.Favorites },
+            )
             activity.runOnUiThread {
                 loading = false
                 if (requested != Triple(page, query, sort)) return@runOnUiThread load()
@@ -132,7 +145,13 @@ class WallpapersTab(private val activity: Activity, container: ViewGroup) {
             pageLabel.text = ""
             return
         }
-        status.setText(if (activity.app.wallpapers.deviceSlug != null) R.string.wallpapers_fit else R.string.wallpapers_all_sizes)
+        status.setText(
+            when {
+                scope != WallpaperSync.Scope.All -> R.string.wallpapers_all_sizes
+                activity.app.wallpapers.deviceSlug != null -> R.string.wallpapers_fit
+                else -> R.string.wallpapers_all_sizes
+            },
+        )
         pageCount = maxOf(1, (result.total + pageSize - 1) / pageSize)
         pageLabel.text = activity.getString(R.string.page_of, page, pageCount)
 

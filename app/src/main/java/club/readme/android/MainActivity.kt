@@ -10,9 +10,11 @@ import android.widget.TextView
 import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
 import club.readme.android.game.GamesActivity
+import club.readme.android.sync.WallpaperSync
 import club.readme.android.ui.guides.GuidesTab
 import club.readme.android.ui.home.HomeScreen
 import club.readme.android.ui.home.HomeScreen.Section
+import club.readme.android.ui.member.MemberTab
 import club.readme.android.ui.news.NewsTab
 import club.readme.android.ui.settings.SettingsTab
 import club.readme.android.ui.wallpapers.WallpapersTab
@@ -30,6 +32,9 @@ class MainActivity : Activity() {
     private var newsTab: NewsTab? = null
     private var guidesTab: GuidesTab? = null
     private var settingsTab: SettingsTab? = null
+    private var memberTab: MemberTab? = null
+    /** Set by Member before opening Wallpapers on the member's favourites or uploads. */
+    private var wallpaperScope: Pair<WallpaperSync.Scope, Int>? = null
 
     // Capacitive button: next page of the open section's list (nothing on Home).
     private var nextPage: (() -> Unit)? = null
@@ -73,6 +78,8 @@ class MainActivity : Activity() {
         when {
             section == null -> super.onBackPressed()
             guidesTab != null -> guidesTab?.back()
+            memberTab != null -> memberTab?.back()
+            wallpaperScope != null -> show(Section.MEMBER)
             else -> show(null)
         }
     }
@@ -131,18 +138,28 @@ class MainActivity : Activity() {
         newsTab = null
         guidesTab = null
         settingsTab = null
+        memberTab = null
         nextPage = null
+        val scope = wallpaperScope.takeIf { target == Section.WALLPAPERS }
+        wallpaperScope = scope
         when (target) {
             null -> home = HomeScreen(this, content, ::show, ::sync)
             Section.NEWS -> newsTab = NewsTab(this, content, ::sync).also { nextPage = it::nextPageWrapping }
             Section.GUIDES -> guidesTab = GuidesTab(this, content, ::sync) { show(null) }.also { nextPage = it::nextPageWrapping }
-            Section.WALLPAPERS -> nextPage = WallpapersTab(this, content)::nextPageWrapping
+            Section.WALLPAPERS -> nextPage = (
+                if (scope == null) WallpapersTab(this, content) else WallpapersTab(this, content, scope.first, scope.second)
+            )::nextPageWrapping
+            Section.MEMBER -> memberTab = MemberTab(this, content, { s, title ->
+                wallpaperScope = s to title
+                show(Section.WALLPAPERS)
+            }) { show(null) }
             Section.SETTINGS -> settingsTab = SettingsTab(this, content, ::sync) { app.checkForUpdate(::markUpdate) }.also { nextPage = it::nextPageWrapping }
             Section.GAMES -> Unit
         }
-        // Every section's bar starts with Back (Guides handles its own, brand then Home).
-        if (target != null && target != Section.GUIDES) {
-            content.findViewById<View>(R.id.back)?.setOnClickListener { show(null) }
+        // Every section's bar starts with Back (Guides and Member handle their own steps;
+        // the member's favourites and uploads go back to Member).
+        if (target != null && target != Section.GUIDES && target != Section.MEMBER) {
+            content.findViewById<View>(R.id.back)?.setOnClickListener { show(if (scope != null) Section.MEMBER else null) }
         }
         FullRefresh.flash(findViewById(R.id.flash))
     }

@@ -84,12 +84,13 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 
 ### M6 — Member account (L) · beta.6
 
-- [ ] **[site]** Send a code by member number (same rate limits as today, no hint that a number exists)
-- [ ] **[site]** Verify the code and return a device token (long-lived, revocable); list and revoke devices in the member area
-- [ ] **[site]** Favourites, uploads, member card and decks accept the device token
-- [ ] App: link (member number, code on an in-app keypad), unlink, Member screen
-- [ ] My wallpapers (Favourites, Uploaded) and member card as wallpaper (light, dark)
-- [ ] Privacy text on the Member screen and the /app page
+- [x] **[site]** Send a code by member number + the part of the email before the @ (the challenge: member numbers are public); same answer whether or not they match; limits per IP and per member number
+- [x] **[site]** Verify the code and return an app token: read-only (favourites, own card), hashed, renewed by use, expires after 6 months idle; "Connected e-readers" in the member's settings, with Disconnect
+- [x] **[site]** Favourites listing and the member card accept the app token; uploads come from the public listing
+- [x] **[site]** Admin census of linked e-readers (maker, model, Android, app version, screen)
+- [x] App: link (member number, email start, code), unlink, Member screen
+- [x] My wallpapers (Favourites, Uploaded) and member card as wallpaper (light, dark)
+- [x] Privacy text on the Member screen and the /app page
 
 ### M7 — Hardening and launch (M) · 2.0.0
 
@@ -132,5 +133,5 @@ M1 and M2 come first: everything else is built from their components. Site work 
 | [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Built, to test on the S4 | — |
 | [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Built, to test on the S4; 3 packs to review and publish in the CMS | — |
 | [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Built, to test on the S4; writing pass by the team | — |
-| [M6 Member account](https://github.com/kxrz/readmeclub-android11/issues/7) | Not started | — |
+| [M6 Member account](https://github.com/kxrz/readmeclub-android11/issues/7) | Built, to test on the S4 (site live) | — |
 | [M7 Hardening and launch](https://github.com/kxrz/readmeclub-android11/issues/8) | Not started | — |

@@ -23,7 +23,7 @@ class HomeScreen(
     onSyncRequested: () -> Unit,
 ) {
 
-    enum class Section { NEWS, GUIDES, WALLPAPERS, GAMES, SETTINGS }
+    enum class Section { NEWS, GUIDES, WALLPAPERS, GAMES, MEMBER, SETTINGS }
 
     private val root: View = activity.layoutInflater.inflate(R.layout.home, container, true)
     private val continueCard: View = root.findViewById(R.id.continue_card)
@@ -33,6 +33,7 @@ class HomeScreen(
         Section.GUIDES to tile(R.id.tile_guides, R.string.tab_guides),
         Section.WALLPAPERS to tile(R.id.tile_wallpapers, R.string.tab_wallpapers),
         Section.GAMES to tile(R.id.tile_games, R.string.tab_games),
+        Section.MEMBER to tile(R.id.tile_member, R.string.tab_member),
         Section.SETTINGS to tile(R.id.tile_settings, R.string.tab_settings),
     )
 
@@ -65,6 +66,7 @@ class HomeScreen(
         badge(Section.NEWS, if (unread > 0) activity.getString(R.string.badge_new, unread) else null, sticker = true)
         val games = if (GameStore(activity).hasSudoku) R.string.badge_games_resume else R.string.badge_games
         badge(Section.GAMES, activity.getString(games), sticker = false)
+        badge(Section.MEMBER, app.prefs.memberNumber, sticker = false)
         badge(Section.SETTINGS, if (app.latestRelease?.canInstall == true) activity.getString(R.string.badge_update) else null, sticker = false)
         renderStatus()
     }

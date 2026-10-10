@@ -12,6 +12,7 @@ import club.readme.android.data.ReadingState
 import club.readme.android.reader.HtmlImages
 import club.readme.android.sync.GuideSync
 import club.readme.android.sync.ImageCache
+import club.readme.android.sync.MemberSync
 import club.readme.android.sync.NewsSync
 import club.readme.android.sync.WallpaperSync
 import club.readme.android.update.Updater
@@ -29,6 +30,8 @@ class App : Application() {
     lateinit var prefs: Prefs
         private set
     lateinit var wallpapers: WallpaperSync
+        private set
+    lateinit var member: MemberSync
         private set
     lateinit var reading: ReadingState
         private set
@@ -52,6 +55,7 @@ class App : Application() {
         // Physical size of the built-in screen, in its natural orientation.
         val mode = getSystemService(DisplayManager::class.java).getDisplay(Display.DEFAULT_DISPLAY).mode
         wallpapers = WallpaperSync(File(cacheDir, "wallpapers"), mode.physicalWidth, mode.physicalHeight)
+        member = MemberSync(prefs, cacheDir, "${mode.physicalWidth}x${mode.physicalHeight}")
     }
 
     /** Checks GitHub for a newer release in the background; [done] is called on the main thread. */

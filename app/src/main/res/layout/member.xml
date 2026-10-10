@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Member: link this reader (number, start of the email, code), then the member's things. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/member_title"
+        style="@style/Ds.Title"
+        android:paddingLeft="16dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp"
+        android:text="@string/tab_member" />
+
+    <TextView
+        android:id="@+id/member_text"
+        style="@style/Ds.Text"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:textSize="15sp" />
+
+    <!-- Linking: one or two fields at a time. -->
+    <LinearLayout
+        android:id="@+id/link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp">
+
+        <TextView android:id="@+id/field1_label" style="@style/Ds.Label" />
+
+        <EditText
+            android:id="@+id/field1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds_choice"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/ds_button"
+            android:fontFamily="@font/space_mono_bold"
+            android:importantForAutofill="no"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:singleLine="true"
+            android:textColor="@color/ds_ink"
+            android:textSize="18sp" />
+
+        <TextView android:id="@+id/field2_label" style="@style/Ds.Label" android:layout_marginTop="14dp" />
+
+        <EditText
+            android:id="@+id/field2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds_choice"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/ds_button"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress|textNoSuggestions"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:singleLine="true"
+            android:textColor="@color/ds_ink"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Linked: the member's card, then up to four choices. -->
+    <LinearLayout
+        android:id="@+id/linked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp"
+        android:visibility="gone">
+
+        <LinearLayout style="@style/Ds.Card" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+            <TextView style="@style/Ds.Label" android:text="@string/member_number" />
+
+            <TextView
+                android:id="@+id/number"
+                style="@style/Ds.Mono"
+                android:textSize="36sp" />
+
+            <TextView android:id="@+id/name" style="@style/Ds.Text" android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView android:id="@+id/favorites" style="@style/Ds.Choice" android:layout_marginTop="16dp" />
+
+        <TextView android:id="@+id/uploads" style="@style/Ds.Choice" android:layout_marginTop="10dp" android:text="@string/member_uploads" />
+
+        <TextView android:id="@+id/card" style="@style/Ds.Choice" android:layout_marginTop="10dp" android:text="@string/member_card_wallpaper" />
+
+        <TextView android:id="@+id/unlink" style="@style/Ds.Choice" android:layout_marginTop="10dp" android:text="@string/member_unlink" />
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+
+    <LinearLayout style="@style/Ds.Bar">
+
+        <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
+
+        <TextView android:id="@+id/member_status" style="@style/Ds.BarStatus" />
+
+        <TextView android:id="@+id/primary" style="@style/Ds.Button.Primary" />
+    </LinearLayout>
+</LinearLayout>

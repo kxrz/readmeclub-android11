@@ -49,6 +49,16 @@ class Prefs(context: Context) {
         get() = prefs.getBoolean("welcomed", false)
         set(value) = prefs.edit().putBoolean("welcomed", value).apply()
 
+    /** Token linking this reader to a readme.club member account (read-only), or null. */
+    var memberToken: String?
+        get() = prefs.getString("member_token", null)
+        set(value) = prefs.edit().putString("member_token", value).apply()
+
+    /** The linked member's number ("#042"), shown while offline. */
+    var memberNumber: String?
+        get() = prefs.getString("member_number", null)
+        set(value) = prefs.edit().putString("member_number", value).apply()
+
     companion object {
         const val REFRESH_OFF = 0
         val REFRESH_CHOICES = listOf(1, 3, 6, 10, REFRESH_OFF)
