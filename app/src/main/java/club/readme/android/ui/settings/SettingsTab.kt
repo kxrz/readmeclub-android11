@@ -26,6 +26,7 @@ class SettingsTab(
     container: ViewGroup,
     private val onSyncRequested: () -> Unit,
     private val onUpdateCheckRequested: () -> Unit,
+    private val onOpenMember: () -> Unit,
 ) {
 
     private val root: View = activity.layoutInflater.inflate(R.layout.settings, container, true)
@@ -59,6 +60,7 @@ class SettingsTab(
         ) { prefs.refreshEvery = it }
 
         root.findViewById<View>(R.id.sync_now).setOnClickListener { onSyncRequested(); refresh() }
+        root.findViewById<View>(R.id.open_member).setOnClickListener { onOpenMember() }
         clearButton(R.id.clear_news) { activity.app.news.clear() }
         clearButton(R.id.clear_guides) { activity.app.guides.clear() }
         clearButton(R.id.clear_wallpapers) { activity.app.wallpapers.clear() }
@@ -76,6 +78,8 @@ class SettingsTab(
     /** Re-reads sync time and storage sizes (after a sync or a clear). */
     fun refresh() {
         val app = activity.app
+        root.findViewById<TextView>(R.id.account).text =
+            app.prefs.memberNumber?.let { activity.getString(R.string.account_linked, it) } ?: activity.getString(R.string.account_none)
         val time = app.news.lastSync
         lastSync.text = when {
             app.syncing -> activity.getString(R.string.loading)

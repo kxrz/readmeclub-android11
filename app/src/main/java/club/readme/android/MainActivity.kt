@@ -153,7 +153,7 @@ class MainActivity : Activity() {
                 wallpaperScope = s to title
                 show(Section.WALLPAPERS)
             }) { show(null) }
-            Section.SETTINGS -> settingsTab = SettingsTab(this, content, ::sync) { app.checkForUpdate(::markUpdate) }.also { nextPage = it::nextPageWrapping }
+            Section.SETTINGS -> settingsTab = SettingsTab(this, content, ::sync, { app.checkForUpdate(::markUpdate) }) { show(Section.MEMBER) }.also { nextPage = it::nextPageWrapping }
             Section.GAMES -> Unit
         }
         // Every section's bar starts with Back (Guides and Member handle their own steps;

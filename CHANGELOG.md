@@ -28,6 +28,7 @@ and refuses to release a version that has no section here.
   it (6 months idle at most), and shows in your account settings on the site, where you
   can disconnect it. Linking records the reader's maker, model, Android and app versions
   and screen size, nothing else.
+- Settings › Sync & storage shows the member account (linked to #042, or not) with Open.
 - **The Stacks**, an endless, absurd text dungeon under a bookshop, in Games › Play: pick
   a class, explore floors of 6 to 8 rooms (events, monsters, rooms named after
   public-domain authors, loot, rest, a shop), roll a d6 plus a stat against the floor's

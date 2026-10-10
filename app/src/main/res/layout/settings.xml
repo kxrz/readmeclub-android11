@@ -53,6 +53,13 @@
                 <TextView android:id="@+id/sync_now" style="@style/RowButton" android:text="@string/sync_now" />
             </LinearLayout>
 
+            <TextView style="@style/Heading" android:paddingTop="16dp" android:text="@string/account" />
+
+            <LinearLayout style="@style/ChoiceRow">
+                <TextView android:id="@+id/account" style="@style/RowLabel" />
+                <TextView android:id="@+id/open_member" style="@style/RowButton" android:text="@string/open" />
+            </LinearLayout>
+
             <TextView style="@style/Heading" android:paddingTop="16dp" android:text="@string/storage" />
 
             <LinearLayout style="@style/ChoiceRow">

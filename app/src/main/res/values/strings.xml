@@ -30,6 +30,10 @@
     <string name="sort_author">Author</string>
     <string name="tab_games">Games</string>
     <string name="tab_member">Member</string>
+    <string name="account">Member account</string>
+    <string name="open">Open</string>
+    <string name="account_linked">Linked to %1$s</string>
+    <string name="account_none">Not linked</string>
     <string name="member_intro">Link this e-reader to your readme.club account: your favourite wallpapers, your uploads and your member card come here. Linking records this reader\'s model in your account; you can disconnect it any time in your account settings on readme.club.</string>
     <string name="member_number">Member number</string>
     <string name="member_email_start">Your email, before the @</string>
