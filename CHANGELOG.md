@@ -7,11 +7,20 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
-## [Unreleased]
+## [2.0.0] - Unreleased
 
 ### Added
+- **readme.club design system** for e-ink, from the brand page in black and white: buttons
+  (secondary, and a primary with a hard shadow), choices, tiles, cards, pills, stickers and
+  the bottom bar, as shared styles. A Components screen in the diagnostic shows each one.
+- Brand fonts: Space Grotesk Bold for titles and Space Mono Bold for numbers (Latin
+  subsets, about 23 KB, SIL Open Font License; credits in NOTICE).
 - Plan for 2.0.0 (`docs/ROADMAP-2.0.md`) and specification of The Stacks, the text dungeon
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
+
+### Changed
+- CI fails a build whose release APK is over 450 KB. Small-screen and design-system rules
+  added to CLAUDE.md. `versionName` is 2.0.0 while 2.0 is built; 1.0.6 stays the public version.
 
 ## [1.0.6] - 2026-10-09
 

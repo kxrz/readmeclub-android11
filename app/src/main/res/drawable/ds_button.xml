@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Secondary button and tile: 2 dp border, 12 dp corners; pressed or selected = inverted. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@drawable/ds_shape_ink" />
+    <item android:state_selected="true" android:drawable="@drawable/ds_shape_ink" />
+    <item>
+        <shape>
+            <solid android:color="@color/ds_paper" />
+            <stroke android:width="@dimen/ds_border" android:color="@color/ds_ink" />
+            <corners android:radius="@dimen/ds_radius" />
+        </shape>
+    </item>
+</selector>

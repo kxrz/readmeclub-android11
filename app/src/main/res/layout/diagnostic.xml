@@ -21,6 +21,8 @@
 
             <TextView android:id="@+id/refresh_test" style="@style/Button" android:text="@string/refresh_test" />
 
+            <TextView android:id="@+id/components" style="@style/Button" android:text="@string/components" />
+
             <TextView android:id="@+id/keys" style="@style/Body" android:textSize="15sp"
                 android:fontFamily="monospace" android:text="@string/press_button" />
         </LinearLayout>

@@ -25,6 +25,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       # assembleRelease (unsigned here) catches R8/lint-vital problems before a release tag does.
       - run: ./gradlew testDebugUnitTest assembleDebug assembleRelease
+      # APK budget (CLAUDE.md): the minified release build must stay under 450 KB.
+      - name: Check APK size
+        run: |
+          size=$(stat -c %s app/build/outputs/apk/release/app-release-unsigned.apk)
+          echo "Release APK: $size bytes"
+          if [ "$size" -gt 460800 ]; then echo "::error::Release APK is $size bytes, over the 450 KB budget"; exit 1; fi
       - uses: actions/upload-artifact@v4
         with:
           name: app-debug

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Every design-system component on one screen, to check them on a device. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ds_paper">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/ds_gutter"
+            android:paddingTop="12dp"
+            android:paddingRight="@dimen/ds_gutter">
+
+            <TextView style="@style/Ds.Title" android:text="Components" />
+
+            <TextView style="@style/Ds.Mono" android:text="readme.club 2.0 · 44 dp targets" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView style="@style/Ds.Pill" android:text="12 due" />
+
+                <TextView style="@style/Ds.Pill" android:layout_marginLeft="8dp" android:text="New" />
+
+                <TextView style="@style/Ds.Sticker" android:layout_marginLeft="12dp" android:text="3 new" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Ds.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical">
+
+                <TextView style="@style/Ds.Label" android:text="Continue reading" />
+
+                <TextView style="@style/Ds.Title" android:layout_marginTop="4dp" android:textSize="17sp"
+                    android:text="X4 Classic vs X4: what changed" />
+
+                <TextView style="@style/Ds.Text" android:textSize="13sp" android:text="Guide · 42% read · 6 min left" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    style="@style/Ds.Tile"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView style="@style/Ds.Pill" android:text="Quiz ready" />
+
+                    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+
+                    <TextView style="@style/Ds.Text" android:textStyle="bold" android:duplicateParentState="true"
+                        android:textColor="@color/ds_on_button" android:text="Games" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/Ds.Tile"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+
+                    <TextView style="@style/Ds.Text" android:textStyle="bold" android:duplicateParentState="true"
+                        android:textColor="@color/ds_on_button" android:text="Wallpapers" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView style="@style/Ds.Choice" android:layout_marginTop="12dp" android:text="A   Mary Shelley" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView style="@style/Ds.Button" android:text="Secondary" />
+
+                <TextView style="@style/Ds.Button.Primary" android:layout_marginLeft="10dp" android:text="Primary" />
+            </LinearLayout>
+
+            <TextView style="@style/Ds.Text" android:layout_marginTop="10dp"
+                android:text="Body text, 16 sp. Tap anything: it inverts. Primary drops onto its shadow." />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Ds.Bar">
+
+            <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
+
+            <TextView style="@style/Ds.BarStatus" android:text="1 / 1" />
+
+            <TextView android:id="@+id/refresh" style="@style/Ds.Button.Primary" android:text="Refresh" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

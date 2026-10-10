@@ -13,8 +13,8 @@ android {
         applicationId = "club.readme.android"
         minSdk = 30
         targetSdk = 30 // S4 runs Android 11; sideloaded, so no Play Store targetSdk floor
-        versionCode = 15
-        versionName = "1.0.6"
+        versionCode = 16
+        versionName = "2.0.0"
     }
 
     signingConfigs {

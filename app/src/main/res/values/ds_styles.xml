@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- readme.club design system (2.0). Use these styles for every new screen; see the
+     "Components" screen in the diagnostic (5 taps on the version) for each one on the device. -->
+<resources>
+    <!-- Namespace for the Ds.* styles below. -->
+    <style name="Ds" />
+
+    <!-- Type -->
+    <style name="Ds.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/ds_ink</item>
+    </style>
+
+    <style name="Ds.Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+        <item name="android:textColor">@color/ds_ink</item>
+    </style>
+
+    <!-- Small uppercase label over a block ("CONTINUE READING"). -->
+    <style name="Ds.Label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">@color/ds_ink</item>
+    </style>
+
+    <!-- Numbers, counters, page "3 / 12". -->
+    <style name="Ds.Mono">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/space_mono_bold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/ds_ink</item>
+    </style>
+
+    <!-- Buttons: 44 dp tall at least. Secondary = white, Primary = the screen's main action. -->
+    <style name="Ds.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/ds_touch</item>
+        <item name="android:minWidth">@dimen/ds_touch</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">14dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ds_on_button</item>
+        <item name="android:background">@drawable/ds_button</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="Ds.Button.Primary">
+        <!-- Room for the 3 dp shadow, so the face keeps the button's visual size. -->
+        <item name="android:paddingRight">17dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:textColor">@color/ds_paper</item>
+        <item name="android:background">@drawable/ds_button_primary</item>
+    </style>
+
+    <!-- A full-width answer or game choice, 52 dp tall. -->
+    <style name="Ds.Choice" parent="Ds.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/ds_choice</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <!-- A section entry on the home screen; content goes inside (icon, label, pill). -->
+    <style name="Ds.Tile">
+        <item name="android:background">@drawable/ds_button</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- Highlighted card with a hard shadow: one per screen. -->
+    <style name="Ds.Card">
+        <item name="android:background">@drawable/ds_card</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="Ds.Pill">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/ds_pill</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/ds_ink</item>
+    </style>
+
+    <style name="Ds.Sticker" parent="Ds.Pill">
+        <item name="android:background">@drawable/ds_sticker</item>
+        <item name="android:textColor">@color/ds_paper</item>
+        <item name="android:rotation">3</item>
+    </style>
+
+    <!-- The one bottom bar: Back left, status in the middle, main action right. -->
+    <style name="Ds.Bar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/ds_bar</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">@dimen/ds_border</item>
+        <item name="android:background">@drawable/ds_bar</item>
+    </style>
+
+    <style name="Ds.BarStatus" parent="Ds.Mono">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

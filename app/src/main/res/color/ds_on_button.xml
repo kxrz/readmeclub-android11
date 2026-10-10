@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Text on a secondary button: black, white while pressed (the button inverts). -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/ds_paper" android:state_pressed="true" />
+    <item android:color="@color/ds_paper" android:state_selected="true" />
+    <item android:color="@color/ds_ink" />
+</selector>

@@ -1,6 +1,7 @@
 package club.readme.android
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
@@ -36,6 +37,7 @@ class DiagnosticActivity : Activity() {
 
         val flash = findViewById<View>(R.id.flash)
         findViewById<View>(R.id.refresh_test).setOnClickListener { FullRefresh.flash(flash, force = true) }
+        findViewById<View>(R.id.components).setOnClickListener { startActivity(Intent(this, ComponentsActivity::class.java)) }
         findViewById<View>(R.id.back).setOnClickListener { finish() }
     }
 

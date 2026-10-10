@@ -10,6 +10,9 @@ readme.club's Android app for e-ink readers, built on the Xteink S4 (Android 11,
   - The **right** button is the screen's main action: Next on a paginated screen, Menu in the reader, Save on a wallpaper.
   - **Previous** sits just before the page number ("2 / 5"); with no Back (main tabs) it is the leftmost button. Next never wraps around.
   - Page keys (volume, page up/down, the S4's button) turn pages wherever there are pages.
+- Small screens first: designed for the S4 (350 × 584 dp), then adapted. Touch targets ≥ 44 dp (choices 52 dp), body text ≥ 15 sp, labels ≥ 11 sp, at most 4 choices per screen, text that does not fit is paginated. Larger screens add columns and margins, never smaller targets.
+- Design system (www.readme.club/brand, in black and white): new screens use the `Ds.*` styles and `ds_*` drawables (`res/values/ds_*.xml`), never raw colours or sizes. Every component shows on the diagnostic's Components screen. Fonts: Space Grotesk Bold for titles, Space Mono Bold for numbers (Latin subsets, OFL, see `licenses/`); body text uses the system sans.
+- APK budget: 450 KB. CI fails a build above it.
 - The UI only reads the local cache; only the `sync` package writes from the network.
 - No dependency-injection framework: the App class is the container.
 - Every new dependency must be justified in the PR.

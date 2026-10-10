@@ -21,6 +21,7 @@
     <string name="next">Next ›</string>
     <string name="back">Back</string>
     <string name="menu">Menu</string>
+    <string name="components">Components</string>
     <string name="update_card_title">readme.club %1$s is available</string>
     <string name="update_card_body">Tap to read what\'s new. Install it from Settings → About.</string>
     <string name="updated_card_title">Updated to %1$s</string>

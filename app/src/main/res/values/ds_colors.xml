@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- readme.club design system for e-ink (www.readme.club/brand), in black and white:
+     the brand's terracotta "one action that matters" becomes the solid black button. -->
+<resources>
+    <color name="ds_ink">#000000</color>
+    <color name="ds_paper">#FFFFFF</color>
+    <!-- Pill fill: a light grey that e-ink renders as a clean flat tint. -->
+    <color name="ds_soft">#E6E6E6</color>
+</resources>

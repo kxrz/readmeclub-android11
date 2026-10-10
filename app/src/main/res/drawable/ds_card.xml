@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Highlighted card (window card, continue reading): border plus a hard 4 dp shadow. Pressed = inverted. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <layer-list>
+            <item android:left="4dp" android:top="4dp" android:drawable="@drawable/ds_shape_ink" />
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:left="4dp" android:top="4dp" android:drawable="@drawable/ds_shape_ink" />
+            <item android:right="4dp" android:bottom="4dp">
+                <shape>
+                    <solid android:color="@color/ds_paper" />
+                    <stroke android:width="@dimen/ds_border" android:color="@color/ds_ink" />
+                    <corners android:radius="@dimen/ds_radius" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

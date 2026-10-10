@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sticker ("3 new", "Critical!"): one per screen at most, tilted by its style. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/ds_ink" />
+    <stroke android:width="@dimen/ds_border" android:color="@color/ds_ink" />
+    <corners android:radius="999dp" />
+</shape>

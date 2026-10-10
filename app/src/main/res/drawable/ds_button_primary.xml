@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The screen's main action: solid black with a hard 3 dp shadow; pressed, the face drops onto it. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <layer-list>
+            <item android:left="3dp" android:top="3dp" android:drawable="@drawable/ds_shape_ink" />
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:left="3dp" android:top="3dp" android:drawable="@drawable/ds_shape_ink" />
+            <item android:right="3dp" android:bottom="3dp">
+                <shape>
+                    <solid android:color="@color/ds_ink" />
+                    <stroke android:width="@dimen/ds_border" android:color="@color/ds_paper" />
+                    <corners android:radius="@dimen/ds_radius" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Status pill ("12 due", "New"): a label, never a touch target. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/ds_soft" />
+    <stroke android:width="@dimen/ds_border" android:color="@color/ds_ink" />
+    <corners android:radius="999dp" />
+</shape>

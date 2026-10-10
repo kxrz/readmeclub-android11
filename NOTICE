@@ -22,6 +22,11 @@ Additional terms, under section 7 of the GNU General Public License, version 3:
     RMC logo or the app icon. Modified versions must not use them as their own
     name, logo or icon, nor present themselves as the official readme.club app.
 
+Third-party fonts (SIL Open Font License 1.1, texts in licenses/), Latin subsets in app/src/main/res/font/:
+
+  Space Grotesk Bold — Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk)
+  Space Mono Bold — Copyright 2016 The Space Mono Project Authors (https://github.com/googlefonts/spacemono)
+
 Third-party code:
 
   app/src/main/java/io/nayuki/qrcodegen/ — QR Code generator library by Project Nayuki,
