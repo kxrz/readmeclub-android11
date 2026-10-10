@@ -27,8 +27,22 @@
                 android:layout_weight="1"
                 android:text="@string/app_name" />
 
+            <!-- Two decorations (brand shapes), beside the title, away from any touch area. -->
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="12dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ds_deco_zigzag" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ds_deco_plus" />
+
             <!-- The member number, once this reader is linked. -->
-            <TextView android:id="@+id/member_pill" style="@style/Ds.Pill" android:textAllCaps="false" android:visibility="gone" />
+            <TextView android:id="@+id/member_pill" style="@style/Ds.Pill" android:layout_marginLeft="10dp" android:textAllCaps="false" android:visibility="gone" />
         </LinearLayout>
 
         <!-- Continue reading (the article or guide left half-read) or, before any, Start reading
@@ -133,29 +147,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Two decorations in the space left under the tiles (none when there is no room). -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:importantForAccessibility="noHideDescendants">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="16dp"
-                android:layout_gravity="bottom|start"
-                android:layout_marginLeft="12dp"
-                android:layout_marginBottom="14dp"
-                android:src="@drawable/ds_deco_zigzag" />
-
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_gravity="bottom|end"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ds_deco_plus" />
-        </FrameLayout>
     </LinearLayout>
 
     <LinearLayout style="@style/Ds.Bar">
