@@ -73,7 +73,7 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 - [x] Flashcards with Leitner boxes (3 boxes); "Questions I missed" deck filled by quizzes
 - [x] Quiz Packs collection in the CMS **[site]**, catalogue API **[site]** (the CMS's REST API, published packs only)
 - [x] Download, store and delete packs in the app; everything offline once downloaded
-- [ ] 3 themed packs at launch (Literature, Geography, E-ink & books)
+- [x] 3 themed packs at launch (Literature, Geography, E-ink & books): in the CMS as drafts; the team reviews and publishes them
 
 ### M5 — The Stacks (L) · beta.5
 
@@ -130,7 +130,7 @@ M1 and M2 come first: everything else is built from their components. Site work 
 | [M1 Design system](https://github.com/kxrz/readmeclub-android11/issues/2) | Built, to test on the S4 | 2.0.0-beta.1 |
 | [M2 Home and sections](https://github.com/kxrz/readmeclub-android11/issues/3) | Built, to test on the S4 | — |
 | [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Built, to test on the S4 | — |
-| [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | In progress: app side built; catalogue and themed packs to do | — |
+| [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Built, to test on the S4; 3 packs to review and publish in the CMS | — |
 | [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Not started | — |
 | [M6 Member account](https://github.com/kxrz/readmeclub-android11/issues/7) | Not started | — |
 | [M7 Hardening and launch](https://github.com/kxrz/readmeclub-android11/issues/8) | Not started | — |
