@@ -7,6 +7,12 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
+## [Unreleased]
+
+### Added
+- Plan for 2.0.0 (`docs/ROADMAP-2.0.md`) and specification of The Stacks, the text dungeon
+  game coming in 2.0.0 (`docs/games/the-stacks.md`).
+
 ## [1.0.6] - 2026-10-09
 
 ### Added
