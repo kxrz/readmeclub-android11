@@ -41,11 +41,11 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 
 ### M1 — Design system in code (M) · beta.1
 
-- [ ] Brand tokens as Android resources: black on white, accent for colour readers, 2 dp borders, 12 dp corners, hard shadows
-- [ ] Shared views: bottom bar, button (primary, secondary), pill, sticker, window card, tile
-- [ ] Fonts: Space Grotesk (titles) and Space Mono (numbers) bundled; body stays the system sans
-- [ ] CLAUDE.md: navigation and small-screen rules for 2.0 (home hub replaces tabs, targets, text sizes)
-- [ ] A hidden "components" screen in the diagnostic, to check every component on a device
+- [x] Brand tokens as Android resources: black on white, accent for colour readers, 2 dp borders, 12 dp corners, hard shadows
+- [x] Shared views: bottom bar, button (primary, secondary), pill, sticker, window card, tile
+- [x] Fonts: Space Grotesk (titles) and Space Mono (numbers) bundled; body stays the system sans
+- [x] CLAUDE.md: small-screen and design-system rules (the home-hub navigation rule comes with M2)
+- [x] A hidden "components" screen in the diagnostic, to check every component on a device
 
 ### M2 — Home and migrated sections (L) · beta.2
 
@@ -126,7 +126,7 @@ M1 and M2 come first: everything else is built from their components. Site work 
 
 | Milestone | State | Beta |
 |---|---|---|
-| [M1 Design system](https://github.com/kxrz/readmeclub-android11/issues/2) | Not started | — |
+| [M1 Design system](https://github.com/kxrz/readmeclub-android11/issues/2) | Built, to test on the S4 | — |
 | [M2 Home and sections](https://github.com/kxrz/readmeclub-android11/issues/3) | Not started | — |
 | [M3 Games: Play](https://github.com/kxrz/readmeclub-android11/issues/4) | Not started | — |
 | [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Not started | — |
