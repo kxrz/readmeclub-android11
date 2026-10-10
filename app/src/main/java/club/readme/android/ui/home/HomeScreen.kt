@@ -114,6 +114,13 @@ class HomeScreen(
             badge.setBackgroundResource(R.drawable.ds_sticker)
             badge.setTextColor(activity.getColor(R.color.ds_paper))
             badge.rotation = 3f
+            // As in the mockup, the sticker sits across the tile's top edge.
+            badge.translationY = -14 * activity.resources.displayMetrics.density
+            var parent = badge.parent as? ViewGroup
+            while (parent != null && parent !== root) {
+                parent.clipChildren = false
+                parent = parent.parent as? ViewGroup
+            }
         }
     }
 
