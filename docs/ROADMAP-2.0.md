@@ -41,7 +41,8 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 
 ### M1 — Design system in code (M) · beta.1
 
-- [x] Brand tokens as Android resources: black on white, accent for colour readers, 2 dp borders, 12 dp corners, hard shadows
+- [x] Brand tokens as Android resources: black on white, 2 dp borders, 12 dp corners, hard shadows
+- [ ] Optional terracotta accent for colour readers: moved to M2 (a Settings option)
 - [x] Shared views: bottom bar, button (primary, secondary), pill, sticker, window card, tile
 - [x] Fonts: Space Grotesk (titles) and Space Mono (numbers) bundled; body stays the system sans
 - [x] CLAUDE.md: small-screen and design-system rules (the home-hub navigation rule comes with M2)
