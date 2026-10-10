@@ -25,6 +25,8 @@ and refuses to release a version that has no section here.
   **General knowledge** pack ships in the app: 200 questions in eight themes (History,
   Geography, Science, Nature, Arts & music, Books & words, Sport & games, Food & everyday),
   unseen questions first, best score kept.
+- **Quiz packs**: more packs to download from readme.club (written by the team in the
+  CMS), with Play, Update and Remove; downloaded packs work offline.
 - **Questions I missed**: every missed quiz question becomes a flashcard ("I knew it",
   "Not yet") in three boxes; a card known three times in a row leaves the deck.
 - **Search and sort** in Wallpapers: a search field (the keyboard's search key runs it) and

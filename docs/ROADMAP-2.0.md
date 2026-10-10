@@ -71,8 +71,8 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 - [x] Quiz engine: packs of questions (4 answers, one right, explanation, theme), rounds of 10
 - [x] **General knowledge** pack shipped in the APK (200 questions, 8 themes; length limits checked by a test so each screen fits the S4)
 - [x] Flashcards with Leitner boxes (3 boxes); "Questions I missed" deck filled by quizzes
-- [ ] Quiz Packs collection in the CMS **[site]**, catalogue API **[site]**
-- [ ] Download, store and delete packs in the app; everything offline once downloaded
+- [x] Quiz Packs collection in the CMS **[site]**, catalogue API **[site]** (the CMS's REST API, published packs only)
+- [x] Download, store and delete packs in the app; everything offline once downloaded
 - [ ] 3 themed packs at launch (Literature, Geography, E-ink & books)
 
 ### M5 — The Stacks (L) · beta.5

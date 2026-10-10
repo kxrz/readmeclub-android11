@@ -81,6 +81,11 @@
             android:name=".learn.FlashcardsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".learn.PacksActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <receiver
             android:name=".update.InstallResultReceiver"
             android:exported="false" />

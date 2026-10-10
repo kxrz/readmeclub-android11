@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
 import club.readme.android.R
 import club.readme.android.app
@@ -13,6 +12,7 @@ import club.readme.android.eink.FullRefresh
 import club.readme.android.eink.PageKeys
 import club.readme.android.learn.FlashcardsActivity
 import club.readme.android.learn.LearnStore
+import club.readme.android.learn.PacksActivity
 import club.readme.android.learn.QuizRound
 import club.readme.android.learn.QuizActivity
 
@@ -71,20 +71,19 @@ class GamesActivity : Activity() {
         showLearn()
     }
 
-    /** One tile per quiz pack, then Questions I missed. */
+    /** General knowledge (in the APK), all quiz packs, then Questions I missed. */
     private fun showLearn() {
         val learn = LearnStore(this)
-        val packs = findViewById<LinearLayout>(R.id.learn_packs)
-        packs.removeAllViews()
-        for (pack in learn.packs) {
-            val tile = layoutInflater.inflate(R.layout.game_tile, packs, false)
-            tile.findViewById<TextView>(R.id.name).text = pack.title
-            val best = learn.best(pack.id)
-            tile.findViewById<TextView>(R.id.meta).text = getString(R.string.learn_pack_meta, pack.questions.size) +
-                if (best >= 0) " · " + getString(R.string.quiz_best, best, QuizRound.SIZE) else ""
-            tile.setOnClickListener { startActivity(QuizActivity.intent(this, pack.id)) }
-            packs.addView(tile)
-        }
+        val general = learn.bundled.first()
+        val best = learn.best(general.id)
+        tile(R.id.learn_general, 0, getString(R.string.learn_pack_meta, general.questions.size) +
+            if (best >= 0) " · " + getString(R.string.quiz_best, best, QuizRound.SIZE) else "")
+        findViewById<View>(R.id.learn_general).findViewById<TextView>(R.id.name).text = general.title
+        findViewById<View>(R.id.learn_general).setOnClickListener { startActivity(QuizActivity.intent(this, general.id)) }
+        val installed = learn.downloaded().size
+        tile(R.id.learn_all, R.string.packs_title, if (installed == 0) getString(R.string.learn_all_meta_none)
+            else resources.getQuantityString(R.plurals.learn_all_meta, installed, installed))
+        findViewById<View>(R.id.learn_all).setOnClickListener { open(PacksActivity::class.java) }
         val deck = learn.deck()
         tile(R.id.learn_missed, R.string.learn_missed, if (deck.size == 0) getString(R.string.learn_missed_empty)
             else resources.getQuantityString(R.plurals.learn_missed_meta, deck.size, deck.size))
@@ -98,7 +97,7 @@ class GamesActivity : Activity() {
 
     private fun tile(id: Int, name: Int, meta: String) {
         val tile = findViewById<View>(id)
-        tile.findViewById<TextView>(R.id.name).setText(name)
+        if (name != 0) tile.findViewById<TextView>(R.id.name).setText(name)
         tile.findViewById<TextView>(R.id.meta).text = meta
     }
 

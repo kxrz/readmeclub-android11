@@ -7,10 +7,19 @@ class Question(val id: String, val theme: String, val text: String, val answers:
 
 /**
  * A pack of questions, as JSON: {"id", "title", "version", "questions": [{"id", "theme", "q",
- * "a": [right, wrong, wrong, wrong], "why"}]}. The General knowledge pack ships in the APK;
- * themed packs will come from the catalogue.
+ * "a": [right, wrong, wrong, wrong], "why"}]}, plus "description" and "updatedAt" for
+ * downloaded packs. The General knowledge pack ships in the APK; the others come from the
+ * CMS catalogue (see PackSync).
  */
-class QuizPack(val id: String, val title: String, val version: Int, val questions: List<Question>) {
+class QuizPack(
+    val id: String,
+    val title: String,
+    val version: Int,
+    val questions: List<Question>,
+    val description: String = "",
+    /** The CMS's updatedAt for a downloaded pack; empty for packs in the APK. */
+    val updatedAt: String = "",
+) {
 
     companion object {
         /** Limits that keep a question, its answers and the explanation on one S4 screen. */
@@ -33,7 +42,7 @@ class QuizPack(val id: String, val title: String, val version: Int, val question
                     why = q.getString("why"),
                 )
             }
-            return QuizPack(o.getString("id"), o.getString("title"), o.optInt("version", 1), questions)
+            return QuizPack(o.getString("id"), o.getString("title"), o.optInt("version", 1), questions, o.optString("description"), o.optString("updatedAt"))
         }
     }
 }

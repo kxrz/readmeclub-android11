@@ -49,7 +49,25 @@
     <string name="notes_missing">No release notes for this version.</string>
     <string name="games_play">Play</string>
     <string name="games_learn">Learn</string>
-    <string name="learn_more_soon">Themed packs to download (Literature, Geography, E-ink &amp; books) arrive in a coming beta.</string>
+    <string name="learn_all_meta_none">Download more from readme.club</string>
+    <plurals name="learn_all_meta">
+        <item quantity="one">%d downloaded · more on readme.club</item>
+        <item quantity="other">%d downloaded · more on readme.club</item>
+    </plurals>
+    <string name="packs_title">Quiz packs</string>
+    <string name="packs_loading">Looking for new packs…</string>
+    <string name="packs_offline">Offline: the packs on this reader still work.</string>
+    <string name="packs_note">Downloaded packs work offline.</string>
+    <string name="packs_state_bundled">In the app</string>
+    <string name="packs_state_installed">Downloaded</string>
+    <string name="packs_state_update">Update available</string>
+    <string name="packs_state_available">To download</string>
+    <string name="packs_play">Play</string>
+    <string name="packs_download">Download</string>
+    <string name="packs_update">Update the pack</string>
+    <string name="packs_remove">Remove from this reader</string>
+    <string name="packs_downloading">Downloading…</string>
+    <string name="packs_failed">Download failed. Try again online.</string>
     <string name="learn_pack_meta">%1$d questions · rounds of 10</string>
     <string name="learn_missed">Questions I missed</string>
     <string name="learn_missed_empty">Empty for now: questions you miss land here</string>

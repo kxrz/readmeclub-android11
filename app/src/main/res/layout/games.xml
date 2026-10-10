@@ -68,19 +68,11 @@
             android:paddingRight="16dp"
             android:visibility="gone">
 
-            <LinearLayout
-                android:id="@+id/learn_packs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
+            <include android:id="@+id/learn_general" layout="@layout/game_tile" />
+
+            <include android:id="@+id/learn_all" layout="@layout/game_tile" />
 
             <include android:id="@+id/learn_missed" layout="@layout/game_tile" />
-
-            <TextView
-                style="@style/Ds.Text"
-                android:paddingTop="4dp"
-                android:text="@string/learn_more_soon"
-                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout style="@style/Ds.Bar">

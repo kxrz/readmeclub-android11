@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Quiz packs: the installed and downloadable packs, three per page; a pack's page. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Ds.Title"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp"
+            android:text="@string/packs_title" />
+
+        <TextView
+            android:id="@+id/note"
+            style="@style/Ds.Text"
+            android:paddingLeft="16dp"
+            android:paddingTop="6dp"
+            android:paddingRight="16dp"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp">
+
+            <include android:id="@+id/pack0" layout="@layout/game_tile" />
+
+            <include android:id="@+id/pack1" layout="@layout/game_tile" />
+
+            <include android:id="@+id/pack2" layout="@layout/game_tile" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="12dp"
+            android:visibility="gone">
+
+            <TextView android:id="@+id/update" style="@style/Ds.Choice" android:layout_marginBottom="10dp" android:text="@string/packs_update" />
+
+            <TextView android:id="@+id/remove" style="@style/Ds.Choice" android:text="@string/packs_remove" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Ds.Bar">
+
+            <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
+
+            <TextView android:id="@+id/previous" style="@style/Ds.Button" android:layout_marginLeft="6dp" android:text="@string/previous" />
+
+            <TextView android:id="@+id/status" style="@style/Ds.BarStatus" />
+
+            <TextView android:id="@+id/primary" style="@style/Ds.Button.Primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>
