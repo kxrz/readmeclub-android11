@@ -97,7 +97,7 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 - [ ] Device pass: Xteink S4, Supernote Nomad and Manta, Boox Note Air5 C, Mudita Kompakt
 - [ ] Budgets met: APK < 450 KB, cold start < 2 s, memory stable after 30 min of play
 - [ ] Update path tested: 1.0.6 → 2.0.0 in-app update, settings and reading positions kept
-- [ ] Offline audit: airplane mode on every screen
+- [ ] Offline audit: airplane mode on every screen (code review done: every network call runs off the main thread, catches its errors and falls back to the cache or an "Offline" status; Games, Learn and The Stacks never use the network)
 - [ ] README, docs, /app page (screenshots, What's inside, FAQ) **[site]**
 - [ ] CHANGELOG `[2.0.0]` dated, release workflow `2.0.0`, launch article and Reddit post
 
