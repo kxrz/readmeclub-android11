@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- About, on four pages (no scrolling): readme.club, Help, Member account, The app. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,59 +13,125 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="24dp">
+            android:paddingLeft="20dp"
+            android:paddingTop="16dp"
+            android:paddingRight="20dp">
 
+            <!-- 1. readme.club -->
             <LinearLayout
-                android:id="@+id/page_promise"
+                android:id="@+id/page_club"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Long press: Lights Out easter egg. -->
+                <!-- Long press: Lights out. -->
                 <ImageView
                     android:id="@+id/about_logo"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="44dp"
                     android:contentDescription="@string/app_name"
                     android:scaleType="fitStart"
                     android:src="@drawable/logo" />
 
-                <TextView style="@style/Heading" android:text="@string/about_promise" />
+                <TextView style="@style/Ds.Sticker" android:layout_marginTop="12dp" android:text="@string/about_sticker" />
 
-                <TextView style="@style/Body" android:textSize="16sp" android:text="@string/about_body" />
+                <TextView style="@style/Ds.Title" android:layout_marginTop="12dp" android:text="@string/about_promise" />
 
-                <TextView style="@style/Body" android:textSize="16sp" android:textStyle="bold" android:paddingTop="12dp" android:text="@string/about_creator" />
+                <TextView style="@style/Ds.Text" android:layout_marginTop="10dp" android:textSize="15sp" android:text="@string/about_body" />
 
-                <TextView style="@style/Body" android:textSize="16sp" android:text="@string/about_thanks" />
+                <TextView style="@style/Ds.Label" android:layout_marginTop="18dp" android:text="@string/about_made_by" />
 
-                <!-- GPL-3.0 legal notice; the attribution must stay in any distributed version (NOTICE). -->
-                <TextView style="@style/Body" android:textSize="12sp" android:paddingTop="12dp" android:text="@string/about_license" />
+                <TextView style="@style/Ds.Text" android:layout_marginTop="4dp" android:textSize="15sp" android:text="@string/about_thanks" />
             </LinearLayout>
 
+            <!-- 2. Help: the contact form, filled in with this reader's details. -->
             <LinearLayout
-                android:id="@+id/page_account"
+                android:id="@+id/page_help"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <TextView style="@style/Heading" android:text="@string/about_account_title" />
+                <TextView style="@style/Ds.Title" android:text="@string/about_help_title" />
 
-                <TextView style="@style/Body" android:textSize="16sp" android:text="@string/about_account_body" />
-
-                <TextView style="@style/Body" android:textSize="16sp" android:paddingTop="12dp" android:text="@string/about_account_phone" />
+                <TextView style="@style/Ds.Text" android:layout_marginTop="8dp" android:textSize="15sp" android:text="@string/about_help_body" />
 
                 <ImageView
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
+                    android:id="@+id/help_qr"
+                    android:layout_width="168dp"
+                    android:layout_height="168dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/about_help_url"
+                    android:scaleType="fitCenter" />
+
+                <TextView style="@style/Ds.Text" android:gravity="center" android:textSize="15sp" android:textStyle="bold" android:text="@string/about_help_url" />
+
+                <LinearLayout
+                    style="@style/Ds.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="vertical">
+
+                    <TextView style="@style/Ds.Label" android:text="@string/about_this_reader" />
+
+                    <TextView android:id="@+id/reader_details" style="@style/Ds.Mono" android:layout_marginTop="4dp" android:lineSpacingMultiplier="1.3" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 3. Member account -->
+            <LinearLayout
+                android:id="@+id/page_member"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView android:id="@+id/member_title" style="@style/Ds.Title" />
+
+                <TextView android:id="@+id/member_body" style="@style/Ds.Text" android:layout_marginTop="8dp" android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/join_qr"
+                    android:layout_width="168dp"
+                    android:layout_height="168dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
                     android:contentDescription="@string/about_account_url"
                     android:scaleType="fitCenter"
                     android:src="@drawable/qr_join" />
 
-                <TextView style="@style/Body" android:gravity="center" android:textStyle="bold" android:text="@string/about_account_url" />
+                <TextView android:id="@+id/join_url" style="@style/Ds.Text" android:gravity="center" android:textSize="15sp" android:textStyle="bold" android:text="@string/about_account_url" />
+            </LinearLayout>
+
+            <!-- 4. The app -->
+            <LinearLayout
+                android:id="@+id/page_app"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    style="@style/Ds.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView style="@style/Ds.Label" android:text="@string/about_version_label" />
+
+                    <TextView android:id="@+id/app_version" style="@style/Ds.Mono" android:textSize="32sp" />
+
+                    <TextView style="@style/Ds.Text" android:layout_marginTop="4dp" android:textSize="15sp" android:text="@string/about_app_promise" />
+                </LinearLayout>
+
+                <TextView style="@style/Ds.Label" android:layout_marginTop="20dp" android:text="@string/about_credits" />
+
+                <TextView style="@style/Ds.Text" android:layout_marginTop="4dp" android:textSize="15sp" android:text="@string/about_credits_body" />
+
+                <!-- GPL-3.0 notice; the attribution must stay in any distributed version (NOTICE). -->
+                <TextView style="@style/Ds.Text" android:layout_marginTop="16dp" android:textSize="12sp" android:text="@string/about_license" />
             </LinearLayout>
         </FrameLayout>
 
@@ -72,16 +139,9 @@
 
             <TextView android:id="@+id/back" style="@style/Ds.Button" android:text="@string/back" />
 
-            <TextView android:id="@+id/previous" style="@style/Ds.Button" android:text="@string/previous" />
+            <TextView android:id="@+id/previous" style="@style/Ds.Button" android:layout_marginLeft="6dp" android:text="@string/previous" />
 
-            <TextView
-                style="@style/Ds.BarStatus"
-                android:id="@+id/page_label"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="14sp" />
+            <TextView android:id="@+id/page_label" style="@style/Ds.BarStatus" />
 
             <TextView android:id="@+id/next" style="@style/Ds.Button.Primary" android:text="@string/next" />
         </LinearLayout>

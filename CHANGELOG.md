@@ -56,6 +56,10 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- **About**, redesigned on four pages: readme.club; Help, with a QR code that opens the
+  site's contact form already filled in with this reader's model, Android and app versions
+  and screen; the member account (join, or the account this reader is linked to); and the
+  app (version, licence, credits).
 - Every screen in the new design: one bottom bar (56 dp, Back on the left, the main action as
   a black button with a hard shadow on the right), 44 dp buttons that invert when tapped,
   2 dp rules, titles in Space Grotesk. News, Guides, Wallpapers and Settings start their bar
