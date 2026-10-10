@@ -50,6 +50,10 @@ class FlashcardsActivity : Activity() {
         primary.visibility = View.VISIBLE
         val status = findViewById<TextView>(R.id.status)
         val box = findViewById<TextView>(R.id.box)
+        val question = findViewById<TextView>(R.id.question)
+        findViewById<View>(R.id.hint).visibility = if (index < cards.size) View.VISIBLE else View.GONE
+        // A card's question large; the messages (empty deck, done) at reading size.
+        question.textSize = if (index < cards.size) 24f else 18f
         if (index >= cards.size) {
             findViewById<TextView>(R.id.theme).setText(R.string.learn_missed)
             box.visibility = View.GONE
@@ -76,6 +80,12 @@ class FlashcardsActivity : Activity() {
         val card = cards[index]
         findViewById<TextView>(R.id.answer).text = card.answers[0]
         findViewById<TextView>(R.id.why).text = card.why
+        findViewById<View>(R.id.hint).visibility = View.GONE
+        // When the card comes back: a box up shows half as often; known in the last box, it leaves.
+        val box = deck.box(card.id)
+        findViewById<TextView>(R.id.knew).text =
+            if (box >= Leitner.BOXES) getString(R.string.cards_knew_done) else getString(R.string.cards_knew_back, 1 shl box)
+        findViewById<TextView>(R.id.not_yet).setText(R.string.cards_not_yet_back)
         findViewById<View>(R.id.back_side).visibility = View.VISIBLE
         findViewById<View>(R.id.grade).visibility = View.VISIBLE
         primary.visibility = View.GONE

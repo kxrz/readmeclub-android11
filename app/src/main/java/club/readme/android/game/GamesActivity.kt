@@ -38,7 +38,10 @@ class GamesActivity : Activity() {
         tabPlay.setOnClickListener { showTab(learn = false) }
         tabLearn.setOnClickListener { showTab(learn = true) }
         findViewById<View>(R.id.back).setOnClickListener { finish() }
-        resume.setOnClickListener { open(SudokuActivity::class.java) }
+        resume.setOnClickListener {
+            if (tabLearn.isSelected) startActivity(QuizActivity.intent(this, LearnStore(this).bundled.first().id))
+            else open(SudokuActivity::class.java)
+        }
         findViewById<View>(R.id.game_stacks).setOnClickListener { open(StacksActivity::class.java) }
         findViewById<View>(R.id.game_sudoku).setOnClickListener { open(SudokuActivity::class.java) }
         findViewById<View>(R.id.game_mines).setOnClickListener { open(MinesActivity::class.java) }
@@ -48,9 +51,10 @@ class GamesActivity : Activity() {
 
     private fun open(activity: Class<out Activity>) = startActivity(Intent(this, activity))
 
-    /** Resume Sudoku is Play's main action; Learn has none of its own. */
+    /** The main action: Resume Sudoku on Play (when there is one), a quick quiz on Learn. */
     private fun updateResume() {
-        resume.visibility = if (tabPlay.isSelected && store.hasSudoku) View.VISIBLE else View.GONE
+        (resume as TextView).setText(if (tabLearn.isSelected) R.string.learn_quick_quiz else R.string.games_resume)
+        resume.visibility = if (tabLearn.isSelected || store.hasSudoku) View.VISIBLE else View.GONE
     }
 
     private fun showTab(learn: Boolean) {

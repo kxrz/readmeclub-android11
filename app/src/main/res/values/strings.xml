@@ -150,6 +150,10 @@
     <string name="cards_knew">I knew it</string>
     <string name="cards_not_yet">Not yet</string>
     <string name="cards_show">Show answer</string>
+    <string name="cards_hint">Think of the answer, then tap Show answer.</string>
+    <string name="cards_knew_back">I knew it · back in %1$d sessions</string>
+    <string name="cards_knew_done">I knew it · leaves the deck</string>
+    <string name="cards_not_yet_back">Not yet · back next session</string>
     <string name="cards_box">Box %1$d / %2$d</string>
     <string name="cards_finish">Done</string>
     <string name="cards_empty">No cards yet. Every question you miss in a quiz becomes a card here, until you know it three times in a row.</string>
@@ -159,6 +163,7 @@
     </plurals>
     <string name="games_offline">All offline</string>
     <string name="games_resume">Resume Sudoku</string>
+    <string name="learn_quick_quiz">Quick quiz · 10</string>
     <string name="games_best">Best %1$s</string>
     <string name="games_sudoku_meta">%1$d × %2$d · Easy, Medium, Hard</string>
     <string name="games_sudoku_progress">In progress · %1$d / %2$d</string>
@@ -208,7 +213,7 @@
     <string name="stacks_bag_label">Bag · %1$d / %2$d · tap an item</string>
     <string name="stacks_use_short">Use</string>
     <string name="stacks_drop_short">Drop</string>
-    <string name="stacks_best">Best floor %1$d · %2$d deaths</string>
+    <string name="stacks_best">Best floor %1$d</string>
     <string name="stacks_back_to_fight">Fight</string>
     <string name="stacks_achievements">Achievements</string>
     <string name="sudoku_easy">Easy</string>

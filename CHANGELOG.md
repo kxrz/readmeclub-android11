@@ -64,6 +64,9 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- Learn offers a Quick quiz (10 general knowledge questions) as its main action. Flashcards
+  show the question larger, a hint, and when each card comes back. The Stacks' hero screen
+  shows GUTS, WITS and LUCK as three boxes.
 - News: each row shows its reading time, and a New pill on the ones not read yet.
 - The bottom bar reads Previous and Next everywhere; the wallpaper screen uses the same bar
   as the others (Back on the left, Folder and Save on the right); Games offers Resume Sudoku.

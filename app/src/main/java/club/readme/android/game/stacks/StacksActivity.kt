@@ -279,9 +279,11 @@ class StacksActivity : Activity() {
         val xp = engine.xpToNext
         card(
             s.heroClass,
-            "HP ${s.hp}/${engine.maxHp} · ${s.coins} coins\nGUTS ${engine.stat("GUTS")} · WITS ${engine.stat("WITS")} · LUCK ${engine.stat("LUCK")}",
+            "HP ${s.hp}/${engine.maxHp} · ${s.coins} coins · " +
+                resources.getQuantityString(R.plurals.stacks_deaths, s.count("deaths"), s.count("deaths")),
             squares(s.xp, xp) + " " + getString(R.string.stacks_xp, s.xp, xp, s.level + 1),
         )
+        statTiles()
         val bag = engine.carried()
         val item = bag.getOrNull(slot)
         label(getString(R.string.stacks_bag_label, bag.size, StacksEngine.BAG))
@@ -313,7 +315,7 @@ class StacksActivity : Activity() {
             }
             if (actions.isNotEmpty()) grid(actions, columns = 2, heightDp = 52)
         }
-        status.text = note ?: getString(R.string.stacks_best, s.count("floor"), s.count("deaths"))
+        status.text = note ?: getString(R.string.stacks_best, s.count("floor"))
         note = null
         primary(getString(if (fightBag) R.string.stacks_back_to_fight else R.string.stacks_achievements))
     }
@@ -392,6 +394,28 @@ class StacksActivity : Activity() {
         v.text = text
         v.setPadding(0, 0, 0, dp(6))
         choices.addView(v)
+    }
+
+    /** GUTS, WITS and LUCK as three boxes (not buttons): the stat, its value large. */
+    private fun statTiles() {
+        val line = LinearLayout(this)
+        for ((i, name) in listOf("GUTS", "WITS", "LUCK").withIndex()) {
+            val box = LinearLayout(this)
+            box.orientation = LinearLayout.VERTICAL
+            box.gravity = Gravity.CENTER
+            box.setBackgroundResource(R.drawable.ds_button)
+            box.addView(TextView(this, null, 0, R.style.Ds_Label).apply { text = name })
+            box.addView(TextView(this, null, 0, R.style.Ds_Mono).apply {
+                text = engine.stat(name).toString()
+                textSize = 20f
+            })
+            val lp = LinearLayout.LayoutParams(0, dp(56), 1f)
+            if (i < 2) lp.rightMargin = dp(8)
+            line.addView(box, lp)
+        }
+        val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        lp.bottomMargin = dp(12)
+        choices.addView(line, lp)
     }
 
     /** A full-width choice, 52 dp: label on the left, its stat (or price) on the right. */
