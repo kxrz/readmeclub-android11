@@ -111,21 +111,14 @@
                     android:layout_marginTop="4dp"
                     android:duplicateParentState="true"
                     android:textColor="@color/ds_on_button" />
-
-                <!-- Progress as ten squares: e-ink friendly, no colour. -->
-                <TextView
-                    android:id="@+id/continue_bar"
-                    style="@style/Ds.Mono"
-                    android:duplicateParentState="true"
-                    android:letterSpacing="0.1"
-                    android:textColor="@color/ds_on_button" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="14dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout style="@style/HomeRow">

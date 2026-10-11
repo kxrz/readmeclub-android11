@@ -65,6 +65,8 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- Home: the six tiles share the space under Continue reading, so they always fit on the S4;
+  the progress squares sit on the meta line.
 - Rows of keys keep every key whole: Resend on the code keypad no longer loses its bottom edge.
 - Previous and Next only show where there is a page to go to (News, Guides, Wallpapers,
   Settings, release notes, achievements), as About already did.

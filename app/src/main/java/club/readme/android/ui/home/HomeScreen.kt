@@ -97,11 +97,8 @@ class HomeScreen(
         continueCard.visibility = View.VISIBLE
         continueCard.findViewById<TextView>(R.id.continue_label).setText(label)
         continueCard.findViewById<TextView>(R.id.continue_title).text = title
-        continueCard.findViewById<TextView>(R.id.continue_meta).text = meta
-        continueCard.findViewById<TextView>(R.id.continue_bar).apply {
-            visibility = if (bar == null) View.GONE else View.VISIBLE
-            text = bar
-        }
+        // The progress squares share the meta line: one line less, so the six tiles always fit.
+        continueCard.findViewById<TextView>(R.id.continue_meta).text = if (bar == null) meta else "$meta  $bar"
         continueCard.setOnClickListener { onClick() }
     }
 
