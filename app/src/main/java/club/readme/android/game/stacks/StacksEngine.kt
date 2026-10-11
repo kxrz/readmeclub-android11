@@ -480,14 +480,17 @@ class StacksEngine(private val content: StacksContent, val state: StacksState, p
             when (name) {
                 "hp" -> {
                     val n = arg.toInt()
+                    val before = state.hp
                     state.hp = (state.hp + n).coerceIn(0, maxHp)
-                    pills += if (n >= 0) "+$n HP" else "−${-n} HP"
+                    // What actually changed: no "+0 HP" when already at full health.
+                    val change = state.hp - before
+                    if (change != 0) pills += if (change > 0) "+$change HP" else "−${-change} HP"
                 }
                 "heal" -> {
                     val n = if (arg == "full") maxHp else maxHp / 2
                     val before = state.hp
                     state.hp = minOf(maxHp, state.hp + n)
-                    pills += "+${state.hp - before} HP"
+                    if (state.hp > before) pills += "+${state.hp - before} HP"
                 }
                 "xp" -> pills += gainXp(arg.toInt())
                 "coins" -> {

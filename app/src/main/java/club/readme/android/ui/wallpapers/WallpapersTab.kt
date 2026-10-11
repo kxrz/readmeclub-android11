@@ -157,6 +157,9 @@ class WallpapersTab(
         )
         pageCount = maxOf(1, (result.total + pageSize - 1) / pageSize)
         pageLabel.text = activity.getString(R.string.page_of, page, pageCount)
+        // Previous and Next only where there is a page to go to (as in About).
+        root.findViewById<View>(R.id.previous).visibility = if (page <= 1) View.INVISIBLE else View.VISIBLE
+        root.findViewById<View>(R.id.next).visibility = if (page >= pageCount) View.INVISIBLE else View.VISIBLE
 
         val cellWidth = grid.width / columns
         val cellHeight = grid.height / rows

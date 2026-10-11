@@ -103,6 +103,9 @@ class SettingsTab(
         page = index
         pages.forEachIndexed { i, v -> v.visibility = if (i == index) View.VISIBLE else View.GONE }
         pageLabel.text = activity.getString(R.string.page_of, index + 1, pages.size)
+        // Previous and Next only where there is a page to go to (as in About).
+        root.findViewById<View>(R.id.previous).visibility = if (index == 0) View.INVISIBLE else View.VISIBLE
+        root.findViewById<View>(R.id.next).visibility = if (index == pages.size - 1) View.INVISIBLE else View.VISIBLE
     }
 
     /** A row of mutually exclusive, inverted-when-selected choices. */

@@ -65,6 +65,8 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- Previous and Next only show where there is a page to go to (News, Guides, Wallpapers,
+  Settings, release notes, achievements), as About already did.
 - The brand's decorations (plus, ring, circle, zigzag) in black and white: two at most per
   screen, on Home and About, never behind text or on a button; all four on Components.
 - Guide shelf and news cards use the design system's tile: rounded corners, inverted when pressed.

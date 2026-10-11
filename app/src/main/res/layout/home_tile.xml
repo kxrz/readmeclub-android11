@@ -34,6 +34,7 @@
     <TextView
         android:id="@+id/label"
         style="@style/Ds.Text"
+        android:lineSpacingMultiplier="1"
         android:duplicateParentState="true"
         android:maxLines="1"
         android:textColor="@color/ds_on_button"

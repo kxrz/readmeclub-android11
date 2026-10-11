@@ -329,8 +329,7 @@ class StacksActivity : Activity() {
             if (a.id in engine.state.achievements) "${a.name}\n${a.text}" else "???"
         }
         body(text)
-        previous.visibility = View.VISIBLE
-        previous.isEnabled = page > 0
+        previous.visibility = if (page > 0) View.VISIBLE else View.INVISIBLE
         status.text = getString(R.string.page_of, page + 1, pages)
         if (page < pages - 1) primary(getString(R.string.next))
     }

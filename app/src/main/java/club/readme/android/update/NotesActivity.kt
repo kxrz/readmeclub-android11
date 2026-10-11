@@ -65,6 +65,9 @@ class NotesActivity : Activity() {
 
     private fun update() {
         pageLabel.text = getString(R.string.page_of, pageView.page + 1, pageView.pageCount)
+        // Previous and Next only where there is a page to go to (as in About).
+        findViewById<View>(R.id.previous).visibility = if (pageView.page == 0) View.INVISIBLE else View.VISIBLE
+        findViewById<View>(R.id.next).visibility = if (pageView.page >= pageView.pageCount - 1) View.INVISIBLE else View.VISIBLE
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean = keys.handle(event) || super.dispatchKeyEvent(event)

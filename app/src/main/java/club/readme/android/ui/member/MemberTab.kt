@@ -263,8 +263,14 @@ class MemberTab(
                     MemberSync.Result.Ok -> onOk()
                     // Messages go in the body, where they can be read in full.
                     is MemberSync.Result.Failed -> {
-                        status.text = ""
                         text.text = result.message ?: activity.getString(R.string.member_failed)
+                        // A refused code is cleared, ready to type again.
+                        if (step == Step.CODE) {
+                            code = ""
+                            renderCode()
+                        } else {
+                            status.text = ""
+                        }
                     }
                     MemberSync.Result.Offline -> {
                         status.text = ""

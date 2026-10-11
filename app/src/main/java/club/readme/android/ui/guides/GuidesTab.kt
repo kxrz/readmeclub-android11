@@ -118,6 +118,9 @@ class GuidesTab(
         grid.removeAllViews()
         page = page.coerceAtMost(pageCount - 1)
         pageLabel.text = activity.getString(R.string.page_of, page + 1, pageCount)
+        // Previous and Next only where there is a page to go to (as in About).
+        root.findViewById<View>(R.id.previous).visibility = if (page == 0) View.INVISIBLE else View.VISIBLE
+        root.findViewById<View>(R.id.next).visibility = if (page >= pageCount - 1) View.INVISIBLE else View.VISIBLE
         val open = brand
         title.text = open?.name ?: activity.getString(R.string.tab_guides)
 

@@ -165,6 +165,9 @@ class NewsTab(private val activity: Activity, container: ViewGroup, onSyncReques
             }
         }
         pageLabel.text = activity.getString(R.string.page_of, page + 1, pageCount)
+        // Previous and Next only where there is a page to go to (as in About).
+        root.findViewById<View>(R.id.previous).visibility = if (page == 0) View.INVISIBLE else View.VISIBLE
+        root.findViewById<View>(R.id.next).visibility = if (page >= pageCount - 1) View.INVISIBLE else View.VISIBLE
     }
 
     private fun card(title: String, body: String, onClick: () -> Unit): View {
