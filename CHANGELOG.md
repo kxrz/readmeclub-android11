@@ -65,6 +65,7 @@ and refuses to release a version that has no section here.
   game coming in 2.0.0 (`docs/games/the-stacks.md`).
 
 ### Changed
+- Rows of keys keep every key whole: Resend on the code keypad no longer loses its bottom edge.
 - Previous and Next only show where there is a page to go to (News, Guides, Wallpapers,
   Settings, release notes, achievements), as About already did.
 - The brand's decorations (plus, ring, circle, zigzag) in black and white: two at most per

@@ -90,6 +90,7 @@ class SudokuActivity : Activity() {
         keys.chunked(perRow).forEachIndexed { r, chunk ->
             val row = LinearLayout(this)
             row.orientation = LinearLayout.HORIZONTAL
+            row.isBaselineAligned = false
             chunk.forEachIndexed { i, (label, digit) ->
                 val lp = weighted(last = i == chunk.lastIndex)
                 // Erase takes the room the missing digits leave.

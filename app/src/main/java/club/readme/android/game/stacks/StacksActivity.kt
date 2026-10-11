@@ -398,6 +398,7 @@ class StacksActivity : Activity() {
     /** GUTS, WITS and LUCK as three boxes (not buttons): the stat, its value large. */
     private fun statTiles() {
         val line = LinearLayout(this)
+        line.isBaselineAligned = false
         for ((i, name) in listOf("GUTS", "WITS", "LUCK").withIndex()) {
             val box = LinearLayout(this)
             box.orientation = LinearLayout.VERTICAL
@@ -458,6 +459,7 @@ class StacksActivity : Activity() {
         cells.chunked(columns).forEach { chunk ->
             val line = LinearLayout(this)
             line.orientation = LinearLayout.HORIZONTAL
+            line.isBaselineAligned = false
             for ((i, c) in chunk.withIndex()) {
                 val b = TextView(this, null, 0, R.style.Ds_Button)
                 b.text = if (c.sub == null) c.text else "${c.text}\n${c.sub}"

@@ -203,6 +203,8 @@ class MemberTab(
         val keys = listOf("1", "2", "3", "4", "5", "6", "7", "8", "9", RESEND, "0", DELETE)
         keys.chunked(3).forEach { chunk ->
             val line = LinearLayout(activity)
+            // Keys with different text sizes (Resend) would otherwise drop to a shared baseline and lose their bottom edge.
+            line.isBaselineAligned = false
             chunk.forEachIndexed { i, key ->
                 val b = TextView(activity, null, 0, R.style.Ds_Button)
                 when (key) {
