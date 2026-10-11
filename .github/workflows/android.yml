@@ -62,7 +62,8 @@ jobs:
           code="$(sed -n 's/.*versionName = "\(.*\)".*/\1/p' app/build.gradle.kts)"
           if [ "v$code" != "${TAG%%-*}" ]; then echo "::error::$TAG does not match versionName $code"; exit 1; fi
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null; then
-            echo "::error::$TAG already exists"; exit 1
+            # Rebuilding an existing release (its files are kept as an artifact below).
+            echo "::warning::$TAG already exists: rebuilding its files"
           fi
       - name: Decode release keystore
         env:
@@ -94,6 +95,16 @@ jobs:
             --arg sha "$(sha256sum readmeclub.apk | cut -d' ' -f1)" \
             --rawfile notes release-notes.md \
             '{latestVersion: $version, apkUrl: $apk, sha256: $sha, notes: $notes}' > manifest.json
+      # The release files, also kept on the run: if GitHub refuses the release step, they can
+      # be attached to the release by hand (Actions › this run › Artifacts).
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ env.TAG }}
+          path: |
+            readmeclub.apk
+            readmeclub-*.apk
+            manifest.json
+            release-notes.md
       - uses: softprops/action-gh-release@v2
         with:
           files: |
