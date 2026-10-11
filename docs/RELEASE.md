@@ -38,11 +38,17 @@ data) and reinstall.
      version `1.0.0`. The job creates the tag `v1.0.0` on that commit.
    - **From a computer**: `git tag v1.0.0 && git push origin v1.0.0`.
 
-   Both check that the version matches `versionName`; a manual run refuses a tag that already exists.
+   Both check that the version matches `versionName`. A manual run on a tag that already
+   exists rebuilds that release's files.
 
 3. CI builds the signed, minified APK and creates a GitHub Release with
    `readmeclub.apk`, `readmeclub-1.0.0.apk` and `manifest.json`, using the version's
    `CHANGELOG.md` section as release notes. A tag without a section fails the release.
+
+The same files are also kept on the run (Actions › the run › Artifacts › `release-v1.0.0`):
+if GitHub ever refuses the release step, attach them to the release by hand.
+
+4. In `README.md`, update the release and APK size badges (static, so they always show).
 
 Nothing else to do. At launch the app reads `releases/latest/download/manifest.json`
 (version, APK URL of that release, SHA-256). When a newer version exists, the tab reads

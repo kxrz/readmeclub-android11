@@ -13,6 +13,7 @@ and refuses to release a version that has no section here.
 - Screenshots workflow: the screens show the release name and version, not the debug ones.
 - Release workflow: the release files (APKs, manifest, notes) are also kept as an artifact of
   the run, and an existing tag can be rebuilt from Run workflow.
+- README: screens of 2.0 on the S4, and static release and size badges that always show.
 
 ## [2.0.0] - 2026-10-11
 

@@ -8,19 +8,24 @@
 ## Your e-ink reader just got its own club.
 
 **readme.club is the first e-ink media with its own app for e-readers.**<br>
-News, guides and thousands of wallpapers — right on the device, offline, in glorious black and white.
+News, guides, wallpapers, games and quizzes — right on the device, offline, in glorious black and white.<br>
+On any Android 11+ device: e-readers first, phones too.
 
-[![Latest release](https://img.shields.io/github/v/release/kxrz/readmeclub-android11?style=flat-square&label=release&color=000000)](../../releases/latest)
+[![Release 2.0.0](https://img.shields.io/badge/release-2.0.0-000000?style=flat-square)](../../releases/latest)
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-000000?style=flat-square)](LICENSE)
 ![Android 11+](https://img.shields.io/badge/Android-11%2B-000000?style=flat-square)
-![APK size](https://img.shields.io/badge/APK-~160%20KB-000000?style=flat-square)
+![APK size](https://img.shields.io/badge/APK-~440%20KB-000000?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-000000?style=flat-square)
 
 ### [Download readmeclub.apk](../../releases/latest/download/readmeclub.apk)
 
-<img src="docs/assets/hero.jpg" alt="The readme.club app on an Xteink S4, showing the wallpapers that fit its screen" width="760">
+<img src="docs/assets/screens/home.png" alt="Home: Continue reading and six sections" width="150">&nbsp;
+<img src="docs/assets/screens/wallpapers.png" alt="Wallpapers that fit the screen" width="150">&nbsp;
+<img src="docs/assets/screens/stacks.png" alt="A fight in The Stacks" width="150">&nbsp;
+<img src="docs/assets/screens/quiz.png" alt="A quiz answer, with why" width="150">&nbsp;
+<img src="docs/assets/screens/member.png" alt="The Member screen, linked to an account" width="150">
 
-<sub>The Wallpapers tab on an Xteink S4 — 700+ pages of wallpapers that fit the screen pixel for pixel.</sub>
+<sub>readme.club 2.0 on an Xteink S4 (4.3", 480 × 800): Home, Wallpapers, The Stacks, Learn and Member.</sub>
 
 </div>
 
