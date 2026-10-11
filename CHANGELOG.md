@@ -7,7 +7,7 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
-## [2.0.0] - Unreleased
+## [2.0.0] - 2026-10-11
 
 ### Added
 - **Home screen** in place of the tabs: Continue reading with its progress (or, before

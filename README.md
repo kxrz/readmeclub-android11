@@ -30,22 +30,26 @@ News, guides and thousands of wallpapers — right on the device, offline, in gl
 
 | | |
 |---|---|
-| **News** | Fresh readme.club articles with their photos, saved for offline reading. New ones stand out in bold, and you pick up exactly where you stopped. Want it on your phone? Scan the QR code from the reader menu. |
+| **Home** | The story you were reading, then one tile per section saying what is inside. |
+| **News** | readme.club articles with their photos, saved for offline reading, each with its reading time and a New pill until read. You pick up exactly where you stopped. Want it on your phone? Scan the QR code from the reader menu. |
 | **Guides** | A real bookshelf: pick a brand, pick a guide, jump to any step from its contents — even with Wi-Fi off. |
-| **Wallpapers** | 4,000+ community wallpapers, filtered to fit your screen exactly. One tap and the original lands in `Pictures/ReadmeClub`. |
+| **Wallpapers** | 4,000+ community wallpapers, filtered to fit your screen exactly, with search and sort. One tap and the original lands in `Pictures/ReadmeClub`. |
+| **Games** | The Stacks, an endless and absurd text dungeon under a bookshop; Sudoku (6 × 6 or 9 × 9); Mines; Lights out. Made for e-ink: every move is one redraw. |
+| **Learn** | 200 general-knowledge questions in the app, quiz packs from readme.club, and flashcards of the questions you missed. |
+| **Member** | Optional: link your readme.club account with your member number and an emailed code, and your favourite and uploaded wallpapers and your member card come to the reader. |
 | **Settings** | Text size, Sans or Serif, refresh rhythm, storage per section — and one-tap updates. |
 
 ## Made for e-ink, not squeezed onto it
 
 - **Pages, never scrolling.** Everything is cut to the screen and turned like a book, with the minutes left in the footer.
-- **One button is all you need.** The capacitive button turns pages, a long press opens the menu. Prefer tapping? The screen edges work too.
+- **One bar, always the same.** Back on the left, the screen's main action on the right. Page buttons (and the S4's capacitive button) turn pages; the screen edges work too.
 - **Crisp black on white.** No animations, no spinners; touch feedback is a clean inversion, and a full refresh wipes ghosting every few pages.
 - **Offline first.** One sync when you open the app, then everything reads from the device.
-- **Never leaves the app.** E-readers rarely have a browser, so nothing ever links out.
-- **Featherweight.** About 160 KB. Pure Kotlin and native Android views, no library dependency (just a small MIT QR code generator vendored in the source).
+- **Never leaves the app.** E-readers rarely have a browser, so nothing ever links out; a QR code opens anything on your phone.
+- **Featherweight.** About 440 KB. Pure Kotlin and native Android views, no library dependency (just a small MIT QR code generator vendored in the source). No Google Play services, no tracker, no account needed.
 
 Built and loved on the **Xteink S4** (Android 11, 4.3", 480 × 800), and made for **any
-Android 11+ e-reader**: the layout grows with the screen, the wallpaper gallery matches your
+Android 11+ device** — e-readers first, phones too: the layout grows with the screen, the wallpaper gallery matches your
 display through readme.club's device registry, volume and page-turn buttons both turn pages,
 and forced refreshes can be switched off on readers with their own refresh modes.
 Device notes: [docs/DEVICE.md](docs/DEVICE.md).
@@ -68,7 +72,7 @@ The [device report issue form](../../issues/new?template=device-report.yml) work
 
 1. Download **[readmeclub.apk](../../releases/latest/download/readmeclub.apk)** onto your reader.
 2. Open it and allow installing apps from this source when Android asks.
-3. Enjoy. New versions show an **Update** pill on Settings and install from **About → Update**.
+3. Enjoy. New versions show an **Update** pill on Settings and install from **Settings → About → Check for updates**. Already on 1.x? It offers 2.0 the same way.
 
 Got a computer handy? `adb install -r readmeclub.apk` works too.
 

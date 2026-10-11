@@ -98,8 +98,9 @@ Sizes: S (days), M (about a week), L (several weeks). Site work is marked **[sit
 - [ ] Budgets met: APK < 450 KB, cold start < 2 s, memory stable after 30 min of play
 - [ ] Update path tested: 1.0.6 → 2.0.0 in-app update, settings and reading positions kept
 - [ ] Offline audit: airplane mode on every screen (code review done: every network call runs off the main thread, catches its errors and falls back to the cache or an "Offline" status; Games, Learn and The Stacks never use the network)
-- [ ] README, docs, /app page (screenshots, What's inside, FAQ) **[site]**
-- [ ] CHANGELOG `[2.0.0]` dated, release workflow `2.0.0`, launch article and Reddit post
+- [x] README, docs, /app page (screenshots, What's inside) **[site]**
+- [x] CHANGELOG `[2.0.0]` dated, release workflow `2.0.0` (2026-10-11)
+- [ ] Launch article and Reddit post
 
 ## Dependencies
 
@@ -134,4 +135,4 @@ M1 and M2 come first: everything else is built from their components. Site work 
 | [M4 Games: Learn](https://github.com/kxrz/readmeclub-android11/issues/5) | Built, to test on the S4; 3 packs to review and publish in the CMS | — |
 | [M5 The Stacks](https://github.com/kxrz/readmeclub-android11/issues/6) | Built, to test on the S4; writing pass by the team | — |
 | [M6 Member account](https://github.com/kxrz/readmeclub-android11/issues/7) | Built, to test on the S4 (site live) | — |
-| [M7 Hardening and launch](https://github.com/kxrz/readmeclub-android11/issues/8) | Not started | — |
+| [M7 Hardening and launch](https://github.com/kxrz/readmeclub-android11/issues/8) | 2.0.0 released 2026-10-11; device pass and launch article to come | 2.0.0-beta.2 |
