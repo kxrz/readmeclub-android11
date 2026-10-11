@@ -49,6 +49,10 @@ The same files are also kept on the run (Actions › the run › Artifacts › `
 if GitHub ever refuses the release step, attach them to the release by hand.
 
 4. In `README.md`, update the release and APK size badges (static, so they always show).
+5. Add `fastlane/metadata/android/en-US/changelogs/<versionCode>.txt` (500 characters at
+   most): app stores that read the repository (IzzyOnDroid, F-Droid) show it as the
+   version's notes. The store listing itself (title, descriptions, icon, screenshots) lives
+   next to it.
 
 Nothing else to do. At launch the app reads `releases/latest/download/manifest.json`
 (version, APK URL of that release, SHA-256). When a newer version exists, the tab reads

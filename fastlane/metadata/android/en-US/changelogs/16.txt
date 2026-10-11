@@ -1,0 +1,1 @@
+2.0.0: a Home with six sections; Games (The Stacks, Sudoku, Mines, Lights out); Learn (quizzes, quiz packs, flashcards); optional member account; search and sort in Wallpapers; reading time and New on news; the readme.club design system for e-ink.

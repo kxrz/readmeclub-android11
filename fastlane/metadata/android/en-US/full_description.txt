@@ -1,0 +1,22 @@
+<p>readme.club is a small, offline-first app made for e-ink: built on the 4.3" Xteink S4 first, it runs on any Android 11+ device, e-readers first, phones too. No Google Play services, no tracker, no account needed.</p>
+
+<p><b>What's inside</b></p>
+<ul>
+<li><b>News</b>: readme.club articles with their photos, saved for offline reading, with their reading time. Pick up exactly where you stopped.</li>
+<li><b>Guides</b>: a bookshelf of device guides by brand; jump to any step from the contents, even with Wi-Fi off.</li>
+<li><b>Wallpapers</b>: thousands of community wallpapers filtered to fit your screen exactly; search, sort, save the original in one tap.</li>
+<li><b>Games</b>: The Stacks, an endless and absurd text dungeon under a bookshop; Sudoku; Mines; Lights out. Every move is one redraw.</li>
+<li><b>Learn</b>: 200 general-knowledge questions, quiz packs from readme.club, and flashcards of the questions you missed.</li>
+<li><b>Member</b> (optional): link your readme.club account to bring your favourite wallpapers and your member card to the reader.</li>
+</ul>
+
+<p><b>Made for e-ink</b></p>
+<ul>
+<li>Pages, never scrolling: everything is cut to the screen and turned like a book.</li>
+<li>One bottom bar, the same everywhere; page buttons turn pages.</li>
+<li>Black on white, no animation; a full refresh clears ghosting every few pages, or never.</li>
+<li>A QR code opens any article or guide on your phone.</li>
+<li>About 440 KB, no library dependency.</li>
+</ul>
+
+<p>The app reads content from readme.club. Linking a member account records the reader's maker, model, Android and app versions and screen size, nothing about your reading. Free software under GPL-3.0.</p>

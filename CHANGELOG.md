@@ -14,6 +14,8 @@ and refuses to release a version that has no section here.
 - Release workflow: the release files (APKs, manifest, notes) are also kept as an artifact of
   the run, and an existing tag can be rebuilt from Run workflow.
 - README: screens of 2.0 on the S4, and static release and size badges that always show.
+- Store listing in `fastlane/metadata` (title, descriptions, icon, screenshots, notes per
+  version), read by IzzyOnDroid and F-Droid.
 
 ## [2.0.0] - 2026-10-11
 
