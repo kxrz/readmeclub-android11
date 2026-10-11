@@ -164,9 +164,29 @@ def settings():
 
 
 def member():
+    """Linking, step by step: the details typed, the code screen, digits on the keypad, a
+    wrong code. The member number does not exist, so the site sends no email (it answers
+    the same either way)."""
     tap_id("tile_member", wait=3)
     shot("member")
-    tap_id("back")
+    tap_id("field1", wait=1)
+    adb("shell", "input", "text", "99999")
+    tap_id("field2", wait=1)
+    adb("shell", "input", "text", "screenshots")
+    adb("shell", "input", "keyevent", "4")  # Back with the keyboard open only closes the keyboard
+    time.sleep(2)
+    shot("member-details")
+    tap_id("primary", wait=8)
+    shot("member-code")
+    for digit in (4, 8, 1):
+        tap_in("keypad", digit - 1, wait=1)
+    shot("member-code-typed")
+    for digit in (5, 9, 2):
+        tap_in("keypad", digit - 1, wait=1)
+    tap_id("primary", wait=8)
+    shot("member-code-wrong")
+    back()
+    back()
 
 
 def about():

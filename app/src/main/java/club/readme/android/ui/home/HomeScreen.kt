@@ -31,12 +31,12 @@ class HomeScreen(
     private val continueCard: View = root.findViewById(R.id.continue_card)
     private val status: TextView = root.findViewById(R.id.home_status)
     private val tiles = mapOf(
-        Section.NEWS to tile(R.id.tile_news, R.string.tab_news, R.drawable.ds_icon_news),
-        Section.GUIDES to tile(R.id.tile_guides, R.string.tab_guides, R.drawable.ds_icon_guides),
-        Section.WALLPAPERS to tile(R.id.tile_wallpapers, R.string.tab_wallpapers, R.drawable.ds_icon_wallpapers),
-        Section.GAMES to tile(R.id.tile_games, R.string.tab_games, R.drawable.ds_icon_games),
-        Section.MEMBER to tile(R.id.tile_member, R.string.tab_member, R.drawable.ds_icon_member),
-        Section.SETTINGS to tile(R.id.tile_settings, R.string.tab_settings, R.drawable.ds_icon_settings),
+        Section.NEWS to tile(R.id.tile_news, R.string.tab_news, R.drawable.ds_icon_news, R.string.home_sub_news),
+        Section.GUIDES to tile(R.id.tile_guides, R.string.tab_guides, R.drawable.ds_icon_guides, R.string.home_sub_guides),
+        Section.WALLPAPERS to tile(R.id.tile_wallpapers, R.string.tab_wallpapers, R.drawable.ds_icon_wallpapers, R.string.home_sub_wallpapers),
+        Section.GAMES to tile(R.id.tile_games, R.string.tab_games, R.drawable.ds_icon_games, R.string.home_sub_games),
+        Section.MEMBER to tile(R.id.tile_member, R.string.tab_member, R.drawable.ds_icon_member, R.string.home_member_unlinked),
+        Section.SETTINGS to tile(R.id.tile_settings, R.string.tab_settings, R.drawable.ds_icon_settings, R.string.home_sub_settings),
     )
 
     init {
@@ -46,10 +46,12 @@ class HomeScreen(
         refresh()
     }
 
-    private fun tile(id: Int, label: Int, icon: Int): View =
+    /** A tile: icon, section name and one line saying what is inside, readable at a glance. */
+    private fun tile(id: Int, label: Int, icon: Int, sub: Int): View =
         root.findViewById<View>(id).also {
             it.findViewById<TextView>(R.id.label).setText(label)
             it.findViewById<ImageView>(R.id.icon).setImageResource(icon)
+            it.findViewById<TextView>(R.id.sub).apply { setText(sub); visibility = View.VISIBLE }
         }
 
     /** Re-reads what the home shows: last read, unread news, pending update, sync state. */
@@ -85,10 +87,8 @@ class HomeScreen(
             visibility = if (member == null) View.GONE else View.VISIBLE
             text = member
         }
-        tiles.getValue(Section.MEMBER).findViewById<TextView>(R.id.sub).apply {
-            visibility = View.VISIBLE
-            setText(if (member == null) R.string.home_member_unlinked else R.string.home_member_linked)
-        }
+        tiles.getValue(Section.MEMBER).findViewById<TextView>(R.id.sub)
+            .setText(if (member == null) R.string.home_member_unlinked else R.string.home_member_linked)
         badge(Section.SETTINGS, if (app.latestRelease?.canInstall == true) activity.getString(R.string.badge_update) else null, sticker = false)
         renderStatus()
     }

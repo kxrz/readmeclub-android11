@@ -42,10 +42,12 @@
 
     <TextView
         android:id="@+id/sub"
-        style="@style/Ds.Mono"
+        style="@style/Ds.Text"
         android:duplicateParentState="true"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1"
         android:maxLines="1"
         android:textColor="@color/ds_on_button"
-        android:textSize="12sp"
+        android:textSize="13sp"
         android:visibility="gone" />
 </LinearLayout>

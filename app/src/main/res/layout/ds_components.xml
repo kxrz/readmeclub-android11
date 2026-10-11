@@ -143,8 +143,8 @@
                     <TextView style="@style/Ds.Text" android:textStyle="bold" android:duplicateParentState="true"
                         android:textColor="@color/ds_on_button" android:text="Member" />
 
-                    <TextView style="@style/Ds.Mono" android:duplicateParentState="true" android:textSize="12sp"
-                        android:textColor="@color/ds_on_button" android:text="Not linked" />
+                    <TextView style="@style/Ds.Text" android:duplicateParentState="true" android:textSize="13sp"
+                        android:textColor="@color/ds_on_button" android:text="Link your account" />
                 </LinearLayout>
             </LinearLayout>
 
