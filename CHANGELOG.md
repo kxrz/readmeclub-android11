@@ -7,6 +7,11 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
+## [Unreleased]
+
+### Build
+- Screenshots workflow: the screens show the release name and version, not the debug ones.
+
 ## [2.0.0] - 2026-10-11
 
 ### Added
