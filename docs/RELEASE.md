@@ -96,7 +96,7 @@ release.
    and upload `readmeclub-play-key.zip`. The bundles CI signs with this key are then
    accepted as uploads. Never let Google generate the key: Play installs would then refuse
    GitHub updates and the reverse.
-3. *App content*: privacy policy URL, ads (none), data safety (no tracking; when a member
+3. *App content*: privacy policy URL (`https://www.readme.club/privacy`), ads (none), data safety (no tracking; when a member
    links the app: member number and email, sent to readme.club only, over HTTPS),
    content rating questionnaire, target audience (not children).
 4. *Store listing*: title, descriptions, icon and screenshots are in

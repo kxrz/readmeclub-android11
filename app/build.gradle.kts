@@ -14,8 +14,8 @@ android {
         minSdk = 30
         // Google Play's floor for new apps and updates (Aug 2026). The S4 runs Android 11, where it changes nothing.
         targetSdk = 36
-        versionCode = 16
-        versionName = "2.0.0"
+        versionCode = 17
+        versionName = "2.0.1"
         // The GitHub build updates itself from GitHub Releases; the Play build is updated by Google Play.
         buildConfigField("boolean", "SELF_UPDATE", "true")
     }
