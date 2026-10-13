@@ -27,8 +27,8 @@ jobs:
           distribution: temurin
           java-version: 17
       - uses: gradle/actions/setup-gradle@v4
-      # assembleRelease (unsigned here) catches R8/lint-vital problems before a release tag does.
-      - run: ./gradlew testDebugUnitTest assembleDebug assembleRelease
+      # assembleRelease and bundlePlay (unsigned here) catch R8/lint-vital problems before a release tag does.
+      - run: ./gradlew testDebugUnitTest assembleDebug assembleRelease bundlePlay
       # APK budget (CLAUDE.md): the minified release build must stay under 450 KB.
       - name: Check APK size
         run: |
@@ -71,16 +71,18 @@ jobs:
         run: |
           if [ -z "$KEYSTORE_BASE64" ]; then echo "::error::RELEASE_KEYSTORE_BASE64 secret is missing"; exit 1; fi
           echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
-      - name: Build signed APK
+      - name: Build signed APK and Play bundle
         env:
           RELEASE_KEYSTORE: ${{ runner.temp }}/release.jks
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
         run: |
-          ./gradlew testReleaseUnitTest assembleRelease
+          ./gradlew testReleaseUnitTest assembleRelease bundlePlay
           cp app/build/outputs/apk/release/app-release.apk readmeclub.apk
           cp readmeclub.apk "readmeclub-${TAG#v}.apk"
+          # Google Play's bundle, uploaded to the Play Console by hand (docs/RELEASE.md).
+          cp app/build/outputs/bundle/play/app-play.aab "readmeclub-${TAG#v}-play.aab"
           # Release notes come from CHANGELOG.md; no section for this version = no release.
           version="${TAG#v}"; version="${version%%-*}"
           awk -v v="$version" 'index($0, "## [" v "]") == 1 {f=1; next} /^## \[/ {if (f) exit} f' CHANGELOG.md > release-notes.md
@@ -96,13 +98,15 @@ jobs:
             --rawfile notes release-notes.md \
             '{latestVersion: $version, apkUrl: $apk, sha256: $sha, notes: $notes}' > manifest.json
       # The release files, also kept on the run: if GitHub refuses the release step, they can
-      # be attached to the release by hand (Actions › this run › Artifacts).
+      # be attached to the release by hand (Actions › this run › Artifacts). The Play bundle is
+      # only here, not on the GitHub release: it is for the Play Console.
       - uses: actions/upload-artifact@v4
         with:
           name: release-${{ env.TAG }}
           path: |
             readmeclub.apk
             readmeclub-*.apk
+            readmeclub-*-play.aab
             manifest.json
             release-notes.md
       - uses: softprops/action-gh-release@v2

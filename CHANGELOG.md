@@ -9,7 +9,16 @@ and refuses to release a version that has no section here.
 
 ## [Unreleased]
 
+### Changed
+- Targets Android 16 (API 36), as Google Play requires. Nothing changes on Android 11 to 14;
+  on Android 15 and later, screens stay clear of the status and navigation bars, Back keeps
+  its behaviour (no predictive back animation), and the app stays in portrait on large screens.
+
 ### Build
+- Google Play build: the `play` build type is the release without self-update or the
+  install permission, built as an app bundle (`bundlePlay`) by every release run and kept in
+  the run's artifact for the Play Console. Settings › About then reads "Updates come from
+  Google Play". Procedure in `docs/RELEASE.md`.
 - Screenshots workflow: the screens show the release name and version, not the debug ones.
 - Release workflow: the release files (APKs, manifest, notes) are also kept as an artifact of
   the run, and an existing tag can be rebuilt from Run workflow.

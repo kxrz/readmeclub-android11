@@ -158,13 +158,19 @@ class SettingsTab(
             }
         }
 
-        updateNow.setOnClickListener { update() }
-        root.findViewById<View>(R.id.check_update).setOnClickListener {
-            updateStatus.setText(R.string.checking_update)
-            updateNow.visibility = View.GONE
-            onUpdateCheckRequested()
+        val checkUpdate = root.findViewById<View>(R.id.check_update)
+        if (BuildConfig.SELF_UPDATE) {
+            updateNow.setOnClickListener { update() }
+            checkUpdate.setOnClickListener {
+                updateStatus.setText(R.string.checking_update)
+                updateNow.visibility = View.GONE
+                onUpdateCheckRequested()
+            }
+            refreshUpdate()
+        } else {
+            updateStatus.setText(R.string.updates_by_play)
+            checkUpdate.visibility = View.GONE
         }
-        refreshUpdate()
     }
 
     /** Shows the result of the last update check, at launch or from "Check for updates". */

@@ -1,11 +1,16 @@
 package club.readme.android
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.hardware.display.DisplayManager
+import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Display
+import android.view.View
+import android.view.WindowInsets
 import club.readme.android.data.ContentStore
 import club.readme.android.data.Prefs
 import club.readme.android.data.ReadingState
@@ -56,6 +61,29 @@ class App : Application() {
         val mode = getSystemService(DisplayManager::class.java).getDisplay(Display.DEFAULT_DISPLAY).mode
         wallpapers = WallpaperSync(File(cacheDir, "wallpapers"), mode.physicalWidth, mode.physicalHeight)
         member = MemberSync(prefs, cacheDir, "${mode.physicalWidth}x${mode.physicalHeight}")
+        if (Build.VERSION.SDK_INT >= 35) registerActivityLifecycleCallbacks(KeepClearOfSystemBars)
+    }
+
+    /**
+     * From Android 15, apps targeting it draw under the status and navigation bars: every screen
+     * is padded by their size, so the bottom bar stays above the system's. Older systems (the S4)
+     * already lay out between the bars.
+     */
+    private object KeepClearOfSystemBars : ActivityLifecycleCallbacks {
+        override fun onActivityPostCreated(activity: Activity, savedInstanceState: Bundle?) {
+            activity.findViewById<View>(android.R.id.content).setOnApplyWindowInsetsListener { view, insets ->
+                val bars = insets.getInsets(WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout())
+                view.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+                insets
+            }
+        }
+        override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) = Unit
+        override fun onActivityStarted(activity: Activity) = Unit
+        override fun onActivityResumed(activity: Activity) = Unit
+        override fun onActivityPaused(activity: Activity) = Unit
+        override fun onActivityStopped(activity: Activity) = Unit
+        override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) = Unit
+        override fun onActivityDestroyed(activity: Activity) = Unit
     }
 
     /** Checks GitHub for a newer release in the background; [done] is called on the main thread. */

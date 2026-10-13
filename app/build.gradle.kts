@@ -7,14 +7,17 @@ plugins {
 
 android {
     namespace = "club.readme.android"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "club.readme.android"
         minSdk = 30
-        targetSdk = 30 // S4 runs Android 11; sideloaded, so no Play Store targetSdk floor
+        // Google Play's floor for new apps and updates (Aug 2026). The S4 runs Android 11, where it changes nothing.
+        targetSdk = 36
         versionCode = 16
         versionName = "2.0.0"
+        // The GitHub build updates itself from GitHub Releases; the Play build is updated by Google Play.
+        buildConfigField("boolean", "SELF_UPDATE", "true")
     }
 
     signingConfigs {
@@ -44,6 +47,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.findByName("release")
         }
+        // Google Play: the release build without self-update (Play policy), shipped as an app bundle
+        // (bundlePlay). Same id and key as the GitHub release, so users can switch between the two.
+        create("play") {
+            initWith(getByName("release"))
+            buildConfigField("boolean", "SELF_UPDATE", "false")
+        }
     }
 
     buildFeatures {
@@ -60,11 +69,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    lint {
-        // targetSdk 30 is deliberate (see above).
-        disable += "ExpiredTargetSdkVersion"
     }
 }
 
