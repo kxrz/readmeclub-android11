@@ -1,0 +1,1 @@
+2.0.1: targets Android 16 for Google Play. On Android 15 and later, screens stay clear of the system bars and Back keeps its behaviour; nothing changes on Android 11 to 14. The Google Play build is updated by Google Play.

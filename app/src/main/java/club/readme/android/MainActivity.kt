@@ -53,8 +53,8 @@ class MainActivity : Activity() {
         if (savedInstanceState != null) restoreScope(savedInstanceState)
         show(savedInstanceState?.getString(KEY_SECTION)?.let { name -> Section.values().firstOrNull { it.name == name } })
         if (savedInstanceState == null) {
-            sync() // one sync and one update check per launch
-            app.checkForUpdate(::markUpdate)
+            sync() // one sync and one update check per launch (Play builds: Google Play updates them)
+            if (BuildConfig.SELF_UPDATE) app.checkForUpdate(::markUpdate)
         }
         if (!app.prefs.welcomed) showWelcome()
     }

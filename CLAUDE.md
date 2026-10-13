@@ -3,7 +3,7 @@
 readme.club's Android app for e-ink readers, built on the Xteink S4 (Android 11, 4.3" e-ink) and meant to run on any Android 11+ reader. Overview: README.md; device specifics: docs/DEVICE.md.
 
 ## Non-negotiable rules
-- minSdk 30. No dependency on Google Play Services.
+- minSdk 30, targetSdk 36 (Google Play floor). No dependency on Google Play Services, in either build.
 - No animation, no colour carrying meaning, no continuous scrolling: everything is paginated.
 - Navigation: the Home screen (Continue reading, one tile per section, Sync) is the entry to every section; there are no tabs. Never assume a hardware button: every action is reachable on screen.
 - One bottom bar on every screen, the same everywhere (`Ds.Bar`, 56 dp, a 2 dp rule above, `Ds.Button`s).
@@ -34,5 +34,6 @@ readme.club's Android app for e-ink readers, built on the Xteink S4 (Android 11,
 - The cloud environment has no Android SDK nor access to Google Maven: builds are verified on GitHub Actions (`.github/workflows/android.yml`).
 - Every push produces the `app-debug` artifact (APK signed with `app/debug.keystore`, shared so successive installs go through).
 - A `v*` tag produces the signed release APK and publishes it on GitHub Releases: full procedure in docs/RELEASE.md.
+- Two distributions, one codebase: the `release` build (APK on GitHub Releases and the website, updates itself) and the `play` build type (Google Play app bundle, `bundlePlay`, no self-update, `BuildConfig.SELF_UPDATE` false). Anything about self-update stays behind that flag.
 - Debug builds have their own id (`club.readme.android.debug`, "readme.club dev") and install next to the release.
 - Deliberately minimal stack: native Android views, Kotlin, no AndroidX; networking with `HttpURLConnection` + `org.json`.

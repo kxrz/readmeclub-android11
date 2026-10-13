@@ -10,6 +10,7 @@
     <string name="loading">Loading…</string>
     <string name="offline">Update check unavailable</string>
     <string name="check_update">Check for updates</string>
+    <string name="updates_by_play">Updates come from Google Play</string>
     <string name="checking_update">Checking for updates…</string>
     <string name="up_to_date">Up to date (latest: %1$s)</string>
     <string name="update_available">Update available: %1$s</string>
