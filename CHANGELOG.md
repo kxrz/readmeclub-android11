@@ -26,6 +26,9 @@ clear of the system bars on Android 15 and later.
 ### Build
 - README: the device report link opens the contact form on "Bug report" (the site files its
   old subject under "Correction").
+- Screenshots workflow: a choice of screen, the Xteink S4 (`screenshots` branch) or a large
+  reader like the Supernote Nomad (`screenshots-large`), and a tour of the stories with a
+  video and with images, as they are published that day.
 
 ## [2.0.1] - Not released on its own (included in 2.0.2)
 

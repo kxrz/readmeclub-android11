@@ -135,6 +135,37 @@ def news():
     tap_id("back")
 
 
+def stories():
+    """The reader on the CMS's richer layouts, whatever is published today: the first cached
+    article with a video (now a "Video" line), then the first with a captioned image, else the
+    one with the most images, a few pages each."""
+    import json
+    raw = adb("exec-out", "run-as", PKG, "cat", "files/news/articles.json").stdout
+    try:
+        articles = json.loads(raw)
+    except ValueError:
+        print("  no cached articles")
+        return
+    picks = []
+    video = next((a for a in articles if "<b>Video</b>" in a["html"]), None)
+    if video:
+        picks.append(("story-video", video))
+    images = [a for a in articles if a is not video and "<img" in a["html"]]
+    images.sort(key=lambda a: ("<small><i>" not in a["html"], -a["html"].count("<img")))
+    if images:
+        picks.append(("story-images", images[0]))
+    for name, article in picks:
+        print(f"  {name}: {article['slug']}")
+        adb("shell", "am", "start", "-n", f"{PKG}/{APP}.reader.ReaderActivity",
+            "--es", "kind", "news", "--es", "slug", article["slug"])
+        time.sleep(5)
+        for page in range(1, 5):
+            shot(f"{name}-{page}")
+            adb("shell", "input", "keyevent", "KEYCODE_PAGE_DOWN")
+            time.sleep(2)
+        back()
+
+
 def guides():
     tap_id("tile_guides", wait=4)
     shot("guides")
@@ -285,7 +316,7 @@ if __name__ == "__main__":
     time.sleep(3)
     adb("wait-for-device")
     for title, fn in [
-        ("Home", home), ("News", news), ("Guides", guides), ("Wallpapers", wallpapers),
+        ("Home", home), ("News", news), ("Stories", stories), ("Guides", guides), ("Wallpapers", wallpapers),
         ("Settings", settings), ("Member", member), ("Games", games),
     ]:
         step(title, fn)
