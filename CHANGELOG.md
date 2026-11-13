@@ -27,7 +27,7 @@ clear of the system bars on Android 15 and later.
   that still fills the screen (900 px instead of up to 2000 px), not the original.
 
 ### Build
-- README: release badge 2.0.2; the device report link opens the contact form on "Bug report" (the site files its
+- README: release badge 2.0.2, APK size badge (446 KB); the device report link opens the contact form on "Bug report" (the site files its
   old subject under "Correction").
 - Screenshots workflow: a choice of screen, the Xteink S4 (`screenshots` branch) or a large
   reader like the Supernote Nomad (`screenshots-large`), and a tour of the stories with a
