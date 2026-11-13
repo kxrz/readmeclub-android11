@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable
 import android.text.Html
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.text.style.BulletSpan
 import android.text.style.ImageSpan
 import android.text.style.QuoteSpan
 import android.text.style.RelativeSizeSpan
@@ -51,6 +52,7 @@ object ArticleText {
         val images = Html.ImageGetter { src -> loadImage(store, resources, src, maxImageWidth, maxImageHeight) }
         val body = SpannableStringBuilder(Html.fromHtml(article.html, Html.FROM_HTML_MODE_LEGACY, images, null))
         blackQuotes(body)
+        spacedBullets(body, resources.displayMetrics.density)
         keepInternalLinks(body)
         while (body.isNotEmpty() && body.last().isWhitespace()) body.delete(body.length - 1, body.length)
         return text.append(body)
@@ -71,6 +73,17 @@ object ArticleText {
     private fun keepInternalLinks(text: SpannableStringBuilder) {
         for (span in text.getSpans(0, text.length, URLSpan::class.java)) {
             if (InternalLinks.target(span.url) == null) text.removeSpan(span)
+        }
+    }
+
+    /** Html.fromHtml sets list items 2 px from their bullet ("•Get"): a real gap, in black. */
+    private fun spacedBullets(text: SpannableStringBuilder, density: Float) {
+        for (span in text.getSpans(0, text.length, BulletSpan::class.java)) {
+            val start = text.getSpanStart(span)
+            val end = text.getSpanEnd(span)
+            val flags = text.getSpanFlags(span)
+            text.removeSpan(span)
+            text.setSpan(BulletSpan((8 * density).toInt(), Color.BLACK, (2.5f * density).toInt()), start, end, flags)
         }
     }
 

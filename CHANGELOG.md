@@ -18,6 +18,9 @@ clear of the system bars on Android 15 and later.
   small italics instead of running into the next paragraph, and an embedded video (YouTube,
   Vimeo, TikTok), which cannot play on the reader, becomes a line saying what it is and how
   to watch it ("To watch it: Menu › Open on your phone") instead of vanishing.
+- Lists in news and guides: the text no longer touches its bullet.
+- Quiz packs: no Previous button on the first page, as everywhere else.
+- Components screen (diagnostic): the Member tile shows its whole second line.
 
 ### Changed
 - Lighter sync: an article or guide image is downloaded at the smallest size the site offers
@@ -28,7 +31,8 @@ clear of the system bars on Android 15 and later.
   old subject under "Correction").
 - Screenshots workflow: a choice of screen, the Xteink S4 (`screenshots` branch) or a large
   reader like the Supernote Nomad (`screenshots-large`), and a tour of the stories with a
-  video and with images, as they are published that day.
+  video and with images, as they are published that day. The large reader gets an emulator
+  built at its size (Android refuses a forced size over twice the emulator's own).
 
 ## [2.0.1] - Not released on its own (included in 2.0.2)
 

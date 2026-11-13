@@ -48,7 +48,9 @@ jobs:
           target: default
           arch: x86_64
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          # Android refuses a forced size over twice the emulator's own screen (320 x 640):
+          # the large reader gets an emulator built at its size.
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none ${{ inputs.screen == 'large' && '-skin 1404x1872' || '' }}
           script: |
             adb shell wm size $SIZE
             adb shell wm density $DENSITY

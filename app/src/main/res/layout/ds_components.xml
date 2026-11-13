@@ -99,12 +99,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:baselineAligned="false"
+                android:minHeight="84dp"
                 android:orientation="horizontal">
 
+                <!-- match_parent in a wrap_content row: both tiles take the taller one's height,
+                     so Member's two lines are never cut. -->
                 <LinearLayout
                     style="@style/Ds.Tile"
                     android:layout_width="0dp"
-                    android:layout_height="84dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -130,7 +134,7 @@
                 <LinearLayout
                     style="@style/Ds.Tile"
                     android:layout_width="0dp"
-                    android:layout_height="84dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
