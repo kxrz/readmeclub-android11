@@ -69,7 +69,7 @@ Device notes: [docs/DEVICE.md](docs/DEVICE.md).
 | Supernote Manta A5X2 | 11 (Chauvet 3) | Works |
 | Boox Note Air5 C | 15 | Works |
 
-Running it on another reader? **[Send a device report](https://www.readme.club/contact?subject=App+device+report&message=Device%3A%0AAndroid+version%3A%0ADoes+it+install+and+open%3F%0ANews+%2F+Guides+%2F+Wallpapers+OK%3F%0APage-turn+buttons+OK%3F%0AAnything+wrong%3F)** —
+Running it on another reader? **[Send a device report](https://www.readme.club/contact?subject=Bug+report&message=Device%3A%0AAndroid+version%3A%0ADoes+it+install+and+open%3F%0ANews+%2F+Guides+%2F+Wallpapers+OK%3F%0APage-turn+buttons+OK%3F%0AAnything+wrong%3F)** —
 a short form on readme.club, no account needed, and your reader joins the list. On GitHub?
 The [device report issue form](../../issues/new?template=device-report.yml) works too.
 

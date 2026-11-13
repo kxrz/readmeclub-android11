@@ -7,7 +7,27 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
-## [2.0.1] - Unreleased
+## [2.0.2] - Unreleased
+
+The first release since 2.0.0: it also brings everything in 2.0.1 (below), which was not
+published on its own. In short: the app targets Android 16 for Google Play, with screens
+clear of the system bars on Android 15 and later.
+
+### Fixed
+- News and guides read the site's new article layout: an image's caption sits under it in
+  small italics instead of running into the next paragraph, and an embedded video (YouTube,
+  Vimeo, TikTok), which cannot play on the reader, becomes a line saying what it is and how
+  to watch it ("To watch it: Menu › Open on your phone") instead of vanishing.
+
+### Changed
+- Lighter sync: an article or guide image is downloaded at the smallest size the site offers
+  that still fills the screen (900 px instead of up to 2000 px), not the original.
+
+### Build
+- README: the device report link opens the contact form on "Bug report" (the site files its
+  old subject under "Correction").
+
+## [2.0.1] - Not released on its own (included in 2.0.2)
 
 ### Changed
 - Targets Android 16 (API 36), as Google Play requires. Nothing changes on Android 11 to 14;

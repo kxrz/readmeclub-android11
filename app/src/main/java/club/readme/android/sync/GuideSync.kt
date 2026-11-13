@@ -4,6 +4,7 @@ import android.util.Log
 import club.readme.android.data.Article
 import club.readme.android.data.Brand
 import club.readme.android.data.ContentStore
+import club.readme.android.reader.CmsHtml
 import club.readme.android.reader.HtmlImages
 import org.json.JSONArray
 import org.json.JSONObject
@@ -43,7 +44,7 @@ class GuideSync(private val store: ContentStore) {
                 ).joinToString(" · ").ifEmpty { null },
                 author = o.firstName("authors"),
                 publishedAt = o.string("lastUpdatedAt") ?: o.string("publishedAt") ?: o.string("createdAt") ?: "",
-                html = o.string("contentHTML") ?: "",
+                html = CmsHtml.forReader(o.string("contentHTML") ?: "", ImageCache.MAX_WIDTH),
                 heroImage = o.mediaUrl("heroImage", "card"),
                 brands = slugs(o.optJSONArray("brands")),
                 toc = o.optJSONArray("toc")?.let { t -> (0 until t.length()).mapNotNull { t.optJSONObject(it)?.string("text") } }

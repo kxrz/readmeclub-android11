@@ -14,7 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger
 object ImageCache {
 
     private const val TAG = "ImageCache"
-    private const val MAX_WIDTH = 480
+    /** Widest image the cache keeps: wider ones are scaled down to it. */
+    const val MAX_WIDTH = 480
     /** Enough to keep Wi-Fi busy without starving a small reader's CPU and memory. */
     private const val PARALLEL = 4
 
