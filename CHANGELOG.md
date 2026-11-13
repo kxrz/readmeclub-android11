@@ -7,7 +7,7 @@ versions follow `versionName` in `app/build.gradle.kts`.
 The release workflow publishes the section of the tagged version as the GitHub release notes,
 and refuses to release a version that has no section here.
 
-## [2.0.2] - Unreleased
+## [2.0.2] - 2026-11-13
 
 The first release since 2.0.0: it also brings everything in 2.0.1 (below), which was not
 published on its own. In short: the app targets Android 16 for Google Play, with screens
@@ -27,7 +27,7 @@ clear of the system bars on Android 15 and later.
   that still fills the screen (900 px instead of up to 2000 px), not the original.
 
 ### Build
-- README: the device report link opens the contact form on "Bug report" (the site files its
+- README: release badge 2.0.2; the device report link opens the contact form on "Bug report" (the site files its
   old subject under "Correction").
 - Screenshots workflow: a choice of screen, the Xteink S4 (`screenshots` branch) or a large
   reader like the Supernote Nomad (`screenshots-large`), and a tour of the stories with a

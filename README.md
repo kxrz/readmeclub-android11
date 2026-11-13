@@ -11,7 +11,7 @@
 News, guides, wallpapers, games and quizzes — right on the device, offline, in glorious black and white.<br>
 On any Android 11+ device: e-readers first, phones too.
 
-[![Release 2.0.0](https://img.shields.io/badge/release-2.0.0-000000?style=flat-square)](../../releases/latest)
+[![Release 2.0.2](https://img.shields.io/badge/release-2.0.2-000000?style=flat-square)](../../releases/latest)
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-000000?style=flat-square)](LICENSE)
 ![Android 11+](https://img.shields.io/badge/Android-11%2B-000000?style=flat-square)
 ![APK size](https://img.shields.io/badge/APK-~440%20KB-000000?style=flat-square)
