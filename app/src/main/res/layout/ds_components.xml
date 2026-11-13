@@ -99,12 +99,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
+                <!-- 96 dp: room for an icon and two lines (Member) inside the 12 dp padding. -->
                 <LinearLayout
                     style="@style/Ds.Tile"
                     android:layout_width="0dp"
-                    android:layout_height="84dp"
+                    android:layout_height="96dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -130,7 +132,7 @@
                 <LinearLayout
                     style="@style/Ds.Tile"
                     android:layout_width="0dp"
-                    android:layout_height="84dp"
+                    android:layout_height="96dp"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">

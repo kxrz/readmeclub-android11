@@ -118,8 +118,8 @@ class PacksActivity : Activity() {
                 }
             }
             val paged = pages > 1
-            previous.visibility = if (paged) View.VISIBLE else View.GONE
-            previous.isEnabled = page > 0
+            // As on every paginated screen: no Previous on the first page.
+            previous.visibility = if (!paged) View.GONE else if (page > 0) View.VISIBLE else View.INVISIBLE
             status.text = if (paged) getString(R.string.page_of, page + 1, pages) else ""
             primary.setText(R.string.next)
             primary.visibility = if (paged && page < pages - 1) View.VISIBLE else View.INVISIBLE

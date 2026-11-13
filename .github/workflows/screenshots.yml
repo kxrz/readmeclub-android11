@@ -1,10 +1,17 @@
 name: Screenshots
 
-# Tours every screen of the debug build on an Android 11 emulator set up like the Xteink S4
-# (480 x 800 px, 220 dpi) and pushes the PNGs to the `screenshots` branch.
-# Actions → Screenshots → Run workflow.
+# Tours every screen of the debug build on an Android 11 emulator set up like a reader and
+# pushes the PNGs to a branch: the Xteink S4 (480 x 800 px, 220 dpi) to `screenshots`, a large
+# reader (the Supernote Nomad, 1404 x 1872 px, 300 dpi) to `screenshots-large`.
+# Actions → Screenshots → Run workflow, then pick the screen.
 on:
   workflow_dispatch:
+    inputs:
+      screen:
+        description: "Screen to emulate"
+        type: choice
+        options: ["s4", "large"]
+        default: "s4"
 
 permissions:
   contents: write
@@ -13,6 +20,10 @@ jobs:
   screenshots:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      SIZE: ${{ inputs.screen == 'large' && '1404x1872' || '480x800' }}
+      DENSITY: ${{ inputs.screen == 'large' && '300' || '220' }}
+      BRANCH: ${{ inputs.screen == 'large' && 'screenshots-large' || 'screenshots' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -37,18 +48,20 @@ jobs:
           target: default
           arch: x86_64
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          # Android refuses a forced size over twice the emulator's own screen (320 x 640):
+          # the large reader gets an emulator built at its size.
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none ${{ inputs.screen == 'large' && '-skin 1404x1872' || '' }}
           script: |
-            adb shell wm size 480x800
-            adb shell wm density 220
+            adb shell wm size $SIZE
+            adb shell wm density $DENSITY
             adb install -r app/build/outputs/apk/debug/app-debug.apk
             python3 scripts/screenshots.py shots
       - name: Push to the screenshots branch
         run: |
           cd shots
-          git init -q -b screenshots
+          git init -q -b "$BRANCH"
           git config user.name "github-actions[bot]"
           git config user.email "41898341+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -qm "Screenshots of ${GITHUB_SHA::7}"
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" screenshots
+          git commit -qm "Screenshots of ${GITHUB_SHA::7} ($SIZE)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "$BRANCH"

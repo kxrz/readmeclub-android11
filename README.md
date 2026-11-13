@@ -11,7 +11,7 @@
 News, guides, wallpapers, games and quizzes — right on the device, offline, in glorious black and white.<br>
 On any Android 11+ device: e-readers first, phones too.
 
-[![Release 2.0.0](https://img.shields.io/badge/release-2.0.0-000000?style=flat-square)](../../releases/latest)
+[![Release 2.0.2](https://img.shields.io/badge/release-2.0.2-000000?style=flat-square)](../../releases/latest)
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-000000?style=flat-square)](LICENSE)
 ![Android 11+](https://img.shields.io/badge/Android-11%2B-000000?style=flat-square)
 ![APK size](https://img.shields.io/badge/APK-~440%20KB-000000?style=flat-square)
@@ -69,7 +69,7 @@ Device notes: [docs/DEVICE.md](docs/DEVICE.md).
 | Supernote Manta A5X2 | 11 (Chauvet 3) | Works |
 | Boox Note Air5 C | 15 | Works |
 
-Running it on another reader? **[Send a device report](https://www.readme.club/contact?subject=App+device+report&message=Device%3A%0AAndroid+version%3A%0ADoes+it+install+and+open%3F%0ANews+%2F+Guides+%2F+Wallpapers+OK%3F%0APage-turn+buttons+OK%3F%0AAnything+wrong%3F)** —
+Running it on another reader? **[Send a device report](https://www.readme.club/contact?subject=Bug+report&message=Device%3A%0AAndroid+version%3A%0ADoes+it+install+and+open%3F%0ANews+%2F+Guides+%2F+Wallpapers+OK%3F%0APage-turn+buttons+OK%3F%0AAnything+wrong%3F)** —
 a short form on readme.club, no account needed, and your reader joins the list. On GitHub?
 The [device report issue form](../../issues/new?template=device-report.yml) works too.
 

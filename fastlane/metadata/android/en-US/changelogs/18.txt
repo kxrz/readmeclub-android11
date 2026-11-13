@@ -1,0 +1,1 @@
+2.0.2: news and guides read the site's new article layout: captions sit under their images and embedded videos become a line saying how to watch them on your phone. Lighter sync: images come at the size the screen needs. Also includes 2.0.1: targets Android 16 for Google Play.

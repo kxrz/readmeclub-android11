@@ -3,6 +3,7 @@ package club.readme.android.sync
 import android.util.Log
 import club.readme.android.data.Article
 import club.readme.android.data.ContentStore
+import club.readme.android.reader.CmsHtml
 import club.readme.android.reader.HtmlImages
 import org.json.JSONObject
 
@@ -36,7 +37,7 @@ class NewsSync(private val store: ContentStore) {
                 author = o.firstName("authors"),
                 // publishedAt is set once at first publication; createdAt is the stable fallback (same as the site).
                 publishedAt = o.string("publishedAt") ?: o.string("createdAt") ?: "",
-                html = o.string("contentHTML") ?: "",
+                html = CmsHtml.forReader(o.string("contentHTML") ?: "", ImageCache.MAX_WIDTH),
                 // The 900 px "card" rendition (we downscale to 480 anyway), else the original.
                 heroImage = o.mediaUrl("heroImage", "card"),
             )
